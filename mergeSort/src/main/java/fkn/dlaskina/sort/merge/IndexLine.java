@@ -1,6 +1,5 @@
 package fkn.dlaskina.sort.merge;
 
-import com.sun.istack.internal.Nullable;
 import fkn.dlaskina.sort.comparators.CharComparator;
 import fkn.dlaskina.sort.comparators.SortMap;
 
@@ -43,7 +42,7 @@ public class IndexLine implements Comparable<IndexLine> {
     }
 
     @Override
-    public int compareTo(@Nullable final IndexLine o) {
+    public int compareTo(final IndexLine o) {
         return (o == null) ? 1 : ((index > o.index) ? 1
             : (index == o.index ? CharComparator.compare(this.getLine(), o.getLine()) : -1));
         //return CharComparator.compare(this.getLine(), o.getLine());

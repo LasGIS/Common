@@ -1,7 +1,5 @@
 package fkn.dlaskina.sort.comparators;
 
-import com.sun.istack.internal.NotNull;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +35,7 @@ public class SortMap {
         }
     }
 
-    @NotNull public static Integer get(Character chr) {
+    public static Integer get(Character chr) {
         Integer index = SORT_MAP.get(chr);
         if (index == null) {
             index = SORT_MAP.size() + 1;
