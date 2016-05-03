@@ -47,4 +47,11 @@ public class IndexLine implements Comparable<IndexLine> {
             : (index == o.index ? CharComparator.compare(this.getLine(), o.getLine()) : -1));
         //return CharComparator.compare(this.getLine(), o.getLine());
     }
+
+    public static IndexLine create(String line) {
+        if (line != null) {
+            return new IndexLine(line);
+        }
+        return null;
+    }
 }
