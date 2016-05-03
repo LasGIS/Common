@@ -137,6 +137,7 @@ public class Sort {
                     size = 0;
                 }
             }
+            saveChunk(list);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
