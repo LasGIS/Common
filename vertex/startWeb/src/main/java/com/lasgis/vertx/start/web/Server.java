@@ -1,24 +1,20 @@
-package com.lasgis.vertx;
+package com.lasgis.vertx.start.web;
 
 import io.vertx.core.AbstractVerticle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/*
-This is a simple Java verticle which receives `ping` messages on the event bus and sends back `pong` replies
- */
-public class MyVerticle extends AbstractVerticle {
+public class Server extends AbstractVerticle {
 
-    static final Logger LOG = LoggerFactory.getLogger(MyVerticle.class);
+    static final Logger LOG = LoggerFactory.getLogger(Server.class);
 
-    public MyVerticle() {
-        LOG.info("-conf myconf.json");
+    public Server() {
+        LOG.info("constructor {}", this.getClass().getSimpleName());
     }
 
     @Override
     public void start() {
-
-        LOG.info("start MyVerticle");
+        LOG.info("start Server");
         //vertx.createHttpServer()
 /*
         vertx.eventBus().registerHandler(
@@ -38,6 +34,6 @@ public class MyVerticle extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOG.info("stop MyVerticle");
+        LOG.info("stop Server");
     }
 }

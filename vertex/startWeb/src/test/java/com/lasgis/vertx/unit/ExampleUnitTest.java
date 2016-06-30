@@ -1,6 +1,6 @@
 package com.lasgis.vertx.unit;
 
-import com.lasgis.vertx.MyVerticle;
+import com.lasgis.vertx.start.MainVerticle;
 import org.junit.Test;
 
 /*
@@ -24,7 +24,7 @@ public class ExampleUnitTest {
 
   @Test
   public void testVerticle() {
-    MyVerticle vert = new MyVerticle();
+    MainVerticle vert = new MainVerticle();
 
     // do something with verticle
   }
