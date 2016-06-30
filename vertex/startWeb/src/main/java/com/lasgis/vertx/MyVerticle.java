@@ -18,7 +18,7 @@ public class MyVerticle extends AbstractVerticle {
     @Override
     public void start() {
 
-        System.out.println("start MyVerticle");
+        LOG.info("start MyVerticle");
         //vertx.createHttpServer()
 /*
         vertx.eventBus().registerHandler(
@@ -38,6 +38,6 @@ public class MyVerticle extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        System.out.println("stop MyVerticle");
+        LOG.info("stop MyVerticle");
     }
 }
