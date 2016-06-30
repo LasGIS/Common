@@ -19,15 +19,17 @@ public class MainVerticle extends AbstractVerticle {
         LOG.info("start MainVerticle");
         vertx.deployVerticle("com.lasgis.vertx.start.web.Server", res -> {
           if (res.succeeded()) {
-            startFuture.complete();
+              LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
+              startFuture.complete();
           } else {
-            startFuture.fail(res.cause());
+              LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
+              startFuture.fail(res.cause());
           }
         });
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop(Future<Void> stopFuture) throws Exception {
         LOG.info("stop MainVerticle");
     }
 }
