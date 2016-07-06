@@ -37,11 +37,20 @@ public class Server extends AbstractVerticle {
         final MessageConsumer<String> consumer = eb.consumer("news.message");
         consumer.handler(message -> {
             LOG.info("received a message: header = {}; body = {}", message.headers().get("header"), message.body());
+            message.reply(
+                "It is very interesting!",
+                new DeliveryOptions().addHeader("header", "Server"),
+                replayOnReplay -> {
+                    LOG.info("Ответ на ответ: header=\"{}\", address=\"{}\", body=\"{}\"",
+                        message.headers().get("header"), message.address(), message.body()
+                    );
+                }
+            );
         });
         consumer.completionHandler(res -> {
             if (res.succeeded()) {
                 eb.publish("news.message", "consumer.completionHandler = success",
-                    new DeliveryOptions().addHeader("header", "Header")
+                    new DeliveryOptions().addHeader("header", "Server")
                 );
             } else {
                 eb.send("news.message", "consumer.completionHandler = failed");

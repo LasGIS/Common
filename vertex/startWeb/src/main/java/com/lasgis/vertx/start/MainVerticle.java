@@ -4,6 +4,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.eventbus.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,13 +34,20 @@ public class MainVerticle extends AbstractVerticle {
         });
 
         final EventBus eb = vertx.eventBus();
+        final DeliveryOptions option = new DeliveryOptions().addHeader("header", "Timer");
         eb.consumer("news.message", message -> {
             LOG.info("received a message: header = {}; body = {}", message.headers().get("header"), message.body());
         });
-        final DeliveryOptions option = new DeliveryOptions().addHeader("header", "Timer");
         timerID[0] = vertx.setPeriodic(1000, hand -> {
             if (count[0]-- > 0) {
-                eb.send("news.message", "Timer -> Кап[" + count[0] + "]", option);
+                eb.send("news.message", "Timer -> Кап[" + count[0] + "]", option, reply -> {
+                    if (reply.succeeded()) {
+                        final Message result = reply.result();
+                        LOG.info("Таймеру ответили: header=\"{}\", address=\"{}\", body=\"{}\"",
+                            result.headers().get("header"), result.address(), result.body());
+                        result.reply("Stop", option);
+                    }
+                });
             } else {
                 eb.publish("news.message", "Timer -> Стоп-ка", option);
                 vertx.cancelTimer(timerID[0]);
