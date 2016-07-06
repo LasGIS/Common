@@ -15,17 +15,16 @@ public class MainVerticle extends AbstractVerticle {
         LOG.info("constructor {}", this.getClass().getName());
     }
 
+    final int[] count = {100};
+    final long[] timerID = {0};
+
     @Override
     public void start(Future<Void> startFuture) {
-
-        final int[] count = {100};
-        final long[] timerID = {0};
 
         LOG.info("start MainVerticle");
         vertx.deployVerticle("com.lasgis.vertx.start.web.Server", res -> {
           if (res.succeeded()) {
               LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
-              vertx.cancelTimer(timerID[0]);
               startFuture.complete();
           } else {
               LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
@@ -50,6 +49,10 @@ public class MainVerticle extends AbstractVerticle {
 
     @Override
     public void stop(Future<Void> stopFuture) throws Exception {
+        final EventBus eb = vertx.eventBus();
+        final DeliveryOptions option = new DeliveryOptions().addHeader("header", "stopFuture");
+        eb.publish("news.message", "Timer -> Стоп-ка", option);
+        vertx.cancelTimer(timerID[0]);
         LOG.info("stop MainVerticle");
     }
 }
