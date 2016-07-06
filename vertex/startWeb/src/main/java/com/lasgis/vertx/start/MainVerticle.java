@@ -1,6 +1,7 @@
 package com.lasgis.vertx.start;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
@@ -23,14 +24,15 @@ public class MainVerticle extends AbstractVerticle {
     public void start(Future<Void> startFuture) {
 
         LOG.info("start MainVerticle");
-        vertx.deployVerticle("com.lasgis.vertx.start.web.Server", res -> {
-          if (res.succeeded()) {
-              LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
-              startFuture.complete();
-          } else {
-              LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
-              startFuture.fail(res.cause());
-          }
+        vertx.deployVerticle("com.lasgis.vertx.start.web.Server",
+            new DeploymentOptions().setInstances(10), res -> {
+            if (res.succeeded()) {
+                LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
+                startFuture.complete();
+            } else {
+                LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
+                startFuture.fail(res.cause());
+            }
         });
 
         final EventBus eb = vertx.eventBus();
