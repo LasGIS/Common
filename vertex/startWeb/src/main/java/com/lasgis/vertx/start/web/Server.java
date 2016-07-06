@@ -1,6 +1,9 @@
 package com.lasgis.vertx.start.web;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.eventbus.DeliveryOptions;
+import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.eventbus.MessageConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +33,20 @@ public class Server extends AbstractVerticle {
         container.logger().info("PingVerticle started");
 
 */
+        final EventBus eb = vertx.eventBus();
+        final MessageConsumer<String> consumer = eb.consumer("news.message");
+        consumer.handler(message -> {
+            LOG.info("received a message: header = {}; body = {}", message.headers().get("header"), message.body());
+        });
+        consumer.completionHandler(res -> {
+            if (res.succeeded()) {
+                eb.publish("news.message", "consumer.completionHandler = success",
+                    new DeliveryOptions().addHeader("header", "Header")
+                );
+            } else {
+                eb.send("news.message", "consumer.completionHandler = failed");
+            }
+        });
     }
 
     @Override
