@@ -32,12 +32,12 @@ public class Server extends AbstractVerticle {
 
         router.route().handler(routingContext -> {
 
-          // This handler will be called for every request
-          HttpServerResponse response = routingContext.response();
-          response.putHeader("content-type", "text/plain");
+            // This handler will be called for every request
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "text/plain");
 
-          // Write to the response and end it
-          response.end("Hello World from Vert.x-Web!");
+            // Write to the response and end it
+            response.end("Hello World from Vert.x-Web!");
         });
 
         server.requestHandler(router::accept).listen(8080);

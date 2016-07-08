@@ -2,6 +2,7 @@ package com.lasgis.vertx.start;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
+import io.vertx.core.DeploymentOptionsConverter;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
@@ -25,9 +26,28 @@ public class MainVerticle extends AbstractVerticle {
     @Override
     public void start(Future<Void> startFuture) {
 
-        final boolean[] isStartComplete = {true};
-
         LOG.info("start MainVerticle {}", config().getString("name"));
+        if (deployAll(startFuture)) {
+            startFuture.complete();
+        }
+        eventBusGame();
+    }
+
+    @Override
+    public void stop(Future<Void> stopFuture) throws Exception {
+        final EventBus eb = vertx.eventBus();
+        final DeliveryOptions option = new DeliveryOptions().addHeader("header", "stopFuture");
+        eb.publish("news.message", "Timer -> Стоп-ка", option);
+        vertx.cancelTimer(timerID[0]);
+        LOG.info("stop MainVerticle");
+    }
+
+    /**
+     * вычитываем из my-config Verticles и деплоим их.
+     * @param startFuture a future which should be called when verticle start-up is complete.
+     */
+    private boolean deployAll(final Future<Void> startFuture) {
+        final boolean[] isStartComplete = {true};
         final JsonArray deploy = config().getJsonArray("deploy");
         for (final Object vrtSet : deploy) {
             final String verticleName;
@@ -37,10 +57,7 @@ public class MainVerticle extends AbstractVerticle {
                 verticleName = verticleSet.getString("name");
                 final JsonObject optionSet = verticleSet.getJsonObject("option");
                 if (optionSet != null) {
-                    final int instances = optionSet.getInteger("instances");
-                    if (instances > 0) {
-                        options.setInstances(instances);
-                    }
+                    DeploymentOptionsConverter.fromJson(optionSet, options);
                 }
             } else if (vrtSet instanceof String) {
                 verticleName = (String) vrtSet;
@@ -62,34 +79,7 @@ public class MainVerticle extends AbstractVerticle {
                 );
             }
         }
-/*
-        vertx.deployVerticle("com.lasgis.vertx.start.vertx.Leaf",
-            new DeploymentOptions().setInstances(10), res -> {
-            if (res.succeeded()) {
-                LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
-            } else {
-                LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
-                isStartComplete[0] = false;
-                startFuture.fail(res.cause());
-            }
-        });
-*/
-/*
-        vertx.deployVerticle("com.lasgis.vertx.start.web.Server", res -> {
-            if (res.succeeded()) {
-                LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
-            } else {
-                LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
-                isStartComplete[0] = false;
-                startFuture.fail(res.cause());
-            }
-        });
-*/
-        if (isStartComplete[0]) {
-            startFuture.complete();
-        }
-
-        eventBusGame();
+        return isStartComplete[0];
     }
 
     private void eventBusGame() {
@@ -111,16 +101,8 @@ public class MainVerticle extends AbstractVerticle {
             } else {
                 eb.publish("news.message", "Timer -> Стоп-ка", option);
                 vertx.cancelTimer(timerID[0]);
+                vertx.setTimer(10000, h -> vertx.close());
             }
         });
-    }
-
-    @Override
-    public void stop(Future<Void> stopFuture) throws Exception {
-        final EventBus eb = vertx.eventBus();
-        final DeliveryOptions option = new DeliveryOptions().addHeader("header", "stopFuture");
-        eb.publish("news.message", "Timer -> Стоп-ка", option);
-        vertx.cancelTimer(timerID[0]);
-        LOG.info("stop MainVerticle");
     }
 }

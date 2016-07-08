@@ -1,7 +1,7 @@
 {
   "name":"LasGIS",
   "deploy":[
-    /*{"name":"com.lasgis.vertx.start.vertx.Leaf", "option":{"instances":3}},*/
+    {"name":"com.lasgis.vertx.start.vertx.Leaf", "option":{"instances":3}},
     "com.lasgis.vertx.start.web.Server"
   ]
 }
