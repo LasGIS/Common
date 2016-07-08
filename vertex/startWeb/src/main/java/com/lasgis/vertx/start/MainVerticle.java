@@ -30,7 +30,9 @@ public class MainVerticle extends AbstractVerticle {
         if (deployAll(startFuture)) {
             startFuture.complete();
         }
-        eventBusGame();
+        if (config().getBoolean("drop")) {
+            eventBusGame();
+        }
     }
 
     @Override

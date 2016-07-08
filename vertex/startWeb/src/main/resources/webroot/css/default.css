@@ -1,0 +1,266 @@
+BODY {
+  MARGIN-TOP: 1px;
+  BACKGROUND-COLOR: #ffffff; /*BACKGROUND: #url(BG_LasGIS.jpg) fixed center;*/
+  MARGIN-BOTTOM: 1px;
+  PADDING-BOTTOM: 1px;
+  COLOR: black;
+  PADDING-TOP: 1px;
+  font-family: 'Arial Cyr'
+}
+
+P {
+  MARGIN-TOP: 6px;
+  MARGIN-BOTTOM: 12px;
+  FONT-SIZE: 100%;
+  COLOR: black;
+  font-family: Arial;
+  TEXT-ALIGN: justify
+}
+
+H1 {
+  BORDER-TOP: maroon 6px double;
+  MARGIN-TOP: 42px;
+  MARGIN-BOTTOM: 12px;
+  FONT-WEIGHT: bolder;
+  FONT-SIZE: 160%;
+  COLOR: maroon;
+  font-family: Arial
+}
+
+H2 {
+  BORDER-TOP: maroon 4px double;
+  MARGIN-TOP: 32px;
+  MARGIN-BOTTOM: 12px;
+  FONT-WEIGHT: bolder;
+  FONT-SIZE: 145%;
+  COLOR: maroon;
+  FONT-STYLE: italic;
+  font-family: Arial
+}
+
+H3 {
+  BORDER-TOP: maroon 2px solid;
+  MARGIN-TOP: 26px;
+  MARGIN-BOTTOM: 12px;
+  FONT-WEIGHT: bolder;
+  FONT-SIZE: 135%;
+  COLOR: maroon;
+  font-family: Arial
+}
+
+H4 {
+  MARGIN-TOP: 20px;
+  MARGIN-BOTTOM: 12px;
+  FONT-WEIGHT: bolder;
+  FONT-SIZE: 120%;
+  COLOR: maroon;
+  FONT-STYLE: italic;
+  font-family: Arial
+}
+
+H5 {
+  MARGIN-TOP: 16px;
+  MARGIN-BOTTOM: 12px;
+  FONT-WEIGHT: bolder;
+  FONT-SIZE: 110%;
+  COLOR: maroon;
+  font-family: Arial
+}
+
+H6 {
+  MARGIN-TOP: 16px;
+  MARGIN-BOTTOM: 12px;
+  FONT-WEIGHT: bolder;
+  FONT-SIZE: 100%;
+  COLOR: maroon;
+  FONT-STYLE: italic;
+  font-family: Arial
+}
+
+A {
+/*TEXT-DECORATION: none;*/
+  FONT-WEIGHT: bolder;
+  font-family: Arial
+}
+
+A:active {
+  COLOR: #f00;
+  font-family: Arial
+}
+
+A:link {
+  COLOR: blue;
+  font-family: Arial
+}
+
+A:visited {
+  COLOR: blueviolet;
+  font-family: Arial
+}
+
+A:hover {
+  COLOR: #f00;
+  font-family: Arial
+}
+
+TABLE {
+  font-family: 'Arial';
+  POSITION: static;
+  BACKGROUND-COLOR: transparent
+}
+
+TH {
+  PADDING-RIGHT: 10px;
+  PADDING-LEFT: 10px;
+  FONT-WEIGHT: bolder;
+  PADDING-BOTTOM: 3px;
+  COLOR: navy;
+  PADDING-TOP: 3px;
+  font-family: 'Arial';
+  BACKGROUND-COLOR: silver
+}
+
+TR {
+  font-family: 'Arial';
+  BACKGROUND-COLOR: transparent
+}
+
+TD {
+  PADDING-RIGHT: 6px;
+  PADDING-LEFT: 6px;
+  PADDING-BOTTOM: 3px;
+  PADDING-TOP: 3px;
+  font-family: 'Arial';
+  BACKGROUND-COLOR: transparent
+}
+
+.ind {
+  text-indent: 10mm;
+}
+
+.Head {
+  BACKGROUND-COLOR: #e0e0f0
+}
+
+.marginzero {
+  margin: 0;
+  padding: 0;
+}
+
+.HeadRead {
+  margin: 0;
+  padding: 0;
+  font-size: 1pt;
+  background-color: #ffc0c0
+}
+
+.HeadMini {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 12px;
+  text-align: left
+}
+
+.HeadMain {
+  font-weight: bolder;
+  font-size: 30px;
+  color: #808080;
+  font-style: italic;
+  font-family: Arial, sans-serif;
+  text-align: left
+}
+
+.RefAdres {
+  color: darkcyan
+}
+
+.Refer {
+  font-weight: bolder;
+  color: #c0a;
+  font-family: Arial, sans-serif
+}
+
+.HiRefer {
+  font-weight: bolder;
+  font-size: 100%;
+  color: red;
+  font-family: Arial, sans-serif
+}
+
+BLOCKQUOTE {
+  COLOR: green;
+  font-family: Arial, sans-serif
+}
+
+P.Remark {
+  BORDER-TOP: lightgrey;
+  FONT-WEIGHT: bolder;
+  MARGIN-BOTTOM: 1px;
+  COLOR: mediumseagreen;
+  BORDER-BOTTOM: silver thick solid;
+  font-family: Arial, sans-serif
+}
+
+P.Notice {
+  BORDER-RIGHT: silver solid;
+  PADDING-RIGHT: 5px;
+  MARGIN-TOP: 1px;
+  PADDING-LEFT: 5px;
+  MARGIN-BOTTOM: 1px;
+  BORDER-LEFT: silver solid;
+  TEXT-INDENT: 20pt;
+  TEXT-ALIGN: justify
+}
+
+.Prog {
+  padding-right: 10mm;
+  padding-left: 10mm;
+  color: navy;
+  font-family: 'Lucida Console', 'Courier New Cyr', monospace;
+  text-align: left
+}
+
+.ProgComment {
+  COLOR: green;
+  font-family: 'Lucida Console', 'Courier New Cyr'
+}
+
+.ProgTerm {
+  COLOR: fuchsia;
+  font-family: 'Lucida Console', 'Courier New Cyr'
+}
+
+P.Cont1 {
+  MARGIN-TOP: 6px;
+  FONT-SIZE: 100%;
+  MARGIN-BOTTOM: 12px;
+  TEXT-ALIGN: left
+}
+
+P.Cont2 {
+  MARGIN-TOP: 6px;
+  FONT-SIZE: 90%;
+  MARGIN-BOTTOM: 6px;
+  TEXT-ALIGN: left
+}
+
+P.Cont3 {
+  MARGIN-TOP: 3px;
+  FONT-SIZE: 85%;
+  MARGIN-BOTTOM: 6px;
+  TEXT-ALIGN: left
+}
+
+P.Cont4 {
+  MARGIN-TOP: 3px;
+  FONT-SIZE: 85%;
+  MARGIN-BOTTOM: 3px;
+  TEXT-ALIGN: left
+}
+
+P.Cont5 {
+  MARGIN-TOP: 2px;
+  FONT-SIZE: 85%;
+  MARGIN-BOTTOM: 2px;
+  TEXT-ALIGN: left
+}

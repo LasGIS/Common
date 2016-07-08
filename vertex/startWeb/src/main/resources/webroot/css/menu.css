@@ -1,0 +1,140 @@
+.menu {
+  font-weight: bolder;
+  font-size: 10px;
+  color: blue;
+  background-color: #ccc;
+  font-family: Arial,sans-serif;
+  text-align: left
+}
+
+#menu {
+  clear: both;
+  font-size: 14px;
+  background: #eee;
+  border-top: #ccc 1px solid; /*border-left: #ccc 1px solid;*/
+  border-right: #ccc 1px solid;
+  border-bottom: #ccc 1px solid;
+  width: 100%;
+  height: 24px
+}
+
+#menu TR {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  list-style-type: none
+}
+
+#menu TD {
+  padding: 0;
+  height: 24px
+}
+
+#menu A {
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding-right: 8px;
+  padding-left: 8px;
+  background: #eee;
+  border-left: #ccc 1px solid;
+  line-height: 24px;
+  height: 24px;
+  text-align: center;
+  text-decoration: none
+}
+
+#menu A:hover {
+  cursor: pointer;
+  color: #f00;
+  background-color: #ccc
+}
+
+#menu A.selected {
+  cursor: pointer;
+  background-color: #ccc
+}
+
+.PopMenu {
+  font-size: 14px;
+  background: #eee;
+  border: 1px solid #ccc;
+  position: absolute
+}
+
+.PopMenu tr {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  list-style-type: none
+}
+
+.PopMenu td {
+  padding: 0;
+  height: 24px
+}
+
+.PopMenu A {
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #eee;
+  line-height: 24px;
+  height: 24px;
+  text-align: left;
+  text-decoration: none
+}
+
+.PopMenu A:hover {
+  cursor: pointer;
+  color: #f00;
+  background-color: #ddd
+}
+
+.PopMenu A.selected {
+  cursor: pointer;
+  background-color: #ddd
+}
+
+.SubMenu {
+  font-size: 14px;
+  background: #eee;
+  border: 1px solid #ccc;
+  /*position: absolute*/
+}
+
+.SubMenu tr {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  list-style-type: none
+}
+
+.SubMenu td {
+  padding: 0;
+  /*height: 20px*/
+}
+
+.SubMenu A {
+  display: block;
+  font-size: 14px;
+  background: #eee;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin: 0;
+  text-align: left;
+  text-decoration: none
+}
+
+.SubMenu A:hover {
+  cursor: pointer;
+  color: #f00;
+  background-color: #ddd
+}
+
+.SubMenu A.selected {
+  cursor: pointer;
+  background-color: #ddd
+}
