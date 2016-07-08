@@ -1,9 +1,13 @@
 package com.lasgis.vertx.start.web;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.eventbus.DeliveryOptions;
-import io.vertx.core.eventbus.EventBus;
-import io.vertx.core.eventbus.MessageConsumer;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerResponse;
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.CookieHandler;
+import io.vertx.ext.web.handler.SessionHandler;
+import io.vertx.ext.web.sstore.LocalSessionStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,44 +22,25 @@ public class Server extends AbstractVerticle {
     @Override
     public void start() {
         LOG.info("start Server");
-        //vertx.createHttpServer()
-/*
-        vertx.eventBus().registerHandler(
-            "ping-address", new Handler<Message<String>>() {
-                @Override
-                public void handle(Message<String> message) {
-                    message.reply("pong!");
-                    container.logger().info("Sent back pong");
-                }
-            }
-        );
+        final HttpServer server = vertx.createHttpServer();
+        final Router router = Router.router(vertx);
 
-        container.logger().info("PingVerticle started");
+        // We need cookies and sessions
+        router.route().handler(CookieHandler.create());
+        router.route().handler(BodyHandler.create());
+        router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
 
-*/
-        final EventBus eb = vertx.eventBus();
-        final MessageConsumer<String> consumer = eb.consumer("news.message");
-        consumer.handler(message -> {
-            LOG.info("received a message: header = {}; body = {}", message.headers().get("header"), message.body());
-            message.reply(
-                "It is very interesting!",
-                new DeliveryOptions().addHeader("header", "Server"),
-                replayOnReplay -> {
-                    LOG.info("Ответ на ответ: header=\"{}\", address=\"{}\", body=\"{}\"",
-                        message.headers().get("header"), message.address(), message.body()
-                    );
-                }
-            );
+        router.route().handler(routingContext -> {
+
+          // This handler will be called for every request
+          HttpServerResponse response = routingContext.response();
+          response.putHeader("content-type", "text/plain");
+
+          // Write to the response and end it
+          response.end("Hello World from Vert.x-Web!");
         });
-        consumer.completionHandler(res -> {
-            if (res.succeeded()) {
-                eb.publish("news.message", "consumer.completionHandler = success",
-                    new DeliveryOptions().addHeader("header", "Server")
-                );
-            } else {
-                eb.send("news.message", "consumer.completionHandler = failed");
-            }
-        });
+
+        server.requestHandler(router::accept).listen(8080);
     }
 
     @Override

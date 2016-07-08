@@ -6,6 +6,8 @@ import io.vertx.core.Future;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,18 +25,74 @@ public class MainVerticle extends AbstractVerticle {
     @Override
     public void start(Future<Void> startFuture) {
 
-        LOG.info("start MainVerticle");
-        vertx.deployVerticle("com.lasgis.vertx.start.web.Server",
+        final boolean[] isStartComplete = {true};
+
+        LOG.info("start MainVerticle {}", config().getString("name"));
+        final JsonArray deploy = config().getJsonArray("deploy");
+        for (final Object vrtSet : deploy) {
+            final String verticleName;
+            final DeploymentOptions options = new DeploymentOptions();
+            if (vrtSet instanceof JsonObject) {
+                final JsonObject verticleSet = (JsonObject) vrtSet;
+                verticleName = verticleSet.getString("name");
+                final JsonObject optionSet = verticleSet.getJsonObject("option");
+                if (optionSet != null) {
+                    final int instances = optionSet.getInteger("instances");
+                    if (instances > 0) {
+                        options.setInstances(instances);
+                    }
+                }
+            } else if (vrtSet instanceof String) {
+                verticleName = (String) vrtSet;
+            } else {
+                verticleName = null;
+            }
+            if (verticleName != null) {
+                vertx.deployVerticle(
+                    verticleName, options, res -> {
+                        LOG.info(
+                            "deploy Verticle \"{}\" is {} id = {}", verticleName,
+                            res.succeeded() ? "succeeded" : "filed :(", res.result()
+                        );
+                        if (!res.succeeded()) {
+                            isStartComplete[0] = false;
+                            startFuture.fail(res.cause());
+                        }
+                    }
+                );
+            }
+        }
+/*
+        vertx.deployVerticle("com.lasgis.vertx.start.vertx.Leaf",
             new DeploymentOptions().setInstances(10), res -> {
             if (res.succeeded()) {
                 LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
-                startFuture.complete();
             } else {
                 LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
+                isStartComplete[0] = false;
                 startFuture.fail(res.cause());
             }
         });
+*/
+/*
+        vertx.deployVerticle("com.lasgis.vertx.start.web.Server", res -> {
+            if (res.succeeded()) {
+                LOG.info("deploy Verticle \"Server\" is succeeded id = {}", res.result());
+            } else {
+                LOG.info("deploy Verticle \"Server\" is filed :( id = {}", res.result());
+                isStartComplete[0] = false;
+                startFuture.fail(res.cause());
+            }
+        });
+*/
+        if (isStartComplete[0]) {
+            startFuture.complete();
+        }
 
+        eventBusGame();
+    }
+
+    private void eventBusGame() {
         final EventBus eb = vertx.eventBus();
         final DeliveryOptions option = new DeliveryOptions().addHeader("header", "Timer");
         eb.consumer("news.message", message -> {
