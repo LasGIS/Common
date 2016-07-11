@@ -1,7 +1,6 @@
 package com.lasgis.vertx.start.web;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -15,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class Server extends AbstractVerticle {
 
     static final Logger LOG = LoggerFactory.getLogger(Server.class);
+    static final String APP_PREFIX = "/lasgis/";
 
     public Server() {
         LOG.info("constructor {}", this.getClass().getSimpleName());
@@ -39,15 +39,13 @@ public class Server extends AbstractVerticle {
         router.route().handler(BodyHandler.create());
         router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
 
-        router.route("/").handler(rc -> rc.response()
-            .putHeader(HttpHeaders.CONTENT_TYPE, HttpHeaders.TEXT_HTML)
-            .end("<html><h1>Hi! this is my 2nd try with Vert.x 3 :) </h1></html>")
+        // перенаправляем на index.html
+        router.route(APP_PREFIX).handler(rc ->
+                rc.reroute(APP_PREFIX + "index.html")
         );
-        router.route("/js/*").handler(StaticHandler.create("webroot/js"));
-        router.route("/images/*").handler(StaticHandler.create("webroot/images"));
-        router.route("/css/*").handler(StaticHandler.create("webroot/css"));
-        router.routeWithRegex(".*\\.html").handler(StaticHandler.create("webroot/pages"));
+        router.route(APP_PREFIX + "*").handler(StaticHandler.create("webroot"));
 /*
+http://vlaskin.omsk.luxoft.com:8080/lasgis/index.html
         router.get("/api/whiskies").handler(this::getAll);
         router.route("/api/whiskies*").handler(BodyHandler.create());
 
