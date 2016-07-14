@@ -1,137 +1,137 @@
-BODY {
-  MARGIN-TOP: 1px;
-  BACKGROUND-COLOR: #ffffff; /*BACKGROUND: #url(BG_LasGIS.jpg) fixed center;*/
-  MARGIN-BOTTOM: 1px;
-  PADDING-BOTTOM: 1px;
-  COLOR: black;
-  PADDING-TOP: 1px;
-  font-family: 'Arial Cyr'
+body {
+  margin-top: 1px;
+  background-color: #ffffff; /*background: #url(BG_LasGIS.jpg) fixed center;*/
+  margin-bottom: 1px;
+  padding-bottom: 1px;
+  color: black;
+  padding-top: 1px;
+  font-family: Arial, sans-serif
 }
 
-P {
-  MARGIN-TOP: 6px;
-  MARGIN-BOTTOM: 12px;
-  FONT-SIZE: 100%;
-  COLOR: black;
-  font-family: Arial;
-  TEXT-ALIGN: justify
+p {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: 100%;
+  color: black;
+  font-family: Arial, sans-serif;
+  text-align: justify
 }
 
-H1 {
-  BORDER-TOP: maroon 6px double;
-  MARGIN-TOP: 42px;
-  MARGIN-BOTTOM: 12px;
-  FONT-WEIGHT: bolder;
-  FONT-SIZE: 160%;
-  COLOR: maroon;
-  font-family: Arial
+h1 {
+  border-top: maroon 6px double;
+  margin-top: 42px;
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-size: 160%;
+  color: maroon;
+  font-family: Arial, sans-serif
 }
 
-H2 {
-  BORDER-TOP: maroon 4px double;
-  MARGIN-TOP: 32px;
-  MARGIN-BOTTOM: 12px;
-  FONT-WEIGHT: bolder;
-  FONT-SIZE: 145%;
-  COLOR: maroon;
-  FONT-STYLE: italic;
-  font-family: Arial
+h2 {
+  border-top: maroon 4px double;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-size: 145%;
+  color: maroon;
+  font-style: italic;
+  font-family: Arial, sans-serif
 }
 
-H3 {
-  BORDER-TOP: maroon 2px solid;
-  MARGIN-TOP: 26px;
-  MARGIN-BOTTOM: 12px;
-  FONT-WEIGHT: bolder;
-  FONT-SIZE: 135%;
-  COLOR: maroon;
-  font-family: Arial
+h3 {
+  border-top: maroon 2px solid;
+  margin-top: 26px;
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-size: 135%;
+  color: maroon;
+  font-family: Arial, sans-serif
 }
 
-H4 {
-  MARGIN-TOP: 20px;
-  MARGIN-BOTTOM: 12px;
-  FONT-WEIGHT: bolder;
-  FONT-SIZE: 120%;
-  COLOR: maroon;
-  FONT-STYLE: italic;
-  font-family: Arial
+h4 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-size: 120%;
+  color: maroon;
+  font-style: italic;
+  font-family: Arial, sans-serif
 }
 
-H5 {
-  MARGIN-TOP: 16px;
-  MARGIN-BOTTOM: 12px;
-  FONT-WEIGHT: bolder;
-  FONT-SIZE: 110%;
-  COLOR: maroon;
-  font-family: Arial
+h5 {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-size: 110%;
+  color: maroon;
+  font-family: Arial, sans-serif
 }
 
-H6 {
-  MARGIN-TOP: 16px;
-  MARGIN-BOTTOM: 12px;
-  FONT-WEIGHT: bolder;
-  FONT-SIZE: 100%;
-  COLOR: maroon;
-  FONT-STYLE: italic;
-  font-family: Arial
+h6 {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-size: 100%;
+  color: maroon;
+  font-style: italic;
+  font-family: Arial, sans-serif
 }
 
-A {
-/*TEXT-DECORATION: none;*/
-  FONT-WEIGHT: bolder;
-  font-family: Arial
+a {
+/*text-decoration: none;*/
+  font-weight: bolder;
+  font-family: Arial, sans-serif
 }
 
-A:active {
-  COLOR: #f00;
-  font-family: Arial
+a:active {
+  color: #f00;
+  font-family: Arial, sans-serif
 }
 
-A:link {
-  COLOR: blue;
-  font-family: Arial
+a:link {
+  color: blue;
+  font-family: Arial, sans-serif
 }
 
-A:visited {
-  COLOR: blueviolet;
-  font-family: Arial
+a:visited {
+  color: blueviolet;
+  font-family: Arial, sans-serif
 }
 
-A:hover {
-  COLOR: #f00;
-  font-family: Arial
+a:hover {
+  color: #f00;
+  font-family: Arial, sans-serif
 }
 
-TABLE {
-  font-family: 'Arial';
-  POSITION: static;
-  BACKGROUND-COLOR: transparent
+table {
+  font-family: 'arial';
+  position: static;
+  background-color: transparent
 }
 
-TH {
-  PADDING-RIGHT: 10px;
-  PADDING-LEFT: 10px;
-  FONT-WEIGHT: bolder;
-  PADDING-BOTTOM: 3px;
-  COLOR: navy;
-  PADDING-TOP: 3px;
-  font-family: 'Arial';
-  BACKGROUND-COLOR: silver
+th {
+  padding-right: 10px;
+  padding-left: 10px;
+  font-weight: bolder;
+  padding-bottom: 3px;
+  color: navy;
+  padding-top: 3px;
+  font-family: 'arial';
+  background-color: silver
 }
 
-TR {
-  font-family: 'Arial';
-  BACKGROUND-COLOR: transparent
+tr {
+  font-family: 'arial';
+  background-color: transparent
 }
 
-TD {
-  PADDING-RIGHT: 6px;
-  PADDING-LEFT: 6px;
-  PADDING-BOTTOM: 3px;
-  PADDING-TOP: 3px;
-  font-family: 'Arial';
-  BACKGROUND-COLOR: transparent
+td {
+  padding-right: 6px;
+  padding-left: 6px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  font-family: 'arial';
+  background-color: transparent
 }
 
 .ind {
@@ -139,7 +139,7 @@ TD {
 }
 
 .Head {
-  BACKGROUND-COLOR: #e0e0f0
+  background-color: #e0e0f0
 }
 
 .marginzero {
@@ -187,29 +187,29 @@ TD {
   font-family: Arial, sans-serif
 }
 
-BLOCKQUOTE {
-  COLOR: green;
+blockquote {
+  color: green;
   font-family: Arial, sans-serif
 }
 
-P.Remark {
-  BORDER-TOP: lightgrey;
-  FONT-WEIGHT: bolder;
-  MARGIN-BOTTOM: 1px;
-  COLOR: mediumseagreen;
-  BORDER-BOTTOM: silver thick solid;
+p.Remark {
+  border-top: lightgrey;
+  font-weight: bolder;
+  margin-bottom: 1px;
+  color: mediumseagreen;
+  border-bottom: silver thick solid;
   font-family: Arial, sans-serif
 }
 
-P.Notice {
-  BORDER-RIGHT: silver solid;
-  PADDING-RIGHT: 5px;
-  MARGIN-TOP: 1px;
-  PADDING-LEFT: 5px;
-  MARGIN-BOTTOM: 1px;
-  BORDER-LEFT: silver solid;
-  TEXT-INDENT: 20pt;
-  TEXT-ALIGN: justify
+p.Notice {
+  border-right: silver solid;
+  padding-right: 5px;
+  margin-top: 1px;
+  padding-left: 5px;
+  margin-bottom: 1px;
+  border-left: silver solid;
+  text-indent: 20pt;
+  text-align: justify
 }
 
 .Prog {
@@ -221,46 +221,46 @@ P.Notice {
 }
 
 .ProgComment {
-  COLOR: green;
+  color: green;
   font-family: 'Lucida Console', 'Courier New Cyr'
 }
 
 .ProgTerm {
-  COLOR: fuchsia;
+  color: fuchsia;
   font-family: 'Lucida Console', 'Courier New Cyr'
 }
 
-P.Cont1 {
-  MARGIN-TOP: 6px;
-  FONT-SIZE: 100%;
-  MARGIN-BOTTOM: 12px;
-  TEXT-ALIGN: left
+p.Cont1 {
+  margin-top: 6px;
+  font-size: 100%;
+  margin-bottom: 12px;
+  text-align: left
 }
 
-P.Cont2 {
-  MARGIN-TOP: 6px;
-  FONT-SIZE: 90%;
-  MARGIN-BOTTOM: 6px;
-  TEXT-ALIGN: left
+p.Cont2 {
+  margin-top: 6px;
+  font-size: 90%;
+  margin-bottom: 6px;
+  text-align: left
 }
 
-P.Cont3 {
-  MARGIN-TOP: 3px;
-  FONT-SIZE: 85%;
-  MARGIN-BOTTOM: 6px;
-  TEXT-ALIGN: left
+p.Cont3 {
+  margin-top: 3px;
+  font-size: 85%;
+  margin-bottom: 6px;
+  text-align: left
 }
 
-P.Cont4 {
-  MARGIN-TOP: 3px;
-  FONT-SIZE: 85%;
-  MARGIN-BOTTOM: 3px;
-  TEXT-ALIGN: left
+p.Cont4 {
+  margin-top: 3px;
+  font-size: 85%;
+  margin-bottom: 3px;
+  text-align: left
 }
 
-P.Cont5 {
-  MARGIN-TOP: 2px;
-  FONT-SIZE: 85%;
-  MARGIN-BOTTOM: 2px;
-  TEXT-ALIGN: left
+p.Cont5 {
+  margin-top: 2px;
+  font-size: 85%;
+  margin-bottom: 2px;
+  text-align: left
 }

@@ -25,11 +25,12 @@ public class Server extends AbstractVerticle {
         LOG.info("start Server");
         final HttpServer server = vertx.createHttpServer();
         final Router router = setupRouter();
-        server.requestHandler(router::accept).listen(8080);
+        server.requestHandler(router::accept).listen(8180);
     }
 
     /**
      * Настройка сайта
+     * http://vlaskin.omsk.luxoft.com:8080/lasgis/index.html
      * @return Router
      */
     private Router setupRouter() {
@@ -45,7 +46,6 @@ public class Server extends AbstractVerticle {
         );
         router.route(APP_PREFIX + "*").handler(StaticHandler.create("webroot"));
 /*
-http://vlaskin.omsk.luxoft.com:8080/lasgis/index.html
         router.get("/api/whiskies").handler(this::getAll);
         router.route("/api/whiskies*").handler(BodyHandler.create());
 
