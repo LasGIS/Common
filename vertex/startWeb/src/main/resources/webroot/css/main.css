@@ -99,12 +99,9 @@ table {
     background-color: transparent;
 }
 th {
-    padding-right: 10px;
-    padding-left: 10px;
     font-weight: bolder;
-    padding-bottom: 3px;
     color: navy;
-    padding-top: 3px;
+    padding: 3px 10px;
     font-family: Arial, sans-serif background-color : silver
 }
 tr {
@@ -127,14 +124,15 @@ td {
 /* заголвки  */
 .main {
     width: 100%;
-    float: left;
-    background: #ff0;
+    height: 100%;
+    /* background: #ffe; */
 }
 .header {
     position: relative;
     height: 100px;
     width: 100%;
     background: #e0e0f0;
+    border-bottom: #ffc0c0 5px solid;
 }
 .header div {position: absolute;}
 .logotype {
@@ -143,22 +141,17 @@ td {
 }
 .header-title {
     left: 110px;
-    right: 250px;
-    height: 60px;
+    right: 220px;
+    height: 100px;
 }
 .header-addons {
     /* display: none; */
-    width: 235px;
-    right: 3px;
-    top: 3px;
+    width: 200px;
+    height: 100px;
+    right: 0;
+    top: 0;
 }
 .header-title div {position: relative;}
-.head-read {
-    margin: 0;
-    padding: 0;
-    font-size: 1pt;
-    background-color: #ffc0c0
-}
 .head-mini {
     margin-top: 8px;
     margin-bottom: 2px;
@@ -172,6 +165,32 @@ td {
     font-style: italic;
     font-family: Arial, sans-serif;
     text-align: center;
+}
+.content {
+    position: absolute;
+    /* background-color: #fee; */
+    top: 105px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.left-menu {
+    position: absolute;
+    background-color: #ffe;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    border-right: #ffc0c0 5px solid;
+}
+.right-content {
+    position: absolute;
+    overflow: auto;
+    background-color: #eff;
+    top: 0;
+    left: 205px;
+    right: 0;
+    bottom: 0;
+    /* border-right: #ffc0c0 5px solid; */
 }
 
 blockquote {
