@@ -41,15 +41,14 @@ function getElement(name) {
 
 var currentMenu = null;
 var currentTimer = null;
-var ImageType = new Array(
+var ImageType = [
   "\n\r<img border='0' src='" + ImagePrefix + "MenuOpen1.bmp' hspace='5'",
   "\n\r<img border='0' src='" + ImagePrefix + "MenuClose1.bmp' hspace='5'",
   "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook.bmp' hspace='5'",
   "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook.bmp' hspace='5'",
   "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook1.bmp' hspace='5'",
   "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook1.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuPage1.bmp' hspace='5'", ""
-);
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuPage1.bmp' hspace='5'", ""];
 
 /**************************/
 function selectMenu(a, name) {
@@ -168,7 +167,7 @@ function SetMainTitle(text) {
    var title = getNode("Title_main");
    if (text && title) {
       title.firstChild.data = text;
-   }         
+   }
    closeMenu();
 }
 
@@ -176,7 +175,7 @@ function SetMainTitle(text) {
 function LoadMenu(subm0, subm1, subm2, subm3) {
   var iSub0 = 0,iSub1 = 0, iSub2 = 0, iSub3 = 0;
   var isView0 = true, isView1 = true, isView2 = true, isView3 = true;
-  
+
   var str="<table class='SubMenu' width='100%' border='0' cellspacing='0' cellpadding='0'>";
   for (i = 0; i < StructMenu.length; i+=4) {
     switch (StructMenu[i]) {
@@ -220,7 +219,7 @@ function LoadMenu(subm0, subm1, subm2, subm3) {
         str += " language='javascript' onclick='return LoadMenu("
           + iSub0 + "," + iSub1 + ",-1,-1)' >";
         str += "</td><td>";
-        if (StructMenu[i + 2].length > 0) {  
+        if (StructMenu[i + 2].length > 0) {
           str += "<a href='" + StructMenu[i + 2] + "' target='target_doc'>"
             + StructMenu[i + 3]
             + "</a>";
