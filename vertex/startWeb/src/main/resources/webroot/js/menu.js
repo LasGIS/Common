@@ -42,13 +42,13 @@ function getElement(name) {
 var currentMenu = null;
 var currentTimer = null;
 var ImageType = [
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpen1.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuClose1.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook1.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook1.bmp' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuPage1.bmp' hspace='5'", ""];
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpen1.png' hspace='5'",
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuClose1.png' hspace='5'",
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook.png' hspace='5'",
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook.png' hspace='5'",
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook1.png' hspace='5'",
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook1.png' hspace='5'",
+  "\n\r<img border='0' src='" + ImagePrefix + "MenuPage1.png' hspace='5'", ""];
 
 /**************************/
 function selectMenu(a, name) {

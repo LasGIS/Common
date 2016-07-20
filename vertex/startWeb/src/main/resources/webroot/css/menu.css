@@ -73,23 +73,23 @@
 }
 .left-menu-item.open {
     padding-left: 20px;
-    background: url(../images/MenuOpen1.bmp) 5px 4px no-repeat;
+    background: url(../images/MenuOpen1.png) 5px 4px no-repeat;
 }
 .left-menu-item.close {
     padding-left: 20px;
-    background: url(../images/MenuClose1.bmp) 5px 4px no-repeat;
+    background: url(../images/MenuClose1.png) 5px 4px no-repeat;
 }
 .left-menu-item.open-book {
     padding-left: 20px;
-    background: url(../images/MenuOpenBook1.bmp) 5px 4px no-repeat;
+    background: url(../images/MenuOpenBook1.png) 5px 4px no-repeat;
 }
 .left-menu-item.close-book {
     padding-left: 20px;
-    background: url(../images/MenuCloseBook1.bmp) 5px 4px no-repeat;
+    background: url(../images/MenuCloseBook1.png) 5px 4px no-repeat;
 }
 .left-menu-item.page {
     padding-left: 20px;
-    background: url(../images/MenuPage1.bmp) 5px 4px no-repeat;
+    background: url(../images/MenuPage1.png) 5px 4px no-repeat;
 }
 .left-menu-item {}
 .left-menu-item img {}
