@@ -67,14 +67,14 @@ public class Server extends AbstractVerticle {
      * @param engine Free Marker Template Engine
      */
     private void index(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
-        ctx.put("headMain", "Программный комплекс LasGIS (FreeMarkerTemplateEngine)");
+        ctx.put("headMain", "Программный комплекс LasGIS");
         //ctx.put("users", new User[] {new User("Саша", 30), new User("Дима", 25)});
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
         final FileSystem fs = vertx.fileSystem();
-        //fs.readFile("templates/front/menu.json", fileRes -> {
-        fs.readFile("templates/main.json", fileRes -> {
+        fs.readFile("templates/front/menu.json", fileRes -> {
+        //fs.readFile("templates/main.json", fileRes -> {
             if (fileRes.succeeded()) {
-                ctx.put("users", new JsonArray(fileRes.result().toString()).getList());
+                ctx.put("leftMenu", new JsonArray(fileRes.result().toString()).getList());
                 engine.render(ctx, "templates/index.ftl", engineRes -> {
                     if (engineRes.succeeded()) {
                             ctx.response().end(engineRes.result());

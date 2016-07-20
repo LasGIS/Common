@@ -27,9 +27,6 @@
           ${context.headMain}
         </div>
         <div id="menu" class="menu" title="Главное меню (в этой панели все пункты главного меню)">
-            <#list context.users as user>
-                <div>${user.name} - ${user.age}</div>
-            </#list>
             <div
               onmouseover="selectMenu(this, 'mainLayer');"
               onmouseout="unselectMenu();"
@@ -65,45 +62,20 @@
     </div>
     <div class="content">
       <div class="left-menu">
-        <div class="left-menu-item open">
-          <a href="FrontPage/Main.html">Программный комплекс "LasGIS"</a>
-        </div>
-        <div class="left-menu-item open-book">
-          <a href="FrontPage/Main.html#consists_of">Состав ПК LasGIS</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Main.html#Geo_exe">Geo.exe (LasGIS под DOS)</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Main.html#LasGIS_exe">LasGIS.exe (LasGIS под Windows)</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Main.html#PCXBreak_exe">PCXBreak.exe (MS DOS)</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Main.html#MakeRastr_exe">MakeRastr.exe (Windows)</a>
-        </div>
-        <div class="left-menu-item open-book">
-          <a href="FrontPage/Map.html">База Геоданных ПК 'LasGIS'</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Map.html#Vector_map">Векторная карта</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Map.html#Semantic_link">Семантическая База Данных</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Map.html#Rastr_map">Растровая карта</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Map.html#Format_exchange">Обмен данными</a>
-        </div>
-        <div class="left-menu-item page">
-          <a href="FrontPage/Map.html#Programme_Language">Язык программирования</a>
-        </div>
-        <div class="left-menu-item close-book">
-          <a href="FrontPage/Accesses.html">Способы доступа ПК 'LasGIS'</a>
-        </div>
+        <#list context.leftMenu as menu>
+          <div class="left-menu-item <#if menu.level == 0><#--
+          --><#if menu.open>open-book<#else>close-book</#if><#--
+        --><#elseif menu.level == 1><#--
+          --><#if menu.open>open-book1<#else>close-book1</#if><#--
+        --><#elseif menu.level == 2><#--
+          --><#if menu.open>open<#else>close</#if><#--
+        --><#elseif menu.level == 3><#--
+          --><#if menu.open>open1<#else>close1</#if><#--
+        --><#elseif menu.level == 4>page<#--
+        --><#elseif menu.level == 5>page1</#if>">
+            <a href="${menu.target}${menu.link}">${menu.title}</a>
+          </div>
+        </#list>
       </div>
       <div class="right-content"><#include "/webroot/FrontPage/Main.html"></div>
     </div>

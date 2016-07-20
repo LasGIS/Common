@@ -176,20 +176,21 @@ td {
 }
 .left-menu {
     position: absolute;
-    background-color: #ffe;
+    /* background-color: #ffe; */
     top: 0;
     bottom: 0;
-    width: 200px;
+    width: 250px;
     border-right: #ffc0c0 5px solid;
 }
 .right-content {
     position: absolute;
     overflow: auto;
-    background-color: #eff;
+    /* background-color: #eff; */
     top: 0;
-    left: 205px;
+    left: 255px;
     right: 0;
     bottom: 0;
+    padding: 5px 10px;
     /* border-right: #ffc0c0 5px solid; */
 }
 
