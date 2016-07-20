@@ -24,9 +24,12 @@
           Ассоциация развития программного комплекса <strong>LasGIS</strong> г.Омск
         </div>
         <div class="head-main" title="Заголовок должен меняться в зависимости от выбранной страницы. В данном случае это заголовок для 'Главной страницы'" >
-          ${head-main}
+          ${context.headMain}
         </div>
         <div id="menu" class="menu" title="Главное меню (в этой панели все пункты главного меню)">
+            <#list context.users as user>
+                <div>${user.name} - ${user.age}</div>
+            </#list>
             <div
               onmouseover="selectMenu(this, 'mainLayer');"
               onmouseout="unselectMenu();"
@@ -38,7 +41,7 @@
               onmouseout="unselectMenu();"
               title="История создания всего проекта LasGIS, начиная с 1990 года"
             >
-              <a href="History.html" target="target_doc">История создания</a>
+              <a href="History.html">История создания</a>
             </div><div
               onmouseover="selectMenu(this, 'documentationLayer');"
               onmouseout="unselectMenu();"
@@ -102,7 +105,7 @@
           <a href="FrontPage/Accesses.html">Способы доступа ПК 'LasGIS'</a>
         </div>
       </div>
-      <div class="right-content">right-content</div>
+      <div class="right-content"><#include "/webroot/FrontPage/Main.html"></div>
     </div>
     <div class="footer"></div>
   </div>
