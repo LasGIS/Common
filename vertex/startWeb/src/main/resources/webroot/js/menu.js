@@ -138,7 +138,7 @@ function relPosY(which) {
 //дополняет нулем часы либо минуты
 function num_fmt(p)
 {
-    var z = new String(parseInt(p));
+    var z = String(parseInt(p));
     //alert(z.length);
     if (z.length==1) return "0"+z;
     return z;
