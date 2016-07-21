@@ -76,36 +76,44 @@
           <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
             <a href="${menu.target}${menu.link}">${menu.title}</a>
             <#if menu.submenu??>
+              <div<#if !menu.open> style="display: none"</#if>>
                 <#--<p>вторая линия</p>-->
                 <#list menu.submenu as submenu>
                   <div class="left-menu-item ${iconClass(submenu.level, submenu.open)}">
                     <a href="${submenu.target}${submenu.link}">${submenu.title}</a>
                     <#if submenu.submenu??>
+                      <div<#if !submenu.open> style="display: none"</#if>>
                         <#--<p>третья линия</p>-->
                         <#list submenu.submenu as submenu1>
                           <div class="left-menu-item ${iconClass(submenu1.level, submenu1.open)}">
                             <a href="${submenu1.target}${submenu1.link}">${submenu1.title}</a>
                             <#if submenu1.submenu??>
+                              <div<#if !submenu.open> style="display: none"</#if>>
                                 <#--<p> четвертая линия</p>-->
                                 <#list submenu1.submenu as submenu2>
                                   <div class="left-menu-item ${iconClass(submenu2.level, submenu2.open)}">
                                     <a href="${submenu2.target}${submenu2.link}">${submenu2.title}</a>
                                     <#if submenu2.submenu??>
+                                      <div<#if !submenu1.open> style="display: none"</#if>>
                                       <#--<p> пятая линия</p>-->
                                       <#list submenu2.submenu as submenu3>
                                         <div class="left-menu-item ${iconClass(submenu3.level, submenu3.open)}">
                                           <a href="${submenu3.target}${submenu3.link}">${submenu3.title}</a>
                                         </div>
                                       </#list>
+                                      </div>
                                     </#if>
                                   </div>
                                 </#list>
+                              </div>
                             </#if>
                           </div>
                         </#list>
+                      </div>
                     </#if>
                   </div>
                 </#list>
+              </div>
             </#if>
           </div>
         </#list>
