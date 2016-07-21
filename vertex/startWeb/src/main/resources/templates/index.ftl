@@ -118,7 +118,7 @@
           </div>
         </#list>
       </div>
-      <div class="right-content"><#include "/webroot/FrontPage/Main.html"></div>
+      <div class="right-content"><#include "/templates/front/main.ftl"></div>
     </div>
     <div class="footer"></div>
   </div>
