@@ -60,20 +60,53 @@
         ></a>
       </div>
     </div>
+    <#function iconClass level isOpen>
+        <#if     level == 0><#if isOpen><#return "open-book"><#else><#return "close-book"></#if>
+        <#elseif level == 1><#if isOpen><#return "open-book1"><#else><#return "close-book1"></#if>
+        <#elseif level == 2><#if isOpen><#return "open"><#else><#return "close"></#if>
+        <#elseif level == 3><#if isOpen><#return "open1"><#else><#return "close1"></#if>
+        <#elseif level == 4><#return "page">
+        <#elseif level == 5><#return "page1">
+        </#if>
+    </#function>
     <div class="content">
       <div class="left-menu">
+        <#--<p>первая линия</p>-->
         <#list context.leftMenu as menu>
-          <div class="left-menu-item <#if menu.level == 0><#--
-          --><#if menu.open>open-book<#else>close-book</#if><#--
-        --><#elseif menu.level == 1><#--
-          --><#if menu.open>open-book1<#else>close-book1</#if><#--
-        --><#elseif menu.level == 2><#--
-          --><#if menu.open>open<#else>close</#if><#--
-        --><#elseif menu.level == 3><#--
-          --><#if menu.open>open1<#else>close1</#if><#--
-        --><#elseif menu.level == 4>page<#--
-        --><#elseif menu.level == 5>page1</#if>">
+          <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
             <a href="${menu.target}${menu.link}">${menu.title}</a>
+            <#if menu.submenu??>
+                <#--<p>вторая линия</p>-->
+                <#list menu.submenu as submenu>
+                  <div class="left-menu-item ${iconClass(submenu.level, submenu.open)}">
+                    <a href="${submenu.target}${submenu.link}">${submenu.title}</a>
+                    <#if submenu.submenu??>
+                        <#--<p>третья линия</p>-->
+                        <#list submenu.submenu as submenu1>
+                          <div class="left-menu-item ${iconClass(submenu1.level, submenu1.open)}">
+                            <a href="${submenu1.target}${submenu1.link}">${submenu1.title}</a>
+                            <#if submenu1.submenu??>
+                                <#--<p> четвертая линия</p>-->
+                                <#list submenu1.submenu as submenu2>
+                                  <div class="left-menu-item ${iconClass(submenu2.level, submenu2.open)}">
+                                    <a href="${submenu2.target}${submenu2.link}">${submenu2.title}</a>
+                                    <#if submenu2.submenu??>
+                                      <#--<p> пятая линия</p>-->
+                                      <#list submenu2.submenu as submenu3>
+                                        <div class="left-menu-item ${iconClass(submenu3.level, submenu3.open)}">
+                                          <a href="${submenu3.target}${submenu3.link}">${submenu3.title}</a>
+                                        </div>
+                                      </#list>
+                                    </#if>
+                                  </div>
+                                </#list>
+                            </#if>
+                          </div>
+                        </#list>
+                    </#if>
+                  </div>
+                </#list>
+            </#if>
           </div>
         </#list>
       </div>
@@ -82,6 +115,7 @@
     <div class="footer"></div>
   </div>
 
+  <!-- start of layer-->
    <div
      class="PopMenu"
      style="display:none; overflow:visible"

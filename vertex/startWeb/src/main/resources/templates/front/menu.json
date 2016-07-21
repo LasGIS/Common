@@ -1,20 +1,24 @@
 [
-  {"level":0, "open":true,  "target":"FrontPage/Main.html", "link":"", "title":"Программный комплекс &quot;LasGIS&quot;"},
-  {"level":2, "open":false, "target":"FrontPage/Main.html", "link":"#consists_of", "title":"Состав ПК LasGIS"},
-  {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#Geo_exe", "title":"Geo.exe (LasGIS под DOS)"},
-  {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#LasGIS_exe", "title":"LasGIS.exe (LasGIS под Windows)"},
-  {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#PCXBreak_exe", "title":"PCXBreak.exe (MS DOS)"},
-  {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#MakeRastr_exe", "title":"MakeRastr.exe (Windows)"},
-  {"level":2, "open":false, "target":"FrontPage/Map.html", "link":"", "title":"База Геоданных ПК 'LasGIS'"},
-  {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Vector_map", "title":"Векторная карта"},
-  {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Semantic_link", "title":"Семантическая База Данных"},
-  {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Rastr_map", "title":"Растровая карта"},
-  {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Format_exchange", "title":"Обмен данными"},
-  {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Programme_Language", "title":"Язык программирования"},
-  {"level":2, "open":false, "target":"FrontPage/Accesses.html", "link":"", "title":"Способы доступа ПК 'LasGIS'"},
-  {"level":4, "open":true,  "target":"FrontPage/Accesses.html", "link":"#DOS", "title":"Работа под DOS"},
-  {"level":4, "open":true,  "target":"FrontPage/Accesses.html", "link":"#local_Win", "title":"Работа в локальной сети (Windows)"},
-  {"level":4, "open":true,  "target":"FrontPage/Accesses.html", "link":"#ActiveX", "title":"Работа в приложении (COM объекты LasX)"},
-  {"level":4, "open":true,  "target":"FrontPage/Accesses.html", "link":"#remote_access", "title":"Работа с удаленным доступом"},
-  {"level":4, "open":true,  "target":"FrontPage/Accesses.html", "link":"#remote_access_interface", "title":"Интерфейс доступа"}
+{"level":0, "open":true,  "target":"FrontPage/Main.html", "link":"", "title":"Программный комплекс &quot;LasGIS&quot;", "submenu":[
+  {"level":1, "open":false, "target":"FrontPage/Main.html", "link":"#consists_of", "title":"Состав ПК LasGIS", "submenu":[
+    {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#Geo_exe", "title":"Geo.exe (LasGIS под DOS)"},
+    {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#LasGIS_exe", "title":"LasGIS.exe (LasGIS под Windows)"},
+    {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#PCXBreak_exe", "title":"PCXBreak.exe (MS DOS)"},
+    {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#MakeRastr_exe", "title":"MakeRastr.exe (Windows)"},
+    {"level":2, "open":false, "target":"FrontPage/Map.html", "link":"", "title":"База Геоданных ПК 'LasGIS'", "submenu":[
+      {"level":5, "open":true,  "target":"FrontPage/Map.html", "link":"#Vector_map", "title":"Векторная карта"},
+      {"level":5, "open":true,  "target":"FrontPage/Map.html", "link":"#Semantic_link", "title":"Семантическая База Данных"},
+      {"level":5, "open":true,  "target":"FrontPage/Map.html", "link":"#Rastr_map", "title":"Растровая карта"},
+      {"level":5, "open":true,  "target":"FrontPage/Map.html", "link":"#Format_exchange", "title":"Обмен данными"},
+      {"level":5, "open":true,  "target":"FrontPage/Map.html", "link":"#Programme_Language", "title":"Язык программирования"},
+      {"level":3, "open":false, "target":"FrontPage/Accesses.html", "link":"", "title":"Способы доступа ПК 'LasGIS'", "submenu":[
+        {"level":5, "open":true,  "target":"FrontPage/Accesses.html", "link":"#DOS", "title":"Работа под DOS"},
+        {"level":5, "open":true,  "target":"FrontPage/Accesses.html", "link":"#local_Win", "title":"Работа в локальной сети (Windows)"},
+        {"level":5, "open":true,  "target":"FrontPage/Accesses.html", "link":"#ActiveX", "title":"Работа в приложении (COM объекты LasX)"},
+        {"level":5, "open":true,  "target":"FrontPage/Accesses.html", "link":"#remote_access", "title":"Работа с удаленным доступом"},
+        {"level":5, "open":true,  "target":"FrontPage/Accesses.html", "link":"#remote_access_interface", "title":"Интерфейс доступа"}
+      ]}
+    ]}
+  ]}
+]}
 ]
