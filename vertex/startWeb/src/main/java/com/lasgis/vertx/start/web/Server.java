@@ -66,7 +66,6 @@ public class Server extends AbstractVerticle {
      * @param engine Free Marker Template Engine
      */
     private void index(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
-        ctx.put("headMain", "Программный комплекс LasGIS");
         //ctx.put("users", new User[] {new User("Саша", 30), new User("Дима", 25)});
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
         engine.render(ctx, "templates/main.json", jsonRes -> {

@@ -86,7 +86,7 @@
       <div class="left-menu">
         <@mLeftMenu context.main.leftMenu/>
       </div>
-      <div class="right-content"><#include "/templates/front/main.html.ftl"></div>
+      <div class="right-content"><#include "${context.main.documentName}"></div>
     </div>
     <div class="footer"></div>
   </div>
