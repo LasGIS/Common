@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta http-equiv="Pragma" content="no-cache"/>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" type="image/x-icon" href="images/LasGIS.ico" />
   <link rel="stylesheet" type="text/css" href="css/main.css"/>
   <link rel="stylesheet" type="text/css" href="css/menu.css"/>
   <script type="text/javascript">ImagePrefix = "images/";</script>
