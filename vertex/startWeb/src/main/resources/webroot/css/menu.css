@@ -120,6 +120,23 @@
     text-align: left;
 }
 .left-menu-item a {}
+.left-menu-img {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.left-menu-img.level0,
+.left-menu-img.level2,
+.left-menu-img.level4 {
+    width: 25px;
+    height: 25px;
+}
+.left-menu-img.level1,
+.left-menu-img.level3,
+.left-menu-img.level5 {
+    width: 16px;
+    height: 16px;
+}
 
 .SubMenu {
     font-size: 14px;

@@ -1,3 +1,27 @@
+var menuLevels = {
+    "level0":{"open":"open-book", "close":"close-book"},
+    "level1":{"open":"open-book1", "close":"close-book1"},
+    "level2":{"open":"open", "close":"close"},
+    "level3":{"open":"open1", "close":"close1"},
+    "level4":{"open":"page", "close":"page"},
+    "level5":{"open":"page1", "close":"page1"}
+};
+$(document).ready(function() {
+    $('.left-menu').delegate('.left-menu-img', 'click', function() {
+        var menuLevel = menuLevels[$(this).attr("level")];
+        var opened = $(this).attr("opened");
+        var submenu = $(this).siblings('div');
+        if (opened === 'open') {
+            submenu.hide();
+            opened = 'close';
+        } else {
+            submenu.show();
+            opened = 'open';
+        }
+        $(this).attr('opened', opened);
+        $(this).parent().removeClass().addClass('left-menu-item').addClass(menuLevel[opened]);
+    });
+});
 /** поиск элемента */
 function getNodeFrame(nodeId, doc) {
   if (doc.getElementById) {

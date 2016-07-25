@@ -72,7 +72,6 @@ public class Server extends AbstractVerticle {
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
         final FileSystem fs = vertx.fileSystem();
         fs.readFile("templates/front/menu.json", fileRes -> {
-        //fs.readFile("templates/main.json", fileRes -> {
             if (fileRes.succeeded()) {
                 ctx.put("leftMenu", new JsonArray(fileRes.result().toString()).getList());
                 engine.render(ctx, "templates/index.ftl", engineRes -> {
