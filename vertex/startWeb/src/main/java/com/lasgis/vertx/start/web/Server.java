@@ -1,9 +1,8 @@
 package com.lasgis.vertx.start.web;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.file.FileSystem;
 import io.vertx.core.http.HttpServer;
-import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -70,11 +69,10 @@ public class Server extends AbstractVerticle {
         ctx.put("headMain", "Программный комплекс LasGIS");
         //ctx.put("users", new User[] {new User("Саша", 30), new User("Дима", 25)});
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
-        final FileSystem fs = vertx.fileSystem();
-        fs.readFile("templates/front/menu.json", fileRes -> {
-            if (fileRes.succeeded()) {
-                ctx.put("leftMenu", new JsonArray(fileRes.result().toString()).getList());
-                engine.render(ctx, "templates/index.ftl", engineRes -> {
+        engine.render(ctx, "templates/main.json", jsonRes -> {
+            if (jsonRes.succeeded()) {
+                ctx.put("main", new JsonObject(jsonRes.result().toString()).getMap());
+                engine.render(ctx, "templates/index.html", engineRes -> {
                     if (engineRes.succeeded()) {
                             ctx.response().end(engineRes.result());
                         } else {
@@ -85,7 +83,7 @@ public class Server extends AbstractVerticle {
                     }
                 );
             } else {
-                final Throwable ex = fileRes.cause();
+                final Throwable ex = jsonRes.cause();
                 LOG.error(ex.getMessage(), ex);
                 ctx.fail(ex);
             }

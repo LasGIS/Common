@@ -24,7 +24,7 @@
           Ассоциация развития программного комплекса <strong>LasGIS</strong> г.Омск
         </div>
         <div class="head-main" title="Заголовок должен меняться в зависимости от выбранной страницы. В данном случае это заголовок для 'Главной страницы'" >
-          ${context.headMain}
+          ${context.main.headMain}
         </div>
         <div id="menu" class="menu" title="Главное меню (в этой панели все пункты главного меню)">
             <div
@@ -84,9 +84,9 @@
     </#macro>
     <div class="content">
       <div class="left-menu">
-        <@mLeftMenu context.leftMenu/>
+        <@mLeftMenu context.main.leftMenu/>
       </div>
-      <div class="right-content"><#include "/templates/front/main.ftl"></div>
+      <div class="right-content"><#include "/templates/front/main.html.ftl"></div>
     </div>
     <div class="footer"></div>
   </div>
