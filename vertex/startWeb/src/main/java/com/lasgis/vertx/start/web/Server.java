@@ -56,8 +56,17 @@ public class Server extends AbstractVerticle {
         router.get("/api/whiskies/:id").handler(this::getOne);
         router.put("/api/whiskies/:id").handler(this::updateOne);
 */
+        router.routeWithRegex(".*\\.html").handler(ctx -> routeHtml(ctx, engine));
         router.route("/*").handler(StaticHandler.create());
         return router;
+    }
+    /*
+    http://vlaskin.omsk.luxoft.com:8180/Main.html#dddddddd
+    /Main.html
+    */
+    private void routeHtml(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
+        final String path = ctx.request().path();
+        callIndex(ctx, engine, "templates/main.json", path);
     }
 
     /**
@@ -68,7 +77,15 @@ public class Server extends AbstractVerticle {
     private void index(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
         //ctx.put("users", new User[] {new User("Саша", 30), new User("Дима", 25)});
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
-        engine.render(ctx, "templates/main.json", jsonRes -> {
+        callIndex(ctx, engine, "templates/main.json", "/front/main.html");
+    }
+
+    private void callIndex(
+        final RoutingContext ctx, final FreeMarkerTemplateEngine engine,
+        final String mainJson, final String rightContent
+    ) {
+        ctx.put("documentName", "/templates" + rightContent + ".ftl");
+        engine.render(ctx, mainJson, jsonRes -> {
             if (jsonRes.succeeded()) {
                 ctx.put("main", new JsonObject(jsonRes.result().toString()).getMap());
                 engine.render(ctx, "templates/index.html", engineRes -> {

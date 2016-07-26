@@ -4,9 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta http-equiv="Pragma" content="no-cache"/>
-  <link rel="icon" type="image/x-icon" href="images/LasGIS.ico" />
-  <link rel="stylesheet" type="text/css" href="css/main.css"/>
-  <link rel="stylesheet" type="text/css" href="css/menu.css"/>
+  <link rel="icon" type="image/x-icon" href="/images/LasGIS.ico" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/menu.css"/>
   <script type="text/javascript">ImagePrefix = "images/";</script>
   <script type="text/javascript" src="/js/jquery-1.12.0.js"></script>
   <script type="text/javascript" src="/js/menu.js"></script>
@@ -17,7 +17,7 @@
   <div class="main">
     <div class="header">
       <div class="logotype">
-        <img alt="Trade Mark LasGIS Association." src="images/TradeMark.jpg" title="Эта картинка неизменная для всех страничек сайта."/>
+        <img alt="Trade Mark LasGIS Association." src="/images/TradeMark.jpg" title="Эта картинка неизменная для всех страничек сайта."/>
       </div>
       <div class="header-title">
         <div class="head-mini" title="Эта строка неизменная для всех страничек сайта.">
@@ -73,7 +73,7 @@
       <#list mainMenu as menu>
         <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
           <div class="left-menu-img level${menu.level}" level="level${menu.level}" opened="<#if menu.open>open<#else>close</#if>"></div>
-          <a href="${menu.target}${menu.link}">${menu.title}</a>
+          <a href="${menu.target}${menu.link}" class="menu-anchor" data-target="${menu.target}" data-link="${menu.link}">${menu.title}</a>
           <#if menu.submenu??>
             <div<#if !menu.open> style="display: none"</#if>>
               <@mLeftMenu menu.submenu/>

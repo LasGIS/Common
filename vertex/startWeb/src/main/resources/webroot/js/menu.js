@@ -21,6 +21,11 @@ $(document).ready(function() {
         $(this).attr('opened', opened);
         $(this).parent().removeClass().addClass('left-menu-item').addClass(menuLevel[opened]);
     });
+/*
+    $('.main').delegate('.menu-anchor', 'click', function() {
+
+    });
+*/
 });
 /** поиск элемента */
 function getNodeFrame(nodeId, doc) {

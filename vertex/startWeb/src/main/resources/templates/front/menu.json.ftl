@@ -6,12 +6,12 @@
     {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#PCXBreak_exe", "title":"PCXBreak.exe (MS DOS)"},
     {"level":4, "open":true,  "target":"FrontPage/Main.html", "link":"#MakeRastr_exe", "title":"MakeRastr.exe (Windows)"}
   ]},
-  {"level":2, "open":true, "target":"FrontPage/Map.html", "link":"", "title":"База Геоданных ПК 'LasGIS'", "submenu":[
-    {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Vector_map", "title":"Векторная карта"},
-    {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Semantic_link", "title":"Семантическая База Данных"},
-    {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Rastr_map", "title":"Растровая карта"},
-    {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Format_exchange", "title":"Обмен данными"},
-    {"level":4, "open":true,  "target":"FrontPage/Map.html", "link":"#Programme_Language", "title":"Язык программирования"}
+  {"level":2, "open":true, "target":"/front/map.html", "link":"", "title":"База Геоданных ПК 'LasGIS'", "submenu":[
+    {"level":4, "open":true,  "target":"/front/map.html", "link":"#Vector_map", "title":"Векторная карта"},
+    {"level":4, "open":true,  "target":"/front/map.html", "link":"#Semantic_link", "title":"Семантическая База Данных"},
+    {"level":4, "open":true,  "target":"/front/map.html", "link":"#Rastr_map", "title":"Растровая карта"},
+    {"level":4, "open":true,  "target":"/front/map.html", "link":"#Format_exchange", "title":"Обмен данными"},
+    {"level":4, "open":true,  "target":"/front/map.html", "link":"#Programme_Language", "title":"Язык программирования"}
   ]},
   {"level":2, "open":true, "target":"FrontPage/Accesses.html", "link":"", "title":"Способы доступа ПК 'LasGIS'", "submenu":[
     {"level":4, "open":true,  "target":"FrontPage/Accesses.html", "link":"#DOS", "title":"Работа под DOS"},
