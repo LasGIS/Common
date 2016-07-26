@@ -1,19 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
-  <script type="text/javascript">ImagePrefix = "/images/";</script>
-  <script src="../js/menu.js" type="text/javascript"></script>
-  <title>Способы доступа программного комплекса 'LasGIS'</title>
-  <STYLE type="text/css">
-    OL.roman { list-style-type: lower-roman }
-    OL.arabik { list-style-type: arabic-numbers }
-  </STYLE>
-</head>
-
-<body>
 <h3>Способы доступа программы LasGIS</h3>
 <p class="ind">Программный комплекс "LasGIS" может работать:</p>
 <ul>
@@ -194,7 +178,4 @@ CLASSID="CLSID:CFF2C7D2-A317-11D4-B406-008048FB8A7C"&gt;<br/>
 <br/>
 &lt;/p&gt;<br/>
 &lt;/body&gt;&lt;/html&gt;<br/>
-<p>
-
-</body>
-</html>
+</p>
