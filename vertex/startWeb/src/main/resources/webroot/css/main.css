@@ -85,7 +85,7 @@ a:link {
     font-family: Arial, sans-serif
 }
 a:visited {
-    color: blueviolet;
+    color: #8a2be2;
     font-family: Arial, sans-serif
 }
 a:hover {
@@ -102,19 +102,20 @@ th {
     font-weight: bolder;
     color: navy;
     padding: 3px 10px;
-    font-family: Arial, sans-serif background-color : silver
+    font-family: Arial, sans-serif;
+    background-color : silver;
 }
 tr {
     font-family: Arial, sans-serif
     background-color: transparent
 }
 td {
-    padding-right: 6px;
-    padding-left: 6px;
-    padding-bottom: 3px;
-    padding-top: 3px;
-    font-family: Arial, sans-serif
-    background-color: transparent
+    padding: 3px 6px;
+    font-family: Arial, sans-serif;
+    background-color: transparent;
+}
+.TableTiny {
+  border: 1px solid #5f9ea0;
 }
 
 .ind { text-indent: 10mm; }
@@ -199,12 +200,12 @@ blockquote {
     font-family: Arial, sans-serif
 }
 .RefAdres {
-    color: darkcyan
+  color: #008b8b
 }
 .Refer {
     font-weight: bolder;
     color: #c0a;
-    font-family: Arial, sans-serif
+    font-family: Arial, sans-serif;
 }
 .HiRefer {
     font-weight: bolder;
@@ -235,7 +236,7 @@ p.Notice {
     padding-left: 10mm;
     color: navy;
     font-family: 'Lucida Console', 'Courier New Cyr', monospace;
-    text-align: left
+    text-align: left;
 }
 .ProgComment {
     color: green;

@@ -66,7 +66,7 @@ public class Server extends AbstractVerticle {
     */
     private void routeHtml(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
         final String path = ctx.request().path();
-        callIndex(ctx, engine, "templates/main.json", path);
+        callIndex(ctx, engine, "/main.json", path);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Server extends AbstractVerticle {
     private void index(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
         //ctx.put("users", new User[] {new User("Саша", 30), new User("Дима", 25)});
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
-        callIndex(ctx, engine, "templates/main.json", "/front/main.html");
+        callIndex(ctx, engine, "/main.json", "/front/main.html");
     }
 
     private void callIndex(
@@ -85,7 +85,7 @@ public class Server extends AbstractVerticle {
         final String mainJson, final String rightContent
     ) {
         ctx.put("documentName", "/templates" + rightContent + ".ftl");
-        engine.render(ctx, mainJson, jsonRes -> {
+        engine.render(ctx, "/templates" + mainJson, jsonRes -> {
             if (jsonRes.succeeded()) {
                 ctx.put("main", new JsonObject(jsonRes.result().toString()).getMap());
                 engine.render(ctx, "templates/index.html", engineRes -> {
