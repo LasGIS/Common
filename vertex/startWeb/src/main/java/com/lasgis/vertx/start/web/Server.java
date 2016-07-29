@@ -56,14 +56,17 @@ public class Server extends AbstractVerticle {
         router.get("/api/whiskies/:id").handler(this::getOne);
         router.put("/api/whiskies/:id").handler(this::updateOne);
 */
+        router.routeWithRegex(".*\\.json").handler(ctx -> routeJson(ctx, engine));
         router.routeWithRegex(".*\\.html").handler(ctx -> routeHtml(ctx, engine));
         router.route("/*").handler(StaticHandler.create());
         return router;
     }
-    /*
-    http://vlaskin.omsk.luxoft.com:8180/Main.html#dddddddd
-    /Main.html
-    */
+
+    private void routeJson(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
+        final String path = ctx.request().path();
+        callIndex(ctx, engine, path, null);
+    }
+
     private void routeHtml(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
         final String path = ctx.request().path();
         callIndex(ctx, engine, "/main.json", path);
@@ -84,10 +87,19 @@ public class Server extends AbstractVerticle {
         final RoutingContext ctx, final FreeMarkerTemplateEngine engine,
         final String mainJson, final String rightContent
     ) {
-        ctx.put("documentName", "/templates" + rightContent + ".ftl");
-        engine.render(ctx, "/templates" + mainJson, jsonRes -> {
+        final String mainJsonCalc;
+        if (mainJson != null) {
+            mainJsonCalc = "/templates" + mainJson;
+        } else {
+            mainJsonCalc = "/templates/main.json";
+        }
+        engine.render(ctx, mainJsonCalc, jsonRes -> {
             if (jsonRes.succeeded()) {
-                ctx.put("main", new JsonObject(jsonRes.result().toString()).getMap());
+                final JsonObject main = new JsonObject(jsonRes.result().toString());
+                if (rightContent != null) {
+                    main.put("documentName", "/templates" + rightContent + ".ftl");
+                }
+                ctx.put("main", main.getMap());
                 engine.render(ctx, "templates/index.html", engineRes -> {
                     if (engineRes.succeeded()) {
                             ctx.response().end(engineRes.result());

@@ -48,7 +48,7 @@
             </div><div
               title="Здесь всё, что касается текущих проектов (LGView, Geo, MakeRastr ...)."
             >
-              <a href="LasGIS_DOC/Document_LasGIS.html">Проекты</a>
+              <a href="/LasGIS_DOC/main.json">Проекты</a>
             </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
       <#list mainMenu as menu>
         <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
           <div class="left-menu-img level${menu.level}" level="level${menu.level}" opened="<#if menu.open>open<#else>close</#if>"></div>
-          <a href="${menu.target}${menu.link}" class="menu-anchor" data-target="${menu.target}" data-link="${menu.link}">${menu.title}</a>
+          <a href="${menu.target}${menu.link!}" class="menu-anchor" data-target="${menu.target}" data-link="${menu.link!}">${menu.title}</a>
           <#if menu.submenu??>
             <div<#if !menu.open> style="display: none"</#if>>
               <@mLeftMenu menu.submenu/>

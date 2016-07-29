@@ -1,16 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Главная таблица графических объектов
-&lt;Objects&gt;</title>
-</head>
-
-<body>
-<font SIZE="4"><strong><sup>
-
 <h2></sup></strong>2.1.Главная таблица графических объектов
 &lt;Objects&gt;</h2>
 </font>
@@ -296,5 +283,3 @@
     по типу объекта)</td>
   </tr>
 </table>
-</body>
-</html>
