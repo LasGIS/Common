@@ -17,15 +17,20 @@
 .menu div:first-child {
     border-left: #ccc 1px solid;
 }
-.menu div a {
-    text-decoration: none;
-}
-#menu A:hover {
+.menu div:hover {
     cursor: pointer;
     color: #f00;
     background-color: #ccc
 }
-#menu A.selected {
+.menu div a {
+    text-decoration: none;
+}
+#menu a:hover {
+    cursor: pointer;
+    color: #f00;
+    background-color: #ccc
+}
+#menu a.selected {
     cursor: pointer;
     background-color: #ccc
 }
