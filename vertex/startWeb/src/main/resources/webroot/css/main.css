@@ -177,10 +177,11 @@ td {
 }
 .left-menu {
     position: absolute;
+    overflow: auto;
     /* background-color: #ffe; */
     top: 0;
     bottom: 0;
-    width: 250px;
+    width: 300px;
     border-right: #ffc0c0 5px solid;
 }
 .right-content {
@@ -188,7 +189,7 @@ td {
     overflow: auto;
     /* background-color: #eff; */
     top: 0;
-    left: 255px;
+    left: 305px;
     right: 0;
     bottom: 0;
     padding: 5px 10px;

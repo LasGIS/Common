@@ -63,13 +63,13 @@ public class Server extends AbstractVerticle {
     }
 
     private void routeJson(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
-        final String path = ctx.request().path();
-        callIndex(ctx, engine, path, null);
+        final String mainJson = ctx.request().path();
+        callIndex(ctx, engine, mainJson, null);
     }
 
     private void routeHtml(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
-        final String path = ctx.request().path();
-        callIndex(ctx, engine, "/main.json", path);
+        final String rightContent = ctx.request().path();
+        callIndex(ctx, engine, null, rightContent);
     }
 
     /**
@@ -90,8 +90,15 @@ public class Server extends AbstractVerticle {
         final String mainJsonCalc;
         if (mainJson != null) {
             mainJsonCalc = "/templates" + mainJson;
+            ctx.session().put("mainJson", mainJsonCalc);
         } else {
-            mainJsonCalc = "/templates/main.json";
+            final String mainJsonSession = ctx.session().get("mainJson");
+            if (mainJsonSession == null) {
+                mainJsonCalc = "/templates/main.json";
+                ctx.session().put("mainJson", mainJsonCalc);
+            } else {
+                mainJsonCalc = mainJsonSession;
+            }
         }
         engine.render(ctx, mainJsonCalc, jsonRes -> {
             if (jsonRes.succeeded()) {
