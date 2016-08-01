@@ -1,15 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Тематический слой графических объектов
-карты</title>
-</head>
-
-<body>
-
 <h1>Тематический слой графических объектов карты</h1>
 
 <p ALIGN="JUSTIFY">В файле главной конфигурации
@@ -25,5 +13,3 @@
     баз,</li>
   <li>и т.д.</li>
 </ul>
-</body>
-</html>

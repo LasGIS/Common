@@ -1,19 +1,8 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Тело графического объекта типа полоса (OStrip)</title>
-</head>
-
-<body>
-
 <h2>1.4.Тело графического объекта типа полоса (OStrip)</h2>
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="../../../webroot/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">OStrip:</span> public <a href="MapO_Object.html">MapObject</a> {<br>
       &nbsp;&nbsp; WORD <span class="ProgTerm">NumELine</span>;&nbsp;&nbsp;&nbsp;
       <span class="ProgComment">// число элементарных линии</span><br>
@@ -60,5 +49,3 @@ href="MapO_OLine.html">объекта типа линия</a> за исключ�
 <p class="Notice"><a href="MapO_eLine.html">Формат элементарной линии (<strong>eLine</strong>)</a></p>
 
 <p class="Notice"><a href="MapO_ePoint.html">Формат элементарной точки (<strong>ePoint</strong>)</a></p>
-</body>
-</html>

@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Control объект LasX &quot;Map&quot;</title>
-</head>
-
-<body>
-
 <h1>Объект “Map”</h1>
 
 <p>Объект <strong>Map</strong> служит для визуализации карты на
@@ -147,5 +136,3 @@ COLOR="#008080"><strong>MScale</strong></font>) карта будет
 <p>Значения координат (<font COLOR="#008080"><strong>AbsX1</strong></font>, <font
 COLOR="#008080"><strong>AbsY1</strong></font>, <font COLOR="#008080"><strong>AbsX2</strong></font>, <font
 COLOR="#008080"><strong>AbsY2</strong></font>) определяют </p>
-</body>
-</html>

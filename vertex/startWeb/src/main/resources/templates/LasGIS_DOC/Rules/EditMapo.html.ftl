@@ -1,15 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Правило редактирования графических объектов
-карты.</title>
-</head>
-
-<body>
-
 <h1>Правила редактирования графических объектов
 карты.</h1>
 
@@ -751,5 +739,3 @@ class="Refer">&lt;Shift&gt;</span> из <a href="#ModeMaking">режима
     ранее привязанные точки остаются привязанными.</td>
   </tr>
 </table>
-</body>
-</html>

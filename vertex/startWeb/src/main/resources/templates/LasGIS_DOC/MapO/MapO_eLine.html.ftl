@@ -1,20 +1,8 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Формат элементарной линии (eLine)</title>
-</head>
-
-<body>
-<sup>
-
-<h2></sup>1.7. Формат элементарной линии (eLine)</h2>
+<h2><sup>1.7. Формат элементарной линии (eLine)</sup></h2>
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="../../../webroot/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">eLine</span> {<br>
     &nbsp;&nbsp; WORD <span class="ProgTerm">Num</span>;&nbsp;&nbsp;&nbsp; <span
     class="ProgComment">// число точек в линии</span><br>
@@ -57,5 +45,3 @@
 объекта <strong>(MapObject)</strong></a></p>
 
 <p class="Notice"><a href="MapO_ePoint.html">Формат элементарной точки (ePoint)</a></p>
-</body>
-</html>

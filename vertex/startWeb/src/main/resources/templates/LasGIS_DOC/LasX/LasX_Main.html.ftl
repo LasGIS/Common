@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="../css/default.css">
-<title>Главный объект LasX &quot;Main&quot;</title>
-</head>
-
-<body>
-
 <h2>Главный объект “Main”</h2>
 
 <p>Главный объект <spin COLOR="#008080"><strong>Main</strong></font> служит
@@ -276,6 +265,3 @@ COLOR="#008080"><strong>Main</strong></font> является оконным о�
     <td class='Refer' align='right'>6</td><td>был включен или выключен режим упрощённого рисования полигонов</td>
   </tr>
 </table>
-
-</body>
-</html>

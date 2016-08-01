@@ -1,13 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>LasX_Layer</title>
-</head>
-
-<body>
-
 <h1>Объект “Layer”</h1>
 
 <p>Объект содержит описание строки тематического
@@ -76,5 +66,3 @@
 </table>
 <p class="Remark">Методы:</p>
 <p class="Remark">События:</p>
-</body>
-</html>

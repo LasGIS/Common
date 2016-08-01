@@ -1,18 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <meta http-equiv="Content-Type"
- content="text/html; charset=UTF-8">
-  <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-  <link rel="stylesheet" type="text/css" href="/css/default.css">
-  <title>Общий заголовок графического объекта (MapObject)</title>
-</head>
-<body>
 <h2>1.1.Общий заголовок графического объекта (<a name="MapObject">MapObject</a>)</h2>
 <table cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td valign="top"><img src="../../../webroot/images/forefinger.jpg" height="16"
+      <td valign="top"><img src="/images/forefinger.jpg" height="16"
  width="16"></td>
       <td>
       <p class="Prog">class <span class="ProgTerm">MapObject</span> {<br>
@@ -240,7 +230,7 @@
   <tbody>
     <tr>
       <td valign="top"><a name="sUserTime"><img
- src="../../../webroot/images/forefinger.jpg" height="16" width="16"></a></td>
+ src="/images/forefinger.jpg" height="16" width="16"></a></td>
       <td>
       <p class="Prog">class <span class="ProgTerm">sUserTime</span> {<br>
 &nbsp;&nbsp;&nbsp; WORD <span class="ProgTerm">Enterprise</span>; <span
@@ -283,7 +273,7 @@
 <table cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td valign="top"><img src="../../../webroot/images/forefinger.jpg" height="16"
+      <td valign="top"><img src="/images/forefinger.jpg" height="16"
  width="16"></td>
       <td>
       <p class="Prog">struct <span class="ProgTerm">sDate</span> {<br>
@@ -306,5 +296,3 @@
 <p class="Remark">Смотри также:</p>
 <p class="Notice"><a href="MapO_Object.html#MapObject"><u>Общий заголовок
 графического объекта</u></a></p>
-</body>
-</html>

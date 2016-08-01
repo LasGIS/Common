@@ -1,18 +1,8 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="..\images\default.css">
-<title>Тело графического объекта типа точка (OPoint)</title>
-</head>
-
-<body>
 <h2>1.2.Тело графического объекта типа точка (OPoint)</h2>
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="../../../webroot/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">OPoint</span>: public <a
     href="MapO_Object.html">MapObject</a> {<br>
     &nbsp;&nbsp;&nbsp; long <span class="ProgTerm">X</span>; <span class="ProgComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -77,5 +67,3 @@
 <p class="Notice"><a href="MapO_eLine.html">Формат элементарной линии (<strong>eLine</strong>)</a></p>
 
 <p class="Notice"><a href="MapO_ePoint.html">Формат элементарной точки (<strong>ePoint</strong>)</a></p>
-</body>
-</html>

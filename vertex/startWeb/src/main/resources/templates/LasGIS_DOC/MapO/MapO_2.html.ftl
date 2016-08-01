@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Формат графического объекта хранимого в базе</title>
-</head>
-
-<body>
-
 <p><font SIZE="4"><strong><sup><a NAME="_Toc448816876"></a></sup>2.Формат
 графического объекта хранимого в базе</strong></font></p>
 
@@ -30,5 +19,3 @@
 объект учитывать версию объекта. При конвертации
 работающего объекта в хранимый, сохранять объект
 желательно в последнем, утвержденном формате.</p>
-</body>
-</html>

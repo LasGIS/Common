@@ -1,19 +1,8 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Формат элементарной точки (ePoint)</title>
-</head>
-
-<body>
-
 <h2>1.8.Формат элементарной точки (ePoint)</h2>
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="../../../webroot/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">ePoint</span> {<br>
     &nbsp;&nbsp; long&nbsp;&nbsp; <span class="ProgTerm">X</span>;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp; <span
@@ -97,5 +86,3 @@ class="Refer">&lt;X&gt;</span> и <span class="Refer">&lt;Y&gt;</span>
 
 <p class="Notice"><a href="MapO_eLine.html">Формат элементарной линии (<span
 class="Refer">eLine</span>)</a></p>
-</body>
-</html>

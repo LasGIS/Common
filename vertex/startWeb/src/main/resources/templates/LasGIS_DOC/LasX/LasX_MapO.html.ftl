@@ -1,13 +1,3 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Обобщенный картографический объект &quot;MapO&quot;</title>
-</head>
-
-<body>
 <strong><em>
 
 <h3><a name="Объект “MapO”">Объект “MapO”</a></h3>
@@ -487,7 +477,4 @@ href="../MapO/MapO_Object.html#sUserTime"><u>Структура, определ�
 
 <p>Смотри также:</p>
 
-<p><a href="../MapO/MapO_Object.html#Object"><u>Общий заголовок
-графического объекта</u></a></p>
-</body>
-</html>
+<p><a href="../MapO/MapO_Object.html#Object"><u>Общий заголовок графического объекта</u></a></p>

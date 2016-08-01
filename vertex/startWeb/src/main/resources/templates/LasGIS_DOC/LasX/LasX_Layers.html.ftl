@@ -1,13 +1,3 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>LasX_Layers</title>
-</head>
-
-<body>
 <h1>Объект “Layers”</h1>
 
 <p>Объект "Layers" это объект типа коллекция, который содержит в себе список объектов
@@ -37,6 +27,3 @@
 
 <p class="Remark">Методы:</p>
 <p class="Remark">События:</p>
-
-</body>
-</html>

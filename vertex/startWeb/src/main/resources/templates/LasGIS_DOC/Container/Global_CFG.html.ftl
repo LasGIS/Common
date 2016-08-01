@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>конфигурация предприятия</title>
-</head>
-
-<body>
-
 <h1>Конфигурация предприятия</h1>
 
 <p>В файле конфигурации предприятия находятся
@@ -224,5 +213,3 @@ href="Container.html">Внутренний
 <h3>1.3.3. Блок семантических запросов</h3>
 
 <h3>1.3.4. Блок семантических таблиц&gt;</h3>
-</body>
-</html>

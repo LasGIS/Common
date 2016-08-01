@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Главная конфигурация проекта (старый формат)</title>
-</head>
-
-<body>
-
 <h1>Главная конфигурация проекта (старый формат)</h1>
 
 <p ALIGN="JUSTIFY">В файле главной конфигурации
@@ -569,6 +558,3 @@ class="RefAdres">800h</span> до конца файла. Номер индекс
  |    |    |           .  .  .  .  .  .  .  .  .  .                       |
  +---------+--------------------------------------------------------------+
 </pre>
-
-</body>
-</html>

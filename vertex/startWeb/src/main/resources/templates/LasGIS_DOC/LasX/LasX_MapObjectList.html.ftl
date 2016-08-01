@@ -1,13 +1,3 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>LasX_MapObjectList</title>
-</head>
-
-<body>
 <strong><em>
 
 <p>Объект “MapObjectList”</p>
@@ -17,10 +7,8 @@
 которая содержит список графических объектов
 карты <strong><a href="LasX_MapO.html">MapO</a></strong>.
 &nbsp;&nbsp; возвращается </p>
-<u>
-
-<p><strong>Свойства:</p>
-</strong></u>
+<u><p><strong>Свойства:</p></u>
+</strong>
 
 <p>&nbsp;</p>
 <strong><u>
@@ -36,5 +24,3 @@
 
 <p>&nbsp;</p>
 </font></strong>
-</body>
-</html>

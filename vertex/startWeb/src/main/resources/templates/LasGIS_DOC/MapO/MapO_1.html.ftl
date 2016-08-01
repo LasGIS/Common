@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Cтруктура графического объекта в программе</title>
-</head>
-
-<body>
-
 <h1>1.<a NAME="MapO_1">Cтруктура графического объекта в
 программе</a></h1>
 
@@ -40,5 +29,3 @@
 <p><a href="MapO_eLine.html">Формат элементарной линии (<strong>eLine</strong>)</a></p>
 
 <p><a href="MapO_ePoint.html">Формат элементарной точки (<strong>ePoint</strong>)</a></p>
-</body>
-</html>

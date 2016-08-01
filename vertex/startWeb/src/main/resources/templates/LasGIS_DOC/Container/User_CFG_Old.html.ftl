@@ -1,15 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Пользовательская конфигурация проекта
-(старый формат)</title>
-</head>
-
-<body>
-
 <h1>Пользовательская конфигурация проекта (старый
 формат)</h1>
 
@@ -744,5 +732,3 @@ class="RefAdres">800h</span> до конца файла. Номер индекс
     <td colspan="4"><p class="Refer">. . . . . . . . . .</td>
   </tr>
 </table>
-</body>
-</html>

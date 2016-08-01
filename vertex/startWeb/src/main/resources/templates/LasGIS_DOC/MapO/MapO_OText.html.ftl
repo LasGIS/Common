@@ -1,18 +1,8 @@
-<html>
-
-<head>
-  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="/css/default.css">
-  <title>Тело графического объекта типа надпись (OText)</title>
-</head>
-
-<body>
-
 <h2>1.6.Тело графического объекта типа надпись (OText)</h2>
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="../../../webroot/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">OText</span> : public <a href="MapO_Object.html">MapObject</a> {<br>
       &nbsp;&nbsp; char * <span class="ProgTerm">Text</span>;&nbsp; <span class="ProgComment">// строка текста</span><br>
       &nbsp;&nbsp; long <span class="ProgTerm">Height</span>;&nbsp; <span class="ProgComment">// высота шрифта в см. местности</span><br>
@@ -92,7 +82,7 @@ href="MapO_Object.html">MapObject</a>) параметр <span class="Refer">&lt;
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="../../../webroot/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">struct <span class="ProgTerm">eFont</span> {<br>
       &nbsp;&nbsp; char * <span class="ProgTerm">Name</span>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <span class="ProgComment">// название шрифта (Areal; Courier)</span><br>
@@ -109,5 +99,3 @@ href="MapO_Object.html">MapObject</a>) параметр <span class="Refer">&lt;
       }</p></td>
   </tr>
 </table>
-</body>
-</html>

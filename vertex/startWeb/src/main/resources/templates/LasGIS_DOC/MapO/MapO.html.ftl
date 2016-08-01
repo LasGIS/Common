@@ -1,14 +1,3 @@
-<html>
-
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
-<link rel="stylesheet" type="text/css" href="/css/default.css">
-<title>Формат графического объекта</title>
-</head>
-
-<body>
-
 <h1>Формат графического объекта</h1>
 
 <p>Формат графического объекта, хранимого в базе
@@ -59,5 +48,3 @@
     графических объектов &lt;Objects&gt;</u></a><br>
     </p>
 </blockquote>
-</body>
-</html>

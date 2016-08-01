@@ -95,7 +95,7 @@ function selectMenu(a, name) {
         elem = elem.offsetParent;
         offy += elem.offsetTop;
         offx += elem.offsetLeft;
-        if (elem.tagName == 'BODY') break;
+        if (elem.tagName == 'body') break;
     }
 
     if(currentTimer) clearTimeout(currentTimer);
@@ -145,7 +145,7 @@ function relPosX(which) {
     while (elem.offsetParent != null) {
       elem = elem.offsetParent;
       pos += elem.offsetLeft;
-      if (elem.tagName == 'BODY') break;
+      if (elem.tagName == 'body') break;
     } return pos;
 
 }
@@ -159,7 +159,7 @@ function relPosY(which) {
     while (elem.offsetParent != null) {
       elem = elem.offsetParent;
       pos += elem.offsetTop;
-      if (elem.tagName == 'BODY') break;
+      if (elem.tagName == 'body') break;
     } return pos;
 
 }
