@@ -38,7 +38,8 @@
     {"level":2, "open":true, "target":"/LasGIS_DOC/Container/Container_Old.html", "title":"Старый формат файла - контейнера.", "submenu":[
       {"level":3, "open":true, "target":"/LasGIS_DOC/Container/Main_CFG_Old.html", "title":"Главная конфигурация проекта (старый формат)"},
       {"level":3, "open":true, "target":"/LasGIS_DOC/Container/User_CFG_Old.html", "title":"Пользовательская конфигурация проекта (старый формат)"},
-      {"level":3, "open":true, "target":"/LasGIS_DOC/Container/Objects_File_Old.html", "title":"Тематический слой графических объектов карты (старый формат)"}
+      {"level":3, "open":true, "target":"/LasGIS_DOC/Container/Objects_File_Old.html", "title":"Тематический слой графических объектов карты (старый формат)"},
+      {"level":3, "open":true, "target":"/LasGIS_DOC/Rules/EditMapo.html", "title":"Правила редактирования графических объектов карты"}
     ]}
   ]},
   {"level":1, "open":true, "target":"", "title":"Правила", "submenu":[
