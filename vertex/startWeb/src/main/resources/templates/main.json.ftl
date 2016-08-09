@@ -1,5 +1,6 @@
 {
   "headMain":"Программный комплекс LasGIS",
-  "leftMenu":<#include "/templates/front/menu.json.ftl">,
+  "mainMenu":<#include "/templates/main_menu.json.ftl">,
+  "leftMenu":<#include "/templates/left_menu.json.ftl">,
   "documentName":"/templates/front/main.html.ftl"
 }

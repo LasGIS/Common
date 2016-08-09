@@ -27,29 +27,32 @@
           ${context.main.headMain}
         </div>
         <div id="menu" class="menu" title="Главное меню (в этой панели все пункты главного меню)">
-            <div
+          <div
               onmouseover="selectMenu(this, 'mainLayer');"
               onmouseout="unselectMenu();"
               title="Главная страница"
-            >
-              <a href="index.html">Главная</a>
-            </div><div
+              >
+            <a href="/index.html">Главная</a>
+          </div>
+          <div
               onmouseover="selectMenu(this, 'historyLayer');"
               onmouseout="unselectMenu();"
               title="История создания всего проекта LasGIS, начиная с 1990 года"
-            >
-              <a href="History.html">История создания</a>
-            </div><div
+              >
+            <a href="History.html">История создания</a>
+          </div>
+          <div
               onmouseover="selectMenu(this, 'documentationLayer');"
               onmouseout="unselectMenu();"
               title="Оригинальный сборник документации"
-            >
-              <a href="LasGIS_DOC/Document_LasGIS.html">Документация</a>
-            </div><div
+              >
+            <a href="LasGIS_DOC/Document_LasGIS.html">Документация</a>
+          </div>
+          <div
               title="Здесь всё, что касается текущих проектов (LGView, Geo, MakeRastr ...)."
-            >
-              <a href="/LasGIS_DOC/main.json">Проекты</a>
-            </div>
+              >
+            <a href="/LasGIS_DOC/main.json">Проекты</a>
+          </div>
         </div>
       </div>
       <div class="header-addons">
@@ -73,7 +76,7 @@
       <#list mainMenu as menu>
         <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
           <div class="left-menu-img level${menu.level}" level="level${menu.level}" opened="<#if menu.open>open<#else>close</#if>"></div>
-          <a href="${menu.target}${menu.link!}" class="menu-anchor" data-target="${menu.target}" data-link="${menu.link!}">${menu.title}</a>
+          <a href="${menu.link}${menu.anchor!}" class="menu-anchor" data-link="${menu.link}" data-anchor="${menu.anchor!}">${menu.text}</a>
           <#if menu.submenu??>
             <div<#if !menu.open> style="display: none"</#if>>
               <@mLeftMenu menu.submenu/>
