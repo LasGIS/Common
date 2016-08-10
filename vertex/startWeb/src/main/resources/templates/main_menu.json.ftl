@@ -2,9 +2,9 @@
   "link":"/index.html", "text":"Главная", "title":"Главная страница",
   "submenu":{
     "id":"mainLayer", "menu":[
-      {"link":"/front/main.html", "text":"Программный комплекс 'LasGIS'"},
-      {"link":"/front/map.html", "text":"База Геоданных ПК 'LasGIS'"},
-      {"link":"/front/accesses.html", "text":"Способы доступа ПК 'LasGIS'"}
+      {"link":"/front/main.main.json#consists_of", "text":"Программный комплекс 'LasGIS'"},
+      {"link":"/front/map.main.json", "text":"База Геоданных ПК 'LasGIS'"},
+      {"link":"/front/accesses.main.json", "text":"Способы доступа ПК 'LasGIS'"}
     ]}
 }, {
   "link":"/History.html", "text":"История создания", "title":"История создания всего проекта LasGIS, начиная с 1990 года",
