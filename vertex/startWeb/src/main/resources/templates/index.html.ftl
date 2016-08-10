@@ -27,32 +27,16 @@
           ${context.main.headMain}
         </div>
         <div id="menu" class="menu" title="Главное меню (в этой панели все пункты главного меню)">
-          <div
-              onmouseover="selectMenu(this, 'mainLayer');"
-              onmouseout="unselectMenu();"
-              title="Главная страница"
-              >
-            <a href="/index.html">Главная</a>
-          </div>
-          <div
-              onmouseover="selectMenu(this, 'historyLayer');"
-              onmouseout="unselectMenu();"
-              title="История создания всего проекта LasGIS, начиная с 1990 года"
-              >
-            <a href="History.html">История создания</a>
-          </div>
-          <div
-              onmouseover="selectMenu(this, 'documentationLayer');"
-              onmouseout="unselectMenu();"
-              title="Оригинальный сборник документации"
-              >
-            <a href="LasGIS_DOC/Document_LasGIS.html">Документация</a>
-          </div>
-          <div
-              title="Здесь всё, что касается текущих проектов (LGView, Geo, MakeRastr ...)."
-              >
-            <a href="/LasGIS_DOC/main.json">Проекты</a>
-          </div>
+          <#list context.main.mainMenu as menu>
+            <div
+            <#if menu.submenu??>
+                onmouseover="selectMenu(this, '${menu.submenu.id}');"
+                onmouseout="unselectMenu();"
+            </#if>
+                title="${menu.title!}">
+              <a href="${menu.link}">${menu.text}</a>
+            </div>
+          </#list>
         </div>
       </div>
       <div class="header-addons">
@@ -72,8 +56,8 @@
         <#elseif level == 5><#return "page1">
         </#if>
     </#function>
-    <#macro mLeftMenu mainMenu>
-      <#list mainMenu as menu>
+    <#macro mLeftMenu leftMenu>
+      <#list leftMenu as menu>
         <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
           <div class="left-menu-img level${menu.level}" level="level${menu.level}" opened="<#if menu.open>open<#else>close</#if>"></div>
           <a href="${menu.link}${menu.anchor!}" class="menu-anchor" data-link="${menu.link}" data-anchor="${menu.anchor!}">${menu.text}</a>
@@ -93,67 +77,24 @@
     </div>
     <div class="footer"></div>
   </div>
+  <div
 
+  <#list context.main.mainMenu as menu><#if menu.submenu??>
   <!-- start of layer-->
    <div
      class="PopMenu"
      style="display:none; overflow:visible"
-     id="mainLayer"
+     id="${menu.submenu.id}"
      onmouseover="overMenu();"
      onmouseout="unselectMenu();"
    >
      <table border="0" cellspacing="0" cellpadding="0" onmouseover="overMenu();">
-       <tr><td><a
-         href='javascript:LoadUrl("FrontPage/Main.html", "FrontPage/Menu.html", "Программный комплекс LasGIS")'
-       >Программный комплекс 'LasGIS'</a></td></tr>
-       <tr><td><a
-         href='javascript:LoadUrl("FrontPage/Map.html", "FrontPage/Menu.html", "База Геоданных ПК LasGIS")'
-       >База Геоданных ПК 'LasGIS'</a></td></tr>
-       <tr><td><a
-         href='javascript:LoadUrl("FrontPage/Accesses.html", "FrontPage/Menu.html", "Способы доступа ПК LasGIS")'
-       >Способы доступа ПК 'LasGIS'</a></td></tr>
+       <#list menu.submenu.menu as submenu>
+       <tr><td><a href="${submenu.link}" title="${submenu.title!}">${submenu.text}</a></td></tr>
+       </#list>
      </table>
    </div>
    <!-- end of layer-->
-   <!-- start of layer-->
-   <div
-     class="PopMenu"
-     style="display:none; overflow:visible"
-     id="documentationLayer"
-     onmouseover="overMenu();"
-     onmouseout="unselectMenu();"
-   >
-     <table border="0" cellspacing="0" cellpadding="0" onmouseover="overMenu();">
-       <tr><td><a
-         href='javascript:LoadUrl("LasGIS_DOC/default.html", "LasGIS_DOC/Menu.html", "Документация по программному комплексу LasGIS")'
-         title="Общая документация по LasGIS для разных подпроектов."
-       >Документация по LasGIS</a></td></tr>
-       <tr><td><a
-         href='javascript:LoadUrl("LasGIS_DOC/LasX/LasX.html", "LasGIS_DOC/LasX/Menu.html", "Структура объектной модели LasX")'
-       >Структура объектной модели LasX (ActiveX object)</a></td></tr>
-       <tr><td><a
-         href='javascript:LoadUrl("LasGIS_DOC/MapO/MapO.html", "LasGIS_DOC/MapO/Menu.html", "Формат графического объекта (C++)")'
-       >Формат графического объекта (C++)</a></td></tr>
-       <tr><td><a
-         href='javascript:LoadUrl("LasGIS_DOC/Container/Container.html", "LasGIS_DOC/Container/Menu.html", "Внутренний формат файла-контейнера")'
-       >Внутренний формат файла-контейнера (C++)</a></td></tr>
-     </table>
-   </div>
-   <!-- end of layer-->
-   <!-- start of layer-->
-   <div
-     class="PopMenu"
-     style="display:none; overflow:visible"
-     id="historyLayer"
-     onmouseover="overMenu();"
-     onmouseout="unselectMenu();"
-   >
-     <table border="0" cellspacing="0" cellpadding="0" onmouseover="overMenu();">
-       <tr><td><a
-         href='javascript:LoadUrl("Explanation.html", "ExplanationMenu.html")'
-       >Пояснения к HTML</a></td></tr>
-     </table>
-   </div>
-   <!-- end of layer-->
+  </#if></#list>
 </body>
 </html>

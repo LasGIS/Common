@@ -21,11 +21,6 @@ $(document).ready(function() {
         $(this).attr('opened', opened);
         $(this).parent().removeClass().addClass('left-menu-item').addClass(menuLevel[opened]);
     });
-/*
-    $('.main').delegate('.menu-anchor', 'click', function() {
-
-    });
-*/
 });
 /** поиск элемента */
 function getNodeFrame(nodeId, doc) {
@@ -58,34 +53,13 @@ function getNode(nodeId) {
   }
 }
 
-/*
-function getElement(name) {
-  if(document.all) {
-    return document.all[name];
-  } else {
-    return document.getElementById(name);
-  }
-}
-*/
-
 var currentMenu = null;
 var currentTimer = null;
-var ImageType = [
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpen1.png' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuClose1.png' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook.png' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook.png' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuOpenBook1.png' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuCloseBook1.png' hspace='5'",
-  "\n\r<img border='0' src='" + ImagePrefix + "MenuPage1.png' hspace='5'", ""];
 
-/**************************/
+/* Показываем подменю гавного меню. */
 function selectMenu(a, name) {
 
     var elem = a;
-
-    //dom = (document.getElementById)? true : false;
-    //var elem = (dom)? document.getElementById(which) : document.all[which];
 
     var offy = elem.offsetTop + elem.offsetHeight;
     var offx = elem.offsetLeft;// + elem.offsetWidth;
