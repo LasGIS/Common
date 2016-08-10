@@ -89,12 +89,12 @@ public class Server extends AbstractVerticle {
     ) {
         final String mainJsonCalc;
         if (mainJson != null) {
-            mainJsonCalc = "/templates" + mainJson;
+            mainJsonCalc = "/webroot" + mainJson;
             ctx.session().put("mainJson", mainJsonCalc);
         } else {
             final String mainJsonSession = ctx.session().get("mainJson");
             if (mainJsonSession == null) {
-                mainJsonCalc = "/templates/main.json";
+                mainJsonCalc = "/webroot/main.json";
                 ctx.session().put("mainJson", mainJsonCalc);
             } else {
                 mainJsonCalc = mainJsonSession;
@@ -104,10 +104,10 @@ public class Server extends AbstractVerticle {
             if (jsonRes.succeeded()) {
                 final JsonObject main = new JsonObject(jsonRes.result().toString());
                 if (rightContent != null) {
-                    main.put("documentName", "/templates" + rightContent + ".ftl");
+                    main.put("documentName", "/webroot" + rightContent + ".ftl");
                 }
                 ctx.put("main", main.getMap());
-                engine.render(ctx, "templates/index.html", engineRes -> {
+                engine.render(ctx, "webroot/index.html", engineRes -> {
                     if (engineRes.succeeded()) {
                             ctx.response().end(engineRes.result());
                         } else {
