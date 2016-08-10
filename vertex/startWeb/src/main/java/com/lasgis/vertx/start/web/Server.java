@@ -58,7 +58,7 @@ public class Server extends AbstractVerticle {
 */
         router.route("/stat*").handler(this::stat);
         router.routeWithRegex(".*\\.json").handler(ctx -> routeJson(ctx, engine));
-//        router.routeWithRegex(".*\\.html").handler(ctx -> routeHtml(ctx, engine));
+        router.routeWithRegex(".*\\.html").handler(ctx -> routeHtml(ctx, engine));
         router.route("/*").handler(StaticHandler.create());
         return router;
     }
