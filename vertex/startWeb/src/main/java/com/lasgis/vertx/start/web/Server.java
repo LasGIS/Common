@@ -65,7 +65,13 @@ public class Server extends AbstractVerticle {
 
     private void stat(final RoutingContext ctx) {
         final String path = ctx.request().path();
-        ctx.response().end("просто текст path = " + path);
+        vertx.fileSystem().readFile("webroot" + path, result -> {
+            if (result.succeeded()) {
+                ctx.response().end(result.result());
+            } else {
+                System.err.println("Oh oh ..." + result.cause());
+            }
+        });
     }
 
     private void routeJson(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
