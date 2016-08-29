@@ -10,7 +10,8 @@
   "link":"/History.html", "text":"История создания", "title":"История создания всего проекта LasGIS, начиная с 1990 года",
   "submenu":{
     "id":"historyLayer", "menu":[
-      {"link":"/explanation/main.json", "text":"Пояснения к HTML"}
+      {"link":"/explanation/main.json", "text":"Пояснения к HTML"},
+      {"link":"/stat/jquery-ui-test.html", "text":"jQuery UI test"}
     ]}
 }, {
   "link":"/LasGIS_DOC/Document_LasGIS.html", "text":"Документация", "title":"Оригинальный сборник документации",
