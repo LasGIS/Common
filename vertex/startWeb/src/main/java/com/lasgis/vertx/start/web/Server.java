@@ -57,21 +57,22 @@ public class Server extends AbstractVerticle {
         router.put("/api/whiskies/:id").handler(this::updateOne);
 */
         router.route("/stat/*").handler(this::stat);
-        router.routeWithRegex(".*\\.json").handler(ctx -> routeJson(ctx, engine));
-        router.routeWithRegex(".*\\.html").handler(ctx -> routeHtml(ctx, engine));
+        router.routeWithRegex("/doc/.*\\.json").handler(ctx -> routeJson(ctx, engine));
+        router.routeWithRegex("/doc/.*\\.html").handler(ctx -> routeHtml(ctx, engine));
         router.route("/*").handler(StaticHandler.create());
         return router;
     }
 
     private void stat(final RoutingContext ctx) {
         final String path = ctx.request().path();
-        vertx.fileSystem().readFile("webroot" + path, result -> {
-            if (result.succeeded()) {
-                ctx.response().end(result.result());
-            } else {
-                System.err.println("Oh oh ..." + result.cause());
-            }
-        });
+        vertx.fileSystem().readFile(
+            "webroot" + path, result -> {
+                if (result.succeeded()) {
+                    ctx.response().end(result.result());
+                } else {
+                    System.err.println("Oh oh ..." + result.cause());
+                }
+            });
     }
 
     private void routeJson(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
@@ -92,7 +93,7 @@ public class Server extends AbstractVerticle {
     private void index(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
         //ctx.put("users", new User[] {new User("Саша", 30), new User("Дима", 25)});
         //ctx.put("users", new JsonArray("[{\"name\":\"Саша\", \"age\":28},{\"name\":\"Дима Фишбух\", \"age\":27}]").getList());
-        callIndex(ctx, engine, "/main.json", "/front/main.html");
+        callIndex(ctx, engine, "/doc/main.json", "/doc/front/main.html");
     }
 
     private void callIndex(
@@ -106,7 +107,7 @@ public class Server extends AbstractVerticle {
         } else {
             final String mainJsonSession = ctx.session().get("mainJson");
             if (mainJsonSession == null) {
-                mainJsonCalc = "/webroot/main.json";
+                mainJsonCalc = "/webroot/doc/main.json";
                 ctx.session().put("mainJson", mainJsonCalc);
             } else {
                 mainJsonCalc = mainJsonSession;
@@ -119,7 +120,7 @@ public class Server extends AbstractVerticle {
                     main.put("documentName", "/webroot" + rightContent + ".ftl");
                 }
                 ctx.put("main", main.getMap());
-                engine.render(ctx, "webroot/index.html", engineRes -> {
+                engine.render(ctx, "webroot/doc/index.html", engineRes -> {
                     if (engineRes.succeeded()) {
                             ctx.response().end(engineRes.result());
                         } else {

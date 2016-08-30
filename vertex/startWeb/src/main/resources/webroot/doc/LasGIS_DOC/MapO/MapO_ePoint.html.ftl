@@ -2,7 +2,7 @@
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/doc/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">ePoint</span> {<br>
     &nbsp;&nbsp; long&nbsp;&nbsp; <span class="ProgTerm">X</span>;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp; <span

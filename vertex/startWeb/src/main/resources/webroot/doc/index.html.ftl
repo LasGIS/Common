@@ -4,12 +4,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta http-equiv="Pragma" content="no-cache"/>
-  <link rel="icon" type="image/x-icon" href="/images/LasGIS.ico" />
-  <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/menu.css"/>
+  <link rel="icon" type="image/x-icon" href="/doc/images/LasGIS.ico" />
+  <link rel="stylesheet" type="text/css" href="/doc/css/main.css"/>
+  <link rel="stylesheet" type="text/css" href="/doc/css/menu.css"/>
   <script type="text/javascript">ImagePrefix = "images/";</script>
   <script type="text/javascript" src="/js/jquery-1.12.0.js"></script>
-  <script type="text/javascript" src="/js/menu.js"></script>
+  <script type="text/javascript" src="/doc/js/menu.js"></script>
   <title>Главная страничка LasGIS</title>
 </head>
 <!--body class="marginzero" -->
@@ -17,7 +17,7 @@
   <div class="main">
     <div class="header">
       <div class="logotype">
-        <img alt="Trade Mark LasGIS Association." src="/images/TradeMark.jpg" title="Эта картинка неизменная для всех страничек сайта."/>
+        <img alt="Trade Mark LasGIS Association." src="/doc/images/TradeMark.jpg" title="Эта картинка неизменная для всех страничек сайта."/>
       </div>
       <div class="header-title">
         <div class="head-mini" title="Эта строка неизменная для всех страничек сайта.">

@@ -3,7 +3,7 @@
 
 <table cellspacing="0" cellpadding="0">
   <tr>
-    <td valign="top"><img src="/images/forefinger.jpg" width="16" height="16"></td>
+    <td valign="top"><img src="/doc/images/forefinger.jpg" width="16" height="16"></td>
     <td><p class="Prog">class <span class="ProgTerm">OAreal:</span> public <a href="MapO_Object.html">MapObject</a> {<br>
       &nbsp;&nbsp;&nbsp; WORD <span class="ProgTerm">NumELine</span>;&nbsp;&nbsp;&nbsp;
       <span class="ProgComment">// число элементарных линии</span><br>

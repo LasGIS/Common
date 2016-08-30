@@ -272,7 +272,7 @@ href="#Таблица типов объекта">таблице типов об�
     объекта</td>
   </tr>
   <tr>
-    <td>&nbsp;&nbsp;&nbsp; <a href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>SUserTime</u></a></td>
+    <td>&nbsp;&nbsp;&nbsp; <a href="/doc/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>SUserTime</u></a></td>
     <td><strong>CreateTime;</strong></td>
     <td>// момент создания объекта (кто и когда)</td>
   </tr>
@@ -299,7 +299,7 @@ href="#Таблица типов объекта">таблице типов об�
 </table>
 
 <h4><u><em>Общее свойство</em></u> &lt;<strong>CreateTime</strong>&gt; - <a
-href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>Структура, определяющая
+href="/doc/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>Структура, определяющая
 момент создания объекта</u></a>.</h4>
 
 <p>Определяется в момент занесения объекта в базу.
@@ -351,24 +351,24 @@ href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>Струк
 
 <p>Смотри также:</p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_OPoint.html">Тело графического объекта
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_OPoint.html">Тело графического объекта
 типа точка (<strong>OPoint</strong>)</a></p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_OLine.html">Тело графического объекта
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_OLine.html">Тело графического объекта
 типа линия (<strong>OLine</strong>)</a></p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_OStrip.html">Тело графического объекта
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_OStrip.html">Тело графического объекта
 типа полоса (<strong>OStrip</strong>)</a></p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_OAreal.html">Тело графического объекта
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_OAreal.html">Тело графического объекта
 типа плоскость (<strong>OAreal</strong>)</a></p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_OText.html">Тело графического объекта
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_OText.html">Тело графического объекта
 типа надпись (<strong>OText</strong>)</a></p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_eLine.html">Формат элементарной линии (<strong>eLine</strong>)</a></p>
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_eLine.html">Формат элементарной линии (<strong>eLine</strong>)</a></p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_ePoint.html">Формат элементарной точки (<strong>ePoint</strong>)</a></p>
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_ePoint.html">Формат элементарной точки (<strong>ePoint</strong>)</a></p>
 <strong>
 
 <p><a name="sUserTime">Момент создания или редактирования
@@ -395,7 +395,7 @@ href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>Струк
     <td>// Номер пользователя на предприятии</td>
   </tr>
   <tr>
-    <td>&nbsp;&nbsp; <a href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#sDate"><strong>sDate</strong></a></td>
+    <td>&nbsp;&nbsp; <a href="/doc/LasGIS_DOC/MapO/MapO_Object.html#sDate"><strong>sDate</strong></a></td>
     <td><strong>Date</strong>;</td>
     <td>// Дата создания илиредактирования объекта</td>
   </tr>
@@ -477,4 +477,4 @@ href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#sUserTime"><u>Струк
 
 <p>Смотри также:</p>
 
-<p><a href="../../../webroot/LasGIS_DOC/MapO/MapO_Object.html#Object"><u>Общий заголовок графического объекта</u></a></p>
+<p><a href="/doc/LasGIS_DOC/MapO/MapO_Object.html#Object"><u>Общий заголовок графического объекта</u></a></p>

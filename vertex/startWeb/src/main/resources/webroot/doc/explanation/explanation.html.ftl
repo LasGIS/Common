@@ -229,14 +229,14 @@
 сам
 документ:</p>
 <p class="Prog">&lt;a href="<strong>Explanation.html</strong>#mark"&gt;Ссылка на документ Explanation.html + метка&lt;/a&gt;</p>
-<a href="/explanation/explanation.html#mark">Ссылка на документ Explanation.html +
+<a href="/doc/explanation/explanation.html#mark">Ссылка на документ Explanation.html +
 метка</a>
 <h6>2.3.4. Добавляем цель (target)</h6>
 <p>Добавляем цель для документа (объект типа frame, в котором должна
 отобразиться страничка):</p>
 <p class="Prog">&lt;a href="Explanation.html#mark" <strong>target="target_menu"</strong>&gt;Ссылка на документ
 с выводом в target_menu&lt;/a&gt;</p>
-<a href="/explanation/explanation.html#mark" target="target_menu">Ссылка на документ
+<a href="/doc/explanation/explanation.html#mark" target="target_menu">Ссылка на документ
 с выводом в target_menu</a>
 <h6>2.3.5. Создаём ссылку через вызов функции</h6>
 <p>Для вызова через функцию надо предварительно функцию создать.
@@ -281,17 +281,17 @@
 <h6>2.4.1. Просто картинка</h6>
 <p>Выводим простую картинку:</p>
 <p class="Prog">&lt;img src="images/TradeMark.jpg" height='64px' width='64px' /&gt;</p>
-<img src="/images/TradeMark.jpg" height="64" width="64">
+<img src="/doc/images/TradeMark.jpg" height="64" width="64">
 <h6>2.4.2. Картинка как ссылка</h6>
 Кроме этого картинка может быть ссылкой. Для этого её надо обрамить
 тегом
 &lt;a&gt;. Однако, никто не мешает добавить текст после картинки.
 <p class="Prog">&lt;a href="#mark"&gt;&lt;img src="images/TradeMark.jpg" /&gt;&lt;/a&gt;</p>
-<a href="#mark"><img src="/images/TradeMark.jpg"></a>
+<a href="#mark"><img src="/doc/images/TradeMark.jpg"></a>
 <h6>2.4.3. Убираем бордюр</h6>
 Если убрать бордюр, то какртинка - ссылка будет без рамки:
 <p class="Prog">&lt;a href="#mark"&gt;&lt;img border='0' src="images/TradeMark.jpg" /&gt;&lt;/a&gt;</p>
-<a href="#mark"><img src="/images/TradeMark.jpg" border="0"></a>
+<a href="#mark"><img src="/doc/images/TradeMark.jpg" border="0"></a>
 <h5><a name="Table"></a>2.5. &lt;table&gt; Таблица</h5>
 <p>Таблица состоит из строк (тег &lt;tr&gt;) и значений столбца для
 данной строки (тег &lt;td&gt;). Каждая таблица содержит набор строк, а

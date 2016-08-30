@@ -2,7 +2,7 @@
 <table cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td valign="top"><img src="/images/forefinger.jpg" height="16"
+      <td valign="top"><img src="/doc/images/forefinger.jpg" height="16"
  width="16"></td>
       <td>
       <p class="Prog">class <span class="ProgTerm">MapObject</span> {<br>
@@ -230,7 +230,7 @@
   <tbody>
     <tr>
       <td valign="top"><a name="sUserTime"><img
- src="/images/forefinger.jpg" height="16" width="16"></a></td>
+ src="/doc/images/forefinger.jpg" height="16" width="16"></a></td>
       <td>
       <p class="Prog">class <span class="ProgTerm">sUserTime</span> {<br>
 &nbsp;&nbsp;&nbsp; WORD <span class="ProgTerm">Enterprise</span>; <span
@@ -273,7 +273,7 @@
 <table cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
-      <td valign="top"><img src="/images/forefinger.jpg" height="16"
+      <td valign="top"><img src="/doc/images/forefinger.jpg" height="16"
  width="16"></td>
       <td>
       <p class="Prog">struct <span class="ProgTerm">sDate</span> {<br>
