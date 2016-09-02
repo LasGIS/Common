@@ -11,7 +11,8 @@
   "submenu":{
     "id":"historyLayer", "menu":[
       {"link":"/doc/explanation/main.json", "text":"Пояснения к HTML"},
-      {"link":"/stat/jquery-ui-test.html", "text":"jQuery UI test"}
+      {"link":"/stat/jquery-ui-test.html", "text":"jQuery UI test"},
+      {"link":"/stat/main-dialog.html", "text":"main-dialog"}
     ]}
 }, {
   "link":"/doc/LasGIS_DOC/main.json", "text":"Документация", "title":"Оригинальный сборник документации",

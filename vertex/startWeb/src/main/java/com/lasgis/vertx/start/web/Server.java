@@ -70,7 +70,14 @@ public class Server extends AbstractVerticle {
                 if (result.succeeded()) {
                     ctx.response().end(result.result());
                 } else {
-                    System.err.println("Oh oh ..." + result.cause());
+                    LOG.error("Oh oh ...", result.cause());
+                    ctx.response().end("<!DOCTYPE html>\n" +
+                            "<html lang=\"ru\">\n" +
+                            "<head><meta charset=\"UTF-8\"><title>Ошибка</title></head>\n" +
+                            "<body>" +
+                            "<div>Страница не найдена :(</div>\n" +
+                            "</body></html>"
+                    );
                 }
             });
     }
