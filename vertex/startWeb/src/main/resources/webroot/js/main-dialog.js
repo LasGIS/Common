@@ -61,8 +61,8 @@ $(document).ready(function () {
 
     dialog = $("#dialog-form").dialog({
         autoOpen: false,
-        height: 400,
-        width: 350,
+        height: 500,
+        width: 400,
         modal: true,
         buttons: {
             "Create an account": addUser,

@@ -56,30 +56,28 @@ public class Server extends AbstractVerticle {
         router.get("/api/whiskies/:id").handler(this::getOne);
         router.put("/api/whiskies/:id").handler(this::updateOne);
 */
-        router.route("/stat/*").handler(this::stat);
+        router.route("/stat/*").handler((ctx) -> stat(ctx, engine));
         router.routeWithRegex("/doc/.*\\.json").handler(ctx -> routeJson(ctx, engine));
         router.routeWithRegex("/doc/.*\\.html").handler(ctx -> routeHtml(ctx, engine));
         router.route("/*").handler(StaticHandler.create());
         return router;
     }
 
-    private void stat(final RoutingContext ctx) {
+    private void stat(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
         final String path = ctx.request().path();
-        vertx.fileSystem().readFile(
-            "webroot" + path, result -> {
-                if (result.succeeded()) {
-                    ctx.response().end(result.result());
-                } else {
-                    LOG.error("Oh oh ...", result.cause());
-                    ctx.response().end("<!DOCTYPE html>\n" +
-                            "<html lang=\"ru\">\n" +
-                            "<head><meta charset=\"UTF-8\"><title>Ошибка</title></head>\n" +
-                            "<body>" +
-                            "<div>Страница не найдена :(</div>\n" +
-                            "</body></html>"
-                    );
-                }
-            });
+        vertx.fileSystem().readFile("webroot" + path, result -> {
+            if (result.succeeded()) {
+                ctx.response().end(result.result());
+            } else {
+                vertx.fileSystem().readFile("webroot/stat/error.html", err -> {
+                    if (err.succeeded()) {
+                        ctx.response().end(err.result());
+                    } else {
+                        LOG.error("Oh oh ...", result.cause());
+                    }
+                });
+            }
+        });
     }
 
     private void routeJson(final RoutingContext ctx, final FreeMarkerTemplateEngine engine) {
