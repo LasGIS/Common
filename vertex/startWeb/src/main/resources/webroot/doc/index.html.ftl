@@ -10,6 +10,7 @@
   <script type="text/javascript">ImagePrefix = "images/";</script>
   <script type="text/javascript" src="/js/jquery-1.12.0.js"></script>
   <script type="text/javascript" src="/doc/js/menu.js"></script>
+  <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
   <title>Главная страничка LasGIS</title>
 </head>
 <!--body class="marginzero" -->

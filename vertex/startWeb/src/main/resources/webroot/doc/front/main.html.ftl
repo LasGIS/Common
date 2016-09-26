@@ -20,7 +20,7 @@
   <li>Векторная карта</li>
   <li>Семантическая база</li>
 </ul>
-  </td><td valign='top'><img alt="LasGIS_View" src="../images/LasGIS_View.jpg" height='300px' width='300px' title='Примерный вид главной программы LasGIS_View'/></td></tr>
+  </td><td valign='top'><img alt="LasGIS_View" src="/doc/images/LasGIS_View.jpg" height='300px' width='300px' title='Примерный вид главной программы LasGIS_View'/></td></tr>
 </table>
 <h4><a name='consists_of'>Состав ПК LasGIS</a></h4>
 <p>В состав программного комплекса LasGIS входят следующие части:</p>

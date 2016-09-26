@@ -31,7 +31,7 @@
   95/98/2000/NT/XP определяют два модуля:
 </p>
 <p><img
-  alt="Access_metods_1" src="../images/access_methods_1.gif"
+  alt="Access_metods_1" src="/doc/images/access_methods_1.gif"
   title='Работа системы "LasGIS" в локальной сети'
 /></p>
 <p style="TEXT-ALIGN: center">Рисунок 1.</p>
@@ -65,7 +65,7 @@
   создавать.
 </p>
 <p><img
-  alt="Access_metods_2" src="../images/access_methods_2.gif"
+  alt="Access_metods_2" src="/doc/images/access_methods_2.gif"
   title='Доступ к базам LasGIS из других приложений.'
 /></p>
 <p style="TEXT-ALIGN: center">Рисунок 2.</p>
@@ -80,7 +80,7 @@
   транслируют запрос через <strong>Internet</strong>:
 </p>
 <p><img
-  alt="Access_metods_3" src="../images/access_methods_3.gif"
+  alt="Access_metods_3" src="/doc/images/access_methods_3.gif"
   title='Доступ к базам LasGIS через удаленный доступ.'
 /></p>
 <p style="TEXT-ALIGN: center">Рисунок 3.</p>

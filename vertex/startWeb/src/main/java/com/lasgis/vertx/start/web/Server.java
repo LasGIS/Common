@@ -29,7 +29,7 @@ public class Server extends AbstractVerticle {
     @Override
     public void start() {
         LOG.info("start Server");
-        LOG.info("JSON code: {}", json());
+        //LOG.info("JSON code: {}", json());
         final HttpServer server = vertx.createHttpServer();
         final Router router = setupRouter();
         server.requestHandler(router::accept).listen(8180);
@@ -67,6 +67,8 @@ public class Server extends AbstractVerticle {
         router.route("/stat/*").handler((ctx) -> stat(ctx, engine));
         router.routeWithRegex("/doc/.*\\.json").handler(ctx -> routeJson(ctx, engine));
         router.routeWithRegex("/doc/.*\\.html").handler(ctx -> routeHtml(ctx, engine));
+        router.routeWithRegex("/maps/.*\\.json").handler(ctx -> routeJson(ctx, engine));
+        router.routeWithRegex("/maps/.*\\.html").handler(ctx -> routeHtml(ctx, engine));
         router.route("/*").handler(StaticHandler.create());
         return router;
     }

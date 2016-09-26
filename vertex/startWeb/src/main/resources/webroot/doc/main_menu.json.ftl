@@ -24,5 +24,10 @@
       {"link":"/doc/LasGIS_DOC/Container/main.json", "text":"Внутренний формат файла-контейнера (C++)"}]
   }
 }, {
-  "link":"/doc/LasGIS_DOC/main.json", "text":"Проекты", "title":"Здесь всё, что касается текущих проектов (LGView, Geo, MakeRastr ...)."
+  "link":"/doc/LasGIS_DOC/main.json", "text":"Проекты", "title":"Здесь всё, что касается текущих проектов (LGView, Geo, MakeRastr ...).",
+  "submenu":{
+    "id":"projectsLayer", "menu":[
+      {"link":"/maps/yandex_maps_js_api.json", "text":"Яндекс Карты JS API"},
+      {"link":"/maps/yandex_maps_static.json", "text":"Яндекс Карты Static API"}
+    ]}
 }]

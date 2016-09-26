@@ -16,7 +16,7 @@
 <p>Принципиальным отличием системы LasGIS от однотипных систем является возможность
 для пользователя настройки графического изображения и структуры графических слоев.</p>
 
-<span style="horiz-align: center"><img alt="struct_vector.gif" src='../images/struct_vector.gif'/></span>
+<span style="horiz-align: center"><img alt="struct_vector.gif" src='/doc/images/struct_vector.gif'/></span>
 
 <p style="TEXT-ALIGN: center">Рис 1</p>
 
