@@ -1,7 +1,10 @@
 package com.lasgis.vertx.start.web;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -26,9 +29,14 @@ public class Server extends AbstractVerticle {
     @Override
     public void start() {
         LOG.info("start Server");
+        LOG.info("JSON code: {}", json());
         final HttpServer server = vertx.createHttpServer();
         final Router router = setupRouter();
         server.requestHandler(router::accept).listen(8180);
+    }
+
+    private String json() {
+        return Json.encodePrettily(new Sample(EnumField.VAL2));
     }
 
     /**
@@ -146,5 +154,42 @@ public class Server extends AbstractVerticle {
     @Override
     public void stop() throws Exception {
         LOG.info("stop Server");
+    }
+
+    private static class Sample {
+        private EnumField enumField;
+
+        public Sample(final EnumField enumField) {
+            this.enumField = enumField;
+        }
+
+        public EnumField getEnumField() {
+            return enumField;
+        }
+
+        public void setEnumField(EnumField enumField) {
+            this.enumField = enumField;
+        }
+    }
+
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
+    private enum EnumField {
+        VAL1(1, "DESC1"), VAL2(2, "DESC2");
+        private final int code;
+        private final String desc;
+
+        EnumField(final int code, final String desc) {
+            this.code = code;
+            this.desc = desc;
+        }
+
+        @JsonValue
+        public int getCode() {
+            return code;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
     }
 }
