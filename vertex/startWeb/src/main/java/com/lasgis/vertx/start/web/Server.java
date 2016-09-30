@@ -67,8 +67,14 @@ public class Server extends AbstractVerticle {
         router.route("/stat/*").handler((ctx) -> stat(ctx, engine));
         router.routeWithRegex("/doc/.*\\.json").handler(ctx -> routeJson(ctx, engine));
         router.routeWithRegex("/doc/.*\\.html").handler(ctx -> routeHtml(ctx, engine));
-        router.routeWithRegex("/maps/.*\\.json").handler(ctx -> routeJson(ctx, engine));
-        router.routeWithRegex("/maps/.*\\.html").handler(ctx -> routeHtml(ctx, engine));
+        router.routeWithRegex("/maps/.*\\.json").handler(ctx -> {
+            ctx.put("window", new JsonObject("{\"external\":{\"X\":73.394,\"Y\":54.958, \"Zoom\":17}}").getMap());
+            routeJson(ctx, engine);
+        });
+        router.routeWithRegex("/maps/.*\\.html").handler(ctx -> {
+            ctx.put("window", new JsonObject("{\"external\":{\"X\":73.394,\"Y\":54.958, \"Zoom\":17}}").getMap());
+            routeHtml(ctx, engine);
+        });
         router.route("/*").handler(StaticHandler.create());
         return router;
     }

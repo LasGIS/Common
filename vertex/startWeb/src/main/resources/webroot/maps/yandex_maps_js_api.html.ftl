@@ -1,13 +1,12 @@
-  <h5>JavaScript API</h5>
-  <div id="map" style="width: 1000px; height: 700px"></div>
+  <div id="map" style="height:100%; width: 100%; position: absolute; border:0; left:0; top:0; margin:0; padding: 0;z-index:0"></div>
   <script type="text/javascript">
 
     function init(){
       ymaps.modules.require(['Map', 'Placemark', 'Layer']).spread(
         function (Map, Placemark, Layer) {
           var myMap = new Map("map", {
-            center: [55.22, 73.22],
-            zoom: 9,
+            center: [${context.window.external.Y}, ${context.window.external.X}],
+            zoom: ${context.window.external.Zoom},
             controls: ['zoomControl', 'searchControl', 'typeSelector', 'rulerControl']
           });
           myMap.geoObjects.add(
