@@ -60,7 +60,9 @@
       <#list leftMenu as menu>
         <div class="left-menu-item ${iconClass(menu.level, menu.open)}">
           <div class="left-menu-img level${menu.level}" level="level${menu.level}" opened="<#if menu.open>open<#else>close</#if>"></div>
-          <a href="${menu.link}${menu.anchor!}" class="menu-anchor" data-link="${menu.link}" data-anchor="${menu.anchor!}">${menu.text}</a>
+          <#if menu.link??>
+            <a href="${menu.link}${menu.anchor!}" class="menu-anchor" data-link="${menu.link}" data-anchor="${menu.anchor!}">${menu.text}</a>
+          <#else>${menu.text}</#if>
           <#if menu.submenu??>
             <div<#if !menu.open> style="display: none"</#if>>
               <@mLeftMenu menu.submenu/>
