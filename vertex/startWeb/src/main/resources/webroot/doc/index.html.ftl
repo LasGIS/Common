@@ -62,7 +62,7 @@
           <div class="left-menu-img level${menu.level}" level="level${menu.level}" opened="<#if menu.open>open<#else>close</#if>"></div>
           <#if menu.link??>
             <a href="${menu.link}${menu.anchor!}" class="menu-anchor" data-link="${menu.link}" data-anchor="${menu.anchor!}">${menu.text}</a>
-          <#else>${menu.text}</#if>
+          <#else><b>${menu.text}</b></#if>
           <#if menu.submenu??>
             <div<#if !menu.open> style="display: none"</#if>>
               <@mLeftMenu menu.submenu/>

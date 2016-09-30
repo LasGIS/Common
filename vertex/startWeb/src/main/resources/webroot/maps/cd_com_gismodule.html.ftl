@@ -42,7 +42,7 @@
 
         if (window.external.ShowMarker) {
             var signIcon = L.icon({
-                iconUrl: '/images/gismodule/marker.png',
+                iconUrl: '/images/marker.png',
                 iconSize: [32, 41],
                 iconAnchor: [16, 25],
                 popupAnchor: [0, -30]

@@ -1,7 +1,31 @@
   <div id="map" style="height:100%; width: 100%; position: absolute; border:0; left:0; top:0; margin:0; padding: 0;z-index:0"></div>
   <script type="text/javascript">
 
-    function init(){
+    /**
+     * создаём слой open street map
+     * @param typeSelector
+     */
+    function createOpenStreetMapLayer(typeSelector) {
+      var myLayer = function () {
+        return new ymaps.Layer(
+            'http://tile.openstreetmap.org/%z/%x/%y.png', {
+              projection: ymaps.projection.sphericalMercator
+            }
+        );
+      };
+      // Добавляем его в хранилище слоёв
+      ymaps.layer.storage.add('osm#layer', myLayer);
+      // Создаём свой тип карты, состоящий из одного слоя
+      var myType = new ymaps.MapType('Street Maps', ['osm#layer']);
+      // Добавляем его в хранилище типов карты
+      ymaps.mapType.storage.add('osm#mapType', myType);
+      // Теперь можем устанавливать свой тип карте
+      //myMap.setType('osm#mapType');
+
+      typeSelector.addMapType('osm#mapType', 6);
+    }
+
+    function init() {
       ymaps.modules.require(['Map', 'Placemark', 'Layer']).spread(
         function (Map, Placemark, Layer) {
           var myMap = new Map("map", {
@@ -10,29 +34,29 @@
             controls: ['zoomControl', 'searchControl', 'typeSelector', 'rulerControl']
           });
           myMap.geoObjects.add(
-              new Placemark(myMap.getCenter())
+              new Placemark(myMap.getCenter(), {
+                hintContent: 'Место происшествия',
+//                  balloonContent: 'Это красивая метка'
+                balloonContentHeader: 'содержимое заголовка балуна геообъекта;',
+                balloonContentBody: 'содержимое основой части балуна геообъекта;',
+                balloonContentFooter: 'содержимое нижней части балуна геообъекта.'
+              }, {
+                  // Опции.
+                  // Необходимо указать данный тип макета.
+                  iconLayout: 'default#image',
+                  // Своё изображение иконки метки.
+                  iconImageHref: '/images/marker.png',
+                  // Размеры метки.
+                  iconImageSize: [32, 41],
+                  // Смещение левого верхнего угла иконки относительно
+                  // её "ножки" (точки привязки).
+                  iconImageOffset: [-16, -30],
+                  balloonOffset: [0, -35],
+                  hideIconOnBalloonOpen: false
+              })
           );
-
-          // создаём слой open street map
-          var myLayer = function() {
-            return new ymaps.Layer(
-              'http://tile.openstreetmap.org/%z/%x/%y.png', {
-                projection: ymaps.projection.sphericalMercator
-              }
-            );
-          };
-          // Добавляем его в хранилище слоёв
-          ymaps.layer.storage.add('osm#layer', myLayer);
-          // Создаём свой тип карты, состоящий из одного слоя
-          var myType = new ymaps.MapType('Street Maps', ['osm#layer']);
-          // Добавляем его в хранилище типов карты
-          ymaps.mapType.storage.add('osm#mapType', myType);
-          // Теперь можем устанавливать свой тип карте
-          //myMap.setType('osm#mapType');
-
           var typeSelector = myMap.controls.get('typeSelector');
-          typeSelector.addMapType('osm#mapType', 6);
-
+          createOpenStreetMapLayer(typeSelector);
         },
         function (error) {
             // Обработка ошибки.
