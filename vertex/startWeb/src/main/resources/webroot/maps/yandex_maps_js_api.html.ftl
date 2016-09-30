@@ -25,6 +25,32 @@
       typeSelector.addMapType('osm#mapType', 6);
     }
 
+    /**
+     * создаём слой open street map
+     * @param typeSelector
+     */
+    function createCdComMapLayer(typeSelector) {
+      var myLayer = function () {
+        return new ymaps.Layer(
+            function (tileNumber, tileZoom) {
+              return 'http://era-region.glonassunion.ru/tiles/g-map/lv16/00/000/046/126/000/044/792.png';
+            }, {
+              projection: ymaps.projection.sphericalMercator
+            }
+        );
+      };
+      // Добавляем его в хранилище слоёв
+      ymaps.layer.storage.add('cdcom#layer', myLayer);
+      // Создаём свой тип карты, состоящий из одного слоя
+      var myType = new ymaps.MapType('cd com Maps', ['cdcom#layer']);
+      // Добавляем его в хранилище типов карты
+      ymaps.mapType.storage.add('cdcom#mapType', myType);
+      // Теперь можем устанавливать свой тип карте
+      //myMap.setType('osm#mapType');
+
+      typeSelector.addMapType('cdcom#mapType', 7);
+    }
+
     function init() {
       ymaps.modules.require(['Map', 'Placemark', 'Layer']).spread(
         function (Map, Placemark, Layer) {
@@ -57,6 +83,7 @@
           );
           var typeSelector = myMap.controls.get('typeSelector');
           createOpenStreetMapLayer(typeSelector);
+          createCdComMapLayer(typeSelector);
         },
         function (error) {
             // Обработка ошибки.

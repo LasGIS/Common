@@ -18,6 +18,11 @@
 <script type="text/javascript">
     window.external = {Y:54.958, X:73.394, Zoom:16, ShowMarker:true};
 
+    /**
+     * http://era-region.glonassunion.ru/tiles/g-map/lv16/00/000/046/126/000/044/792.png
+     * 46126, 20740
+     * {x:46132, y:44794, z:16} -> "1600000046132000044794" -> "16/00/000/046/132/000/044/794"
+     */
     function tilePath(tile) {
         return (tile.z + '00' + (1000000000 + tile.x).toString().substr(1)
            + (1000000000 + tile.y).toString().substr(1)).
