@@ -25,17 +25,34 @@
       typeSelector.addMapType('osm#mapType', 6);
     }
 
+    function tilePath(tileNumber, tileZoom) {
+        return (tileZoom + '00' + (1000000000 + tileNumber[0]).toString().substr(1)
+           + (1000000000 + tileNumber[1]).toString().substr(1)).
+           replace(/^(\d{1,2})00(\d{3})(\d{3})(\d{3})(\d{3})(\d{3})(\d{3})/, '$1/00/$2/$3/$4/$5/$6/$7');
+    }
+
     /**
-     * создаём слой open street map
+     * создаём слой cd com
      * @param typeSelector
      */
     function createCdComMapLayer(typeSelector) {
       var myLayer = function () {
+        var project = Object.create(ymaps.projection.sphericalMercator);
+        var mercator = Object.create(project._mercator);
+        var latitudeToY = mercator.latitudeToY;
+        var yToLatitude = mercator.yToLatitude;
+        mercator.latitudeToY = function (lat) {
+          return latitudeToY(lat)
+        };
+        mercator.yToLatitude = function (lat) {
+          return yToLatitude(lat)
+        };
+        project._mercator = mercator;
         return new ymaps.Layer(
             function (tileNumber, tileZoom) {
-              return 'http://era-region.glonassunion.ru/tiles/g-map/lv16/00/000/046/126/000/044/792.png';
+              return 'http://era-region.glonassunion.ru/tiles/g-map/lv' + tilePath(tileNumber, tileZoom) + '.png';
             }, {
-              projection: ymaps.projection.sphericalMercator
+              projection: project
             }
         );
       };
