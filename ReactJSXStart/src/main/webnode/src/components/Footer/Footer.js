@@ -14,7 +14,7 @@ import Link from '../Link';
 
 class Footer extends Component {
 
-  static render() {
+  render() {
     return (
       <div className={s.root}>
         <div className={s.container}>

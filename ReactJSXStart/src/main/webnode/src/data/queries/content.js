@@ -32,10 +32,10 @@ const parseContent = (path, fileContent, extension) => {
   let htmlContent;
   switch (extension) {
     case '.jade':
-      htmlContent = Footer.render(fmContent.body);
+      htmlContent = jade.render(fmContent.body);
       break;
     case '.md':
-      htmlContent = Footer.render(fmContent.body);
+      htmlContent = md.render(fmContent.body);
       break;
     case '.html':
       htmlContent = fmContent.body;

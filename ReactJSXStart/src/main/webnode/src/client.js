@@ -43,7 +43,7 @@ let trackPageview = () => (trackPageview = () => window.ga('send', 'pageview'));
 
 function render(state) {
   Router.dispatch(state, (newState, component) => {
-    Footer.render(component, appContainer, () => {
+    ReactDOM.render(component, appContainer, () => {
       // Restore the scroll position if it was saved into the state
       if (state.scrollY !== undefined) {
         window.scrollTo(state.scrollX, state.scrollY);
