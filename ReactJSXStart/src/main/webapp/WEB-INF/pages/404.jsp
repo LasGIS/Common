@@ -7,10 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="Pragma" content="no-cache"/>
-    <link rel="icon" type="image/x-icon" href="<c:url value='/resources/favicon.ico'/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/css/sorm.css'/>"/>
+    <link rel="icon" type="image/x-icon" href="<c:url value='/favicon.ico'/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css'/>"/>
+<%--
     <script language="javascript" type="text/javascript"
             src="<c:url value='/resources/assets/lib/jquery-2.0.3.min.js'/>"></script>
+--%>
     <title>Непредвиденная ошибка</title>
 </head>
 <c:set var="locale" value="ru"/>

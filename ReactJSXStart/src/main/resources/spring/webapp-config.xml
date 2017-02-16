@@ -29,6 +29,7 @@
     <tx:annotation-driven transaction-manager="txManager"/>
 -->
 
+<!--
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:view-controller path="/" view-name="/app/content/index"/>
 
@@ -45,18 +46,18 @@
     <bean id="viewResolverHtml" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
         <property name="cache" value="true"/>
         <property name="prefix" value=""/>
-        <property name="suffix" value=".jade"/>
+        <property name="suffix" value=".html"/>
         <property name="exposeSpringMacroHelpers" value="true"/>
         <property name="contentType" value="text/html; charset=UTF-8"/>
         <property name="order" value="1" />
     </bean>
+-->
 
     <bean id="viewResolverJsp" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/pages/" />
         <property name="suffix" value=".jsp" />
         <property name="exposeContextBeansAsAttributes" value="true" />
-        <property name="order" value="2" />
     </bean>
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
