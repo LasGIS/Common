@@ -22,7 +22,7 @@
 
     <logger name="org.springframework.web.context" level="WARN"/>
 
-    <logger name="ru.glonass" level="DEBUG"/>
+    <logger name="lasgis.react.start" level="DEBUG"/>
 
     <root level="WARN">
         <appender-ref ref="reactJSXLog"/>
