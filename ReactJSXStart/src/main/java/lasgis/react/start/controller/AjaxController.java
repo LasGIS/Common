@@ -93,6 +93,7 @@ Cookie: io=mjiV_mEaVlvoLLCOAAAN
     public SimpleRequest checkOnText(
         final HttpServletRequest request, final HttpServletResponse response
     ) throws Exception {
+        response.addHeader("Access-Control-Allow-Origin", "http://localhost:3001");
         return SimpleRequest.of("state", "info");
     }
 }
