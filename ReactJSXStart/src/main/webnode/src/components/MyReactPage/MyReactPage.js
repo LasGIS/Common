@@ -19,6 +19,8 @@ class MyReactPage extends Component {
       jsonData: {data: "jsonData"},
       error: null
     };
+    // This binding is necessary to make `this` work in the callback
+    this.activateLasers = this.activateLasers.bind(this);
   }
 
   static propTypes = {
@@ -71,13 +73,39 @@ class MyReactPage extends Component {
 */
   }
 
+  activateLasers() {
+    let user = {
+      firstName: "firstName",
+      midName: "midName",
+      lastName: "lastName",
+      login: "login"
+    };
+    fetch('http://vlaskin-2.omsk.luxoft.com:8099/react/manager/check.do', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(user)
+    }).then(response => {
+      console.log('response = ', response);
+      console.log('this = ', this);
+      this.setState({jsonData: response.json});
+    }).catch(error => {
+      console.log('error ', error);
+    });
+    console.log('this = ', this);
+  }
+
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{title}</h1>
-
           <p>{JSON.stringify(this.state.jsonData)}</p>
+          <button className={s.button} onClick={this.activateLasers}>
+            Activate Lasers
+          </button>
         </div>
       </div>
     );
