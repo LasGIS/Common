@@ -25,32 +25,45 @@ import javax.servlet.http.HttpServletResponse;
 import lasgis.react.start.model.SimpleRequest;
 import lasgis.react.start.model.user.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The Class AjaxController.
  * @author Vladimir Laskin
  * @version 1.0
  */
-@RestController
+@Controller
 @RequestMapping(value = "manager")
 @Slf4j
 public class AjaxController {
 
     @RequestMapping(value = "check.do", method = {RequestMethod.POST},
         headers = {
-            "Accept=application/json",
-            "Content-Type=application/json",
-            "Access-Control-Request-Method=POST",
-            "Access-Control-Allow-Origin=http://localhost:3001"
+            "Accept=application/json;charset=UTF-8",
+            "Content-Type=application/json;charset=UTF-8"
         }
     )
     @ResponseBody
     public SimpleRequest checkOnUnresolved(
+        @RequestBody final User user,
+        final HttpServletRequest request, final HttpServletResponse response
+    ) throws Exception {
+        response.addHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
+        return SimpleRequest.of("state", user.toString());
+    }
+
+    @RequestMapping(value = "check.do", method = {RequestMethod.POST},
+        headers = {
+            "Accept=application/json;charset=UTF-8"/*,
+            "Content-Type=text/plain;charset=UTF-8"*/
+        }
+    )
+    @ResponseBody
+    public SimpleRequest checkOnResolved(
         @RequestBody final User user,
         final HttpServletRequest request, final HttpServletResponse response
     ) throws Exception {

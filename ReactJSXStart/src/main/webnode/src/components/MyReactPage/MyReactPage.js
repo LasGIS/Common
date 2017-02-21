@@ -82,15 +82,19 @@ class MyReactPage extends Component {
     };
     fetch('http://vlaskin-2.omsk.luxoft.com:8099/react/manager/check.do', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        /*'Content-Type': 'application/json;charset=UTF-8',*/
+        'Accept': 'application/json;charset=UTF-8'
       },
       body: JSON.stringify(user)
     }).then(response => {
       console.log('response = ', response);
       console.log('this = ', this);
-      this.setState({jsonData: response.json});
+      return response.json();
+    }).then(json => {
+      console.log('json = ', json);
+      this.setState({jsonData: json});
     }).catch(error => {
       console.log('error ', error);
     });
