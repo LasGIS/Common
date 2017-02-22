@@ -6,7 +6,7 @@
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './MyReactPage.scss';
-import fetch from './../../core/fetch';
+import 'whatwg-fetch';
 import axios from 'axios';
 
 const title = 'MyReactPage first blood';
@@ -49,7 +49,7 @@ class MyReactPage extends Component {
       console.log('text = "', text, '"; typeOf(text) = ', typeof(text));
     })();
 */
-    fetch('http://vlaskin-2.omsk.luxoft.com:8099/react/manager/check1.do')
+    fetch('http://vlaskin-2.omsk.luxoft.com:8080/greeting?name=RestController')
       .then( response => {
         console.log('response ', response);
         return response.json();
@@ -80,20 +80,19 @@ class MyReactPage extends Component {
       lastName: "lastName",
       login: "login"
     };
-    fetch('http://vlaskin-2.omsk.luxoft.com:8099/react/manager/check.do', {
+    fetch('http://vlaskin-2.omsk.luxoft.com:8080/user', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
-        /*'Content-Type': 'application/json;charset=UTF-8',*/
+        'Content-Type': 'application/json;charset=UTF-8',
         'Accept': 'application/json;charset=UTF-8'
       },
       body: JSON.stringify(user)
     }).then(response => {
       console.log('response = ', response);
-      console.log('this = ', this);
+      //console.log('this = ', this);
       return response.json();
     }).then(json => {
-      console.log('json = ', json);
+      console.log('parsed json', json);
       this.setState({jsonData: json});
     }).catch(error => {
       console.log('error ', error);

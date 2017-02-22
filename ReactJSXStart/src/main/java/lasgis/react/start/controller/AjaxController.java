@@ -41,6 +41,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class AjaxController {
 
+    @RequestMapping(value = "check.do", method = {RequestMethod.POST}/*,
+        headers = {
+            "Accept=application/json;charset=UTF-8",
+            "Content-Type=application/json;charset=UTF-8"
+        }
+*/
+    )
+    @ResponseBody
+    public SimpleRequest checkDoNoHeaders(
+        @RequestBody final User user,
+        final HttpServletRequest request, final HttpServletResponse response
+    ) throws Exception {
+        response.addHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
+        return SimpleRequest.of("state", user.toString());
+    }
+
     @RequestMapping(value = "check.do", method = {RequestMethod.POST},
         headers = {
             "Accept=application/json;charset=UTF-8",
