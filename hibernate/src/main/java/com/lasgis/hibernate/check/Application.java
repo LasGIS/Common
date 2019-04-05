@@ -1,8 +1,8 @@
 package com.lasgis.hibernate.check;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * <description>
@@ -11,7 +11,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @since <pre>03.04.2019</pre>
  */
 @SpringBootApplication
-@EnableTransactionManagement
+//@EnableScheduling
+//@EnableTransactionManagement
 public class Application {
 
     /**
@@ -28,8 +29,7 @@ public class Application {
      */
     public static void main(String[] args) {
         new SpringApplicationBuilder(Application.class)
-//                .web(WebApplicationType.NONE)
-//            .bannerMode(Banner.Mode.OFF)
+            .bannerMode(Banner.Mode.OFF)
             .run(args);
     }
 

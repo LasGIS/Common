@@ -1,0 +1,21 @@
+app:
+  name: hiber-check
+
+spring:
+  flyway:
+    locations: classpath:/db
+    baselineOnMigrate: true
+    schemas: hiber
+  jpa:
+    show-sql: true
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate.ddl-auto: update
+
+  #database connection
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://db:5432/postgres
+    username: postgres
+    password: postgres
+    hikari.schema: hiber
+

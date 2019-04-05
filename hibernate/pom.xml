@@ -7,9 +7,13 @@
     <groupId>com.lasgis.hibernate</groupId>
     <artifactId>hibernate-check</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
+    <name>hibernateCheck</name>
 
     <properties>
+        <!--<jdbc-url>jdbc:postgresql://db:5432/postgres</jdbc-url>-->
+        <!--<jdbc-user>postgres</jdbc-user>-->
+        <!--<jdbc-password>postgres</jdbc-password>-->
     </properties>
 
     <dependencyManagement>
@@ -24,6 +28,7 @@
             </dependency>
 
             <!--spring cloud-->
+<!--
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -31,6 +36,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+-->
 
             <dependency>
                 <groupId>org.postgresql</groupId>
@@ -45,15 +51,40 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>org.hibernate</groupId>-->
-                <!--<artifactId>hibernate-core</artifactId>-->
-                <!--<version>5.4.2.Final</version>-->
-            <!--</dependency>-->
+<!--
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>5.4.2.Final</version>
+            </dependency>
+-->
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <!--spring boot-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -74,45 +105,42 @@
             <!--<artifactId>hibernate-core</artifactId>-->
         <!--</dependency>-->
 
-        <!--spring boot-->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+-->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+-->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+-->
+<!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+-->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <exclusions>
-                <!--exclude to avoid conflict micrometer from HealthCheck-->
+                &lt;!&ndash;exclude to avoid conflict micrometer from HealthCheck&ndash;&gt;
                 <exclusion>
                     <groupId>io.micrometer</groupId>
                     <artifactId>micrometer-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+-->
     </dependencies>
 </project>
