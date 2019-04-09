@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name = "UM_USER")
+@Table(name = "um_user")
 @UniqueElements
 public class UserEntity implements Serializable {
 
@@ -31,31 +31,31 @@ public class UserEntity implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "UMUSR_USER_ID", nullable = false)
+    @Column(name = "umusr_user_id", nullable = false)
     private long userId;
 
     /**
      * Имя пользователя для входа в систему
      */
-    @Column(name = "UMUSR_LOGIN", nullable = false)
+    @Column(name = "umusr_login", nullable = false)
     private String login;
 
     /**
      * ФИО пользователя
      */
-    @Column(name = "UMUSR_NAME", nullable = false)
+    @Column(name = "umusr_name", nullable = false)
     private String name;
 
     /**
      * пароль пользователя
      */
-    @Column(name = "UMUSR_PASSWORD", nullable = true)
+    @Column(name = "umusr_password", nullable = true)
     private String password;
 
     /**
      * Признак архивации (не активная запись)
      */
-    @Column(name = "UMUSR_ARCHIVED", nullable = false)
+    @Column(name = "umusr_archived", nullable = false)
     private String archived;
 
     /**
@@ -63,8 +63,8 @@ public class UserEntity implements Serializable {
      */
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "um_user_role",
-        joinColumns = @JoinColumn(name = "umusr_user_id", referencedColumnName = "umusr_user_id"),
-        inverseJoinColumns = @JoinColumn(name = "umrle_role_id", referencedColumnName = "umrle_role_id")
+        joinColumns = @JoinColumn(name = "umusr_user_id"),
+        inverseJoinColumns = @JoinColumn(name = "umrle_role_id")
     )
     private List<RoleEntity> roles;
 
