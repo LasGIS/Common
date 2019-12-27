@@ -1,9 +1,7 @@
 package com.lasgis.kotlin.demo.web.mybatis
 
 import com.lasgis.kotlin.demo.web.dao.User
-import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Mapper
-import org.apache.ibatis.annotations.Options
 import org.apache.ibatis.annotations.Select
 
 /**
@@ -14,10 +12,32 @@ import org.apache.ibatis.annotations.Select
  */
 @Mapper
 interface UserMapper {
-    @Insert("INSERT INTO city (name, state, country) VALUES(#{name}, #{state}, #{country})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    fun insert(user: User?)
 
-    @Select("SELECT id, name, state, country FROM city WHERE id = #{id}")
+//    @Insert("INSERT INTO um_user (umusr_name, umusr_login, umusr_archived) VALUES(#{name}, #{state}, #{country})")
+//    @Options(useGeneratedKeys = true, keyProperty = "umusr_user_id")
+//    fun insert(user: User?)
+
+    @Select("""
+      SELECT
+        umusr_user_id as userId,
+        umusr_name as name,
+        umusr_login as login,
+        umusr_password as password,
+        umusr_archived as archived
+      FROM um_user
+      WHERE umusr_user_id = #{id}
+     """)
     fun findById(id: Long): User?
+
+    @Select("""
+      SELECT
+        umusr_user_id as userId,
+        umusr_name as name,
+        umusr_login as login,
+        umusr_password as password,
+        umusr_archived as archived
+      FROM um_user
+      WHERE umusr_login = #{login}
+    """)
+    fun findByLogin(login: String): User?
 }
