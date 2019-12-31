@@ -1,7 +1,7 @@
 # название приложения
 app.name: hiber-check
 # локальнй порт
-server.port: 8097
+server.port: 8098
 
 #  flyway:
 #    locations: classpath:/db
