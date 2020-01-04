@@ -12,13 +12,15 @@ import java.util.concurrent.atomic.AtomicLong
  * <description>
  *
  * @author VLaskin
- * @since <pre>26.12.2019</pre>
+ * @since <pre>04.01.2020</pre>
  */
 @RestController
-@RequestMapping("/user")
-class UserController(private val userMapper: UserMapper) {
+@RequestMapping("/greeting")
+class GreetingController {
 
-    @GetMapping
-    fun user(@RequestParam(value = "login", defaultValue = "VPupkin") login: String) =
-        userMapper.findByLogin(login)
+    val counter = AtomicLong()
+
+    @GetMapping("/greeting")
+    fun greeting(@RequestParam(value = "name", defaultValue = "World") name: String) =
+        Greeting(counter.incrementAndGet(), "Hello, $name")
 }
