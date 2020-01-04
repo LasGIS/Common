@@ -6,9 +6,9 @@ server.port: 8098
 spring:
 #flyway migration
   flyway:
-    locations: classpath:/db
+#    locations: classpath:/db/migration,classpath:/dev/db/migration
     baselineOnMigrate: true
-    schemas: hiber
+    schemas: mybatis
 #database connection
   datasource:
     driverClassName: org.postgresql.Driver
@@ -17,4 +17,4 @@ spring:
     password: postgres
     hikari:
       maximum-pool-size: 10
-      schema: hiber
+      schema: mybatis
