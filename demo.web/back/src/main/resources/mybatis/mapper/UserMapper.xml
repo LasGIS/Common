@@ -16,7 +16,7 @@
         </collection>
     </resultMap>
 
-    <select id="findByLogin" resultMap="userResultMap"><![CDATA[
+    <select id="findByLogin" resultMap="userResultMap">
         SELECT
             usr.umusr_user_id,
             usr.umusr_name,
@@ -27,5 +27,12 @@
         FROM um_user usr
             LEFT OUTER JOIN um_user_role url on usr.umusr_user_id = url.umusr_user_id
          WHERE usr.umusr_login = #{login}
-    ]]></select>
+    </select>
+
+<!--
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId" keyColumn="umusr_user_id">
+        INSERT INTO um_user (umusr_name, umusr_login, umusr_password, umusr_archived)
+        VALUES(#{name}, #{login}, #{password}, #{archived})
+    </insert>
+-->
 </mapper>

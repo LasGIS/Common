@@ -35,13 +35,6 @@ class UserMapperTest {
     }
 
     @Test
-    fun insertUserTest() {
-        val user =  User("Vasia", "Вассиссуарий Лоханкин", "21345")
-        val i = userMapper.insertUser(user)
-        println(" --- i = $i ---")
-    }
-
-    @Test
     fun findByLoginTest() {
         val user = userMapper.findByLogin("LasGIS")
         assertNotNull(user)
@@ -55,4 +48,10 @@ class UserMapperTest {
         }
     }
 
+    @Test
+    fun insertUserTest() {
+        val user =  User("Vasia", "Вассиссуарий Лоханкин", "21345")
+        userMapper.insertUser(user)
+        println(" --- userId = ${user.userId} ---")
+    }
 }

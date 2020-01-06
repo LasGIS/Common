@@ -1,5 +1,5 @@
---DROP SCHEMA IF EXISTS hiber CASCADE;
---CREATE SCHEMA hiber AUTHORIZATION postgres;
+--DROP SCHEMA IF EXISTS mybatis CASCADE;
+--CREATE SCHEMA mybatis;
 
 --==============================================================
 -- Table: um_user
