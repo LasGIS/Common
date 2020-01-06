@@ -27,6 +27,6 @@ data class User(
     var login: String? = null,
     var name: String? = null,
     var password: String? = null,
-    var roles: Array<Roles>? = null,
+    var roles: List<Role>? = null,
     var archived: Boolean? = null
 )

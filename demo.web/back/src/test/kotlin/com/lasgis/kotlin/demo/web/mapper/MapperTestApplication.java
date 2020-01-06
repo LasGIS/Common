@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.lasgis.kotlin.demo.web.mybatis;
+package com.lasgis.kotlin.demo.web.mapper;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -1,7 +1,6 @@
 package com.lasgis.kotlin.demo.web.rest
 
 import com.lasgis.kotlin.demo.web.dao.Greeting
-import com.lasgis.kotlin.demo.web.mybatis.UserMapper
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam

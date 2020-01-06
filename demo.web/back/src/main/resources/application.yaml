@@ -4,12 +4,14 @@ app.name: hiber-check
 server.port: 8098
 
 spring:
-#flyway migration
+
+# flyway migration
   flyway:
 #    locations: classpath:/db/migration,classpath:/dev/db/migration
     baselineOnMigrate: true
     schemas: mybatis
-#database connection
+
+# database connection
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
@@ -18,3 +20,7 @@ spring:
     hikari:
       maximum-pool-size: 10
       schema: mybatis
+
+# mybatis configuration
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml

@@ -1,4 +1,4 @@
-package com.lasgis.kotlin.demo.web.mybatis
+package com.lasgis.kotlin.demo.web.mapper
 
 import com.lasgis.kotlin.demo.web.dao.User
 import org.apache.ibatis.annotations.Mapper
@@ -30,15 +30,5 @@ interface UserMapper {
      """)
     fun findById(@Param("id") id: Long): User?
 
-    @Select("""
-      SELECT
-        umusr_user_id as userId,
-        umusr_name as name,
-        umusr_login as login,
-        umusr_password as password,
-        umusr_archived as archived
-      FROM um_user
-      WHERE umusr_login = #{login}
-    """)
     fun findByLogin(@Param("login") login: String): User?
 }

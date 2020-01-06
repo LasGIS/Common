@@ -1,7 +1,7 @@
-package com.lasgis.kotlin.demo.web.mybatis
+package com.lasgis.kotlin.demo.web.mapper
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,14 +21,28 @@ class UserMapperTest {
     lateinit var userMapper: UserMapper
 
     @Test
-    fun findByLoginTest() {
-        val user = userMapper.findByLogin("LasGIS")
-        Assertions.assertNotNull(user)
+    fun findByIdTest() {
+        val user = userMapper.findById(1L)
+        assertNotNull(user)
         user?.let {
             assertThat(it.userId).isEqualTo(1)
             assertThat(it.login).isEqualTo("LasGIS")
             assertThat(it.name).isEqualTo("Владимир Ласкин")
             assertThat(it.archived).isFalse()
+        }
+    }
+
+    @Test
+    fun findByLoginTest() {
+        val user = userMapper.findByLogin("LasGIS")
+        assertNotNull(user)
+        user?.let {
+            assertThat(it.userId).isEqualTo(1)
+            assertThat(it.login).isEqualTo("LasGIS")
+            assertThat(it.name).isEqualTo("Владимир Ласкин")
+            assertThat(it.archived).isFalse()
+            assertThat(it.roles).isNotNull
+            assertThat(it.roles?.stream()?.map { role -> role.roleId }).contains("ADMIN", "CHIEF", "SUPERVISOR")
         }
     }
 
