@@ -1,6 +1,7 @@
 package com.lasgis.kotlin.demo.web.mybatis.mapper
 
-import com.lasgis.kotlin.demo.web.dao.Role
+import com.lasgis.kotlin.demo.web.dao.User
+import com.lasgis.kotlin.demo.web.dao.UserRole
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
@@ -34,6 +35,13 @@ class UserMapperTest {
     }
 
     @Test
+    fun insertUserTest() {
+        val user =  User("Vasia", "Вассиссуарий Лоханкин", "21345")
+        val i = userMapper.insertUser(user)
+        println(" --- i = $i ---")
+    }
+
+    @Test
     fun findByLoginTest() {
         val user = userMapper.findByLogin("LasGIS")
         assertNotNull(user)
@@ -43,7 +51,7 @@ class UserMapperTest {
             assertThat(it.name).isEqualTo("Владимир Ласкин")
             assertThat(it.archived).isFalse()
             assertThat(it.roles).isNotNull
-            assertThat(it.roles).contains(Role.ADMIN, Role.CHIEF, Role.SUPERVISOR)
+            assertThat(it.roles).contains(UserRole.ADMIN, UserRole.CHIEF, UserRole.SUPERVISOR)
         }
     }
 

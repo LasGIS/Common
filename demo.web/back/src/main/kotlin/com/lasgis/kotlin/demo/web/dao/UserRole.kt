@@ -1,5 +1,5 @@
 package com.lasgis.kotlin.demo.web.dao
 
-enum class Role {
+enum class UserRole {
     ADMIN, CHIEF, OPERATOR, SUPERVISOR
 }

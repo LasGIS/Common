@@ -1,7 +1,9 @@
 package com.lasgis.kotlin.demo.web.mybatis.mapper
 
 import com.lasgis.kotlin.demo.web.dao.User
+import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Mapper
+import org.apache.ibatis.annotations.Options
 import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Select
 
@@ -14,9 +16,12 @@ import org.apache.ibatis.annotations.Select
 @Mapper
 interface UserMapper {
 
-//    @Insert("INSERT INTO um_user (umusr_name, umusr_login, umusr_archived) VALUES(#{name}, #{state}, #{country})")
-//    @Options(useGeneratedKeys = true, keyProperty = "umusr_user_id")
-//    fun insert(user: User?)
+    @Insert("""
+        INSERT INTO um_user (umusr_name, umusr_login, umusr_password, umusr_archived)
+         VALUES(#{name}, #{login}, #{password}, #{archived})
+    """)
+    @Options(useGeneratedKeys = true, keyProperty = "userId")
+    fun insertUser(user: User): Int
 
     @Select("""
       SELECT

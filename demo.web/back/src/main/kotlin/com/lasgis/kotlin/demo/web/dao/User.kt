@@ -23,10 +23,21 @@ package com.lasgis.kotlin.demo.web.dao
  *      Column(name = "umusr_archived", nullable = false)
  */
 data class User(
-    var userId: Long? = null,
+    var userId: Int? = null,
     var login: String? = null,
     var name: String? = null,
     var password: String? = null,
-    var roles: List<Role>? = null,
+    var roles: List<UserRole>? = null,
     var archived: Boolean? = null
-)
+) {
+    constructor(
+        login: String,
+        name: String,
+        password: String
+    ) : this() {
+        this.login = login
+        this.name = name
+        this.password = password
+        this.archived = false
+    }
+}

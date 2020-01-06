@@ -11,7 +11,7 @@
         <result property="login" column="umusr_login"/>
         <result property="password" column="umusr_password"/>
         <result property="archived" column="umusr_archived"/>
-        <collection property="roles" ofType="Role">
+        <collection property="roles" ofType="UserRole">
             <id column="umrle_role_id"/>
         </collection>
     </resultMap>
