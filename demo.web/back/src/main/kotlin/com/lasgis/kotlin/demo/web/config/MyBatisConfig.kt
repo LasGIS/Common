@@ -11,5 +11,5 @@ import org.springframework.context.annotation.Configuration
  * @since <pre>27.12.2019</pre>
  */
 @Configuration
-@MapperScan(value = ["com.lasgis.kotlin.demo.web.mybatis"], annotationClass = Mapper::class)
+@MapperScan(value = ["com.lasgis.kotlin.demo.web.mapper"], annotationClass = Mapper::class)
 class MyBatisConfig
