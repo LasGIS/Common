@@ -6,6 +6,9 @@
     <typeAliases>
         <package name="com.lasgis.kotlin.demo.web.dao"/>
     </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.lasgis.kotlin.demo.web.mybatis.RoleTypeHandlers"/>
+    </typeHandlers>
     <mappers>
         <mapper resource="mybatis/mapper/UserMapper.xml"/>
     </mappers>

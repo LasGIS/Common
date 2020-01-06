@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lasgis.kotlin.demo.web.mapper.UserMapper">
+<mapper namespace="com.lasgis.kotlin.demo.web.mybatis.mapper.UserMapper">
 
     <resultMap id="userResultMap" type="User">
         <id property="userId" column="umusr_user_id"/>
@@ -12,14 +12,7 @@
         <result property="password" column="umusr_password"/>
         <result property="archived" column="umusr_archived"/>
         <collection property="roles" ofType="Role">
-            <constructor>
-                <idArg name="roleId" column="umrle_role_id"/>
-                <arg name="description" column="umrle_description"/>
-            </constructor>
-<!--
-            <id property="roleId" column="umrle_role_id"/>
-            <result property="description" column="umrle_description"/>
--->
+            <id column="umrle_role_id"/>
         </collection>
     </resultMap>
 
@@ -30,11 +23,9 @@
             usr.umusr_login,
             usr.umusr_password,
             usr.umusr_archived,
-            ur.umrle_role_id,
-            ur.umrle_description
+            url.umrle_role_id
         FROM um_user usr
-            LEFT OUTER JOIN um_user_role uur on usr.umusr_user_id = uur.umusr_user_id
-            LEFT OUTER JOIN um_role ur on uur.umrle_role_id = ur.umrle_role_id
-         WHERE umusr_login = #{login}
+            LEFT OUTER JOIN um_user_role url on usr.umusr_user_id = url.umusr_user_id
+         WHERE usr.umusr_login = #{login}
     ]]></select>
 </mapper>

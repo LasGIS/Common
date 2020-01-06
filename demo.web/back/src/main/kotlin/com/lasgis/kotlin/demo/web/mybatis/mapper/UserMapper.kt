@@ -1,4 +1,4 @@
-package com.lasgis.kotlin.demo.web.mapper
+package com.lasgis.kotlin.demo.web.mybatis.mapper
 
 import com.lasgis.kotlin.demo.web.dao.User
 import org.apache.ibatis.annotations.Mapper
