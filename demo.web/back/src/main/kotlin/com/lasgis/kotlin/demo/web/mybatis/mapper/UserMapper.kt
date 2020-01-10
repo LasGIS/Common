@@ -1,7 +1,11 @@
 package com.lasgis.kotlin.demo.web.mybatis.mapper
 
 import com.lasgis.kotlin.demo.web.dao.User
-import org.apache.ibatis.annotations.*
+import org.apache.ibatis.annotations.Insert
+import org.apache.ibatis.annotations.Mapper
+import org.apache.ibatis.annotations.Options
+import org.apache.ibatis.annotations.Param
+import org.apache.ibatis.annotations.Select
 
 /**
  * <description>
@@ -28,7 +32,7 @@ interface UserMapper {
         umusr_archived as archived
       FROM um_user
       WHERE umusr_user_id = #{id}
-     """)
+    """)
     fun findById(@Param("id") id: Long): User?
 
     fun findByLogin(@Param("login") login: String): User?
