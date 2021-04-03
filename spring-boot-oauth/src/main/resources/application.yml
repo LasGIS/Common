@@ -1,0 +1,15 @@
+server:
+  port: 9980
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 6d66e91a4df4086697e4
+            client-secret: a37c3cd3d1b206828f81aeb75ec0dc90fe512836
+
+logging:
+  level:
+    org.springframework.security: DEBUG
