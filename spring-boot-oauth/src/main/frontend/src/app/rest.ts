@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. LasGIS
+ * Copyright (c) 2020. Prototype
  */
 
 import $ from 'jquery';
@@ -17,16 +17,16 @@ type RequestSettings = {
   requestSettingsDataParam?: string;
 };
 
-export const get = (url: string, data?: any, requestSettings?: RequestSettings) =>
+export const get = (url: string, data?: any, requestSettings?: RequestSettings) => (dispatch: any) =>
   requestDecorator(url, HTTP_METHODS.GET, data, requestSettings);
 
-export const post = (url: string, data: any, requestSettings?: RequestSettings) =>
+export const post = (url: string, data: any, requestSettings?: RequestSettings) => (dispatch: any) =>
   requestDecorator(url, HTTP_METHODS.POST, data, requestSettings);
 
-export const put = (url: string, data?: any, requestSettings?: RequestSettings) =>
+export const put = (url: string, data?: any, requestSettings?: RequestSettings) => (dispatch: any) =>
   requestDecorator(url, HTTP_METHODS.PUT, data, requestSettings);
 
-export const del = (url: string, data?: any, requestSettings?: RequestSettings) =>
+export const del = (url: string, data?: any, requestSettings?: RequestSettings) => (dispatch: any) =>
   requestDecorator(url, HTTP_METHODS.DELETE, data, requestSettings);
 
 const requestDecorator = (
@@ -46,15 +46,16 @@ export function request(url: string, method: HTTP_METHODS, data: any = {}, reque
   const { contentType, dataType, requestSettingsDataParam } = requestSettings;
 
   return new Promise<any>((resolve, reject) => {
+    const xsrfToken = document.cookie;
     $.ajax({
       url: url,
       type: method,
       contentType: contentType === 'false' ? false : contentType || 'application/json',
       dataType: dataType || 'json',
       data: getDataParam(),
-      // headers: {
-      //   'auth-Token': localStorage.getItem(FRONT_AUTH_TOKEN) || undefined,
-      // },
+      headers: {
+         'X-XSRF-TOKEN': xsrfToken || undefined,
+      },
     })
       .done((response: any) => resolve(response))
       .fail((error: any) => reject(error));
@@ -76,6 +77,8 @@ function requestWithHeaders(url: string, method: HTTP_METHODS, data: any, reques
       contentType: contentType === 'false' ? false : contentType || 'application/json',
       dataType: dataType || 'json',
       data: getDataParam(),
+//      resolveWithFullResponse: true,
+//      simple: false,
     })
       .done((response: any) => {
         return resolve(response);
