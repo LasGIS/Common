@@ -49,8 +49,7 @@ class Login extends Component<Props, State> {
         <h1>Login</h1>
         {!authenticated &&
         <div className="container">
-          With GitHub:
-          <a href="/oauth2/authorization/github">click here</a>
+          With GitHub: <a href="/oauth2/authorization/github">click-here</a>
         </div>
         }
         {authenticated &&

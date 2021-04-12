@@ -49,5 +49,6 @@
     "@testing-library/user-event": "^12.1.10",
     "@types/jquery": "^3.5.5",
     "@types/react": "^17.0.3"
-  }
+  },
+  "proxy": "http://localhost:9980"
 }
