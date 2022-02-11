@@ -19,7 +19,7 @@
 
     <properties>
         <maven.test.skip>true</maven.test.skip>
-        <vertx.version>3.3.0</vertx.version>
+        <vertx.version>3.9.4</vertx.version>
         <vertx.testtools.version>2.0.3-final</vertx.testtools.version>
         <junit.version>4.11</junit.version>
     </properties>
