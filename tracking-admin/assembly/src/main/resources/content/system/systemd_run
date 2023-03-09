@@ -1,9 +1,0 @@
-#!/bin/sh
-
-JAVA_HOME=/usr/lib/jvm/jre-11-openjdk
-JAVA_OPTS="-Xmx256M -Xms256M -Xss1M -XX:+UseParallelGC"
-SERVICE=${project.parent.artifactId}
-LAUNCHER_CLASS=ru.russianpost.tracking.portal.admin.Main
-TRACKING_CLASSPATH=${rpm.config.lib.dir}/${SERVICE}/*:${rpm.config.dir}/${SERVICE}:${rpm.config.log.conf.dir}/${SERVICE}
-
-${JAVA_HOME}/bin/java ${JAVA_OPTS} -cp ":${TRACKING_CLASSPATH}" $LAUNCHER_CLASS
