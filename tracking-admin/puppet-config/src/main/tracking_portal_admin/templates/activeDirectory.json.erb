@@ -1,0 +1,5 @@
+[
+<% @tracking_portal_admin_activeDirectory.each_with_index do |ad,i| -%>
+  {"url" :  "<%= ad["url"] %>", "domain" : "<%= ad["domain"]%>", "rootDn" : "<%= ad["rootDn"]%>"}<% if i != @tracking_portal_admin_activeDirectory.size - 1 %>,<% end %>
+<% end -%>
+]

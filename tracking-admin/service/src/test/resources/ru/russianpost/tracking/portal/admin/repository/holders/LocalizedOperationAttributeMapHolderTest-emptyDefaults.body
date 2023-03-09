@@ -1,0 +1,11 @@
+{
+    "defaultValues": [],
+    "items":[{
+        "key": {
+            "langCode": "RUS",
+            "operTypeId": 1,
+            "operAttributeId": 2
+        },
+        "value": "Партионный"
+    }]
+}

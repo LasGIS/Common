@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2015 Russian Post
+  ~
+  ~ This source code is Russian Post Confidential Proprietary.
+  ~ This software is protected by copyright. All rights and titles are reserved.
+  ~ You shall not use, copy, distribute, modify, decompile, disassemble or reverse engineer the software.
+  ~ Otherwise this violation would be treated by law and would be subject to legal prosecution.
+  ~ Legal use of the software provides receipt of a license from the right holder only.
+  -->
+
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2
+                              http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+
+  <id>bin</id>
+
+  <formats>
+    <format>zip</format>
+    <format>dir</format>
+  </formats>
+
+  <includeBaseDirectory>false</includeBaseDirectory>
+
+  <fileSets>
+    <!-- batch files -->
+    <fileSet>
+      <directory>src/main/resources/content</directory>
+      <outputDirectory>${project.build.finalName}</outputDirectory>
+      <fileMode>0755</fileMode>
+      <directoryMode>0755</directoryMode>
+      <filtered>true</filtered>
+      <includes>
+        <include>**/*.sh</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>src/main/resources/content</directory>
+      <outputDirectory>${project.build.finalName}</outputDirectory>
+      <fileMode>0644</fileMode>
+      <directoryMode>0755</directoryMode>
+      <filtered>true</filtered>
+    </fileSet>
+  </fileSets>
+
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>${project.build.finalName}/lib</outputDirectory>
+      <fileMode>0755</fileMode>
+      <directoryMode>0755</directoryMode>
+    </dependencySet>
+  </dependencySets>
+</assembly>

@@ -1,0 +1,4 @@
+[
+  {"url" :  "ldaps://eskdcldaplb.main.russianpost.ru", "domain" : "russianpost.ru", "rootDn" : "DC=main,DC=russianpost,DC=ru"},
+  {"url" :  "ldaps://eskdcldaplb.main.russianpost.ru", "domain" : "main.russianpost.ru", "rootDn" : "DC=main,DC=russianpost,DC=ru"}
+]

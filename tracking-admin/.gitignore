@@ -1,0 +1,16 @@
+.idea
+logs
+log
+*.iml
+*.ipr
+*.iws
+target
+site
+_*
+*.log
+service/src/main/webapp/static
+
+*/persistence.*.db
+/service/nbproject/
+/service/src/main/frontend/node/*
+/node_modules/*

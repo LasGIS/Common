@@ -1,0 +1,27 @@
+{
+    "items": [{
+        "id": "101000",
+        "opsName": "Москва",
+        "opsType": "О",
+        "opsSubm": "127950",
+        "region": "Москва",
+        "autonom": "",
+        "area": "",
+        "city": "",
+        "city1": "",
+        "actDate": "21.01.2011",
+        "indexOld": "101000"
+    },{
+        "id": "101300",
+        "opsName": "Москва-300",
+        "opsType": "ТИ",
+        "opsSubm": "101000",
+        "region": "Москва",
+        "autonom": "",
+        "area": "",
+        "city": "",
+        "city1": "",
+        "actDate": "21.02.2012",
+        "indexOld": ""
+    }]
+}

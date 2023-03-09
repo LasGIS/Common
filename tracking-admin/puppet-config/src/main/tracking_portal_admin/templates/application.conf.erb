@@ -1,0 +1,101 @@
+portal-admin {
+
+  http {
+    port = <%= @tracking_portal_admin_http_port %>
+    root = "<%= @tracking_portal_admin_http_root %>"
+  }
+
+  allowed.to.create.operations = [
+    <%- @tracking_portal_admin_allowed_to_create_operations.each_with_index do |operation,i| -%>
+      {type: <%= operation["type"] %>, attr: [<%= operation["attr"]%>]}<% if i != @tracking_portal_admin_allowed_to_create_operations.size - 1 %>,<% end %>
+    <%- end -%>
+  ]
+
+  sms.notification = {
+    types = [
+      <%- @tracking_portal_admin_sms_notification_types.each_with_index do |operation,i| -%>
+        {id: <%= operation["id"] %>, value: "<%= operation["value"]%>"}<% if i != @tracking_portal_admin_sms_notification_types.size - 1 %>,<% end %>
+      <%- end -%>
+    ],
+    ordering = [<%- @tracking_portal_admin_sms_notification_ordering.each_with_index do |code, i| -%><%= code %><%= ', ' if i < (@tracking_portal_admin_sms_notification_ordering.size - 1) %><%- end -%>]
+  }
+
+  hide.reasons = [
+  <%- @tracking_portal_admin_hide_reasons.each_with_index do |item,i| -%>
+    {id: "<%= item["id"] %>", value: "<%= item["value"] %>"}<% if i != @tracking_portal_admin_hide_reasons.size - 1 %>,<% end %>
+  <%- end -%>
+  ]
+
+  rtm30 {
+    enable = <%= @tracking_portal_admin_rtm30_enable %>
+    log.web.input.xml = <%= @tracking_portal_admin_rtm30_log_web_input_xml %>
+    log.invalid.xml = <%= @tracking_portal_admin_rtm30_log_invalid_xml %>
+
+    container {
+      creation.index = "<%= @tracking_portal_admin_rtm30_container_creation_index %>"
+      software.version = "<%= @tracking_portal_admin_rtm30_container_software_version %>"
+      dll.version = "<%= @tracking_portal_admin_rtm30_container_dll_version %>"
+    }
+
+    oasu.rpo {
+      login = "<%= @tracking_portal_admin_rtm30_oasu_rpo_login %>"
+      password = "<%= @tracking_portal_admin_rtm30_oasu_rpo_password %>"
+      softwareId = <%= @tracking_portal_admin_rtm30_oasu_rpo_softwareId %>
+      timeout = <%= @tracking_portal_admin_rtm30_oasu_rpo_timeout %>
+    }
+  }
+
+  authorized.operator.support.executor.service.threads.count = <%= @tracking_portal_admin_authorized_operator_support_executor_service_threads_count %>
+
+  incomeDate.operDate.warning.interval.minutes = <%= @tracking_portal_admin_incomeDate_operDate_warning_interval_minutes %>
+  loadDate.incomeDate.warning.interval.minutes = <%= @tracking_portal_admin_loadDate_incomeDate_warning_interval_minutes %>
+
+  bookings.count.on.the.page = <%= @tracking_portal_admin_bookings_count_on_the_page %>
+  multiple.tracking: {
+    barcode.limit = <%= @tracking_portal_admin_multiple_tracking_barcode_limit %>
+    barcode.limit-per-subtask = <%= @tracking_portal_admin_multiple_tracking_barcode_limit_per_subtask %>
+    update.interval.seconds = <%= @tracking_portal_admin_multiple_tracking_update_interval_seconds %>
+  }
+
+  barcode.automatization.barcode.limit = <%= @tracking_portal_admin_barcode_automatization_barcode_limit %>
+
+  currencies.exclusions = [
+  <%- @tracking_portal_admin_currencies_exclusions.each_with_index do |currency,i| -%>
+    {currencyCode: <%= currency["currencyCode"] %>, currencyDecimalPlaces: <%= currency["currencyDecimalPlaces"]%>}<% if i != @tracking_portal_admin_currencies_exclusions.size - 1 %>,<% end %>
+  <%- end -%>
+  ]
+
+  country.map: [
+  <%- @tracking_rtm34_rupost_external_offices.each_with_index do |country,i| -%>
+    {index:  <%= country["index"] %>, country:  <%= country["country"]%>}<% if i != @tracking_rtm34_rupost_external_offices.size - 1 %>,<% end %>
+  <%- end -%>
+  ]
+
+  operation.order = [
+  <%- @tracking_portal_admin_operation_order.each_with_index do |operation,i| -%>
+    {operType: <%= operation["operType"] %>, operAttr: [<%= operation["operAttr"]%>]}<% if i != @tracking_portal_admin_operation_order.size - 1 %>,<% end %>
+  <%- end -%>
+  ]
+
+  relates-to-ukd-mailTypes = [<% @tracking_portal_admin_relates_to_ukd_mailTypes.each_with_index do |this_server, i| -%>"<%= this_server %>"<%= ', ' if i < (@tracking_portal_admin_relates_to_ukd_mailTypes.size - 1) %><% end -%> ]
+
+  emsevt.manual: {
+    barcode.limit = <%= @tracking_portal_admin_emsevt_manual_sender_service_barcode_limit %>
+    update.interval.seconds = <%= @tracking_portal_admin_emsevt_manual_sender_service_update_interval_seconds %>
+  }
+
+  regexp = {
+    international.barcode = "<%= @tracking_portal_admin_international_barcode_regexp %>"
+  }
+
+  idm {
+    username = "<%= @tracking_portal_admin_idm_username %>"
+    password = "<%= @tracking_portal_admin_idm_password %>"
+  }
+
+  international.monitoring: {
+    update.interval.seconds = <%= @tracking_portal_admin_international_monitoring_update_interval_seconds %>
+    cacheable.wait.seconds = <%= @tracking_portal_admin_international_monitoring_cacheable_wait_seconds %>
+    show = <%= @tracking_portal_admin_international_monitoring_show %>
+  }
+}

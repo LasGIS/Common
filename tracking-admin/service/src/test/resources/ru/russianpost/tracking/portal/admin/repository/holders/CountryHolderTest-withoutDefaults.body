@@ -1,0 +1,17 @@
+{
+    "items": [{
+        "id": 895,
+        "codeA2": "AB",
+        "codeA3": "ABH",
+        "nameRu": "Абхазия",
+        "nameEn": "Abkhazia",
+        "nameFr": "L’Abkhazié"
+    },{
+        "id": 36,
+        "codeA2": "AU",
+        "codeA3": "AUS",
+        "nameRu": "Австралия",
+        "nameEn": "Australia",
+        "nameFr": "Australie"
+    }]
+}

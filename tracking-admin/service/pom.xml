@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2022 Russian Post
+  ~
+  ~ This source code is Russian Post Confidential Proprietary.
+  ~ This software is protected by copyright. All rights and titles are reserved.
+  ~ You shall not use, copy, distribute, modify, decompile, disassemble or reverse engineer the software.
+  ~ Otherwise this violation would be treated by law and would be subject to legal prosecution.
+  ~ Legal use of the software provides receipt of a license from the right holder only.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ru.russianpost.tracking</groupId>
+    <artifactId>tracking-portal-admin</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>tracking-portal-admin.service</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <tracking.api.version>1.87</tracking.api.version>
+    <tracking-commons-hdps.version>1.91</tracking-commons-hdps.version>
+    <tracking-diagnostics.version>2.3</tracking-diagnostics.version>
+    <tracking-web-common.version>2.24</tracking-web-common.version>
+    <tracking-commons.version>1.198</tracking-commons.version>
+    <rtm30.stubs.version>1.7</rtm30.stubs.version>
+    <rtm30.ws.version>1.2</rtm30.ws.version>
+    <logstash-logback-encoder.version>6.5</logstash-logback-encoder.version>
+    <typesafe.config.version>1.4.1</typesafe.config.version>
+    <spring.security.version>5.4.10</spring.security.version>
+    <jetty.version>9.4.45.v20220203</jetty.version>
+    <poi.version>5.1.0</poi.version>
+    <commons.dbcp.version>2.9.0</commons.dbcp.version>
+    <postgresql.version>42.5.0</postgresql.version>
+    <flyway.version>7.15.0</flyway.version>
+    <kafka-clients.version>2.7.0</kafka-clients.version>
+    <lombok.version>1.18.16</lombok.version>
+    <findbugs-annotations.version>3.0.1</findbugs-annotations.version>
+    <swagger.version>3.0.0</swagger.version>
+    <aspectjweaver.version>1.9.6</aspectjweaver.version>
+    <quartz.version>2.3.2</quartz.version>
+    <super-csv.version>2.4.0</super-csv.version>
+    <guava.version>30.0-jre</guava.version>
+    <speed4j.version>0.18</speed4j.version>
+    <jaxws-api.version>2.3.1</jaxws-api.version>
+    <annotation-api.version>1.3.2</annotation-api.version>
+    <validation-api.version>2.0.1.Final</validation-api.version>
+    <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+    <javax.el.version>3.0.0</javax.el.version>
+    <commons-lang3.version>3.11</commons-lang3.version>
+    <mockito-core.version>3.6.0</mockito-core.version>
+    <junit.version>4.13.1</junit.version>
+    <json-path-assert.version>2.4.0</json-path-assert.version>
+    <web.javax.el.version>2.2.4</web.javax.el.version>
+    <mockserver-netty.version>5.11.2</mockserver-netty.version>
+    <jsonassert.version>1.5.0</jsonassert.version>
+
+    <frontend-src-dir>${project.basedir}/src/main/frontend</frontend-src-dir>
+    <node.version>v16.14.2</node.version>
+    <yarn.version>v1.22.15</yarn.version>
+    <frontend-maven-plugin.version>1.11.0</frontend-maven-plugin.version>
+  </properties>
+
+  <dependencies>
+    <!--Tracking Model And Utils Begin-->
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>tracking-web-common</artifactId>
+      <version>${tracking-web-common.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jboss.logging</groupId>
+          <artifactId>jboss-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml</groupId>
+          <artifactId>classmate</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>ru.russianpost.eregletters</groupId>
+          <artifactId>notification-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>tracking-commons</artifactId>
+      <version>${tracking-commons.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.datastax.cassandra</groupId>
+          <artifactId>cassandra-driver-mapping</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.typesafe</groupId>
+          <artifactId>config</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.avro</groupId>
+          <artifactId>avro</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>tracking-commons-hdps</artifactId>
+      <version>${tracking-commons-hdps.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>tracking-diagnostics</artifactId>
+      <version>${tracking-diagnostics.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.typesafe.akka</groupId>
+          <artifactId>akka-actor_2.12</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!--Tracking Service API-->
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>tracking-api</artifactId>
+      <version>${tracking.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>rtm30-stubs</artifactId>
+      <version>${rtm30.stubs.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>rtm30-ws</artifactId>
+      <version>${rtm30.ws.version}</version>
+    </dependency>
+
+    <!-- Jetty -->
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-webapp</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <!-- Spring framework -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-ldap</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>${quartz.version}</version>
+    </dependency>
+
+    <!-- Jackson JSON mapper -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.supercsv</groupId>
+      <artifactId>super-csv</artifactId>
+      <version>${super-csv.version}</version>
+    </dependency>
+
+    <!-- Kafka -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka-clients.version}</version>
+    </dependency>
+
+    <!-- Config Library -->
+    <dependency>
+      <groupId>com.typesafe</groupId>
+      <artifactId>config</artifactId>
+      <version>${typesafe.config.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
+    <!-- Logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.ecyrd.speed4j</groupId>
+      <artifactId>speed4j</artifactId>
+      <version>${speed4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+      <version>${logstash-logback-encoder.version}</version>
+    </dependency>
+
+    <!-- Database Access -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${postgresql.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>${commons.dbcp.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.xml.ws</groupId>
+      <artifactId>jaxws-api</artifactId>
+      <version>${jaxws-api.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>${annotation-api.version}</version>
+    </dependency>
+
+    <!-- JSR-303 Bean Validation -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>${validation-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate-validator.version}</version>
+    </dependency>
+    <!-- hibernate-validator 6 needs this dependency -->
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>${javax.el.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectjweaver.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>annotations</artifactId>
+      <version>${findbugs-annotations.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+    </dependency>
+
+    <!-- Unit Testing -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito-core.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <version>${json-path-assert.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>${web.javax.el.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.el</groupId>
+          <artifactId>javax.el-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.mock-server</groupId>
+      <artifactId>mockserver-netty</artifactId>
+      <version>${mockserver-netty.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.scala-lang</groupId>
+          <artifactId>scala-library</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-models</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>io.swagger.core.v3</groupId>
+          <artifactId>swagger-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!--        org.springframework.test.util.JsonExpectationsHelper needs this dependency-->
+    <dependency>
+      <groupId>org.skyscreamer</groupId>
+      <artifactId>jsonassert</artifactId>
+      <version>${jsonassert.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>${frontend-maven-plugin.version}</version>
+
+        <configuration>
+          <nodeVersion>${node.version}</nodeVersion>
+          <yarnVersion>${yarn.version}</yarnVersion>
+          <nodeDownloadRoot>https://nexus.repo.russianpost.ru/other/repository/nodejs-dist-proxy/</nodeDownloadRoot>
+          <yarnDownloadRoot>https://nexus.repo.russianpost.ru/other/repository/github.com/yarnpkg/yarn/releases/download/</yarnDownloadRoot>
+          <npmRegistryURL>https://frontend-community.repo.russianpost.ru/npm_group</npmRegistryURL>
+          <workingDirectory>${frontend-src-dir}</workingDirectory>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>install-frontend-tools</id>
+            <goals>
+              <goal>install-node-and-yarn</goal>
+            </goals>
+          </execution>
+
+          <execution>
+            <id>yarn-install</id>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <configuration>
+              <arguments>install --frozen-lockfile</arguments>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>build-frontend</id>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <arguments>build</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <configuration>
+              <target>
+                <echo file="${project.basedir}/src/main/webapp/static/js/components.js" append="true">
+                  var frontendVersion = '${project.parent.version}';
+                </echo>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+    <resources>
+      <resource>
+        <directory>src/main/webapp</directory>
+      </resource>
+      <resource>
+        <!-- todo - move all 'external' configs to assembly module -->
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+  </build>
+</project>

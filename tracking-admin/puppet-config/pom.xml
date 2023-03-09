@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2015 Russian Post
+  ~
+  ~ This source code is Russian Post Confidential Proprietary.
+  ~ This software is protected by copyright. All rights and titles are reserved.
+  ~ You shall not use, copy, distribute, modify, decompile, disassemble or reverse engineer the software.
+  ~ Otherwise this violation would be treated by law and would be subject to legal prosecution.
+  ~ Legal use of the software provides receipt of a license from the right holder only.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ru.russianpost.tracking</groupId>
+    <artifactId>tracking-portal-admin</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>puppet-config</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <rpm.puppet.config.module.dir>/usr/share/puppet/modules</rpm.puppet.config.module.dir>
+    <rpm.puppet.user>puppet</rpm.puppet.user>
+    <puppet.environment.name>tracking</puppet.environment.name>
+    <puppet-config.modulename>tracking_portal_admin</puppet-config.modulename>
+  </properties>
+
+  <profiles>
+
+    <profile>
+      <id>RPM</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <dependencies>
+              <dependency>
+                <groupId>ru.russianpost.commons</groupId>
+                <artifactId>puppet-collector</artifactId>
+                <version>1.13</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <mavenFilteringHints>
+                <mavenFilteringHint>puppetCollector</mavenFilteringHint>
+              </mavenFilteringHints>
+            </configuration>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <!-- here the phase you need -->
+                <phase>validate</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/${project.artifactId}</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>src/main</directory>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>rpm-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-rpm</id>
+                <phase>integration-test</phase>
+                <goals>
+                  <goal>rpm</goal>
+                </goals>
+                <configuration>
+                  <name>${project.parent.artifactId}.${project.artifactId}__v${project.version}</name>
+                  <group>Applications/System</group>
+                  <defaultUsername>${rpm.puppet.user}</defaultUsername>
+                  <defaultGroupname>${rpm.puppet.user}</defaultGroupname>
+                  <defaultFilemode>660</defaultFilemode>
+                  <defaultDirmode>770</defaultDirmode>
+                  <mappings>
+                    <mapping>
+                      <directory>
+                        ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__v${puppet-config.version}
+                      </directory>
+                      <directoryIncluded>false</directoryIncluded>
+                      <recurseDirectories>true</recurseDirectories>
+                      <sources>
+                        <source>
+                          <location>
+                            ${project.build.directory}/${project.artifactId}/${puppet-config.modulename}
+                          </location>
+                          <excludes>
+                            <exclude>check-var.sh</exclude>
+                          </excludes>
+                        </source>
+                      </sources>
+                    </mapping>
+                  </mappings>
+                  <preinstallScriptlet>
+                    <scriptFile>${project.build.directory}/${project.artifactId}/check-var.sh</scriptFile>
+                    <fileEncoding>utf-8</fileEncoding>
+                  </preinstallScriptlet>
+                  <postinstallScriptlet>
+                    <script>
+                      MY_VER=${puppet-config.version}
+                      if [ -L ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__latest ]; then
+                          OLD_VER=`readlink -f ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__latest | cut -d "/" -f 6 | rev | cut -d "v" -f 1 | rev`
+
+                          MAX_VER=`echo -e "$MY_VER\n$OLD_VER" | sort -r -V | head -1`
+
+                          if [ "$MAX_VER" == "$MY_VER" ]; then
+                              rm -f ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__latest
+                              ln -s ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__v${puppet-config.version}/latest ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__latest
+                          fi
+                      else
+                          ln -s ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__v${puppet-config.version}/latest ${rpm.puppet.config.module.dir}/${puppet-config.modulename}__latest
+                      fi
+                    </script>
+                  </postinstallScriptlet>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

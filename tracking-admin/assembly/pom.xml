@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2015 Russian Post
+  ~
+  ~ This source code is Russian Post Confidential Proprietary.
+  ~ This software is protected by copyright. All rights and titles are reserved.
+  ~ You shall not use, copy, distribute, modify, decompile, disassemble or reverse engineer the software.
+  ~ Otherwise this violation would be treated by law and would be subject to legal prosecution.
+  ~ Legal use of the software provides receipt of a license from the right holder only.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ru.russianpost.tracking</groupId>
+    <artifactId>tracking-portal-admin</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>tracking-portal-admin.assembly</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.root>${project.basedir}/..</project.root>
+    <tattletale.failOnInfo>false</tattletale.failOnInfo>
+    <tattletale.failOnWarn>false</tattletale.failOnWarn>
+    <tattletale.failOnError>false</tattletale.failOnError>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>ru.russianpost.tracking</groupId>
+      <artifactId>tracking-portal-admin.service</artifactId>
+      <version>1.3.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.jboss.tattletale</groupId>
+          <artifactId>tattletale-maven</artifactId>
+          <version>1.1.2.Final</version>
+          <configuration>
+            <failOnInfo>${tattletale.failOnInfo}</failOnInfo>
+            <failOnWarn>${tattletale.failOnWarn}</failOnWarn>
+            <failOnError>${tattletale.failOnError}</failOnError>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>lib</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/build.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>RPM</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ru.russianpost.commons.maven.plugins</groupId>
+            <artifactId>rpmchangelog-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>rpm-maven-plugin</artifactId>
+            <configuration>
+              <group>${project.parent.artifactId}</group>
+              <autoRequires>false</autoRequires>
+              <defaultGroupname>${rpm.run.user}</defaultGroupname>
+              <changelogFile>${project.build.directory}/rpm-changelog</changelogFile>
+              <mappings>
+                <mapping>
+                  <directory>${rpm.systemd.dir}</directory>
+                  <filemode>644</filemode>
+                  <username>root</username>
+                  <groupname>root</groupname>
+                  <directoryIncluded>false</directoryIncluded>
+                  <sources>
+                    <source>
+                      <location>${project.build.directory}/${project.build.finalName}-bin/${project.build.finalName}/system/systemd_unit</location>
+                      <destination>${project.parent.artifactId}.service</destination>
+                    </source>
+                  </sources>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.run.script.dir}</directory>
+                  <filemode>774</filemode>
+                  <directoryIncluded>false</directoryIncluded>
+                  <sources>
+                    <source>
+                      <location>${project.build.directory}/${project.build.finalName}-bin/${project.build.finalName}/system/systemd_run</location>
+                      <destination>${project.parent.artifactId}.sh</destination>
+                    </source>
+                  </sources>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.config.dir}/${project.parent.artifactId}</directory>
+                  <filemode>760</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.config.log.conf.dir}/${project.parent.artifactId}</directory>
+                  <filemode>760</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.config.lib.dir}/${project.parent.artifactId}</directory>
+                  <filemode>550</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                  <sources>
+                    <source>
+                      <location>
+                        ${project.build.directory}/${project.build.finalName}-bin/${project.build.finalName}/lib
+                      </location>
+                    </source>
+                  </sources>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.config.dir}/${project.parent.artifactId}</directory>
+                  <filemode>760</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                  <configuration>true</configuration>
+                  <sources>
+                    <source>
+                      <location>
+                        ${project.build.directory}/${project.build.finalName}-bin/${project.build.finalName}/conf/application.conf
+                      </location>
+                    </source>
+                  </sources>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.config.log.conf.dir}/${project.parent.artifactId}</directory>
+                  <filemode>760</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                  <configuration>true</configuration>
+                  <sources>
+                    <source>
+                      <location>
+                        ${project.build.directory}/${project.build.finalName}-bin/${project.build.finalName}/conf/logback.xml
+                      </location>
+                    </source>
+                  </sources>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.tmp.dir}/${project.parent.artifactId}</directory>
+                  <filemode>770</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.config.log.dir}/${project.parent.artifactId}</directory>
+                  <filemode>775</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                </mapping>
+                <mapping>
+                  <directory>${rpm.pid.dir}/${project.parent.artifactId}</directory>
+                  <filemode>770</filemode>
+                  <username>${rpm.run.user}</username>
+                  <groupname>${rpm.run.user}</groupname>
+                </mapping>
+              </mappings>
+              <postinstallScriptlet>
+                <script>
+                  systemctl daemon-reload; \
+                  systemctl enable --now ${project.parent.artifactId}
+                </script>
+              </postinstallScriptlet>
+              <preremoveScriptlet>
+                <script>systemctl stop ${project.parent.artifactId}</script>
+              </preremoveScriptlet>
+              <requires>
+                <require>post-file-structure &gt;= 1.30</require>
+                <require>java-11-openjdk &gt;= 11.0.6</require>
+              </requires>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+SERVICE=${project.parent.artifactId}
+
+JAVA_HOME=/usr/lib/jvm/jre-11-openjdk
+JAVA_OPTS="-XX:+UseG1GC"
+JAVA_MEM="<%= @tracking_portal_admin_java_mem %>"
+JAVA_GC_LOG_ROTATION="-Xlog:gc*:file=${rpm.config.log.dir}/${SERVICE}/gc.log::filecount=10,filesize=10m"
+JAVA_OPTS="${JAVA_OPTS} ${JAVA_MEM} -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${rpm.config.log.dir}/${SERVICE}/${SERVICE}.hprof -verbose:gc ${JAVA_GC_LOG_ROTATION} -XX:-OmitStackTraceInFastThrow"
+
+LAUNCHER_CLASS=ru.russianpost.tracking.portal.admin.Main
+TRACKING_CLASSPATH=${rpm.config.lib.dir}/${SERVICE}/*:${rpm.config.dir}/${SERVICE}:${rpm.config.log.conf.dir}/${SERVICE}
+
+${JAVA_HOME}/bin/java ${JAVA_OPTS} -cp "${TRACKING_CLASSPATH}" $LAUNCHER_CLASS

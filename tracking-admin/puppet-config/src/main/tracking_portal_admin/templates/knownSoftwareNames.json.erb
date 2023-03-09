@@ -1,0 +1,13 @@
+{
+  "notFoundName" : "<%= @tracking_portal_admin_knownSoftwareNames_unknown %>",
+  "exclusions" : [
+    <% @tracking_portal_admin_knownSoftwareNames_exclusions.each_with_index do |exclusion, i| -%>
+      "<%= exclusion %>"<%= ', ' if i < (@tracking_portal_admin_knownSoftwareNames_exclusions.size - 1) %>
+    <% end -%>
+  ],
+  "knownNames" :  {
+    <% @tracking_portal_admin_knownSoftwareNames_knownNames.each_with_index do |item,i| -%>
+      "<%= item["code"] %>" : "<%= item["name"] %>"<%= ', ' if i < (@tracking_portal_admin_knownSoftwareNames_knownNames.size - 1) %>
+    <% end -%>
+  }
+}

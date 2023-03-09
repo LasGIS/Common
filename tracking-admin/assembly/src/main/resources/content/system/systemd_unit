@@ -1,0 +1,17 @@
+[Unit]
+Description=${project.parent.artifactId}
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=${rpm.run.user}
+Group=${rpm.run.user}
+Restart=on-failure
+RestartSec=10s
+
+ExecStart=${rpm.run.script.dir}/${project.parent.artifactId}.sh
+ExecStop=/bin/kill -SIGTERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
