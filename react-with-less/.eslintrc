@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb-typescript",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-plusplus": "off",
+    "react/no-danger": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-did-update-set-state": "off",
+    "react/static-property-placement": "off",
+    "@typescript-eslint/default-param-last": "off"
+  }
+}

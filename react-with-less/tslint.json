@@ -1,0 +1,10 @@
+{
+  "rules": {
+    // Правила написания кода
+    "no-eval": true,
+    "prefer-const": [true, {"destructuring": "any"}],
+    // Правила написания типов
+    "array-type": [true, "array"],
+    "interface-name": [true, "always-prefix"]
+  }
+}
