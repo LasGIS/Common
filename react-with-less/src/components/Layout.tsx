@@ -2,10 +2,11 @@ import React from 'react';
 import { Outlet } from 'react-router';
 
 const Layout = () => (
-  <div className="App">
-    <header className="App-header">
+  <div className="app">
+    <header className="app-header"></header>
+    <div className="app-content">
       <Outlet />
-    </header>
+    </div>
   </div>
 );
 
