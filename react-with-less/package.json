@@ -12,9 +12,9 @@
     "eslint-html": "eslint -f html --report-unused-disable-directives -o ./eslint-output-file.html  --ext .js,.jsx,.ts,.tsx src"
   },
   "devDependencies": {
-    "@testing-library/react": "13.4.0",
-    "@testing-library/user-event": "13.5.0",
-    "@types/react": "18.0.37",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/user-event": "14.4.3",
+    "@types/react": "18.0.38",
     "@types/react-dom": "18.0.11",
     "@typescript-eslint/eslint-plugin": "5.59.0",
     "@typescript-eslint/parser": "5.59.0",
@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@testing-library/jest-dom": "5.16.5",
-    "@types/jest": "27.5.2",
-    "@types/node": "16.18.24",
+    "@types/jest": "29.5.1",
+    "@types/node": "18.15.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router": "6.10.0",
