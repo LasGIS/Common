@@ -11,6 +11,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  & ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    & li {
+      margin: 0 10px;
+    }
+  }
 }
 
 .app-content {
