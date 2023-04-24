@@ -18,6 +18,7 @@ class SomeComponent extends Component<Props, State> {
   handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     this.setState((state) => ({ count: state.count + 1 }));
     console.log(event.target);
+    console.log('document.cookie', document.cookie);
   }
 
   render() {
