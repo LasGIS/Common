@@ -18,6 +18,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/no-did-update-set-state": "off",
     "react/static-property-placement": "off",
-    "@typescript-eslint/default-param-last": "off"
+    "@typescript-eslint/default-param-last": "off",
+    "import/extensions": "off"
   }
 }
