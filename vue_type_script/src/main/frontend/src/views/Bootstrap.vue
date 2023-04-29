@@ -23,11 +23,11 @@
 
         <button class="btn btn-warning" data-bs-toggle="collapse" data-bs-target="#collapseInnerHeaders">HTTP Headers</button>
         <div class="collapse" id="collapseInnerHeaders">
-          <p v-if="headers && headers.length">
-          <li v-for="header of headers">
-            <div class="card card-body">Header: {{ header.valueOf() }}</div>
-          </li>
-          </p>
+          <ol v-if="headers && Object.keys(headers).length">
+            <li v-for="[key, value] in Object.entries(headers)">
+              <div class="card card-body">Header: {{ key }}: {{ value }}</div>
+            </li>
+          </ol>
         </div>
 
         <button class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#collapseInnerResponseConfig">Full Request configuration</button>
@@ -42,16 +42,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import api from '../api/backend-api'
-import {AxiosError, AxiosRequestConfig} from "axios";
+import { AxiosError, AxiosRequestConfig, AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
 
 interface State {
   msg: string;
   showResponse: boolean;
   backendResponse: string;
-  responseConfig: any;
+  responseConfig: AxiosRequestConfig;
   httpStatusCode: number;
   httpStatusText: string;
-  headers: string[];
+  headers: RawAxiosResponseHeaders | AxiosResponseHeaders;
   errors: AxiosError[]
 }
 
@@ -63,10 +63,10 @@ export default defineComponent({
       msg: 'Nice Bootstrap candy!',
       showResponse: false,
       backendResponse: '',
-      responseConfig: '',
+      responseConfig: {},
       httpStatusCode: 0,
       httpStatusText: '',
-      headers: ['Noting here atm. Did you call the Service?'],
+      headers: {},
       errors: []
     }
   },
