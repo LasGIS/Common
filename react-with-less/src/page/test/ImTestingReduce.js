@@ -17,7 +17,7 @@ export const groupByFieldReduce = (arr, groupBy) => {
     const { id, ...obj } = item;
     const groupName = item[groupBy];
     if (acc.has(groupName)) {
-      acc.get(groupName)?.set(id, obj);
+      acc.get(groupName).set(id, obj);
     } else {
       acc.set(groupName, new Map().set(id, obj));
     }

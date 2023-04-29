@@ -1,13 +1,13 @@
-package com.lasgis.prototype.vue_type_script;
+package com.lasgis.prototype.vue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VueTypeScriptApplicationTests {
+class VueApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
