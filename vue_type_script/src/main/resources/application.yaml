@@ -16,3 +16,6 @@ spring:
       maximum-pool-size: 10
       schema: prototype
 
+local:
+  server:
+    port: 8098

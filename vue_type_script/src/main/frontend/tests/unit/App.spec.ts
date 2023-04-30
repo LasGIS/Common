@@ -5,6 +5,6 @@ import App from '@/App.vue';
 describe('App component should', () => {
   it('render without crashing', () => {
     const wrapper = shallowMount(App);
-    expect(wrapper.html()).toContain('<div id="nav">')
+    expect(wrapper.html()).toContain('<div id="nav">');
   });
 });
