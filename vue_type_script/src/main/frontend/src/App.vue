@@ -1,13 +1,10 @@
 <template>
   <div id="nav">
-    <router-link to="/">Hello</router-link> |
-    <router-link to="/callservice">Service</router-link> |
-    <router-link to="/bootstrap">Bootstrap</router-link> |
-    <router-link to="/user">User</router-link> |
-    <router-link to="/login">Login</router-link> |
+    <router-link to="/">Hello</router-link> | <router-link to="/callservice">Service</router-link> |
+    <router-link to="/bootstrap">Bootstrap</router-link> | <router-link to="/user">User</router-link> | <router-link to="/login">Login</router-link> |
     <router-link to="/protected">Protected</router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
@@ -26,7 +23,7 @@
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-     color: #42b983;
+      color: #42b983;
     }
   }
 }
