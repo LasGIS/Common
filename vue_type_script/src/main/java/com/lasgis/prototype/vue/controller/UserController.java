@@ -2,7 +2,7 @@
  *  @(#)UserController.java  last: 01.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
- * Description: Program for support Arduino.
+ * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
