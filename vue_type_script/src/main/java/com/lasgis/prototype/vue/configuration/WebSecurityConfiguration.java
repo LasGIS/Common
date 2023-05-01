@@ -1,7 +1,7 @@
 /*
  *  @(#)WebSecurityConfiguration.java  last: 01.05.2023
  *
- * Title: LG propotype for java-sprind-jdbc + vue-type-script
+ * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Arduino.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */

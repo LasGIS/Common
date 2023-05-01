@@ -1,5 +1,5 @@
  @(#)$file.fileName  last: $file.lastModified.format("dd.MM.YYYY")
 
-Title: LG propotype for java-sprind-jdbc + vue-type-script
-Description: Program for support Arduino.
+Title: LG prototype for java-spring-jdbc + vue-type-script
+Description: Program for support Prototype.
 Copyright (c) $today.year, LasGIS Company. All Rights Reserved.
