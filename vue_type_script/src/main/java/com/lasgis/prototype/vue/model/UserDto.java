@@ -1,4 +1,12 @@
-package com.lasgis.prototype.vue.dto;
+/*
+ *  @(#)UserDto.java  last: 01.05.2023
+ *
+ * Title: LG propotype for java-sprind-jdbc + vue-type-script
+ * Description: Program for support Arduino.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
+package com.lasgis.prototype.vue.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +25,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoUser {
+public class UserDto {
     private Integer userId;
     private String login;
     private String name;

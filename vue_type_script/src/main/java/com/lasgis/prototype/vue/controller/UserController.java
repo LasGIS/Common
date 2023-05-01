@@ -1,8 +1,16 @@
+/*
+ *  @(#)UserController.java  last: 01.05.2023
+ *
+ * Title: LG propotype for java-sprind-jdbc + vue-type-script
+ * Description: Program for support Arduino.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
 package com.lasgis.prototype.vue.controller;
 
-import com.lasgis.prototype.vue.dto.DtoUser;
-import com.lasgis.prototype.vue.dto.UserRole;
 import com.lasgis.prototype.vue.exception.UserNotFoundException;
+import com.lasgis.prototype.vue.model.UserDto;
+import com.lasgis.prototype.vue.model.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +46,8 @@ public class UserController {
     @PostMapping(path = "/user/{lastName}/{firstName}")
     @ResponseStatus(HttpStatus.CREATED)
     public long addNewUser(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-        DtoUser savedUser = //userRepository.save(
-            DtoUser.builder().userId(RANDOM_ID.nextInt())
+        UserDto savedUser = //userRepository.save(
+            UserDto.builder().userId(RANDOM_ID.nextInt())
                 .login(firstName)
                 .name(lastName)
                 .roles(List.of(UserRole.OPERATOR))
@@ -51,11 +59,11 @@ public class UserController {
 
     @ResponseBody
     @GetMapping(path = "/user/{id}")
-    public DtoUser getUserById(@PathVariable("id") int id) {
+    public UserDto getUserById(@PathVariable("id") int id) {
         if (id == 200) {
             throw new UserNotFoundException("The user with the id " + id + " couldn't be found in the database.");
         }
-        return DtoUser.builder()
+        return UserDto.builder()
             .userId(id)
             .login("sina")
             .name("miller")
