@@ -1,3 +1,6 @@
+server:
+  port: 8098
+
 spring:
 
 #  # flyway migration
