@@ -1,0 +1,4 @@
+simple:
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    transactional-id: "my-transactional-id"
