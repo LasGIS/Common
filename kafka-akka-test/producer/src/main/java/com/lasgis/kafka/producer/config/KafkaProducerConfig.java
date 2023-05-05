@@ -14,8 +14,8 @@ public class KafkaProducerConfig {
 
     @Bean
     public Producer<String, String> getProducer(
-            @Value("${simple.kafka.bootstrap-servers}") String servers,
-            @Value("${simple.kafka.transactional-id}") String transactionalId
+            @Value("${simple.kafka.bootstrap.servers}") String servers,
+            @Value("${simple.kafka.transactional.id}") String transactionalId
     ) {
         Properties props = new Properties();
         props.put("bootstrap.servers", servers);

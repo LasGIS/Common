@@ -1,4 +1,0 @@
-simple:
-  kafka:
-    bootstrap-servers: "cluster.playground.cdkt.io:9092"
-    transactional-id: "my-transactional-id"
