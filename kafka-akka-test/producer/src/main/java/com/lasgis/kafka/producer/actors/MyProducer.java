@@ -1,4 +1,4 @@
-package com.lasgis.test.kafka;
+package com.lasgis.kafka.producer.actors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.Producer;
@@ -20,6 +20,6 @@ public class MyProducer {
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
         log.info("Increment counter");
-        producer.send(new ProducerRecord<>("my-topic", "key", "value"));
+        producer.send(new ProducerRecord<>("lg_topic", "key", "value"));
     }
 }

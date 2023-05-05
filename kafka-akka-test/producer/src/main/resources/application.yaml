@@ -1,4 +1,4 @@
 simple:
   kafka:
-    bootstrap-servers: "localhost:9092"
+    bootstrap-servers: "cluster.playground.cdkt.io:9092"
     transactional-id: "my-transactional-id"

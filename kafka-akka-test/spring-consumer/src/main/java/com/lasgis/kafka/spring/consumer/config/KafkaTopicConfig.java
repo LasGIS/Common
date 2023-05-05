@@ -1,4 +1,4 @@
-package com.lasgis.test.kafka.config;
+package com.lasgis.kafka.spring.consumer.config;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Configuration
 public class KafkaTopicConfig {
-    @Value(value = "${spring.kafka.bootstrap-servers}")
+    @Value(value = "${spring.kafka.bootstrap.servers}")
     private String bootstrapAddress;
 
     @Bean
@@ -24,6 +24,6 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("baeldung", 1, (short) 1);
+        return new NewTopic("lg_topic", 1, (short) 1);
     }
 }

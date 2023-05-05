@@ -1,0 +1,8 @@
+spring:
+  kafka:
+    bootstrap.servers: "cluster.playground.cdkt.io:9092"
+    security.protocol: SASL_SSL
+    sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule
+    username: "4vrj9uSku6rHwsoowpoXkv"
+    password: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGguY29uZHVrdG9yLmlvIiwic291cmNlQXBwbGljYXRpb24iOiJhZG1pbiIsInVzZXJNYWlsIjpudWxsLCJwYXlsb2FkIjp7InZhbGlkRm9yVXNlcm5hbWUiOiI0dnJqOXVTa3U2ckh3c29vd3BvWGt2Iiwib3JnYW5pemF0aW9uSWQiOjcyOTMzLCJ1c2VySWQiOjg0NzczLCJmb3JFeHBpcmF0aW9uQ2hlY2siOiJlY2U3NDFmNy1mODc0LTQyNjEtYTZiOS0xMWY4YmRmMzVkZWMifX0.qwg6NeUK2U1MJYeKbuxh8ktiUQIBU28CMQ8acAvHd50"
+    sasl.mechanism: PLAIN

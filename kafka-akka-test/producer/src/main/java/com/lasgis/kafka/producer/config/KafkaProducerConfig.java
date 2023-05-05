@@ -1,4 +1,4 @@
-package com.lasgis.test.kafka.config;
+package com.lasgis.kafka.producer.config;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -26,7 +26,7 @@ public class KafkaProducerConfig {
 /*
     @Bean
     public NewTopic topic() {
-        return TopicBuilder.name("topic1")
+        return TopicBuilder.name("lg_topic")
                 .partitions(10)
                 .replicas(1)
                 .build();
@@ -37,7 +37,7 @@ public class KafkaProducerConfig {
     @Bean
     public ApplicationRunner runner(KafkaTemplate<String, String> template) {
         return args -> {
-            template.send("topic1", "test");
+            template.send("lg_topic", "test");
         };
     }
 */

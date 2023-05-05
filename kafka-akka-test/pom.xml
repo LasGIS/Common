@@ -18,8 +18,8 @@
 
     <modules>
         <module>spring-common</module>
-<!--        <module>spring-consumer</module>-->
-<!--        <module>spring-producer</module>-->
+        <module>spring-consumer</module>
+        <module>spring-producer</module>
         <module>producer</module>
     </modules>
     <properties>
