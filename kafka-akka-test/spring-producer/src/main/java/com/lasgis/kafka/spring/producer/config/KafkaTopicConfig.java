@@ -26,13 +26,13 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("lg_topic", 10, (short) 1);
+        return new NewTopic("lg_topic", 1, (short) 1);
     }
 
     @Bean
     public ApplicationRunner runner(KafkaTemplate<String, String> template) {
         return args -> {
-            template.send("lg_topic", "key2", "test2");
+            template.send("lg_topic", "key3", "test3");
         };
     }
 }

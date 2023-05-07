@@ -1,10 +1,10 @@
 spring:
   kafka:
-    bootstrap.servers: "localhost:29092"
-    transactional.id: "my-transactional-id"
+    bootstrap.servers: localhost:29092
+    transactional.id: my-transactional-id
 
 bootstrap.servers: host.docker.internal:29092
-transactional.id: "my-transactional-id"
+transactional.id: my-transactional-id
 #bootstrap.servers: "cluster.playground.cdkt.io:9092"
 #security.protocol: SASL_SSL
 #sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule
