@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "kafka-producer")
+@ConfigurationProperties(prefix = "kafka.producer")
 public class KafkaProducerProperties {
     private String bootstrapServers;
     private String transactionalId;
