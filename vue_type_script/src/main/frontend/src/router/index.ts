@@ -13,13 +13,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: MyLayout,
-    children: [
-      { path: '/hello', component: Home },
-      { path: '/call-service', component: Service },
-      { path: '/bootstrap', component: Bootstrap },
-      { path: '/user', component: User },
-    ],
+    children: [{ path: '/user', component: User }],
   },
+  { path: '/hello', component: Home },
+  { path: '/call-service', component: Service },
+  { path: '/bootstrap', component: Bootstrap },
   { path: '/login', component: Login },
   {
     path: '/protected',
