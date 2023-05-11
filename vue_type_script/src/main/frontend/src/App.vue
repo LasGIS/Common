@@ -1,7 +1,8 @@
 <template>
   <div id="nav">
-    <router-link to="/">Hello</router-link>
-    <router-link to="/callservice">Service</router-link>
+    <router-link to="/">Layout</router-link>
+    <router-link to="/hello">Hello</router-link>
+    <router-link to="/call-service">Service</router-link>
     <router-link to="/bootstrap">Bootstrap</router-link>
     <router-link to="/user">User</router-link>
     <router-link to="/login">Login</router-link>

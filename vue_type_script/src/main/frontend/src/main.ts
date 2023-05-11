@@ -6,7 +6,4 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 
-const app = createApp(App);
-app.use(router);
-app.use(store);
-app.mount('#app');
+createApp(App).use(router).use(store).mount('#app');

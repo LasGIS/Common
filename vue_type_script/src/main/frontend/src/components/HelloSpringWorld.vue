@@ -8,7 +8,7 @@
     <h3>This site contains more stuff :)</h3>
     <ul>
       <li>HowTo call REST-Services:</li>
-      <li><router-link to="/callservice">/callservice</router-link></li>
+      <li><router-link to="/call-service">/call-service</router-link></li>
       <li>HowTo to play around with Bootstrap UI components:</li>
       <li><router-link to="/bootstrap">/bootstrap</router-link></li>
       <li>HowTo to interact with the Spring Boot database backend:</li>

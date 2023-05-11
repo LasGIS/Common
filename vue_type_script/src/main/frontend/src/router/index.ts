@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import MyLayout from '../components/layout/MyLayout.vue';
 import Home from '../views/Home.vue';
 import Service from '../views/Service.vue';
 import Bootstrap from '../views/Bootstrap.vue';
@@ -9,10 +10,16 @@ import Protected from '../views/Protected.vue';
 import store from '../store';
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/', component: Home },
-  { path: '/callservice', component: Service },
-  { path: '/bootstrap', component: Bootstrap },
-  { path: '/user', component: User },
+  {
+    path: '/',
+    component: MyLayout,
+    children: [
+      { path: '/hello', component: Home },
+      { path: '/call-service', component: Service },
+      { path: '/bootstrap', component: Bootstrap },
+      { path: '/user', component: User },
+    ],
+  },
   { path: '/login', component: Login },
   {
     path: '/protected',

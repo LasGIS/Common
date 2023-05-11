@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue with Spring logo" src="../assets/spring-boot-vuejs-logo.png" />
     <HelloSpringWorld hellomsg="Welcome to your Vue.js (+ TypeScript) powered Spring Boot App" />
   </div>
 </template>
