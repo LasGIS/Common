@@ -6,18 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Slf4j
 @SpringBootTest(classes = ReactiveApplication.class)
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestEntityManager
 //@Transactional
 class UmUserRepositoryTest {
 
@@ -34,5 +31,6 @@ class UmUserRepositoryTest {
         List<UmUser> list = flux.collectList().block();
         Assertions.assertNotNull(list);
         Assertions.assertEquals(2, list.size());
+        log.info("list = {}", list);
     }
 }
