@@ -7,5 +7,10 @@ spring:
         password: postgres
         properties:
             schema: prototype
+        pool:
+            enabled: true
+            initial-size: 10
+            max-idle-time: 1m
+            max-size: 30
 
-
+    data.r2dbc.repositories.enabled: true
