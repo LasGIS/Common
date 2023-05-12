@@ -1,0 +1,11 @@
+spring:
+    # r2dbc connection
+    # see https://github.com/pgjdbc/r2dbc-postgresql
+    r2dbc:
+        url: r2dbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: postgres
+        properties:
+            schema: prototype
+
+
