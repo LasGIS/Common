@@ -1,7 +1,7 @@
 package com.lasgis.reactive.repository;
 
 import com.lasgis.reactive.ReactiveApplication;
-import com.lasgis.reactive.model.UserDto;
+import com.lasgis.reactive.entity.UmUser;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,19 +16,19 @@ import java.util.List;
 @SpringBootTest(classes = ReactiveApplication.class)
 @AutoConfigureTestEntityManager
 //@Transactional
-class UserDtoRepositoryTest {
+class UmUserRepositoryTestManual {
 
-    private final UserDtoRepository repository;
+    private final UmUserRepository repository;
 
     @Autowired
-    public UserDtoRepositoryTest(UserDtoRepository repository) {
+    public UmUserRepositoryTestManual(UmUserRepository repository) {
         this.repository = repository;
     }
 
     @Test
-    void getAllUserDto() {
-        final Flux<UserDto> flux = repository.getAllUserDto();
-        final List<UserDto> list = flux.collectList().block();
+    void getAllUmUser() {
+        Flux<UmUser> flux = repository.findAll();
+        List<UmUser> list = flux.collectList().block();
         Assertions.assertNotNull(list);
         Assertions.assertEquals(2, list.size());
         log.info("list = {}", list);
