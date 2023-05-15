@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 01.05.2023
+ *  @(#)UserController.java  last: 02.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.

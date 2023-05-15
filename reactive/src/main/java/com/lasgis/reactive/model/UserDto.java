@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDto.java  last: 01.05.2023
+ *  @(#)UserDto.java  last: 15.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.

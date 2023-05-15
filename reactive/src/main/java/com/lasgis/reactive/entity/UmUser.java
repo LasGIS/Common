@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDto.java  last: 01.05.2023
+ *  @(#)UmUser.java  last: 15.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -30,9 +30,5 @@ public class UmUser {
     private String umusrLogin;
     private String umusrName;
     private String umusrPassword;
-    /*
-        @Reference(to = UmRole.class)
-        private UmRole UmRole;
-    */
     private Boolean umusrArchived;
 }
