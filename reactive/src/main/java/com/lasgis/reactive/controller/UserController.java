@@ -9,8 +9,6 @@
 package com.lasgis.reactive.controller;
 
 import com.lasgis.reactive.model.UserDto;
-import com.lasgis.reactive.model.errors.Error;
-import com.lasgis.reactive.model.errors.ErrorCode;
 import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ import reactor.core.publisher.Mono;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
 
@@ -40,30 +38,47 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(path = "/user")
+    @GetMapping()
     public Flux<UserDto> list() {
         return userService.findAll();
     }
 
-    @ResponseBody
-    @GetMapping(path = "/user/{login}")
-    public Mono<UserDto> getUserById(@PathVariable("login") final String login) {
+    @GetMapping(path = "{id}")
+    public Mono<UserDto> getUserById(@PathVariable("id") final Integer id) {
+        return userService.findById(id);
+    }
+
+    @GetMapping(path = "login")
+    public Mono<UserDto> getUserByLogin(@RequestParam("login") final String login) {
         return userService.findByLogin(login);
-//        if (id == 200) {
-//            throw new UserNotFoundException("The user with the id " + id + " couldn't be found in the database.");
-//        }
-//
-//        return userRepository.findById(id).map(user -> {
-//            log.info("Reading user with id " + id + " from database.");
-//            return user;
-//        }).orElseThrow(() -> new UserNotFoundException("The user with the id " + id + " couldn't be found in the database."));
     }
 
-    @ExceptionHandler()
-    public Error externalServiceError(Exception ex) {
-        final String message = String.format("External service error: %s", ex.getMessage());
-        log.warn(message);
-        return Error.of(ErrorCode.INTERNAL_SERVER_ERROR, message);
+    @PostMapping()
+    Mono<UserDto> newUser(@RequestBody UserDto newUser) {
+        return userService.save(newUser);
     }
 
+    @PutMapping("{id}")
+    Mono<UserDto> replaceEmployee(@RequestBody UserDto newUser, @PathVariable Integer id) {
+        return userService.findById(id)
+            .flatMap(user -> {
+                user.setName(newUser.getName());
+                user.setLogin(newUser.getLogin());
+                user.setPassword(newUser.getPassword());
+                user.setArchived(newUser.getArchived());
+                user.setRoles(newUser.getRoles());
+                return userService.save(user);
+            })
+            .switchIfEmpty(
+                Mono.defer(() -> {
+                    newUser.setUserId(id);
+                    return userService.save(newUser);
+                })
+            );
+    }
+
+    @DeleteMapping("{id}")
+    Mono<Void> deleteEmployee(@PathVariable Integer id) {
+        return userService.deleteById(id);
+    }
 }

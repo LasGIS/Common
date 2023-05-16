@@ -16,5 +16,7 @@ package com.lasgis.reactive.model.errors;
  */
 public enum ErrorCode {
     /** internal service error */
-    INTERNAL_SERVER_ERROR
+    INTERNAL_SERVER_ERROR,
+    /** ufps not found */
+    USER_NOT_FOUND,
 }

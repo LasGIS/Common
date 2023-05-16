@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import reactor.core.CoreSubscriber;
 import reactor.core.publisher.Mono;
 
@@ -28,6 +30,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
+    @Id
+    @Column(value = "umusr_user_id")
     private Integer userId;
     private String login;
     private String name;

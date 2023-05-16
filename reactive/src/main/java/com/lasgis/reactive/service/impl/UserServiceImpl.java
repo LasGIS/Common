@@ -9,6 +9,7 @@
 package com.lasgis.reactive.service.impl;
 
 import com.lasgis.reactive.model.UserDto;
+import com.lasgis.reactive.model.exception.ItemNotFoundException;
 import com.lasgis.reactive.repository.UserDtoRepository;
 import com.lasgis.reactive.service.UserService;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Mono<UserDto> findById(Integer id) {
+        return findUserDtoMono(userDtoRepository.getUserDtoById(id));
+    }
+
+    @Override
     public Mono<UserDto> findByLogin(final String login) {
-        return userDtoRepository.getUserDtoByLogin(login);
+        return findUserDtoMono(userDtoRepository.getUserDtoByLogin(login));
+    }
+
+    private Mono<UserDto> findUserDtoMono(Mono<UserDto> user) {
+        return user.flatMap(userDto -> {
+            if (userDto.getArchived()) {
+                return Mono.error(new RuntimeException("User is Archived"));
+            } else {
+                return Mono.just(userDto);
+            }
+        }).switchIfEmpty(Mono.error(new ItemNotFoundException("User not found")));
+    }
+
+    @Override
+    public Mono<UserDto> save(UserDto newUserDto) {
+        return null;
+    }
+
+    @Override
+    public Mono<Void> deleteById(Integer id) {
+        return userDtoRepository.deleteById(id);
     }
 }

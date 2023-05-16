@@ -17,4 +17,10 @@ public interface UserService {
     Flux<UserDto> findAll();
 
     Mono<UserDto> findByLogin(final String login);
+
+    Mono<UserDto> findById(final Integer id);
+
+    Mono<UserDto> save(UserDto newUserDto);
+
+    Mono<Void> deleteById(Integer id);
 }
