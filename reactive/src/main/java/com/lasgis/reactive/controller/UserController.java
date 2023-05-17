@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 15.05.2023
+ *  @(#)UserController.java  last: 17.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping(path = "{id}")
-    public Mono<UserDto> getUserById(@PathVariable("id") final Integer id) {
+    public Mono<UserDto> getUserById(@PathVariable("id") final Long id) {
         return userService.findById(id);
     }
 
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    Mono<UserDto> replaceEmployee(@RequestBody UserDto newUser, @PathVariable Integer id) {
+    Mono<UserDto> replaceEmployee(@RequestBody UserDto newUser, @PathVariable Long id) {
         return userService.findById(id)
             .flatMap(user -> {
                 user.setName(newUser.getName());

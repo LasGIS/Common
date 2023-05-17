@@ -1,5 +1,5 @@
 /*
- *  @(#)UserService.java  last: 15.05.2023
+ *  @(#)UserServiceImpl.java  last: 17.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -9,20 +9,35 @@
 package com.lasgis.reactive.service.impl;
 
 import com.lasgis.reactive.model.UserDto;
+import com.lasgis.reactive.model.UserRole;
 import com.lasgis.reactive.model.exception.ItemNotFoundException;
+import com.lasgis.reactive.repository.UmUserRepository;
+import com.lasgis.reactive.repository.UmUserRoleRepository;
 import com.lasgis.reactive.repository.UserDtoRepository;
 import com.lasgis.reactive.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import static com.lasgis.reactive.service.converter.Converter.*;
+
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserDtoRepository userDtoRepository;
+    private final UmUserRepository umUserRepository;
+    private final UmUserRoleRepository umUserRoleRepository;
 
-    public UserServiceImpl(UserDtoRepository userDtoRepository) {
+    public UserServiceImpl(
+        final UserDtoRepository userDtoRepository,
+        final UmUserRepository umUserRepository,
+        final UmUserRoleRepository umUserRoleRepository
+    ) {
         this.userDtoRepository = userDtoRepository;
+        this.umUserRepository = umUserRepository;
+        this.umUserRoleRepository = umUserRoleRepository;
     }
 
     @Override
@@ -31,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<UserDto> findById(Integer id) {
+    public Mono<UserDto> findById(Long id) {
         return findUserDtoMono(userDtoRepository.getUserDtoById(id));
     }
 
@@ -51,8 +66,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<UserDto> save(UserDto newUserDto) {
-        return null;
+    public Mono<UserDto> save(UserDto userDto) {
+        return umUserRepository.save(USER_DTO_2_UM_USER.apply(userDto))
+            .map(UM_USER_2_USER_DTO)
+            .doOnNext(userOut -> {
+                 Flux.fromIterable(userDto.getRoles())
+                    .flatMap(userRole -> umUserRoleRepository.save(
+                        USER_ROLE_2_UM_USER_ROLE.apply(userOut.getUserId(), userRole)
+                    ))
+                    .subscribe(
+                        umUserRole -> {
+                            final UserRole role = UM_USER_ROLE_2_USER_ROLE.apply(umUserRole);
+                            userOut.getRoles().add(role);
+                        },
+                        throwable -> { throw new RuntimeException("throwable -> { throw new RuntimeException}"); },
+                        () -> {
+                            log.info("() -> log.info(\"\")");
+                        }
+                     );
+//                return Mono.just(userOut);
+            });
     }
 
     @Override

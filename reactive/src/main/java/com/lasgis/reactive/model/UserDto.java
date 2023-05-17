@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDto.java  last: 15.05.2023
+ *  @(#)UserDto.java  last: 17.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -14,8 +14,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import reactor.core.CoreSubscriber;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ import java.util.List;
 public class UserDto {
     @Id
     @Column(value = "umusr_user_id")
-    private Integer userId;
+    private Long userId;
     private String login;
     private String name;
     private String password;
