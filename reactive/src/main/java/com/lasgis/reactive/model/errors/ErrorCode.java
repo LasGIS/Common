@@ -1,5 +1,5 @@
 /*
- *  @(#)ErrorCode.java  last: 15.05.2023
+ *  @(#)ErrorCode.java  last: 18.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -19,4 +19,6 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR,
     /** ufps not found */
     USER_NOT_FOUND,
+    /** duplicate key value violates uniqueness constraint */
+    DUPLICATE_KEY_VALUE
 }
