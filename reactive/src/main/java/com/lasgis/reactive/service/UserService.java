@@ -1,5 +1,5 @@
 /*
- *  @(#)UserService.java  last: 17.05.2023
+ *  @(#)UserService.java  last: 18.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -22,5 +22,5 @@ public interface UserService {
 
     Mono<UserDto> save(UserDto userDto);
 
-    Mono<Void> deleteById(Integer id);
+    Mono<Void> deleteById(Long id);
 }

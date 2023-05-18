@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDtoRepository.java  last: 17.05.2023
+ *  @(#)UserDtoRepository.java  last: 18.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -16,7 +16,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface UserDtoRepository extends ReactiveCrudRepository<UserDto, Integer> {
+public interface UserDtoRepository extends ReactiveCrudRepository<UserDto, Long> {
     @Query(value = "SELECT"
         + "     usr.umusr_user_id        AS user_id,"
         + "     usr.umusr_login          AS login,"

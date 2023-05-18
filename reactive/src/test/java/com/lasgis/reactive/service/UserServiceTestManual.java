@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceTestManual.java  last: 17.05.2023
+ *  @(#)UserServiceTestManual.java  last: 18.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -58,6 +58,7 @@ class UserServiceTestManual {
             .roles(List.of(UserRole.CHIEF, UserRole.SUPERVISOR))
             .build();
         final UserDto userDto = service.save(user).block();
+        //service.deleteById(userDto.getUserId()).block();
         log.info("UserDto = {}", userDto);
     }
 }

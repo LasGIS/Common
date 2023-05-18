@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 17.05.2023
+ *  @(#)UserController.java  last: 18.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -78,7 +78,7 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    Mono<Void> deleteEmployee(@PathVariable Integer id) {
+    Mono<Void> deleteEmployee(@PathVariable Long id) {
         return userService.deleteById(id);
     }
 }

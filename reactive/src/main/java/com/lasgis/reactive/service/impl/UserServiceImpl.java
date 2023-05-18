@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceImpl.java  last: 17.05.2023
+ *  @(#)UserServiceImpl.java  last: 18.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -9,7 +9,6 @@
 package com.lasgis.reactive.service.impl;
 
 import com.lasgis.reactive.model.UserDto;
-import com.lasgis.reactive.model.UserRole;
 import com.lasgis.reactive.model.exception.ItemNotFoundException;
 import com.lasgis.reactive.repository.UmUserRepository;
 import com.lasgis.reactive.repository.UmUserRoleRepository;
@@ -69,27 +68,22 @@ public class UserServiceImpl implements UserService {
     public Mono<UserDto> save(UserDto userDto) {
         return umUserRepository.save(USER_DTO_2_UM_USER.apply(userDto))
             .map(UM_USER_2_USER_DTO)
-            .doOnNext(userOut -> {
-                 Flux.fromIterable(userDto.getRoles())
+            .flatMap(userOut ->
+                Flux.fromIterable(userDto.getRoles())
                     .flatMap(userRole -> umUserRoleRepository.save(
                         USER_ROLE_2_UM_USER_ROLE.apply(userOut.getUserId(), userRole)
                     ))
-                    .subscribe(
-                        umUserRole -> {
-                            final UserRole role = UM_USER_ROLE_2_USER_ROLE.apply(umUserRole);
-                            userOut.getRoles().add(role);
-                        },
-                        throwable -> { throw new RuntimeException("throwable -> { throw new RuntimeException}"); },
-                        () -> {
-                            log.info("() -> log.info(\"\")");
-                        }
-                     );
-//                return Mono.just(userOut);
-            });
+                    .map(UM_USER_ROLE_2_USER_ROLE)
+                    .collectList()
+                    .flatMap(roleList -> {
+                        userOut.setRoles(roleList);
+                        return Mono.just(userOut);
+                    })
+            );
     }
 
     @Override
-    public Mono<Void> deleteById(Integer id) {
-        return userDtoRepository.deleteById(id);
+    public Mono<Void> deleteById(Long id) {
+        return umUserRepository.deleteById(id);
     }
 }
