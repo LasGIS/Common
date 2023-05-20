@@ -32,7 +32,11 @@ public class KafkaTopicConfig {
     @Bean
     public ApplicationRunner runner(KafkaTemplate<String, String> template) {
         return args -> {
-            template.send("lg_topic", "key3", "test3");
+            for (final String key : args.getOptionNames()) {
+                for (final String data : args.getOptionValues(key)) {
+                    template.send("lg_topic", key, data);
+                }
+            }
         };
     }
 }
