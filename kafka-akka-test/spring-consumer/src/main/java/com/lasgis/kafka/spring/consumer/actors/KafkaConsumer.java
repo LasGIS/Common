@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class KafkaConsumer {
-    @KafkaListener(id = "my-transactional-id", topics = "${topic}")
+    @KafkaListener(id = "my-transactional-id", topics = "lg_topic")
     public void listen(
         @Payload String message,
         @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,

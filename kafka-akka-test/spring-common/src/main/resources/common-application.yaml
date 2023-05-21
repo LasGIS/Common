@@ -1,7 +1,19 @@
 spring:
   kafka:
-    bootstrap.servers: localhost:29092
+    bootstrap.servers: host.docker.internal:29092
     transactional.id: my-transactional-id
+
+kafka:
+  producer:
+    bootstrap-servers: host.docker.internal:29092
+    transactional-id: my-transactional-id
+    acks: all
+    retries: 0
+    batch-size: 16384
+    linger-ms: 1
+    buffer-memory: 33554432
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 bootstrap.servers: host.docker.internal:29092
 transactional.id: my-transactional-id

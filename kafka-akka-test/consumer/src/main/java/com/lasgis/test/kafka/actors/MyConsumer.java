@@ -1,25 +1,44 @@
 package com.lasgis.test.kafka.actors;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Service;
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+import java.time.Duration;
+import java.util.List;
 
 @Slf4j
-@Service
-public class MyConsumer {
+@Component
+public class MyConsumer implements ApplicationRunner {
 
-    private final Producer<String, String> producer;
+    private final Consumer<String, String> consumer;
 
-    public MyConsumer(Producer<String, String> producer) {
-        this.producer = producer;
+    public MyConsumer(Consumer<String, String> consumer) {
+        this.consumer = consumer;
     }
 
-    @EventListener
-    public void onApplicationEvent(ContextRefreshedEvent event) {
+    @Override
+    public void run(ApplicationArguments args) {
+        log.info("args.getNonOptionArgs() = {}", args.getNonOptionArgs());
+        log.info("args.getOptionNames() = {}", args.getOptionNames());
+        for (final String optionName : args.getOptionNames()) {
+            log.info("Option({}) = {}", optionName, args.getOptionValues(optionName));
+        }
+    }
+
+    public void initMethod() {
         log.info("Increment counter");
-        producer.send(new ProducerRecord<>("lg_topic", "key", "value"));
+        consumer.subscribe(List.of("lg_topic"));
+        while (true) {
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, String> record : records) {
+                // print the offset,key and value for the consumer records.
+                System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+            }
+        }
     }
 }
