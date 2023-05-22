@@ -25,7 +25,7 @@ public class SimpleProducer {
         Properties props = new Properties();
 
         //Assign localhost id
-        props.put("bootstrap.servers", "host.docker.internal:29092");
+        props.put("bootstrap.servers", "127.0.0.1:9092");
         //Set acknowledgements for producer requests.
         props.put("acks", "all");
         //If the request fails, the producer can automatically retry,
@@ -40,7 +40,7 @@ public class SimpleProducer {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         Producer<String, String> producer = new KafkaProducer<>(props);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             producer.send(new ProducerRecord<>(topicName, Integer.toString(i), Integer.toString(i)));
         }
         System.out.println("Message sent successfully");

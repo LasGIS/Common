@@ -1,11 +1,11 @@
 spring:
   kafka:
-    bootstrap.servers: host.docker.internal:29092
+    bootstrap.servers: 127.0.0.1:9092
     transactional.id: my-transactional-id
 
 kafka:
   producer:
-    bootstrap-servers: host.docker.internal:29092
+    bootstrap-servers: 127.0.0.1:9092
     transactional-id: my-transactional-id
     acks: all
     retries: 0
@@ -15,7 +15,7 @@ kafka:
     key-serializer: org.apache.kafka.common.serialization.StringSerializer
     value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
-bootstrap.servers: host.docker.internal:29092
+bootstrap.servers: 127.0.0.1:9092
 transactional.id: my-transactional-id
 #bootstrap.servers: "cluster.playground.cdkt.io:9092"
 #security.protocol: SASL_SSL

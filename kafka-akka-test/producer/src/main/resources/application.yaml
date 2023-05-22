@@ -1,6 +1,6 @@
 kafka:
   producer:
-    bootstrap-servers: host.docker.internal:29092
+    bootstrap-servers: 127.0.0.1:9092
     transactional-id: my-transactional-id
     acks: all
     retries: 0

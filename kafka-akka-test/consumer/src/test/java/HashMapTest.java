@@ -1,3 +1,4 @@
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ import java.util.Map;
  * @author VLaskin
  * @since 21.05.2023 : 1:14
  */
+@Slf4j
 public class HashMapTest {
     final static String[] UNIQUE_KEY = {
         "LongKey0123456789012345678901234567890123456789DB",
@@ -29,9 +31,14 @@ public class HashMapTest {
     @Test
     public void addHashMap() {
         final Map<String, String> map = new HashMap<>();
-        String val = map.put(UNIQUE_KEY[0], "val");
+        String val;
+        val = map.put(UNIQUE_KEY[0], "val");
+        log.info("map.put(UNIQUE_KEY[0], \"val\") => {}", val);
         val = map.put(UNIQUE_KEY[0], "val2");
+        log.info("map.put(UNIQUE_KEY[0], \"val2\") => {}", val);
         val = map.put(UNIQUE_KEY[1], "val3");
+        log.info("map.put(UNIQUE_KEY[1], \"val3\") => {}", val);
         val = map.put(UNIQUE_KEY[1], "val4");
+        log.info("map.put(UNIQUE_KEY[1], \"val4\") => {}", val);
     }
 }

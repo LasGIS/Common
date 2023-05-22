@@ -21,7 +21,7 @@ public class MyProducer implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent event) {
         log.info("Increment counter");
 //        producer.send(new ProducerRecord<>("lg_topic", "key", "value"));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             producer.send(new ProducerRecord<>("lg_topic",
                 "key" + i, "value" + i));
         }
