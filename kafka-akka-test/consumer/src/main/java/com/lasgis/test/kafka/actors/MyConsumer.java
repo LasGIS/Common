@@ -6,16 +6,14 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.List;
 
 @Slf4j
 @Component
-public class MyConsumer implements ApplicationRunner, CommandLineRunner {
+public class MyConsumer implements ApplicationRunner {
 
     private final Consumer<String, String> consumer;
 
@@ -23,37 +21,19 @@ public class MyConsumer implements ApplicationRunner, CommandLineRunner {
         this.consumer = consumer;
     }
 
-    @PostConstruct
-    void initPostConstruct() {
-        log.info("---@PostConstruct---");
-    }
-
     @Override
     public void run(ApplicationArguments args) {
-        log.info("---ApplicationRunner---");
-        log.info("args.getNonOptionArgs() = {}", args.getNonOptionArgs());
-        log.info("args.getOptionNames() = {}", args.getOptionNames());
-        for (final String optionName : args.getOptionNames()) {
-            log.info("Option({}) = {}", optionName, args.getOptionValues(optionName));
-        }
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        log.info("---CommandLineRunner--- args.length = {}", args.length);
-        initMethod();
-    }
-
-    public void initMethod() {
-        log.info("init_method");
         consumer.subscribe(List.of("lg_topic"));
-        while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-            for (ConsumerRecord<String, String> record : records) {
-                // print the offset,key and value for the consumer records.
-                log.info("partition = {}, offset = {}, key = {}, value = {}",
-                    record.partition(), record.offset(), record.key(), record.value());
+        new Thread(() -> {
+            while (!Thread.interrupted()) {
+                // System.err.println("while processed-----------");
+                final ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                for (final ConsumerRecord<String, String> record : records) {
+                    // print the offset,key and value for the consumer records.
+                    log.info("partition = {}, offset = {}, key = {}, value = {}",
+                        record.partition(), record.offset(), record.key(), record.value());
+                }
             }
-        }
+        }).start();
     }
 }

@@ -1,5 +1,6 @@
 package com.lasgis.test.kafka.config;
 
+import com.lasgis.test.kafka.actors.SpringLifecycle;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -14,12 +15,10 @@ public class KafkaConsumerConfig {
 
     private final KafkaConsumerProperties consumerProperties;
 
-/*
-    @Bean(initMethod = "initMethod")
-    public MyConsumer getMyConsumer(Consumer<String, String> consumer) {
-        return new MyConsumer(consumer);
+    @Bean(initMethod = "init")
+    public SpringLifecycle getSpringLifecycle() {
+        return new SpringLifecycle();
     }
-*/
 
     @Bean
     public Consumer<String, String> getConsumer() {
