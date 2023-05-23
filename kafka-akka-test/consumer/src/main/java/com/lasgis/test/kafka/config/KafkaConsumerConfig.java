@@ -1,3 +1,11 @@
+/*
+ *  @(#)KafkaConsumerConfig.java  last: 23.05.2023
+ *
+ * Title: LG prototype for kafka + akka (simple or spring)
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
 package com.lasgis.test.kafka.config;
 
 import com.lasgis.test.kafka.actors.SpringLifecycle;

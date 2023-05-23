@@ -1,0 +1,5 @@
+ @(#)$file.fileName  last: $file.lastModified.format("dd.MM.YYYY")
+
+Title: LG prototype for kafka + akka (simple or spring)
+Description: Program for support Prototype.
+Copyright (c) $today.year, LasGIS Company. All Rights Reserved.
