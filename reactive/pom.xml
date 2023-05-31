@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  @(#)pom.xml  last: 31.05.2023
+  ~
+  ~ Title: LG prototype for java-spring-jdbc + vue-type-script
+  ~ Description: Program for support Prototype.
+  ~ Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+  -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +22,7 @@
     <name>reactive</name>
     <description>reactive</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>

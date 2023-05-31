@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 18.05.2023
+ *  @(#)UserController.java  last: 30.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -13,6 +13,7 @@ import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -39,7 +40,12 @@ public class UserController {
     }
 
     @GetMapping()
-    public Flux<UserDto> list() {
+    public Flux<UserDto> list(
+        WebSession session,
+        ThreadLocal<String> threadLocal
+    ) {
+        threadLocal.set(session.getId());
+        log.info("ThreadLocal<Object> threadLocal = {}", threadLocal.get());
         return userService.findAll();
     }
 

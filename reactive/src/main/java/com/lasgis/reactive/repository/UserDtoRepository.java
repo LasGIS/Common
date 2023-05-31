@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDtoRepository.java  last: 18.05.2023
+ *  @(#)UserDtoRepository.java  last: 31.05.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -41,7 +41,7 @@ public interface UserDtoRepository extends ReactiveCrudRepository<UserDto, Long>
         + "      INNER JOIN um_user_role rol ON usr.umusr_user_id = rol.umusr_user_id"
         + "  WHERE usr.umusr_user_id = :id"
         + "  GROUP BY user_id, login, name, password, archived")
-    Mono<UserDto> getUserDtoById(final Long id);
+    Mono<UserDto> getUserDtoById(Long id);
 
     @Query(value = "SELECT"
         + "     usr.umusr_user_id        AS user_id,"
@@ -54,5 +54,5 @@ public interface UserDtoRepository extends ReactiveCrudRepository<UserDto, Long>
         + "      INNER JOIN um_user_role rol ON usr.umusr_user_id = rol.umusr_user_id"
         + "  WHERE usr.umusr_login = :login"
         + "  GROUP BY user_id, login, name, password, archived")
-    Mono<UserDto> getUserDtoByLogin(final String login);
+    Mono<UserDto> getUserDtoByLogin(String login);
 }
