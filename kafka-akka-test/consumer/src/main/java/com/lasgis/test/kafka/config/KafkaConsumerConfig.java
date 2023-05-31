@@ -1,5 +1,5 @@
 /*
- *  @(#)KafkaConsumerConfig.java  last: 23.05.2023
+ *  @(#)KafkaConsumerConfig.java  last: 24.05.2023
  *
  * Title: LG prototype for kafka + akka (simple or spring)
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 
 package com.lasgis.test.kafka.config;
 
-import com.lasgis.test.kafka.actors.SpringLifecycle;
+import com.lasgis.test.kafka.bean.SpringLifecycle;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;

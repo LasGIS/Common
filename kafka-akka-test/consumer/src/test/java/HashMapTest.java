@@ -1,8 +1,19 @@
+/*
+ *  @(#)HashMapTest.java  last: 31.05.2023
+ *
+ * Title: LG prototype for kafka + akka (simple or spring)
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,5 +51,13 @@ public class HashMapTest {
         log.info("map.put(UNIQUE_KEY[1], \"val3\") => {}", val);
         val = map.put(UNIQUE_KEY[1], "val4");
         log.info("map.put(UNIQUE_KEY[1], \"val4\") => {}", val);
+        val = map.remove(UNIQUE_KEY[0]);
+    }
+
+    @Test
+    public void removeList() {
+        final List<String> list = Collections.synchronizedList(new ArrayList<>());
+        list.add(UNIQUE_KEY[0]);
+        boolean bol = list.remove(UNIQUE_KEY[1]);
     }
 }

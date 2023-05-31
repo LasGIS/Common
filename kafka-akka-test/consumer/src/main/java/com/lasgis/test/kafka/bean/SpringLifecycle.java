@@ -1,13 +1,14 @@
 /*
- *  @(#)SpringLifecycle.java  last: 23.05.2023
+ *  @(#)SpringLifecycle.java  last: 24.05.2023
  *
  * Title: LG prototype for kafka + akka (simple or spring)
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.test.kafka.actors;
+package com.lasgis.test.kafka.bean;
 
+import com.lasgis.test.kafka.actors.MyConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
