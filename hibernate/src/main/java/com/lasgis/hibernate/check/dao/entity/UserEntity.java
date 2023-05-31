@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name = "um_user")
+@Table(name = "um_user", schema = "hiber")
 @UniqueElements
 public class UserEntity implements Serializable {
 
@@ -67,5 +67,4 @@ public class UserEntity implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "umrle_role_id")
     )
     private List<RoleEntity> roles;
-
 }

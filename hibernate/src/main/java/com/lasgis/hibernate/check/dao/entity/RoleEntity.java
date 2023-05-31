@@ -15,14 +15,14 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "um_role")
+@Table(name = "um_role", schema = "hiber")
 public class RoleEntity implements Serializable {
 
     /**
      * Уникальный номер роли
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "umrle_role_id", nullable = false)
     private String roleId;
 
@@ -31,7 +31,7 @@ public class RoleEntity implements Serializable {
      */
     @Column(name = "umrle_description", nullable = false)
     private String description;
-//
-//    @ManyToMany(mappedBy = "roles")
-//    private Set<UserEntity> users;
+
+    @ManyToMany(targetEntity = UserEntity.class, mappedBy = "roles")
+    private Set<UserEntity> users;
 }
