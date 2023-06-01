@@ -1,13 +1,12 @@
-INSERT INTO um_role (umrle_role_id, umrle_description) VALUES ('OPERATOR', 'Оператор');
-INSERT INTO um_role (umrle_role_id, umrle_description) VALUES ('SUPERVISOR', 'Старший смены');
-INSERT INTO um_role (umrle_role_id, umrle_description) VALUES ('CHIEF', 'Начальник');
-INSERT INTO um_role (umrle_role_id, umrle_description) VALUES ('ADMIN', 'Администратор');
+/*
+ *  @(#)V2__insert_users.sql  last: 01.06.2023
+ *
+ * Title: LG prototype for hibernate
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
 
-INSERT INTO um_user (umusr_user_id, umusr_login, umusr_name, umusr_password) VALUES (1, 'LasGIS', 'Владимир Ласкин', '123' );
-INSERT INTO um_user (umusr_user_id, umusr_login, umusr_name, umusr_password) VALUES (2, 'VPupkin', 'Василий Пупкин', '321' );
-
-INSERT INTO um_user_role (umusr_user_id, umrle_role_id) VALUES (1, 'ADMIN');
-INSERT INTO um_user_role (umusr_user_id, umrle_role_id) VALUES (1, 'CHIEF');
-INSERT INTO um_user_role (umusr_user_id, umrle_role_id) VALUES (1, 'SUPERVISOR');
-INSERT INTO um_user_role (umusr_user_id, umrle_role_id) VALUES (2, 'SUPERVISOR');
-INSERT INTO um_user_role (umusr_user_id, umrle_role_id) VALUES (2, 'OPERATOR');
+INSERT INTO um_user (umusr_login, umusr_name, umusr_password, umusr_archived, umusr_roles)
+VALUES ('LasGIS', 'Владимир Ласкин', '123', FALSE, '{"ADMIN", "CHIEF", "SUPERVISOR"}');
+INSERT INTO um_user (umusr_login, umusr_name, umusr_password, umusr_archived, umusr_roles)
+VALUES ('VPupkin', 'Василий Пупкин', '321', FALSE, '{"SUPERVISOR", "OPERATOR"}');

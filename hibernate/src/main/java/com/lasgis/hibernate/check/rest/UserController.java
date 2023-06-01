@@ -95,6 +95,7 @@ public class UserController {
             userEntity.setArchived(newUser.getArchived());
             outUser[0] = userRepository.saveAndFlush(userEntity);
         }, () -> outUser[0] = userRepository.saveAndFlush(newUser));
+        userRepository.flush();
         return Optional.of(outUser[0]);
     }
 

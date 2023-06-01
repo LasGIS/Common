@@ -44,33 +44,33 @@ public class UserEntity implements Serializable {
      * Уникальный номер пользователя
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "umusr_user_id", nullable = false)
     private long userId;
 
     /**
      * Имя пользователя для входа в систему
      */
-    @Column(name = "umusr_login", nullable = false)
+    @Column(name = "umusr_login", columnDefinition = "text", unique = true, nullable = false)
     private String login;
 
     /**
      * ФИО пользователя
      */
-    @Column(name = "umusr_name", nullable = false)
+    @Column(name = "umusr_name", columnDefinition = "text", nullable = false)
     private String name;
 
     /**
      * пароль пользователя
      */
-    @Column(name = "umusr_password", nullable = true)
+    @Column(name = "umusr_password", columnDefinition = "text")
     private String password;
 
     /**
      * Признак архивации (не активная запись)
      */
     @Column(name = "umusr_archived", nullable = false)
-    private String archived;
+    private Boolean archived;
 
     /**
      * Роли пользователя
@@ -87,7 +87,7 @@ public class UserEntity implements Serializable {
     @Enumerated(EnumType.STRING)
 */
     @Column(
-        name = "um_user_roles",
+        name = "umusr_roles",
         columnDefinition = "TEXT[]"
     )
     private UserRole[] roles;
