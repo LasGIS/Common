@@ -1,21 +1,26 @@
+/*
+ *  @(#)UserEntity.java  last: 01.06.2023
+ *
+ * Title: LG prototype for hibernate
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
 package com.lasgis.hibernate.check.dao.entity;
 
+import io.hypersistence.utils.hibernate.type.array.EnumArrayType;
+import io.hypersistence.utils.hibernate.type.array.internal.AbstractArrayType;
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Таблица пользователей
@@ -23,7 +28,16 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "um_user", schema = "hiber")
-@UniqueElements
+@TypeDef(
+    typeClass = EnumArrayType.class,
+    defaultForType = UserRole[].class,
+    parameters = {
+        @Parameter(
+            name = AbstractArrayType.SQL_ARRAY_TYPE,
+            value = "TEXT"
+        )
+    }
+)
 public class UserEntity implements Serializable {
 
     /**
@@ -61,10 +75,20 @@ public class UserEntity implements Serializable {
     /**
      * Роли пользователя
      */
+/*
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "um_user_role",
         joinColumns = @JoinColumn(name = "umusr_user_id"),
         inverseJoinColumns = @JoinColumn(name = "umrle_role_id")
     )
-    private List<RoleEntity> roles;
+*/
+/*
+    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.LAZY)
+    @Enumerated(EnumType.STRING)
+*/
+    @Column(
+        name = "um_user_roles",
+        columnDefinition = "TEXT[]"
+    )
+    private UserRole[] roles;
 }

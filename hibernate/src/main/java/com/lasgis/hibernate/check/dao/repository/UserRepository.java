@@ -1,18 +1,16 @@
 /*
- * Copyright 2018 Russian Post
+ *  @(#)UserRepository.java  last: 01.06.2023
  *
- * This source code is Russian Post Confidential Proprietary.
- * This software is protected by copyright. All rights and titles are reserved.
- * You shall not use, copy, distribute, modify, decompile, disassemble or reverse engineer the software.
- * Otherwise this violation would be treated by law and would be subject to legal prosecution.
- * Legal use of the software provides receipt of a license from the right holder only.
+ * Title: LG prototype for hibernate
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 package com.lasgis.hibernate.check.dao.repository;
 
 import com.lasgis.hibernate.check.dao.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  *  DAO для объекта роль
@@ -21,9 +19,5 @@ import java.util.List;
  * @since <pre>3/18/19</pre>
  */
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    /**
-     * Список ролей
-     * @return List<RoleEntity>
-     */
-    List<UserEntity> findAll();
+    Optional<UserEntity> findByLogin(String login);
 }

@@ -10,6 +10,7 @@ CREATE TABLE um_user (
   umusr_name         TEXT NOT NULL,
   umusr_password     TEXT,
   umusr_archived     BOOL DEFAULT false NOT NULL,
+  um_user_role       TEXT[],
   CONSTRAINT um_user_pk PRIMARY KEY (umusr_user_id)
 );
 COMMENT ON TABLE  um_user                    IS 'Таблица пользователей';
@@ -30,6 +31,14 @@ CREATE TABLE um_role (
 COMMENT ON TABLE  um_role                    IS 'Таблица ролей';
 COMMENT ON COLUMN um_role.umrle_role_id      IS 'Уникальный номер роли';
 COMMENT ON COLUMN um_role.umrle_description  IS 'Описание роли';
+
+/*
+ *  @(#)V1__initial.sql  last: 01.06.2023
+ *
+ * Title: LG prototype for hibernate
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
 
 --==============================================================
 -- Table: um_user_role

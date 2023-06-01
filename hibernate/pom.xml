@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  @(#)pom.xml  last: 01.06.2023
+  ~
+  ~ Title: LG prototype for hibernate
+  ~ Description: Program for support Prototype.
+  ~ Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+  -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -62,14 +70,18 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
-                <version>2.2.2</version>
+                <version>2.10.5</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.2.2</version>
+                <version>2.10.5</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.hypersistence</groupId>
+                <artifactId>hypersistence-utils-hibernate-55</artifactId>
+                <version>3.2.0</version>
+            </dependency>
 <!--
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -115,6 +127,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.hypersistence</groupId>
+            <artifactId>hypersistence-utils-hibernate-55</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -129,6 +145,7 @@
 -->
 
         <!-- swagger -->
+<!--
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -137,6 +154,7 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
+-->
 
         <!-- lombok -->
         <dependency>
