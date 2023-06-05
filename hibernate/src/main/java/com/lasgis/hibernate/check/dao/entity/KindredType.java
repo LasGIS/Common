@@ -1,5 +1,5 @@
 /*
- *  @(#)GenderType.java  last: 05.06.2023
+ *  @(#)KindredType.java  last: 05.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -11,17 +11,20 @@ package com.lasgis.hibernate.check.dao.entity;
 import lombok.Getter;
 
 /**
- * The Class Gender Type definition.
+ * The Class Kindred Type definition.
  *
  * @author VLaskin
  * @since 05.06.2023 : 13:28
  */
-public enum GenderType {
-    MALE("мужчина"), FEMALE("женщина");
+public enum KindredType {
+    PARENT("Отец или Мать"),
+    SIBLING("Брат или Сестра"),
+    CHILD("Сын или Дочь"),
+    SPOUSE("Муж или Жена");
     @Getter
     private final String definition;
 
-    GenderType(final String definition) {
+    KindredType(String definition) {
         this.definition = definition;
     }
 }
