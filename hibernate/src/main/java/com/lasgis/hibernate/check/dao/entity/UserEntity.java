@@ -1,5 +1,5 @@
 /*
- *  @(#)UserEntity.java  last: 01.06.2023
+ *  @(#)UserEntity.java  last: 05.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -8,8 +8,8 @@
 
 package com.lasgis.hibernate.check.dao.entity;
 
-import io.hypersistence.utils.hibernate.type.array.EnumArrayType;
-import io.hypersistence.utils.hibernate.type.array.internal.AbstractArrayType;
+import com.vladmihalcea.hibernate.type.array.EnumArrayType;
+import com.vladmihalcea.hibernate.type.array.internal.AbstractArrayType;
 import lombok.Data;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.TypeDef;
@@ -27,7 +27,7 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "um_user", schema = "hiber")
+@Table(name = "um_user")
 @TypeDef(
     typeClass = EnumArrayType.class,
     defaultForType = UserRole[].class,
@@ -90,5 +90,7 @@ public class UserEntity implements Serializable {
         name = "umusr_roles",
         columnDefinition = "TEXT[]"
     )
+//    @Type(type = "com.lasgis.hibernate.check.dao.entity.UserRoleArrayType")
+//    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     private UserRole[] roles;
 }
