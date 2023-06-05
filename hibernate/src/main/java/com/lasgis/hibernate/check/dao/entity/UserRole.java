@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRole.java  last: 01.06.2023
+ *  @(#)UserRole.java  last: 05.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -8,6 +8,8 @@
 
 package com.lasgis.hibernate.check.dao.entity;
 
+import lombok.Getter;
+
 /**
  * The Class UserRole definition.
  *
@@ -15,5 +17,11 @@ package com.lasgis.hibernate.check.dao.entity;
  * @since 30.04.2023 : 22:01
  */
 public enum UserRole {
-    ADMIN, CHIEF, OPERATOR, SUPERVISOR
+    ADMIN("Администратор"), CHIEF("Начальник"), OPERATOR("Оператор"), SUPERVISOR("Старший смены");
+    @Getter
+    private final String definition;
+
+    UserRole(String definition) {
+        this.definition = definition;
+    }
 }

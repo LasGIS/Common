@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRepository.java  last: 01.06.2023
+ *  @(#)UserRepository.java  last: 05.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -13,10 +13,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 /**
- *  DAO для объекта роль
+ * Repository для объекта пользователь
  *
- * @author eugene bulanov
- * @since <pre>3/18/19</pre>
+ * @author VLaskin
+ * @since <pre>4/5/19</pre>
  */
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByLogin(String login);

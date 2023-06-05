@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 01.06.2023
+ *  @(#)UserController.java  last: 05.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -61,40 +61,76 @@ public class UserController {
     }
 
     /**
-     * @return users
+     * @return All users
      */
     @GetMapping()
     public List<UserEntity> getUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     * Get user by ID
+     *
+     * @param id ID
+     * @return user by ID
+     */
     @GetMapping(path = "{id}")
     public Optional<UserEntity> getUserById(@PathVariable("id") final Long id) {
         return userRepository.findById(id);
     }
 
+    /**
+     * Get user by login
+     *
+     * @param login login
+     * @return user by login
+     */
     @GetMapping(path = "login")
     public Optional<UserEntity> getUserByLogin(@RequestParam("login") final String login) {
         return userRepository.findByLogin(login);
     }
 
+    /**
+     * Create new User
+     *
+     * @param newUser new User
+     * @return Created User
+     */
     @PostMapping()
     UserEntity newUser(@RequestBody UserEntity newUser) {
         return userRepository.saveAndFlush(newUser);
     }
 
+    /**
+     * Create list Users
+     *
+     * @param newListUser new list of Users
+     * @return Created User
+     */
+    @PostMapping("some")
+    List<UserEntity> createListUser(@RequestBody List<UserEntity> newListUser) {
+        return userRepository.saveAllAndFlush(newListUser);
+    }
+
+    /**
+     * Update User
+     *
+     * @param uppUser info User for Update
+     * @param id      User ID
+     * @return Created or Updated User
+     */
     @PutMapping("{id}")
-    Optional<UserEntity> replaceEmployee(@RequestBody UserEntity newUser, @PathVariable Long id) {
+    Optional<UserEntity> replaceEmployee(@RequestBody UserEntity uppUser, @PathVariable Long id) {
         final Optional<UserEntity> user = userRepository.findById(id);
         UserEntity[] outUser = new UserEntity[1];
         user.ifPresentOrElse(userEntity -> {
-            userEntity.setLogin(newUser.getLogin());
-            userEntity.setName(newUser.getName());
-            userEntity.setPassword(newUser.getPassword());
-            userEntity.setRoles(newUser.getRoles());
-            userEntity.setArchived(newUser.getArchived());
+            userEntity.setLogin(uppUser.getLogin());
+            userEntity.setName(uppUser.getName());
+            userEntity.setPassword(uppUser.getPassword());
+            userEntity.setRoles(uppUser.getRoles());
+            userEntity.setArchived(uppUser.getArchived());
             outUser[0] = userRepository.saveAndFlush(userEntity);
-        }, () -> outUser[0] = userRepository.saveAndFlush(newUser));
+        }, () -> outUser[0] = userRepository.saveAndFlush(uppUser));
         return Optional.of(outUser[0]);
     }
 

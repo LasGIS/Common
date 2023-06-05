@@ -1,0 +1,66 @@
+### GET person ID=1
+GET http://localhost:8080/api/v1/person/1
+
+### GET All persons
+GET http://localhost:8080/api/v1/person
+
+### create first Person
+POST http://localhost:8080/api/v1/person
+Content-Type: application/json
+
+{
+  "firstName": "Владимир",
+  "lastName": "Маяковский",
+  "middleName": "Константинович",
+  "gender": "MALE"
+}
+
+<> 2023-06-05T125801.200.json
+
+### create list of Persons
+POST http://localhost:8080/api/v1/person/some
+Content-Type: application/json
+
+[{
+  "firstName": "Владимир",
+  "lastName": "Маяковский",
+  "middleName":  "Константинович",
+  "gender": "MALE"
+},
+{
+  "firstName": "Александра",
+  "lastName": "Павленко",
+  "middleName":  "Алексеевна",
+  "gender": "FEMALE"
+},
+{
+  "firstName": "Владимир",
+  "lastName": "Маяковский",
+  "middleName":  "Константинович",
+  "gender": "MALE"
+}]
+
+### update first User to User2
+PUT http://localhost:8080/api/v1/person/1
+Content-Type: application/json
+
+{
+  "firstName": "Александра",
+  "lastName": "Павленко",
+  "middleName": "Алексеевна",
+  "gender": "FEMALE"
+}
+
+<> 2023-06-05T125728.200.json
+<> 2023-06-05T124634.200.json
+<> 2023-06-02T133756.200.json
+<> 2023-06-01T174540.200.json
+<> 2023-06-01T174158.200.json
+<> 2023-06-01T170032.200.json
+
+###
+GET http://localhost:8080/api/v1/person/roles
+
+<> 2023-06-05T130029.200.json
+<> 2023-06-05T125453.200.json
+<> 2023-06-01T174511.200.json
