@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 05.06.2023
+ *  @(#)UserController.java  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 package com.lasgis.hibernate.check.rest;
 
 import com.lasgis.hibernate.check.dao.entity.UserEntity;
-import com.lasgis.hibernate.check.dao.entity.UserRole;
+import com.lasgis.hibernate.check.dao.entity.type.UserRole;
 import com.lasgis.hibernate.check.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -127,7 +127,7 @@ public class UserController {
             userEntity.setLogin(uppUser.getLogin());
             userEntity.setName(uppUser.getName());
             userEntity.setPassword(uppUser.getPassword());
-            userEntity.setRoles(uppUser.getRoles());
+//            userEntity.setRoles(uppUser.getRoles());
             userEntity.setArchived(uppUser.getArchived());
             outUser[0] = userRepository.saveAndFlush(userEntity);
         }, () -> outUser[0] = userRepository.saveAndFlush(uppUser));

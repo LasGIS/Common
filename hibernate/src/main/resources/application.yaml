@@ -21,7 +21,7 @@ spring:
 #          password: postgres
 #          pool_size: 8
           autocommit: false
-    hibernate.ddl-auto: validate
+    hibernate.ddl-auto: create
 
   #database connection
   datasource:

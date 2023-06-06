@@ -8,26 +8,25 @@
 
 package com.lasgis.hibernate.check.dao.entity;
 
-import com.vladmihalcea.hibernate.type.array.EnumArrayType;
-import com.vladmihalcea.hibernate.type.array.internal.AbstractArrayType;
-import lombok.Data;
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.TypeDef;
+import com.lasgis.hibernate.check.dao.entity.add.UserGroup;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Таблица пользователей
  */
-@Data
 @Entity
 @Table(name = "um_user", schema = "hiber")
+/*
 @TypeDef(
     typeClass = EnumArrayType.class,
     defaultForType = UserRole[].class,
@@ -38,7 +37,18 @@ import java.io.Serializable;
         )
     }
 )
+*/
 public class UserEntity implements Serializable {
+    private long userId;
+    private String login;
+    private String name;
+    private String password;
+    private Boolean archived;
+//    private UserRole[] roles;
+    private Set<UserGroup> userGroups = new HashSet();
+
+    public UserEntity() {
+    }
 
     /**
      * Уникальный номер пользователя
@@ -46,31 +56,61 @@ public class UserEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "umusr_user_id", nullable = false)
-    private long userId;
+    public long getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(final long userId) {
+        this.userId = userId;
+    }
 
     /**
      * Имя пользователя для входа в систему
      */
     @Column(name = "umusr_login", columnDefinition = "text", unique = true, nullable = false)
-    private String login;
+    public String getLogin() {
+        return this.login;
+    }
+
+    public void setLogin(final String login) {
+        this.login = login;
+    }
 
     /**
      * ФИО пользователя
      */
     @Column(name = "umusr_name", columnDefinition = "text", nullable = false)
-    private String name;
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
 
     /**
      * пароль пользователя
      */
     @Column(name = "umusr_password", columnDefinition = "text")
-    private String password;
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
 
     /**
      * Признак архивации (не активная запись)
      */
     @Column(name = "umusr_archived", nullable = false)
-    private Boolean archived;
+    public Boolean getArchived() {
+        return this.archived;
+    }
+
+    public void setArchived(final Boolean archived) {
+        this.archived = archived;
+    }
 
     /**
      * Роли пользователя
@@ -86,11 +126,24 @@ public class UserEntity implements Serializable {
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.LAZY)
     @Enumerated(EnumType.STRING)
 */
-    @Column(
-        name = "umusr_roles",
-        columnDefinition = "TEXT[]"
-    )
+//    @Column(
+//        name = "umusr_roles",
+//        columnDefinition = "TEXT[]"
+//    )
 //    @Type(type = "com.lasgis.hibernate.check.dao.entity.UserRoleArrayType")
 //    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
-    private UserRole[] roles;
+//    public UserRole[] getRoles() {
+//        return this.roles;
+//    }
+//    public void setRoles(final UserRole[] roles) {
+//        this.roles = roles;
+//    }
+    @OneToMany(mappedBy = "user")
+    public Set<UserGroup> getUserGroups() {
+        return this.userGroups;
+    }
+
+    public void setUserGroups(final Set<UserGroup> userGroups) {
+        this.userGroups = userGroups;
+    }
 }

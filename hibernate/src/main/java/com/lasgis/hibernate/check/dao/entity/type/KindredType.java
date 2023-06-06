@@ -1,12 +1,12 @@
 /*
- *  @(#)KindredType.java  last: 05.06.2023
+ *  @(#)KindredType.java  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.hibernate.check.dao.entity;
+package com.lasgis.hibernate.check.dao.entity.type;
 
 import lombok.Getter;
 

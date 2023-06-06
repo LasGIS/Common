@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRoleArrayType.java  last: 05.06.2023
+ *  @(#)UserRoleArrayType.java  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -8,6 +8,7 @@
 
 package com.lasgis.hibernate.check.dao.entity;
 
+import com.lasgis.hibernate.check.dao.entity.type.UserRole;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * The Class gsfgsdfg definition.
+ * The Class UserRoleArrayType definition.
  *
  * @author VLaskin
  * @since 02.06.2023 : 13:10

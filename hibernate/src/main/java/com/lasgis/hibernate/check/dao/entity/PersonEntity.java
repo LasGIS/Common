@@ -8,6 +8,7 @@
 
 package com.lasgis.hibernate.check.dao.entity;
 
+import com.lasgis.hibernate.check.dao.entity.type.GenderType;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,7 +56,7 @@ public class PersonEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private GenderType gender;
 
-    @OneToMany(mappedBy = "personFrom", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "personFrom", cascade = CascadeType.ALL)
 /*
     @JoinTable(name = "pr_person_relation",
         joinColumns = @JoinColumn(name = "prprl_person_from_id"),
@@ -65,7 +65,7 @@ public class PersonEntity implements Serializable {
 */
     private Set<PersonRelationEntity> fromRelations = new HashSet<>();
 
-    @OneToMany(mappedBy = "personTo", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "personTo", cascade = CascadeType.ALL)
 /*
     @JoinTable(name = "pr_person_relation",
         joinColumns = @JoinColumn(name = "prprl_person_to_id"),
