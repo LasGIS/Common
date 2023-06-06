@@ -1,5 +1,5 @@
 /*
- *  @(#)V2__insert_users.sql  last: 01.06.2023
+ *  @(#)V2023.06.01.18.44__insert_users.sql  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.

@@ -2,7 +2,7 @@ DROP SCHEMA IF EXISTS hiber CASCADE;
 CREATE SCHEMA hiber AUTHORIZATION postgres;
 
 /*
- *  @(#)V1__initial.sql  last: 01.06.2023
+ *  @(#)V2019.04.03.20.26__initial.sql  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.

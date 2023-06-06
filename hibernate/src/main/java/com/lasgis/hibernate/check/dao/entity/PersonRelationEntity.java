@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonRelationEntity.java  last: 05.06.2023
+ *  @(#)PersonRelationEntity.java  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -14,9 +14,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -28,7 +32,7 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "pr_person_relation")
+@Table(name = "pr_person_relation", schema = "hiber")
 public class PersonRelationEntity implements Serializable {
     /**
      * Уникальный номер персоны
@@ -38,11 +42,19 @@ public class PersonRelationEntity implements Serializable {
     @Column(name = "prprl_person_relation_id", nullable = false)
     private long personRelationId;
 
-    @Column(name = "prprs_person_from_id", nullable = false)
-    private long from;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prprl_person_from_id", nullable = false,
+        referencedColumnName = "prprs_person_id",
+        foreignKey = @ForeignKey(name = "fk_person_from_person")
+    )
+    private PersonEntity personFrom;
 
-    @Column(name = "prprl_person_to_id", nullable = false)
-    private long to;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prprl_person_to_id", nullable = false,
+        referencedColumnName = "prprs_person_id",
+        foreignKey = @ForeignKey(name = "fk_person_to_person")
+    )
+    private PersonEntity personTo;
 
     @Column(name = "prprl_relation_type", columnDefinition = "text")
     @Enumerated(EnumType.STRING)

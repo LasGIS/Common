@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonEntity.java  last: 05.06.2023
+ *  @(#)PersonEntity.java  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -19,8 +19,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -35,7 +33,7 @@ import java.util.Set;
  */
 @Data
 @Entity
-@Table(name = "pr_person")
+@Table(name = "pr_person", schema = "hiber")
 public class PersonEntity implements Serializable {
     /**
      * Уникальный номер персоны
@@ -58,10 +56,21 @@ public class PersonEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private GenderType gender;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "personFrom", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+/*
     @JoinTable(name = "pr_person_relation",
-        joinColumns = @JoinColumn(name = "prprs_person_from_id"),
-        inverseJoinColumns = @JoinColumn(name = "prprl_person_to_id")
+        joinColumns = @JoinColumn(name = "prprl_person_from_id"),
+        inverseJoinColumns = @JoinColumn(name = "prprs_person_id")
     )
-    private Set<PersonRelationEntity> relations = new HashSet<>();
+*/
+    private Set<PersonRelationEntity> fromRelations = new HashSet<>();
+
+    @OneToMany(mappedBy = "personTo", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+/*
+    @JoinTable(name = "pr_person_relation",
+        joinColumns = @JoinColumn(name = "prprl_person_to_id"),
+        inverseJoinColumns = @JoinColumn(name = "prprs_person_id")
+    )
+*/
+    private Set<PersonRelationEntity> toRelations = new HashSet<>();
 }

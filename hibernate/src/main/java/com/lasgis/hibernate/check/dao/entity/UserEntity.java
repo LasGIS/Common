@@ -1,5 +1,5 @@
 /*
- *  @(#)UserEntity.java  last: 05.06.2023
+ *  @(#)UserEntity.java  last: 06.06.2023
  *
  * Title: LG prototype for hibernate
  * Description: Program for support Prototype.
@@ -27,7 +27,7 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "um_user")
+@Table(name = "um_user", schema = "hiber")
 @TypeDef(
     typeClass = EnumArrayType.class,
     defaultForType = UserRole[].class,
