@@ -1,7 +1,12 @@
-package net.codejava.hibernate;
+/*
+ *  @(#)User.java  last: 07.06.2023
+ *
+ * Title: LG prototype for hibernate ManyToMany
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
 
-import java.util.HashSet;
-import java.util.Set;
+package net.codejava.hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")

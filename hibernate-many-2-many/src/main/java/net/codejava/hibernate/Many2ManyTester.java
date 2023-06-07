@@ -1,3 +1,11 @@
+/*
+ *  @(#)Many2ManyTester.java  last: 07.06.2023
+ *
+ * Title: LG prototype for hibernate ManyToMany
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
 package net.codejava.hibernate;
 
 import org.hibernate.Session;
@@ -30,8 +38,8 @@ public class Many2ManyTester {
         session.beginTransaction();
 
 //        testSaveAllNew(session);
-		testSaveWithExistingUserAndGroup(session);
-//		testDeleteUserGroup(session);
+        testSaveWithExistingUserAndGroup(session);
+//        testDeleteUserGroup(session);
 
         session.getTransaction().commit();
         session.close();
@@ -67,8 +75,11 @@ public class Many2ManyTester {
     }
 
     private static void testDeleteUserGroup(Session session) {
-        UserGroup userGroup = new UserGroup();
-        userGroup.setId(3);
-        session.delete(userGroup);
+        long[] ids = {5, 8, 9};
+        for (long id : ids) {
+            UserGroup userGroup = new UserGroup();
+            userGroup.setId(id);
+            session.delete(userGroup);
+        }
     }
 }

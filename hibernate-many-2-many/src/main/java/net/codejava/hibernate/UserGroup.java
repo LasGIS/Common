@@ -1,6 +1,12 @@
-package net.codejava.hibernate;
+/*
+ *  @(#)UserGroup.java  last: 07.06.2023
+ *
+ * Title: LG prototype for hibernate ManyToMany
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
 
-import java.util.Date;
+package net.codejava.hibernate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
 @Table(name = "users_groups")
@@ -36,7 +43,7 @@ public class UserGroup {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_ID")	
+	@JoinColumn(name = "user_id")
 	public User getUser() {
 		return user;
 	}
@@ -46,7 +53,7 @@ public class UserGroup {
 	}
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "GROUP_ID")
+	@JoinColumn(name = "group_id")
 	public Group getGroup() {
 		return group;
 	}
@@ -63,7 +70,7 @@ public class UserGroup {
 		this.activated = activated;
 	}
 
-	@Column(name = "REGISTERED_DATE")
+	@Column(name = "registered_date")
 	@Temporal(TemporalType.DATE)
 	public Date getRegisteredDate() {
 		return registeredDate;
