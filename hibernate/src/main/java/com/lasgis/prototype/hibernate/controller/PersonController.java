@@ -5,10 +5,10 @@
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
-package com.lasgis.hibernate.check.rest;
+package com.lasgis.prototype.hibernate.controller;
 
-import com.lasgis.hibernate.check.dao.entity.PersonEntity;
-import com.lasgis.hibernate.check.dao.repository.PersonRepository;
+import com.lasgis.prototype.hibernate.entity.PersonEntity;
+import com.lasgis.prototype.hibernate.repository.PersonRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

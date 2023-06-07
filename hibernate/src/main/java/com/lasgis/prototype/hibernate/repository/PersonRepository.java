@@ -5,9 +5,9 @@
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
-package com.lasgis.hibernate.check.dao.repository;
+package com.lasgis.prototype.hibernate.repository;
 
-import com.lasgis.hibernate.check.dao.entity.PersonEntity;
+import com.lasgis.prototype.hibernate.entity.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

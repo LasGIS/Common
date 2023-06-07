@@ -6,7 +6,7 @@
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.hibernate.check;
+package com.lasgis.prototype.hibernate;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

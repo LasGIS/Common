@@ -5,11 +5,12 @@
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
-package com.lasgis.hibernate.check.rest;
+package com.lasgis.prototype.hibernate.controller;
 
-import com.lasgis.hibernate.check.dao.entity.UserEntity;
-import com.lasgis.hibernate.check.dao.entity.type.UserRole;
-import com.lasgis.hibernate.check.dao.repository.UserRepository;
+import com.lasgis.prototype.hibernate.dao.User;
+import com.lasgis.prototype.hibernate.entity.UserEntity;
+import com.lasgis.prototype.hibernate.entity.type.UserRole;
+import com.lasgis.prototype.hibernate.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static com.lasgis.prototype.hibernate.service.converter.Converter.USER_2_USER_ENTITY;
+import static com.lasgis.prototype.hibernate.service.converter.Converter.USER_ENTITY_2_USER;
 
 /**
  * REST controller for web
@@ -64,8 +69,9 @@ public class UserController {
      * @return All users
      */
     @GetMapping()
-    public List<UserEntity> getUsers() {
-        return userRepository.findAll();
+    public List<User> getUsers() {
+        return userRepository.findAll()
+            .stream().map(USER_ENTITY_2_USER).collect(Collectors.toList());
     }
 
     /**
@@ -75,9 +81,8 @@ public class UserController {
      * @return user by ID
      */
     @GetMapping(path = "{id}")
-    public Optional<UserEntity> getUserById(@PathVariable("id") final Long id) {
-        final Optional<UserEntity> user = userRepository.findById(id);
-        return user;
+    public Optional<User> getUserById(@PathVariable("id") final Long id) {
+        return userRepository.findById(id).map(USER_ENTITY_2_USER);
     }
 
     /**
@@ -87,8 +92,8 @@ public class UserController {
      * @return user by login
      */
     @GetMapping(path = "login")
-    public Optional<UserEntity> getUserByLogin(@RequestParam("login") final String login) {
-        return userRepository.findByLogin(login);
+    public Optional<User> getUserByLogin(@RequestParam("login") final String login) {
+        return userRepository.findByLogin(login).map(USER_ENTITY_2_USER);
     }
 
     /**
@@ -98,8 +103,12 @@ public class UserController {
      * @return Created User
      */
     @PostMapping()
-    UserEntity newUser(@RequestBody UserEntity newUser) {
-        return userRepository.saveAndFlush(newUser);
+    User newUser(@RequestBody User newUser) {
+        return USER_ENTITY_2_USER.apply(
+            userRepository.saveAndFlush(
+                USER_2_USER_ENTITY.apply(newUser)
+            )
+        );
     }
 
     /**
@@ -109,8 +118,10 @@ public class UserController {
      * @return Created User
      */
     @PostMapping("some")
-    List<UserEntity> createListUser(@RequestBody List<UserEntity> newListUser) {
-        return userRepository.saveAllAndFlush(newListUser);
+    List<User> createListUser(@RequestBody List<User> newListUser) {
+        return userRepository.saveAllAndFlush(
+            newListUser.stream().map(USER_2_USER_ENTITY).collect(Collectors.toList())
+        ).stream().map(USER_ENTITY_2_USER).collect(Collectors.toList());
     }
 
     /**

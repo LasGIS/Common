@@ -1,7 +1,7 @@
-INSERT INTO um_user (umusr_user_id, umusr_login, umusr_name, umusr_password, umusr_archived/*, umusr_roles*/)
-VALUES (1, 'LasGIS', 'Владимир Ласкин', '123', FALSE/*, '{"ADMIN", "CHIEF", "SUPERVISOR"}'*/);
-INSERT INTO um_user (umusr_user_id, umusr_login, umusr_name, umusr_password, umusr_archived/*, umusr_roles*/)
-VALUES (2, 'VPupkin', 'Василий Пупкин', '321', FALSE/*, '{"SUPERVISOR", "OPERATOR"}'*/);
+INSERT INTO um_user (umusr_user_id, umusr_login, umusr_name, umusr_password, umusr_archived, umusr_roles)
+VALUES (1, 'LasGIS', 'Владимир Ласкин', '123', FALSE, '{"ADMIN", "CHIEF", "SUPERVISOR"}');
+INSERT INTO um_user (umusr_user_id, umusr_login, umusr_name, umusr_password, umusr_archived, umusr_roles)
+VALUES (2, 'VPupkin', 'Василий Пупкин', '321', FALSE, '{"SUPERVISOR", "OPERATOR"}');
 
 INSERT INTO groups (group_id, name) VALUES (1, 'group1');
 INSERT INTO groups (group_id, name) VALUES (2, 'group2');

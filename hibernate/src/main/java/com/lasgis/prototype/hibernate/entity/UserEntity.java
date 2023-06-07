@@ -6,28 +6,30 @@
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.hibernate.check.dao.entity;
+package com.lasgis.prototype.hibernate.entity;
 
-import com.lasgis.hibernate.check.dao.entity.add.UserGroup;
+import com.lasgis.prototype.hibernate.entity.type.UserRole;
+import com.vladmihalcea.hibernate.type.array.EnumArrayType;
+import com.vladmihalcea.hibernate.type.array.internal.AbstractArrayType;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Таблица пользователей
  */
 @Entity
-@Table(name = "um_user", schema = "hiber")
-/*
+@Table(
+    name = "um_user", schema = "hiber",
+    uniqueConstraints = @UniqueConstraint(name = "uk_user_login", columnNames = "umusr_login")
+)
 @TypeDef(
     typeClass = EnumArrayType.class,
     defaultForType = UserRole[].class,
@@ -38,15 +40,13 @@ import java.util.Set;
         )
     }
 )
-*/
 public class UserEntity {
     private long userId;
     private String login;
     private String name;
     private String password;
     private Boolean archived;
-//    private UserRole[] roles;
-    private Set<UserGroup> userGroups = new HashSet();
+    private UserRole[] roles;
 
     public UserEntity() {
     }
@@ -68,7 +68,7 @@ public class UserEntity {
     /**
      * Имя пользователя для входа в систему
      */
-    @Column(name = "umusr_login", columnDefinition = "text", unique = true, nullable = false)
+    @Column(name = "umusr_login", columnDefinition = "text", nullable = false)
     public String getLogin() {
         return this.login;
     }
@@ -127,24 +127,17 @@ public class UserEntity {
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.LAZY)
     @Enumerated(EnumType.STRING)
 */
-//    @Column(
-//        name = "umusr_roles",
-//        columnDefinition = "TEXT[]"
-//    )
-//    @Type(type = "com.lasgis.hibernate.check.dao.entity.UserRoleArrayType")
+    @Column(
+        name = "umusr_roles",
+        columnDefinition = "TEXT[]"
+    )
+//    @Type(type = "com.lasgis.prototype.hibernate.entity.UserRoleArrayType")
 //    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
-//    public UserRole[] getRoles() {
-//        return this.roles;
-//    }
-//    public void setRoles(final UserRole[] roles) {
-//        this.roles = roles;
-//    }
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Set<UserGroup> getUserGroups() {
-        return this.userGroups;
+    public UserRole[] getRoles() {
+        return this.roles;
     }
 
-    public void setUserGroups(final Set<UserGroup> userGroups) {
-        this.userGroups = userGroups;
+    public void setRoles(final UserRole[] roles) {
+        this.roles = roles;
     }
 }

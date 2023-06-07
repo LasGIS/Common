@@ -6,7 +6,7 @@
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.hibernate.check.dao.entity.type;
+package com.lasgis.prototype.hibernate.entity.type;
 
 import lombok.Getter;
 

@@ -6,9 +6,9 @@
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.hibernate.check.dao.entity;
+package com.lasgis.prototype.hibernate.entity;
 
-import com.lasgis.hibernate.check.dao.entity.type.KindredType;
+import com.lasgis.prototype.hibernate.entity.type.KindredType;
 import lombok.Data;
 
 import javax.persistence.Column;

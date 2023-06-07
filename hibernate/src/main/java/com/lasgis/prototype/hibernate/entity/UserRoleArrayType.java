@@ -6,9 +6,9 @@
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.hibernate.check.dao.entity;
+package com.lasgis.prototype.hibernate.entity;
 
-import com.lasgis.hibernate.check.dao.entity.type.UserRole;
+import com.lasgis.prototype.hibernate.entity.type.UserRole;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
