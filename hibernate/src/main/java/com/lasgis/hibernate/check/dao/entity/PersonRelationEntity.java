@@ -1,7 +1,7 @@
 /*
- *  @(#)PersonRelationEntity.java  last: 06.06.2023
+ *  @(#)PersonRelationEntity.java  last: 07.06.2023
  *
- * Title: LG prototype for hibernate
+ * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
@@ -19,7 +19,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * Таблица персон
@@ -30,7 +29,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "pr_person_relation", schema = "hiber")
-public class PersonRelationEntity implements Serializable {
+public class PersonRelationEntity {
     /**
      * Уникальный номер персоны
      */
@@ -39,23 +38,23 @@ public class PersonRelationEntity implements Serializable {
     @Column(name = "prprl_person_relation_id", nullable = false)
     private long personRelationId;
 
-/*
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "prprl_person_from_id", nullable = false,
-        referencedColumnName = "prprs_person_id",
-        foreignKey = @ForeignKey(name = "fk_person_from_person")
-    )
-*/
+    /*
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "prprl_person_from_id", nullable = false,
+            referencedColumnName = "prprs_person_id",
+            foreignKey = @ForeignKey(name = "fk_person_from_person")
+        )
+    */
     @Column(name = "prprl_person_from_id", nullable = false)
     private long personFrom;
 
-/*
-    @OneToMany(mappedBy = "personId", fetch = FetchType.LAZY)
-    @JoinColumn(name = "prprs_person_id", nullable = false,
-        referencedColumnName = "prprl_person_to_id",
-        foreignKey = @ForeignKey(name = "fk_person_to_person")
-    )
-*/
+    /*
+        @OneToMany(mappedBy = "personId", fetch = FetchType.LAZY)
+        @JoinColumn(name = "prprs_person_id", nullable = false,
+            referencedColumnName = "prprl_person_to_id",
+            foreignKey = @ForeignKey(name = "fk_person_to_person")
+        )
+    */
     @Column(name = "prprl_person_to_id", nullable = false)
     private long personTo;
 
@@ -63,3 +62,8 @@ public class PersonRelationEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private KindredType relation;
 }
+
+
+
+
+

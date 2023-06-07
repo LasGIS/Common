@@ -1,7 +1,7 @@
 /*
- *  @(#)UserEntity.java  last: 06.06.2023
+ *  @(#)UserEntity.java  last: 07.06.2023
  *
- * Title: LG prototype for hibernate
+ * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
@@ -10,14 +10,15 @@ package com.lasgis.hibernate.check.dao.entity;
 
 import com.lasgis.hibernate.check.dao.entity.add.UserGroup;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,7 +39,7 @@ import java.util.Set;
     }
 )
 */
-public class UserEntity implements Serializable {
+public class UserEntity {
     private long userId;
     private String login;
     private String name;
@@ -138,7 +139,7 @@ public class UserEntity implements Serializable {
 //    public void setRoles(final UserRole[] roles) {
 //        this.roles = roles;
 //    }
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<UserGroup> getUserGroups() {
         return this.userGroups;
     }

@@ -1,15 +1,17 @@
 /*
- *  @(#)Group.java  last: 06.06.2023
+ *  @(#)Group.java  last: 07.06.2023
  *
- * Title: LG prototype for hibernate
+ * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
 package com.lasgis.hibernate.check.dao.entity.add;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -54,7 +56,7 @@ public class Group {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<UserGroup> getUserGroups() {
         return this.userGroups;
     }

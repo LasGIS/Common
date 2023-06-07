@@ -7,13 +7,13 @@ spring:
 #    baselineOnMigrate: true
 #    schemas: hiber
   jpa:
-    show-sql: true
     properties:
       hibernate:
         default_schema: hiber
         dialect: org.hibernate.dialect.PostgreSQL95Dialect
-        temp:
-          use_jdbc_metadata_defaults: false
+#        temp:
+#          use_jdbc_metadata_defaults: false
+        current_session_context_class: thread
         connection:
 #          driver_class: org.postgresql.Driver
 #          url: jdbc:postgresql://localhost:5432/postgres
@@ -21,7 +21,10 @@ spring:
 #          password: postgres
 #          pool_size: 8
           autocommit: false
-    hibernate.ddl-auto: create
+        format_sql: true
+        show_sql: true
+    hibernate:
+      ddl-auto: validate
 
   #database connection
   datasource:

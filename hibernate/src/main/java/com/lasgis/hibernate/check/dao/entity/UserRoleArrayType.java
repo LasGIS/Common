@@ -1,7 +1,7 @@
 /*
- *  @(#)UserRoleArrayType.java  last: 06.06.2023
+ *  @(#)UserRoleArrayType.java  last: 07.06.2023
  *
- * Title: LG prototype for hibernate
+ * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */

@@ -1,7 +1,7 @@
 /*
- *  @(#)PersonEntity.java  last: 06.06.2023
+ *  @(#)PersonEntity.java  last: 07.06.2023
  *
- * Title: LG prototype for hibernate
+ * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
@@ -21,7 +21,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +33,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "pr_person", schema = "hiber")
-public class PersonEntity implements Serializable {
+public class PersonEntity {
     /**
      * Уникальный номер персоны
      */

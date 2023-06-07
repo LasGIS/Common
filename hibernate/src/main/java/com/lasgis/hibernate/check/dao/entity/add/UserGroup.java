@@ -1,7 +1,7 @@
 /*
- *  @(#)UserGroup.java  last: 06.06.2023
+ *  @(#)UserGroup.java  last: 07.06.2023
  *
- * Title: LG prototype for hibernate
+ * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
@@ -13,6 +13,7 @@ import com.lasgis.hibernate.check.dao.entity.UserEntity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,14 +44,14 @@ public class UserGroup {
     @GeneratedValue
     @Column(name = "user_group_id")
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public UserEntity getUser() {
         return this.user;
@@ -60,7 +61,7 @@ public class UserGroup {
         this.user = user;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     public Group getGroup() {
         return this.group;

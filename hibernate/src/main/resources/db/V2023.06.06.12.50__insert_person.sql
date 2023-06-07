@@ -1,11 +1,3 @@
-/*
- *  @(#)V2023.06.06.12.50__insert_person.sql  last: 06.06.2023
- *
- * Title: LG prototype for hibernate
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 INSERT INTO pr_person (prprs_person_id, prprs_first_name, prprs_last_name, prprs_middle_name, prprs_gender)
 VALUES (1, 'Владимир', 'Маяковский', 'Константинович', 'MALE');
 INSERT INTO pr_person (prprs_person_id, prprs_first_name, prprs_last_name, prprs_middle_name, prprs_gender)

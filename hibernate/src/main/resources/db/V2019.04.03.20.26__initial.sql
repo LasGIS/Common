@@ -1,14 +1,6 @@
 DROP SCHEMA IF EXISTS hiber CASCADE;
 CREATE SCHEMA hiber AUTHORIZATION postgres;
 
-/*
- *  @(#)V2019.04.03.20.26__initial.sql  last: 06.06.2023
- *
- * Title: LG prototype for hibernate
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 --==============================================================
 -- Table: um_user
 --==============================================================
