@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonController.java  last: 07.06.2023
+ *  @(#)PersonController.java  last: 08.06.2023
  *
  * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
@@ -7,6 +7,7 @@
  */
 package com.lasgis.prototype.hibernate.controller;
 
+import com.lasgis.prototype.hibernate.dao.Person;
 import com.lasgis.prototype.hibernate.entity.PersonEntity;
 import com.lasgis.prototype.hibernate.repository.PersonRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+
+import static com.lasgis.prototype.hibernate.service.converter.PersonConverter.PERSON_ENTITY_2_PERSON;
 
 /**
  * REST controller for web
@@ -42,8 +45,10 @@ public class PersonController {
      * @return All persons
      */
     @GetMapping()
-    public List<PersonEntity> getPersons() {
-        return personRepository.findAll();
+    public List<Person> getPersons() {
+        final List<PersonEntity> list = personRepository.findAll();
+        final List<Person> listPerson = list.stream().map(per -> PERSON_ENTITY_2_PERSON.apply(per, 1)).toList();
+        return listPerson;
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 07.06.2023
+ *  @(#)UserController.java  last: 08.06.2023
  *
  * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
@@ -26,10 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static com.lasgis.prototype.hibernate.service.converter.Converter.USER_2_USER_ENTITY;
-import static com.lasgis.prototype.hibernate.service.converter.Converter.USER_ENTITY_2_USER;
+import static com.lasgis.prototype.hibernate.service.converter.UserConverter.USER_2_USER_ENTITY;
+import static com.lasgis.prototype.hibernate.service.converter.UserConverter.USER_ENTITY_2_USER;
 
 /**
  * REST controller for web
@@ -71,7 +70,7 @@ public class UserController {
     @GetMapping()
     public List<User> getUsers() {
         return userRepository.findAll()
-            .stream().map(USER_ENTITY_2_USER).collect(Collectors.toList());
+            .stream().map(USER_ENTITY_2_USER).toList();
     }
 
     /**
@@ -120,8 +119,8 @@ public class UserController {
     @PostMapping("some")
     List<User> createListUser(@RequestBody List<User> newListUser) {
         return userRepository.saveAllAndFlush(
-            newListUser.stream().map(USER_2_USER_ENTITY).collect(Collectors.toList())
-        ).stream().map(USER_ENTITY_2_USER).collect(Collectors.toList());
+            newListUser.stream().map(USER_2_USER_ENTITY).toList()
+        ).stream().map(USER_ENTITY_2_USER).toList();
     }
 
     /**

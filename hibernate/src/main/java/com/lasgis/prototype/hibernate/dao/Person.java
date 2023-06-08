@@ -1,5 +1,5 @@
 /*
- *  @(#)Person.java  last: 07.06.2023
+ *  @(#)Person.java  last: 08.06.2023
  *
  * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
@@ -32,6 +32,6 @@ public class Person {
     private String lastName;
     private String middleName;
     private GenderType gender;
-    private List<Person> from;
-    private List<Person> to;
+    private List<PersonRelation> from;
+    private List<PersonRelation> to;
 }

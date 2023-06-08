@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonRelation.java  last: 07.06.2023
+ *  @(#)PersonRelation.java  last: 08.06.2023
  *
  * Title: LG prototype for spring + mvc + hibernate
  * Description: Program for support Prototype.
@@ -26,10 +26,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PersonRelation {
     private Person person;
-    private KindredType relation;
+    private KindredType type;
 }
-
-
-
-
-
