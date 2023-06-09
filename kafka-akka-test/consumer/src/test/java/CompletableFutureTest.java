@@ -1,5 +1,5 @@
 /*
- *  @(#)CompletableFutureTest.java  last: 31.05.2023
+ *  @(#)CompletableFutureTest.java  last: 09.06.2023
  *
  * Title: LG prototype for kafka + akka (simple or spring)
  * Description: Program for support Prototype.
@@ -35,7 +35,8 @@ public class CompletableFutureTest {
         List.of(4, 2, 6, 1, 9, 10, 45)
     );
     private static final int NUM_THREADS = SOURCE_LISTS.size();
-    private static final Integer REAL_SUM = SOURCE_LISTS.stream().flatMap(Collection::stream).reduce(0, Integer::sum);
+    private static final Integer REAL_SUM = Long.valueOf(SOURCE_LISTS.stream().flatMap(Collection::stream)
+        .mapToInt(value -> value).summaryStatistics().getSum()).intValue();
 
     @Test
     public void hashCodeCollision() {
