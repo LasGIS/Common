@@ -24,7 +24,7 @@ public interface UserDao {
     Integer insert(UserDto user);
     void update(UserDto user);
     void delete(Integer userId);
-    Optional<UserDto> findById(Integer userName);
-    Optional<UserDto> findByLogin(String userName);
+    Optional<UserDto> findById(Integer id);
+    Optional<UserDto> findByLogin(String login);
     List<UserDto> findAllUsers();
 }
