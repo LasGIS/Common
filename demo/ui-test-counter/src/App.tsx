@@ -24,32 +24,32 @@ const PageView = ({ page }: { page: number }) => (
   </div>
 );
 
-export function App() {
-    const [page, setPage] = React.useState(1);
+const App = () => {
+  const [page, setPage] = React.useState(1);
 
-    const handleNext = () => {
-        setPage(page + 1);
-    };
+  const handleNext = () => {
+    setPage(page + 1);
+  };
 
-    const handlePrevious = () => {
-        if (page != 1) {
-            setPage(page - 1);
-        }
-    };
+  const handlePrevious = () => {
+    if (page != 1) {
+      setPage(page - 1);
+    }
+  };
 
-    return (
-        <div className={'container'}>
-            <Space.Compact block>
-                <Button block onClick={handlePrevious}>
-                    Previous
-                </Button>
-                <Button block onClick={handleNext}>
-                    Next
-                </Button>
-            </Space.Compact>
-            <PageView page={page} />
-        </div>
-    );
-}
+  return (
+    <div className={'container'}>
+      <Space.Compact block>
+        <Button block onClick={handlePrevious}>
+          Previous
+        </Button>
+        <Button block onClick={handleNext}>
+          Next
+        </Button>
+      </Space.Compact>
+      <PageView page={page} />
+    </div>
+  );
+};
 
 export default App;
