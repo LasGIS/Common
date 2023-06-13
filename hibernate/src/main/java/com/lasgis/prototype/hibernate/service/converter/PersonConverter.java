@@ -13,6 +13,7 @@ import com.lasgis.prototype.hibernate.dao.PersonRelation;
 import com.lasgis.prototype.hibernate.entity.PersonEntity;
 import com.lasgis.prototype.hibernate.entity.PersonRelationEntity;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -28,12 +29,21 @@ public class PersonConverter {
     /**
      *
      */
-    public static PersonRelation PERSON_RELATION_ENTITY_2_PERSON(
-        final PersonRelationEntity entity, final boolean isFrom, final Integer deep
+    public static PersonRelation PERSON_RELATION_ENTITY_FROM_PERSON(
+        final long personId, final PersonRelationEntity entity, final Integer deep
     ) {
-        final Person person = PERSON_ENTITY_2_PERSON
-            .apply(isFrom ? entity.getPersonFrom() : entity.getPersonTo(), deep - 1);
-        return PersonRelation.builder()
+        final Person person = PERSON_ENTITY_2_PERSON.apply(entity.getPersonFrom(), deep - 1);
+        return (personId == person.getPersonId()) ? null : PersonRelation.builder()
+            .type(entity.getType())
+            .person(person)
+            .build();
+    }
+
+    public static PersonRelation PERSON_RELATION_ENTITY_TO_PERSON(
+        final long personId, final PersonRelationEntity entity, final Integer deep
+    ) {
+        final Person person = PERSON_ENTITY_2_PERSON.apply(entity.getPersonTo(), deep - 1);
+        return (personId == person.getPersonId()) ? null : PersonRelation.builder()
             .type(entity.getType())
             .person(person)
             .build();
@@ -54,9 +64,9 @@ public class PersonConverter {
                 final Set<PersonRelationEntity> fromRelations = entity.getFromRelations();
                 final Set<PersonRelationEntity> toRelations = entity.getToRelations();
                 builder.from(fromRelations.stream()
-                    .map(pr -> PERSON_RELATION_ENTITY_2_PERSON(pr, true, deep)).toList());
+                    .map(pr -> PERSON_RELATION_ENTITY_FROM_PERSON(pr, deep)).filter(Objects::nonNull).toList());
                 builder.to(toRelations.stream()
-                    .map(pr -> PERSON_RELATION_ENTITY_2_PERSON(pr, false, deep)).toList());
+                    .map(pr -> PERSON_RELATION_ENTITY_TO_PERSON(pr, deep)).filter(Objects::nonNull).toList());
             }
             return builder.build();
         };

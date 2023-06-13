@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDaoImplTest.java  last: 01.05.2023
+ *  @(#)UserDaoImplTest.java  last: 13.06.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -46,6 +46,21 @@ class UserDaoImplTest {
         final UserDto user = UserDto.builder().login("login").name("name").build();
         final Integer id = userDao.insert(user);
         Assertions.assertEquals(id, user.getUserId());
+    }
+
+    @Test
+    void findById() {
+        final Optional<UserDto> optUser = userDao.findById(2);
+        Assertions.assertTrue(optUser.isPresent());
+        final UserDto user = optUser.get();
+        log.info("findById() = {}", user);
+        Assertions.assertNotNull(user);
+        Assertions.assertEquals("VPupkin", user.getLogin());
+        Assertions.assertEquals("Василий Пупкин", user.getName());
+        Assertions.assertEquals("321", user.getPassword());
+        final List<UserRole> roles = user.getRoles();
+        Assertions.assertNotNull(roles);
+        Assertions.assertEquals(2, roles.size());
     }
 
     @Test

@@ -1,6 +1,15 @@
+/*
+ *  @(#)BackendControllerTest.java  last: 13.06.2023
+ *
+ * Title: LG prototype for java-spring-jdbc + vue-type-script
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
 package com.lasgis.prototype.vue.controller;
 
 import com.lasgis.prototype.vue.VueApplication;
+import com.lasgis.prototype.vue.model.UserDto;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +19,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
@@ -37,37 +47,33 @@ public class BackendControllerTest {
             .assertThat()
             .body(is(equalTo(UserController.HELLO_TEXT)));
     }
-/*
+
     @Test
     public void addNewUserAndRetrieveItBack() {
-        User norbertSiegmund = new User("Norbert", "Siegmund");
+        final Integer userId = given()
+            .pathParam("name", "Siegmund")
+            .pathParam("login", "Norbert")
+            .when()
+            .post("/api/user/{name}/{login}")
+            .then()
+            .statusCode(is(HttpStatus.SC_CREATED))
+            .extract()
+            .body().as(Integer.class);
 
-        Long userId =
-            given()
-                .pathParam("firstName", "Norbert")
-                .pathParam("lastName", "Siegmund")
-                .when()
-                .post("/api/user/{lastName}/{firstName}")
-                .then()
-                .statusCode(is(HttpStatus.SC_CREATED))
-                .extract()
-                .body().as(Long.class);
-
-        User responseUser =
-            given()
-                .pathParam("id", userId)
-                .when()
-                .get("/api/user/{id}")
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .assertThat()
-                .extract().as(User.class);
+        final UserDto responseUser = given()
+            .pathParam("id", userId)
+            .when()
+            .get("/api/user/{id}")
+            .then()
+            .statusCode(HttpStatus.SC_OK)
+            .assertThat()
+            .extract().as(UserDto.class);
 
         // Did Norbert came back?
-        assertThat(responseUser.getFirstName(), is("Norbert"));
-        assertThat(responseUser.getLastName(), is("Siegmund"));
+        assertThat(responseUser.getName()).isEqualTo("Siegmund");
+        assertThat(responseUser.getLogin()).isEqualTo("Norbert");
     }
-*/
+
     @Test
     public void user_api_should_give_http_404_not_found_when_user_not_present_in_db() {
         Long someId = 200L;

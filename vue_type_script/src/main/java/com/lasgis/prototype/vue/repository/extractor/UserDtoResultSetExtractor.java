@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDtoResultSetExtractor.java  last: 01.05.2023
+ *  @(#)UserDtoResultSetExtractor.java  last: 13.06.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -50,7 +50,10 @@ public class UserDtoResultSetExtractor implements ResultSetExtractor<List<UserDt
                     .archived(rs.getBoolean("umusr_archived"));
                 userId = rsUserId;
             }
-            roles.add(UserRole.valueOf(rs.getString("umrle_role_id")));
+            final String roleId = rs.getString("umrle_role_id");
+            if (nonNull(roleId)) {
+                roles.add(UserRole.valueOf(roleId));
+            }
         }
         if (nonNull(builder)) {
             list.add(builder.roles(roles).build());

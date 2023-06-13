@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDaoImpl.java  last: 01.05.2023
+ *  @(#)UserDaoImpl.java  last: 13.06.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -102,11 +102,23 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public Optional<UserDto> findById(final Integer userId) {
+        return Objects.requireNonNull(namedJdbcTemplate.query(
+            "Select usr.*, rol.umrle_role_id" +
+                "  from um_user usr" +
+                "    left join um_user_role rol on usr.umusr_user_id = rol.umusr_user_id" +
+                " where usr.umusr_user_id = :userId",
+            new MapSqlParameterSource("userId", userId),
+            UserDtoResultSetExtractor.INSTANCE
+        )).stream().filter(Objects::nonNull).findFirst();
+    }
+
+    @Override
     public Optional<UserDto> findByLogin(final String login) {
         return Objects.requireNonNull(namedJdbcTemplate.query(
             "Select usr.*, rol.umrle_role_id" +
                 "  from um_user usr" +
-                "    inner join um_user_role rol on usr.umusr_user_id = rol.umusr_user_id" +
+                "    left join um_user_role rol on usr.umusr_user_id = rol.umusr_user_id" +
                 " where usr.umusr_login = :login",
             new MapSqlParameterSource("login", login),
             UserDtoResultSetExtractor.INSTANCE

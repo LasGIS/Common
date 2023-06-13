@@ -12,8 +12,10 @@ import com.lasgis.test.kafka.bean.SpringLifecycle;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.util.Properties;
 
@@ -24,6 +26,7 @@ public class KafkaConsumerConfig {
     private final KafkaConsumerProperties consumerProperties;
 
     @Bean(initMethod = "init")
+    @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public SpringLifecycle getSpringLifecycle() {
         return new SpringLifecycle();
     }

@@ -47,7 +47,7 @@ public class PersonController {
     @GetMapping()
     public List<Person> getPersons() {
         final List<PersonEntity> list = personRepository.findAll();
-        final List<Person> listPerson = list.stream().map(per -> PERSON_ENTITY_2_PERSON.apply(per, 1)).toList();
+        final List<Person> listPerson = list.stream().map(per -> PERSON_ENTITY_2_PERSON.apply(per, 2)).toList();
         return listPerson;
     }
 

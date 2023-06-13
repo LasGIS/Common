@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDao.java  last: 01.05.2023
+ *  @(#)UserDao.java  last: 13.06.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -24,6 +24,7 @@ public interface UserDao {
     Integer insert(UserDto user);
     void update(UserDto user);
     void delete(Integer userId);
+    Optional<UserDto> findById(Integer userName);
     Optional<UserDto> findByLogin(String userName);
     List<UserDto> findAllUsers();
 }

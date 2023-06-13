@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 
 describe('Generator', () => {
-  test('NON security formatTelNumber()', () => {
+  test('Generator', () => {
     function* gen() {
       // Передаём вопрос во внешний код и ожидаем ответа
       let result = yield '2 + 2 = ?'; // (*)
