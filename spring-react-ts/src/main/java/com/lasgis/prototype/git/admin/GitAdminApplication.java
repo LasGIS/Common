@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringReactTsApplication {
-
+public class GitAdminApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringReactTsApplication.class, args);
+		SpringApplication.run(GitAdminApplication.class, args);
 	}
-
 }
