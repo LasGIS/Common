@@ -1,8 +1,16 @@
-import './App.css';
-import React from 'react';
-import { Space, Button } from 'antd';
+/*
+ *  @(#)CounterPage.tsx  last: 15.06.2023
+ *
+ * Title: LG prototype for spring-security + spring-data + react
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
 
-const Counter = React.memo(() => {
+import "./Counter.css";
+import React from "react";
+import { Button, Space } from "antd";
+
+const Counter = () => {
   const [count, setCount] = React.useState(0);
 
   const handleCount = () => {
@@ -15,7 +23,7 @@ const Counter = React.memo(() => {
       {`Count: ${count}`}
     </div>
   );
-});
+};
 
 const PageView = ({ page }: { page: number }) => (
   <div className={'data'}>
@@ -24,7 +32,7 @@ const PageView = ({ page }: { page: number }) => (
   </div>
 );
 
-const App = () => {
+const CounterPage = () => {
   const [page, setPage] = React.useState(1);
 
   const handleNext = () => {
@@ -52,4 +60,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default CounterPage;
