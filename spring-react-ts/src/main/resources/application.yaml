@@ -7,17 +7,16 @@ spring:
   flyway:
     locations:  classpath:/db/migration,classpath:/dev/db/migration
     baselineOnMigrate: true
-    schemas: prototype
 
   # database connection
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/git_admin
     username: postgres
     password: postgres
     hikari:
       maximum-pool-size: 10
-      schema: prototype
+#      schema: prototype
 
 local:
   server:

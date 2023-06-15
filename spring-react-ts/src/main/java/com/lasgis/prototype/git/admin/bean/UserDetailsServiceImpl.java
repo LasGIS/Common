@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,27 +22,30 @@ import org.springframework.stereotype.Component;
  * @author VLaskin
  * @since 13.06.2023 : 17:53
  */
-/*
 @Slf4j
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
+    private final PasswordEncoder passwordEncoder;
 //    private final UserDao userDao;
 //
-//    public UserDetailsServiceImpl(UserDao userDao) {
+    public UserDetailsServiceImpl(
+//        final UserDao userDao,
+        final PasswordEncoder passwordEncoder
+    ) {
 //        this.userDao = userDao;
-//    }
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(final String login) throws UsernameNotFoundException {
 //        final UserDto user = userDao.findByLogin(login).orElseThrow(
 //            () -> new UsernameNotFoundException(String.format("User with such login %s not found!", login)));
-        log.info("Found user {}", "user-name");
+        log.info("Found user {}", "admin");
         return User.builder()
-            .username("user-name")
-            .password("{noop}" + "123")
+            .username("admin")
+            .password(passwordEncoder.encode("password"))
             .disabled(false)
             .roles("ADMIN", "USER")
             .build();
     }
 }
-*/
