@@ -1,18 +1,10 @@
-/*
- *  @(#)LoginPage.tsx  last: 15.06.2023
- *
- * Title: LG prototype for spring-security + spring-data + react
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 import React from "react";
 import { Button, Form, Input } from "antd";
-import { showNotification } from "../../common/utils/notification-utils";
+import { showNotification } from "../../types/utils/notification-utils";
 import styles from "./styles.module.scss";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { ErrorDto } from "../../redux/common/types/util-types";
+import { ErrorDto } from "../../types/types";
 import { performLogin } from "./services/actions";
 
 const LoginPage = () => {

@@ -1,11 +1,3 @@
-/*
- *  @(#)index.tsx  last: 15.06.2023
- *
- * Title: LG prototype for spring-security + spring-data + react
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";

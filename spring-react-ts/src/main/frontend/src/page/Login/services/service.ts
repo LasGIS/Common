@@ -1,13 +1,5 @@
-/*
- *  @(#)service.ts  last: 15.06.2023
- *
- * Title: LG prototype for spring-security + spring-data + react
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
-import { Role, ServiceUserDto } from "../../../common/types/dto/login-types";
-import { ErrorDto } from "../../../common/types/util-types";
+import { Role, ServiceUserDto } from "../../../types/dto/login-types";
+import { ErrorDto } from "../../../types/types";
 
 export const fetchPerformLogin = (formData: FormData): Promise<ServiceUserDto> =>
   new Promise((resolve: (user: ServiceUserDto) => void, reject: (error: ErrorDto) => void) => {

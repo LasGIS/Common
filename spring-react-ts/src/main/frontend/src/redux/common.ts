@@ -1,15 +1,7 @@
-/*
- *  @(#)common.ts  last: 15.06.2023
- *
- * Title: LG prototype for spring-security + spring-data + react
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 import { createAsyncThunk, createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppSettingsConfig, CommonStoreData } from "./types";
 import { fetchAppSettings } from "./service";
-import { ErrorDto } from "../types/util-types";
+import { ErrorDto } from "../types/types";
 import { AppDispatch } from "../../redux/store";
 import { RootStoreData } from "./redux-types";
 
@@ -78,4 +70,3 @@ export const commonConnectedRouterSelector = (root: RootStoreData) => (root && r
 export const { commonShowLoader, commonHideLoader, setEnvironment, getSystemSettings } = commonSlice.actions;
 
 export default commonSlice.reducer;
-

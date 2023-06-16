@@ -1,11 +1,3 @@
-/*
- *  @(#)MenuHelper.tsx  last: 15.06.2023
- *
- * Title: LG prototype for spring-security + spring-data + react
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 import React, { ComponentType } from "react";
 import { DesktopOutlined } from "@ant-design/icons/lib/icons";
 import { ConnectedComponent } from "react-redux";
@@ -32,9 +24,7 @@ export const MENU_DATA: { [key: string]: MenuData } = {
   },
 };
 
-export const MENU_DATA_LIST: MenuData[] = [
-  MENU_DATA.Counter,
-];
+export const MENU_DATA_LIST: MenuData[] = [MENU_DATA.Counter];
 
 export const findKeyByPathname = (pathname: string): string => {
   const menu = MENU_DATA_LIST.find((menuData) => pathname.startsWith(menuData.pathname));

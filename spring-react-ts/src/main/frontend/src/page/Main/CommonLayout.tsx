@@ -1,11 +1,3 @@
-/*
- *  @(#)CommonLayout.tsx  last: 15.06.2023
- *
- * Title: LG prototype for spring-security + spring-data + react
- * Description: Program for support Prototype.
- * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
- */
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Divider, Layout, Menu, Spin } from "antd";
@@ -22,7 +14,6 @@ const CommonLayout = () => {
   const [isMenuCollapsed, setMenuCollapsed] = useState(false);
   const menuWidth = isMenuCollapsed ? 80 : 200;
   const selectedKeys = [findKeyByPathname(window.location.pathname)];
-
 
   return (
     <Spin spinning={loading} size="large" tip="Загрузка данных">
