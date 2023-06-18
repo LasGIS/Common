@@ -1,4 +1,5 @@
 import { RouterState } from "connected-react-router";
+import { ErrorDto } from "../types/types";
 
 export type AppSettingsConfig = {
   printLocale?: boolean;
@@ -6,10 +7,11 @@ export type AppSettingsConfig = {
   version?: string;
 };
 
-export type CommonStoreData = {
+export interface CommonStoreData {
   loading?: boolean;
   settings?: AppSettingsConfig;
-};
+  errors?: ErrorDto[];
+}
 
 export type RootStoreData = {
   router: RouterState;

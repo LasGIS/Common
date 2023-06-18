@@ -1,7 +1,5 @@
-import React from "react";
+import "./styles.css";
 import { Button, Form, Input } from "antd";
-import { showNotification } from "../../types/utils/notification-utils";
-import styles from "./styles.module.scss";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { ErrorDto } from "../../types/types";
@@ -20,15 +18,16 @@ const LoginPage = () => {
           navigate({ pathname: from.pathname, search: from.search }, { replace: true });
         })
         .catch((error: ErrorDto) => {
-          showNotification(error.message, error.detail, 'error');
+          console.log(`showNotification(${error.message}, ${error.detail});`);
+          //showNotification(error.message, error.detail, 'error');
         });
     });
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <h1>Tracking Inventory</h1>
-      <Form name="basic" form={form} onFinish={handleSubmit} title="Tracking Inventory">
+      <Form name="basic" form={form} onFinish={handleSubmit} title="Basic Authority">
         <Form.Item name="username" rules={[{ required: true, message: 'Введите логин' }]}>
           <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Логин" />
         </Form.Item>
@@ -38,7 +37,7 @@ const LoginPage = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
+          <Button type="primary" htmlType="submit" className="login-form-button">
             Войти
           </Button>
         </Form.Item>
