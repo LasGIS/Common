@@ -1,11 +1,11 @@
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
-import type { AppSettingsConfig, CommonStoreData } from "./redux-types";
-import { RootStoreData } from "./redux-types";
-import api from "./service";
-import type { ErrorDto } from "../types/types";
-import type { AppDispatch, RootState } from "./store";
-import { AxiosResponse } from "axios";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
+import type { AppSettingsConfig, CommonStoreData } from './redux-types';
+import { RootStoreData } from './redux-types';
+import api from './service';
+import type { ErrorDto } from '../types/types';
+import type { AppDispatch, RootState } from './store';
+import { AxiosResponse } from 'axios';
 
 export const getAppSettings = createAsyncThunk<RootState, void, { dispatch: AppDispatch; state: CommonStoreData }>(
   'COMMON_GET_SYSTEM_SETTINGS',

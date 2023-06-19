@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from "axios";
-import { AppSettingsConfig } from "./redux-types";
+import axios, { AxiosResponse } from 'axios';
+import { AppSettingsConfig } from './redux-types';
 
 const axiosApi = axios.create({
   baseURL: `/v1.0`,

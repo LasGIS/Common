@@ -1,7 +1,7 @@
-import React, { ComponentType } from "react";
-import { DesktopOutlined } from "@ant-design/icons/lib/icons";
-import { ConnectedComponent } from "react-redux";
-import CounterPage from "../Counter/CounterPage";
+import React, { ComponentType } from 'react';
+import { DesktopOutlined } from '@ant-design/icons/lib/icons';
+import { ConnectedComponent } from 'react-redux';
+import CounterPage from '../Counter/CounterPage';
 
 export type MenuData = {
   key: string;

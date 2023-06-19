@@ -1,5 +1,5 @@
-import { Role, ServiceUserDto } from "../../../types/dto/login-types";
-import { ErrorDto } from "../../../types/types";
+import { Role, ServiceUserDto } from '../../../types/dto/login-types';
+import { ErrorDto } from '../../../types/types';
 
 export const fetchPerformLogin = (formData: FormData): Promise<ServiceUserDto> =>
   new Promise((resolve: (user: ServiceUserDto) => void, reject: (error: ErrorDto) => void) => {

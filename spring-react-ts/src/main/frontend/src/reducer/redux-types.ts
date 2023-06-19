@@ -1,5 +1,5 @@
-import { RouterState } from "connected-react-router";
-import { ErrorDto } from "../types/types";
+import { RouterState } from 'connected-react-router';
+import { ErrorDto } from '../types/types';
 
 export type AppSettingsConfig = {
   printLocale?: boolean;

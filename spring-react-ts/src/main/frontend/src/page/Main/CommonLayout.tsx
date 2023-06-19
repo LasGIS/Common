@@ -1,10 +1,10 @@
-import { DesktopOutlined, LogoutOutlined } from "@ant-design/icons/lib/icons";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Divider, Layout, Menu, Spin } from "antd";
-import { findKeyByPathname } from "./MenuHelper";
-import { Link, Outlet } from "react-router-dom";
-import { commonLoadingSelector } from "../../reducer/common";
+import { DesktopOutlined, LogoutOutlined } from '@ant-design/icons/lib/icons';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Divider, Layout, Menu, Spin } from 'antd';
+import { findKeyByPathname } from './MenuHelper';
+import { Link, Outlet } from 'react-router-dom';
+import { commonLoadingSelector } from '../../reducer/common';
 
 const { Content, Sider } = Layout;
 

@@ -1,9 +1,9 @@
-import "./styles.css";
-import { Button, Form, Input } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import { ErrorDto } from "../../types/types";
-import { performLogin } from "./services/actions";
+import './styles.css';
+import { Button, Form, Input } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { ErrorDto } from '../../types/types';
+import { performLogin } from './services/actions';
 
 const LoginPage = () => {
   const navigate = useNavigate();

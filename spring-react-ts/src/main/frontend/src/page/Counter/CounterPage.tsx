@@ -1,6 +1,6 @@
-import "./Counter.css";
-import React from "react";
-import { Button, Space } from "antd";
+import './Counter.css';
+import React from 'react';
+import { Button, Space } from 'antd';
 
 const Counter = () => {
   const [count, setCount] = React.useState(0);
