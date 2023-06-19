@@ -1,47 +1,30 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  display: flex;
-  justify-content: center;
-  align-content:  center;
-  min-height: 100vh;
-}
-
 button.ant-button {
-  width: 85px;
+    width: 85px;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0;
-  width: 200px
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
 }
 
 .data {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
 }
 
 .counter {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
 }
 
 .counter:last-child {
-  padding-right: 10px;
+    padding-right: 10px;
 }

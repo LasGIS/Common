@@ -59,7 +59,7 @@ const commonSlice = createSlice({
 });
 
 export const commonRootSelector = (root: RootStoreData) => root.common;
-export const commonLoadingSelector = createSelector(commonRootSelector, (state) => state && state.loading);
+export const commonLoadingSelector = createSelector(commonRootSelector, (state) => state?.loading);
 export const commonConnectedRouterSelector = (root: RootStoreData) => (root && root.router) || null;
 
 export const { commonShowLoader, commonHideLoader, getSystemSettings } = commonSlice.actions;

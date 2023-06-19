@@ -8,7 +8,7 @@ export type AppSettingsConfig = {
 };
 
 export interface CommonStoreData {
-  loading?: boolean;
+  loading: boolean;
   settings?: AppSettingsConfig;
   errors?: ErrorDto[];
 }

@@ -170,7 +170,7 @@
                             <overwrite>true</overwrite>
                             <resources>
                                 <resource>
-                                    <directory>${frontend-src-dir}/dist</directory>
+                                    <directory>${frontend-src-dir}/build</directory>
                                 </resource>
                             </resources>
                         </configuration>

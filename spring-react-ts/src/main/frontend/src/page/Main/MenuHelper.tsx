@@ -1,7 +1,5 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 import { DesktopOutlined } from '@ant-design/icons/lib/icons';
-import { ConnectedComponent } from 'react-redux';
-import CounterPage from '../Counter/CounterPage';
 
 export type MenuData = {
   key: string;
@@ -10,8 +8,6 @@ export type MenuData = {
   params?: string;
   optionKey?: string;
   icon: React.ReactNode;
-  component?: ConnectedComponent<ComponentType<any>, any>;
-  element?: any;
 };
 
 export const MENU_DATA: { [key: string]: MenuData } = {
@@ -20,7 +16,6 @@ export const MENU_DATA: { [key: string]: MenuData } = {
     name: 'CounterPage',
     pathname: '/counter',
     icon: <DesktopOutlined />,
-    element: CounterPage,
   },
 };
 

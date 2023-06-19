@@ -4,6 +4,11 @@ import { Button, Space } from 'antd';
 
 const Counter = () => {
   const [count, setCount] = React.useState(0);
+  /*
+  React.useEffect(() => {
+    setCount(0);
+  }, [page]);
+*/
 
   const handleCount = () => {
     setCount(count + 1);
@@ -20,7 +25,7 @@ const Counter = () => {
 const PageView = ({ page }: { page: number }) => (
   <div className={'data'}>
     {`Page: ${page}`}
-    <Counter key={page} />
+    <Counter />
   </div>
 );
 

@@ -1,5 +1,6 @@
-import './styles.css';
+import React from 'react';
 import { Button, Form, Input } from 'antd';
+import styles from './styles.module.scss';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { ErrorDto } from '../../types/types';
@@ -26,7 +27,7 @@ const LoginPage = () => {
 
   return (
     <div className="container">
-      <h1>Tracking Inventory</h1>
+      <h1>Basic Authority</h1>
       <Form name="basic" form={form} onFinish={handleSubmit} title="Basic Authority">
         <Form.Item name="username" rules={[{ required: true, message: 'Введите логин' }]}>
           <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Логин" />
@@ -37,7 +38,7 @@ const LoginPage = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
             Войти
           </Button>
         </Form.Item>

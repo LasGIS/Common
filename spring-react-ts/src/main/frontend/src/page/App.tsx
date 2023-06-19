@@ -4,7 +4,7 @@ import CounterPage from './Counter/CounterPage';
 import LoginPage from './Login/LoginPage';
 
 const App = () => (
-  <Router /* basename={import.meta.env.BASE_URL}*/>
+  <Router basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<CommonLayout />}>
