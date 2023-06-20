@@ -4,23 +4,27 @@ import type { AppSettingsConfig, CommonStoreData } from './redux-types';
 import { RootStoreData } from './redux-types';
 import api from './service';
 import type { ErrorDto } from '../types/types';
-import type { AppDispatch, RootState } from './store';
+import type { AppDispatch } from './store';
 import { AxiosResponse } from 'axios';
 
-export const getAppSettings = createAsyncThunk<RootState, void, { dispatch: AppDispatch; state: CommonStoreData }>(
-  'COMMON_GET_SYSTEM_SETTINGS',
-  () => {
-    return api
-      .fetchAppSettings()
-      .then((response: AxiosResponse<AppSettingsConfig>) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      });
-  },
-);
+export const getAppSettings = createAsyncThunk<
+  AppSettingsConfig,
+  void,
+  {
+    dispatch: AppDispatch;
+    state: CommonStoreData;
+  }
+>('COMMON_GET_SYSTEM_SETTINGS', (v, thunkApi) => {
+  return api
+    .fetchAppSettings()
+    .then((response: AxiosResponse<AppSettingsConfig>) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return thunkApi.rejectWithValue(error);
+    });
+});
 
 // Define the initial state using that type
 const initialState: CommonStoreData = {
@@ -38,9 +42,6 @@ const commonSlice = createSlice({
     },
     commonHideLoader: (state: CommonStoreData) => {
       state.loading = false;
-    },
-    getSystemSettings: (state: CommonStoreData, action: PayloadAction<AppSettingsConfig>) => {
-      state.settings = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -60,8 +61,9 @@ const commonSlice = createSlice({
 
 export const commonRootSelector = (root: RootStoreData) => root.common;
 export const commonLoadingSelector = createSelector(commonRootSelector, (state) => state?.loading);
+export const commonSettingsSelector = createSelector(commonRootSelector, (state) => state?.settings);
 export const commonConnectedRouterSelector = (root: RootStoreData) => (root && root.router) || null;
 
-export const { commonShowLoader, commonHideLoader, getSystemSettings } = commonSlice.actions;
+export const { commonShowLoader, commonHideLoader } = commonSlice.actions;
 
 export default commonSlice.reducer;

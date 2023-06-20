@@ -30,6 +30,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
+                    .requestMatchers("/settings").hasAuthority("ADMIN")
                     .requestMatchers("/principal").hasAnyAuthority("ADMIN", "USER")
                     .requestMatchers("/api/user/**").hasAuthority("ADMIN")
                     .requestMatchers("/api/info/**").hasAuthority("USER")

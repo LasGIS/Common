@@ -2,7 +2,6 @@ import { RouterState } from 'connected-react-router';
 import { ErrorDto } from '../types/types';
 
 export type AppSettingsConfig = {
-  printLocale?: boolean;
   name?: string;
   version?: string;
 };

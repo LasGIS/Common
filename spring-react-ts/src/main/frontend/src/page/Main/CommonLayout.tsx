@@ -1,16 +1,45 @@
-import { DesktopOutlined, LogoutOutlined } from '@ant-design/icons/lib/icons';
 import React, { useState } from 'react';
+import { AppstoreOutlined, DesktopOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
 import { useSelector } from 'react-redux';
-import { Divider, Layout, Menu, Spin, theme } from 'antd';
+import type { MenuProps } from 'antd';
+import { Layout, Menu, Spin, theme } from 'antd';
 import { findKeyByPathname } from './MenuHelper';
 import { Link, Outlet } from 'react-router-dom';
-import { commonLoadingSelector } from '../../reducer/common';
+import { commonLoadingSelector, commonSettingsSelector } from '../../reducer/common';
+import { AppSettingsConfig } from '../../reducer/redux-types';
+import { ItemType } from 'antd/lib/menu/hooks/useItems';
 
-const { Content, Header, Sider } = Layout;
+const { Content, Header, Sider, Footer } = Layout;
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {
+  return { key, icon, children, label, type } as MenuItem;
+};
+
+const items: ItemType[] = [
+  { key: 1, icon: <DesktopOutlined />, label: <Link to="/counter">Counter Page</Link> },
+  { key: 2, icon: <DesktopOutlined />, label: <Link to="/login">Login</Link> },
+  getItem('Navigation One', 'sub1', <MailOutlined />, [getItem('Item 2', 'g2', null, [getItem('Option 3', '3'), getItem('Option 4', '4')], 'group')]),
+  getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
+    getItem('Option 5', '5'),
+    getItem('Option 6', '6'),
+    getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+  ]),
+  { type: 'divider' } as MenuItem,
+  getItem('Navigation Three', 'sub4', <SettingOutlined />, [
+    getItem('Option 9', '9'),
+    getItem('Option 10', '10'),
+    getItem('Option 11', '11'),
+    getItem('Option 12', '12'),
+  ]),
+  getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
+];
 
 const CommonLayout = () => {
   // const dispatch = useDispatch();
   const loading = useSelector(commonLoadingSelector) as boolean;
+  const settings = useSelector(commonSettingsSelector) as AppSettingsConfig;
   const [isMenuCollapsed, setMenuCollapsed] = useState(false);
   const menuWidth = isMenuCollapsed ? 80 : 200;
   const selectedKeys = [findKeyByPathname(window.location.pathname)];
@@ -30,6 +59,8 @@ const CommonLayout = () => {
             left: 0,
           }}
         >
+          <Menu theme="dark" mode="inline" selectedKeys={selectedKeys} items={items} />
+          {/*
           <Menu theme="dark" mode="inline" selectedKeys={selectedKeys}>
             <Menu.Item key={1}>
               <DesktopOutlined />
@@ -46,12 +77,13 @@ const CommonLayout = () => {
               </span>
             </Menu.Item>
           </Menu>
+*/}
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: menuWidth }}>
           <Header style={{ padding: 0, background: token.colorBgLayout }} />
           <Content
             style={{
-              margin: '24px 16px',
+              margin: '24px 16px 0',
               padding: 24,
               background: '#fff',
               minHeight: 280,
@@ -59,6 +91,7 @@ const CommonLayout = () => {
           >
             <Outlet />
           </Content>
+          <Footer style={{ textAlign: 'right' }}>{`"${settings?.name}" v.${settings?.version}`}</Footer>
         </Layout>
       </Layout>
     </Spin>

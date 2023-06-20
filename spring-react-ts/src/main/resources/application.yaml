@@ -2,7 +2,6 @@ server:
   port: 8099
 
 spring:
-
   # flyway migration
   flyway:
     locations:  classpath:/db/migration,classpath:/dev/db/migration
@@ -21,3 +20,7 @@ spring:
 local:
   server:
     port: 8099
+
+settings:
+  name: "ui test counter"
+  version: "0.0.1-SNAPSHOT"

@@ -17,6 +17,12 @@ export const MENU_DATA: { [key: string]: MenuData } = {
     pathname: '/counter',
     icon: <DesktopOutlined />,
   },
+  login: {
+    key: '2',
+    name: 'CounterPage',
+    pathname: '/counter',
+    icon: <DesktopOutlined />,
+  },
 };
 
 export const MENU_DATA_LIST: MenuData[] = [MENU_DATA.Counter];
