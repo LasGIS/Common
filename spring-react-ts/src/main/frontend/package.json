@@ -5,7 +5,7 @@
   "type": "module",
   "description": "React TypeScript on create react app",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3003 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

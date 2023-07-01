@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppstoreOutlined, DesktopOutlined, MailOutlined, SettingOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons/lib/icons';
+import { AppstoreOutlined, DesktopOutlined, LoginOutlined, LogoutOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
 import { useSelector } from 'react-redux';
 import type { MenuProps } from 'antd';
 import { Layout, Menu, Spin, theme } from 'antd';
@@ -31,12 +31,9 @@ const items: ItemType[] = [
     getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
   ]),
   { type: 'divider', theme: 'light', style: { margin: '6px 0' } } as MenuItem,
-  getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-    getItem('Option 9', '9'),
-    getItem('Option 10', '10'),
-    getItem('Option 11', '11'),
-    getItem('Option 12', '12'),
-  ]),
+  getItem('Navigation Three', 'sub4', <SettingOutlined />, [getItem('Option 9 group', '9'), getItem('Option 10 group', '10')], 'group'),
+  getItem('Option 11', '11'),
+  getItem('Option 12', '12'),
   getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
 ];
 
