@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.lasgis.prototype</groupId>
@@ -16,6 +17,8 @@
     <description>spring-react-ts</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
         <frontend-src-dir>${project.basedir}/src/main/frontend</frontend-src-dir>
         <node.version>v18.16.0</node.version>
@@ -138,6 +141,26 @@
             <build>
                 <plugins>
                     <plugin>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>clean frontend resources</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <configuration>
+                                    <filesets>
+                                        <fileset>
+                                            <directory>src/main/resources/static</directory>
+                                            <followSymlinks>false</followSymlinks>
+                                        </fileset>
+                                    </filesets>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
                         <version>${frontend-maven-plugin.version}</version>
@@ -151,14 +174,14 @@
 
                         <executions>
                             <execution>
-                                <id>install-frontend-tools</id>
+                                <id>install frontend tools</id>
                                 <goals>
                                     <goal>install-node-and-yarn</goal>
                                 </goals>
                             </execution>
 
                             <execution>
-                                <id>yarn-install</id>
+                                <id>yarn install</id>
                                 <goals>
                                     <goal>yarn</goal>
                                 </goals>
@@ -168,7 +191,7 @@
                             </execution>
 
                             <execution>
-                                <id>build-frontend</id>
+                                <id>build frontend</id>
                                 <goals>
                                     <goal>yarn</goal>
                                 </goals>

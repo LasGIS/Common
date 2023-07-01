@@ -3,16 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CommonLayout from './Main/CommonLayout';
 import CounterPage from './Counter/CounterPage';
 import LoginPage from './Login/LoginPage';
-import { getAppSettings } from '../reducer/common';
 import { useDispatch } from 'react-redux';
-//import store, { AppDispatch } from '../reducer/store';
+import { AppDispatch } from '../reducer/store';
+import { getAppSettings } from '../reducer/common';
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(getAppSettings());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getAppSettings() as AppDispatch);
+  }, [dispatch]);
 
   return (
     <Router basename={process.env.PUBLIC_URL}>

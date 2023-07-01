@@ -1,5 +1,5 @@
 /*
- *  @(#)BackendControllerTest.java  last: 13.06.2023
+ *  @(#)BackendControllerTestManual.java  last: 13.06.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.is;
     classes = VueApplication.class,
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-public class BackendControllerTest {
+public class BackendControllerTestManual {
 
     @LocalServerPort
     private int port;

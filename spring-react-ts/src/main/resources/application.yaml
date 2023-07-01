@@ -2,6 +2,7 @@ server:
   port: 8099
 
 spring:
+
   # flyway migration
   flyway:
     locations:  classpath:/db/migration,classpath:/dev/db/migration
