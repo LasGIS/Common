@@ -1,5 +1,5 @@
 /*
- *  @(#)UmUser.java  last: 15.05.2023
+ *  @(#)UserEntity.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -13,6 +13,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.List;
 
 /**
  * The Class User definition.
@@ -24,11 +27,13 @@ import org.springframework.data.annotation.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UmUser {
-    @Id()
-    private Long umusrUserId;
-    private String umusrLogin;
-    private String umusrName;
-    private String umusrPassword;
-    private Boolean umusrArchived;
+@Table(name = "\"user\"")
+public class UserEntity {
+    @Id
+    private Long userId;
+    private String login;
+    private String name;
+    private String password;
+    private List<UserRole> roles;
+    private Boolean archived;
 }

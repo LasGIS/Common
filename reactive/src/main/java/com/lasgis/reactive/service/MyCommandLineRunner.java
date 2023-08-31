@@ -1,5 +1,5 @@
 /*
- *  @(#)CommandLineRunner.java  last: 20.05.2023
+ *  @(#)MyCommandLineRunner.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -38,7 +38,7 @@ public class MyCommandLineRunner implements CommandLineRunner, ApplicationRunner
 
     @Override
     public void run(String... args) {
-        log.info("implements CommandLineRunner interface:\n String[{}] args = {}",
+        log.info("implements CommandLineRunner interface: String[{}] args = {}",
             args.length, Arrays.stream(args).map(s -> "\"" + s + "\"").collect(Collectors.joining(", ", "{ ", " };")));
     }
 }

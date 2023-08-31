@@ -1,5 +1,5 @@
 /*
- *  @(#)UmRoleRepository.java  last: 15.05.2023
+ *  @(#)UserRepository.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -8,10 +8,10 @@
 
 package com.lasgis.reactive.repository;
 
-import com.lasgis.reactive.entity.UmRole;
+import com.lasgis.reactive.entity.UserEntity;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UmRoleRepository extends ReactiveCrudRepository<UmRole, Long> {
+public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long> {
 }

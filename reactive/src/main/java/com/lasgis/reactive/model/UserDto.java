@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDto.java  last: 18.05.2023
+ *  @(#)UserDto.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -8,6 +8,7 @@
 
 package com.lasgis.reactive.model;
 
+import com.lasgis.reactive.entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

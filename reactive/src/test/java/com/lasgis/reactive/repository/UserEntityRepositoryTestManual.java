@@ -1,5 +1,5 @@
 /*
- *  @(#)UserDtoRepositoryTestManual.java  last: 31.08.2023
+ *  @(#)UserEntityRepositoryTestManual.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -22,18 +22,18 @@ import static java.util.Objects.nonNull;
 @SpringBootTest(classes = ReactiveApplication.class)
 @AutoConfigureTestEntityManager
 //@Transactional
-class UserDtoRepositoryTestManual {
+class UserEntityRepositoryTestManual {
 
-    private final UserDtoRepository repository;
+    private final UserRepository repository;
 
     @Autowired
-    public UserDtoRepositoryTestManual(UserDtoRepository repository) {
+    public UserEntityRepositoryTestManual(UserRepository repository) {
         this.repository = repository;
     }
 
     @Test
-    void getAllUserDto() {
-        StepVerifier.create(repository.getAllUserDto())
+    void getAllUser() {
+        StepVerifier.create(repository.findAll())
             .thenConsumeWhile(user -> {
                 log.info("\n  user = {}", user);
                 return nonNull(user.getUserId());

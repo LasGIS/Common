@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceImpl.java  last: 18.05.2023
+ *  @(#)UserServiceImpl.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -10,9 +10,9 @@ package com.lasgis.reactive.service.impl;
 
 import com.lasgis.reactive.model.UserDto;
 import com.lasgis.reactive.model.exception.ItemNotFoundException;
-import com.lasgis.reactive.repository.UmUserRepository;
-import com.lasgis.reactive.repository.UmUserRoleRepository;
 import com.lasgis.reactive.repository.UserDtoRepository;
+import com.lasgis.reactive.repository.UserRepository;
+import com.lasgis.reactive.repository.UserRoleRepository;
 import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -20,24 +20,27 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import static com.lasgis.reactive.service.converter.Converter.*;
+import static com.lasgis.reactive.service.converter.Converter.ENTITY_2_USER_DTO;
+import static com.lasgis.reactive.service.converter.Converter.ENTITY_2_USER_ROLE;
+import static com.lasgis.reactive.service.converter.Converter.USER_DTO_2_ENTITY;
+import static com.lasgis.reactive.service.converter.Converter.USER_ROLE_2_ENTITY;
 
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService, CommandLineRunner {
 
     private final UserDtoRepository userDtoRepository;
-    private final UmUserRepository umUserRepository;
-    private final UmUserRoleRepository umUserRoleRepository;
+    private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
 
     public UserServiceImpl(
         final UserDtoRepository userDtoRepository,
-        final UmUserRepository umUserRepository,
-        final UmUserRoleRepository umUserRoleRepository
+        final UserRepository userRepository,
+        final UserRoleRepository userRoleRepository
     ) {
         this.userDtoRepository = userDtoRepository;
-        this.umUserRepository = umUserRepository;
-        this.umUserRoleRepository = umUserRoleRepository;
+        this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
@@ -72,24 +75,26 @@ public class UserServiceImpl implements UserService, CommandLineRunner {
 
     @Override
     public Mono<UserDto> save(UserDto userDto) {
-        return umUserRepository.save(USER_DTO_2_UM_USER.apply(userDto))
-            .map(UM_USER_2_USER_DTO)
-            .flatMap(userOut ->
-                Flux.fromIterable(userDto.getRoles())
-                    .flatMap(userRole -> umUserRoleRepository.save(
-                        USER_ROLE_2_UM_USER_ROLE.apply(userOut.getUserId(), userRole)
-                    ))
-                    .map(UM_USER_ROLE_2_USER_ROLE)
-                    .collectList()
-                    .flatMap(roleList -> {
-                        userOut.setRoles(roleList);
-                        return Mono.just(userOut);
-                    })
+        return userRepository.save(USER_DTO_2_ENTITY.apply(userDto))
+            .map(ENTITY_2_USER_DTO)
+            .flatMap(userOut -> {
+                    userDto.setUserId(userOut.getUserId());
+                    return Flux.fromIterable(userDto.getRoles())
+                        .flatMap(userRole -> userRoleRepository.save(
+                            USER_ROLE_2_ENTITY.apply(userOut.getUserId(), userRole)
+                        ))
+                        .map(ENTITY_2_USER_ROLE)
+                        .collectList()
+                        .flatMap(roleList -> {
+                            userOut.setRoles(roleList);
+                            return Mono.just(userOut);
+                        });
+                }
             );
     }
 
     @Override
     public Mono<Void> deleteById(Long id) {
-        return umUserRepository.deleteById(id);
+        return userRepository.deleteById(id);
     }
 }

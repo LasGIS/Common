@@ -2,11 +2,9 @@ spring:
     # r2dbc connection
     # see https://github.com/pgjdbc/r2dbc-postgresql
     r2dbc:
-        url: r2dbc:postgresql://localhost:5432/postgres
-        username: postgres
-        password: postgres
-        properties:
-            schema: prototype
+        url: r2dbc:postgresql://localhost:5432/generic
+        username: generic
+        password: generic
         pool:
             enabled: true
             initial-size: 10
@@ -14,3 +12,16 @@ spring:
             max-size: 30
 
     data.r2dbc.repositories.enabled: true
+
+# flyway migration
+flyway:
+    migration: RUN
+    locations: classpath:/db/migration
+    baselineOnMigrate: true
+#    schemas: prototype
+    # database connection for flyway migration
+    datasource:
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/generic
+        username: generic
+        password: generic

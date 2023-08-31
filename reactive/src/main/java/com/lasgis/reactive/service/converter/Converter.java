@@ -1,5 +1,5 @@
 /*
- *  @(#)Converter.java  last: 17.05.2023
+ *  @(#)Converter.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -8,10 +8,10 @@
 
 package com.lasgis.reactive.service.converter;
 
-import com.lasgis.reactive.entity.UmUser;
-import com.lasgis.reactive.entity.UmUserRole;
+import com.lasgis.reactive.entity.UserEntity;
+import com.lasgis.reactive.entity.UserRole;
+import com.lasgis.reactive.entity.UserRoleEntity;
 import com.lasgis.reactive.model.UserDto;
-import com.lasgis.reactive.model.UserRole;
 
 import java.util.ArrayList;
 import java.util.function.BiFunction;
@@ -25,31 +25,31 @@ import java.util.function.Function;
  */
 public class Converter {
 
-    public static final Function<UmUserRole, UserRole> UM_USER_ROLE_2_USER_ROLE =
-        umUserRole -> UserRole.valueOf(umUserRole.getUmrleRoleId());
+    public static final Function<UserRoleEntity, UserRole> ENTITY_2_USER_ROLE =
+        userRoleEntity -> UserRole.valueOf(userRoleEntity.getRoleId());
 
-    public static final BiFunction<Long, UserRole, UmUserRole > USER_ROLE_2_UM_USER_ROLE =
-        (userId, userRole) -> UmUserRole.builder()
-            .umrleRoleId(userRole.name())
-            .umusrUserId(userId)
+    public static final BiFunction<Long, UserRole, UserRoleEntity> USER_ROLE_2_ENTITY =
+        (userId, userRole) -> UserRoleEntity.builder()
+            .roleId(userRole.name())
+            .userId(userId)
             .build();
 
-    public static final Function<UmUser, UserDto> UM_USER_2_USER_DTO =
-        umUser -> UserDto.builder()
-            .userId(umUser.getUmusrUserId())
-            .login(umUser.getUmusrLogin())
-            .name(umUser.getUmusrName())
-            .password(umUser.getUmusrPassword())
-            .archived(umUser.getUmusrArchived())
+    public static final Function<UserEntity, UserDto> ENTITY_2_USER_DTO =
+        userEntity -> UserDto.builder()
+            .userId(userEntity.getUserId())
+            .login(userEntity.getLogin())
+            .name(userEntity.getName())
+            .password(userEntity.getPassword())
+            .archived(userEntity.getArchived())
             .roles(new ArrayList<>())
             .build();
 
-    public static final Function<UserDto, UmUser> USER_DTO_2_UM_USER =
-        userDto -> UmUser.builder()
-            .umusrUserId(userDto.getUserId())
-            .umusrLogin(userDto.getLogin())
-            .umusrName(userDto.getName())
-            .umusrPassword(userDto.getPassword())
-            .umusrArchived(userDto.getArchived())
+    public static final Function<UserDto, UserEntity> USER_DTO_2_ENTITY =
+        userDto -> UserEntity.builder()
+            .userId(userDto.getUserId())
+            .login(userDto.getLogin())
+            .name(userDto.getName())
+            .password(userDto.getPassword())
+            .archived(userDto.getArchived())
             .build();
 }

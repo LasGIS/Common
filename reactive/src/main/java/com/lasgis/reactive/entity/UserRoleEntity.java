@@ -1,5 +1,5 @@
 /*
- *  @(#)UmRole.java  last: 15.05.2023
+ *  @(#)UserRoleEntity.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -13,19 +13,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 /**
- * The Class UserRole definition.
+ * The Class UserRoleEntity definition.
  *
- * @author Vladimir Laskin
- * @since 30.04.2023 : 22:01
+ * @author VLaskin
+ * @since 17.05.2023 : 15:59
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UmRole {
+@Table(name = "user_role")
+public class UserRoleEntity {
     @Id()
-    private String umrleRoleId;
-    private String umrleDescription;
+    private Long userRoleId;
+    private Long userId;
+    private String roleId;
 }

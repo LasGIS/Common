@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceTestManual.java  last: 18.05.2023
+ *  @(#)UserServiceTestManual.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -9,17 +9,19 @@
 package com.lasgis.reactive.service;
 
 import com.lasgis.reactive.ReactiveApplication;
+import com.lasgis.reactive.entity.UserRole;
 import com.lasgis.reactive.model.UserDto;
-import com.lasgis.reactive.model.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
 import java.util.List;
+
+import static java.util.Objects.nonNull;
 
 /**
  * The Class  definition.
@@ -30,6 +32,7 @@ import java.util.List;
 @Slf4j
 @SpringBootTest(classes = ReactiveApplication.class)
 @AutoConfigureTestEntityManager
+//@RestClientTest
 class UserServiceTestManual {
 
     private final UserService service;
@@ -41,11 +44,13 @@ class UserServiceTestManual {
 
     @Test
     void getAllUserDto() {
-        final Flux<UserDto> flux = service.findAll();
-        final List<UserDto> list = flux.collectList().block();
-        Assertions.assertNotNull(list);
-        Assertions.assertEquals(2, list.size());
-        log.info("list = {}", list);
+        StepVerifier.create(service.findAll())
+            .thenConsumeWhile(user -> {
+                log.info("\n  user = {}", user);
+                return nonNull(user.getUserId());
+            })
+            .expectComplete()
+            .verify();
     }
 
     @Test
@@ -57,8 +62,14 @@ class UserServiceTestManual {
             .archived(true)
             .roles(List.of(UserRole.CHIEF, UserRole.SUPERVISOR))
             .build();
-        final UserDto userDto = service.save(user).block();
-        //service.deleteById(userDto.getUserId()).block();
-        log.info("UserDto = {}", userDto);
+        StepVerifier.create(service.save(user))
+            .expectNextMatches(userDto -> nonNull(userDto.getUserId()))
+            .expectComplete()
+            .verify();
+        Assertions.assertNotNull(user.getUserId());
+        StepVerifier.create(service.deleteById(user.getUserId()))
+            .expectNext()
+            .expectComplete()
+            .verify();
     }
 }

@@ -1,12 +1,12 @@
 /*
- *  @(#)UserRole.java  last: 15.05.2023
+ *  @(#)UserRole.java  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.reactive.model;
+package com.lasgis.reactive.entity;
 
 /**
  * The Class UserRole definition.
