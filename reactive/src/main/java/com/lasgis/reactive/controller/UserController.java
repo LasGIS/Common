@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 30.05.2023
+ *  @(#)UserController.java  last: 01.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -12,10 +12,18 @@ import com.lasgis.reactive.model.UserDto;
 import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.WebSession;
-import reactor.core.publisher.Flux;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+
+import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
+import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 /**
  * The Class UserController definition.
@@ -24,10 +32,58 @@ import reactor.core.publisher.Mono;
  * @since 15.05.2023 : 17:22
  */
 @Slf4j
-@RestController
-@RequestMapping("/api/v1/user")
+@Configuration
 public class UserController {
     private final UserService userService;
+
+    @Bean
+    RouterFunction<ServerResponse> composedRoutes() {
+        return RouterFunctions
+            .route(GET("/api/v1/user"), request ->
+                userService.findAll()
+                    .collectList()
+                    .flatMap(users -> ok().bodyValue(users))
+            )
+            .andRoute(POST("/api/v1/user"), request ->
+                request.bodyToMono(UserDto.class)
+                    .flatMap(userService::save)
+                    .flatMap(user -> ok().bodyValue(user))
+            )
+            .andRoute(GET("/api/v1/user/login"), request -> {
+                final String login = request.queryParam("login").orElse(null);
+                return userService.findByLogin(login)
+                    .flatMap(user -> ok().bodyValue(user));
+            })
+            .andRoute(GET("/api/v1/user/{id}"), request ->
+                userService.findById(Long.valueOf(request.pathVariable("id")))
+                    .flatMap(user -> ok().bodyValue(user))
+            )
+            .andRoute(PUT("/api/v1/user/{id}"), request -> {
+                final Long id = Long.valueOf(request.pathVariable("id"));
+                final Mono<UserDto> newUserMono = request.bodyToMono(UserDto.class);
+                return userService.findById(id)
+                    .flatMap(user ->
+                        newUserMono.flatMap(newUser -> {
+                            user.setName(newUser.getName());
+                            user.setLogin(newUser.getLogin());
+                            user.setPassword(newUser.getPassword());
+                            user.setArchived(newUser.getArchived());
+                            user.setRoles(newUser.getRoles());
+                            return userService.save(user);
+                        })
+                    )
+                    .switchIfEmpty(
+                        newUserMono.flatMap(newUser -> {
+                            newUser.setUserId(id);
+                            return userService.save(newUser);
+                        })
+                    ).flatMap(user -> ok().bodyValue(user));
+            })
+            .andRoute(DELETE("/api/v1/user/{id}"), request ->
+                userService.deleteById(Long.valueOf(request.pathVariable("id")))
+                    .flatMap(unused -> ok().build())
+            );
+    }
 
     /**
      * Constructor
@@ -37,54 +93,5 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping()
-    public Flux<UserDto> list(
-        WebSession session,
-        ThreadLocal<String> threadLocal
-    ) {
-        threadLocal.set(session.getId());
-        log.info("ThreadLocal<Object> threadLocal = {}", threadLocal.get());
-        return userService.findAll();
-    }
-
-    @GetMapping(path = "{id}")
-    public Mono<UserDto> getUserById(@PathVariable("id") final Long id) {
-        return userService.findById(id);
-    }
-
-    @GetMapping(path = "login")
-    public Mono<UserDto> getUserByLogin(@RequestParam("login") final String login) {
-        return userService.findByLogin(login);
-    }
-
-    @PostMapping()
-    Mono<UserDto> newUser(@RequestBody UserDto newUser) {
-        return userService.save(newUser);
-    }
-
-    @PutMapping("{id}")
-    Mono<UserDto> replaceEmployee(@RequestBody UserDto newUser, @PathVariable Long id) {
-        return userService.findById(id)
-            .flatMap(user -> {
-                user.setName(newUser.getName());
-                user.setLogin(newUser.getLogin());
-                user.setPassword(newUser.getPassword());
-                user.setArchived(newUser.getArchived());
-                user.setRoles(newUser.getRoles());
-                return userService.save(user);
-            })
-            .switchIfEmpty(
-                Mono.defer(() -> {
-                    newUser.setUserId(id);
-                    return userService.save(newUser);
-                })
-            );
-    }
-
-    @DeleteMapping("{id}")
-    Mono<Void> deleteEmployee(@PathVariable Long id) {
-        return userService.deleteById(id);
     }
 }

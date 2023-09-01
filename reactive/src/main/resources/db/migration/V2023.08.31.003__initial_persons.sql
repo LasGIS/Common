@@ -1,5 +1,13 @@
 /*
- *  @(#)V2023.08.31_03__initial_persons.sql  last: 31.08.2023
+ *  @(#)V2023.08.31.003__initial_persons.sql  last: 01.09.2023
+ *
+ * Title: LG prototype for java-spring-jdbc + vue-type-script
+ * Description: Program for support Prototype.
+ * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
+ */
+
+/*
+ *  @(#)V2023.08.31.003__initial_persons.sql  last: 31.08.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.

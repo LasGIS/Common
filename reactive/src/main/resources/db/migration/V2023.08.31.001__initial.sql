@@ -29,7 +29,7 @@ COMMENT ON COLUMN role.role_id IS 'Уникальный номер роли';
 COMMENT ON COLUMN role.description IS 'Описание роли';
 
 /*
- *  @(#)V2023.08.31_01__initial.sql  last: 31.08.2023
+ *  @(#)V2023.08.31.001__initial.sql  last: 01.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.

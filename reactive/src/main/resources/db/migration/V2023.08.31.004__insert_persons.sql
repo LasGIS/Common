@@ -1,5 +1,5 @@
 /*
- *  @(#)V2023.08.31_04__insert_persons.sql  last: 31.08.2023
+ *  @(#)V2023.08.31.004__insert_persons.sql  last: 01.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
