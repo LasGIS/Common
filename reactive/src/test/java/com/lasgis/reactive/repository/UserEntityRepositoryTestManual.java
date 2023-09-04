@@ -9,12 +9,17 @@
 package com.lasgis.reactive.repository;
 
 import com.lasgis.reactive.ReactiveApplication;
+import com.lasgis.reactive.entity.UserRole;
+import com.lasgis.reactive.entity.UserRoleEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
+
+import java.util.List;
 
 import static java.util.Objects.nonNull;
 
@@ -25,10 +30,12 @@ import static java.util.Objects.nonNull;
 class UserEntityRepositoryTestManual {
 
     private final UserRepository repository;
+    private final UserRoleRepository roleRepository;
 
     @Autowired
-    public UserEntityRepositoryTestManual(UserRepository repository) {
+    public UserEntityRepositoryTestManual(UserRepository repository, UserRoleRepository roleRepository) {
         this.repository = repository;
+        this.roleRepository = roleRepository;
     }
 
     @Test
@@ -38,6 +45,30 @@ class UserEntityRepositoryTestManual {
                 log.info("\n  user = {}", user);
                 return nonNull(user.getUserId());
             })
+            .expectComplete()
+            .verify();
+    }
+
+    @Test
+    @Order(1)
+    void deleteRole() {
+        StepVerifier.create(roleRepository.deleteByUserId(1L).doOnSuccess(unused -> {
+                log.info(".doOnSuccess(");
+            }).thenReturn(".thenReturn()"))
+            .expectNextCount(1)
+            .expectComplete()
+            .verify();
+
+        saveRole(1L, List.of(
+            UserRole.ADMIN, UserRole.CHIEF, UserRole.SUPERVISOR
+        ));
+    }
+
+    void saveRole(final Long userId, final List<UserRole> roleList) {
+        StepVerifier.create(roleRepository.saveAll(
+                roleList.stream().map(role -> UserRoleEntity.of(userId, role.name())).toList()
+            ))
+            .expectNextCount(3)
             .expectComplete()
             .verify();
     }

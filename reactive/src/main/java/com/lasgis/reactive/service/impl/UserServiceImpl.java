@@ -70,20 +70,22 @@ public class UserServiceImpl implements UserService, CommandLineRunner {
     @Override
     public Mono<UserEntity> save(UserEntity userEntity) {
         return userRepository.save(userEntity)
+            .flatMap(userOut ->
+                userRoleRepository.deleteByUserId(userOut.getUserId()).thenReturn(userOut)
+            )
             .flatMap(userOut -> {
-                    userEntity.setUserId(userOut.getUserId());
-                    return Flux.fromIterable(userEntity.getRoles())
-                        .flatMap(userRole -> userRoleRepository.save(
-                            USER_ROLE_2_ENTITY.apply(userOut.getUserId(), userRole)
-                        ))
-                        .map(ENTITY_2_USER_ROLE)
-                        .collectList()
-                        .flatMap(roleList -> {
-                            userOut.setRoles(roleList);
-                            return Mono.just(userOut);
-                        });
-                }
-            );
+                userEntity.setUserId(userOut.getUserId());
+                return Flux.fromIterable(userEntity.getRoles())
+                    .flatMap(userRole -> userRoleRepository.save(
+                        USER_ROLE_2_ENTITY.apply(userOut.getUserId(), userRole)
+                    ))
+                    .map(ENTITY_2_USER_ROLE)
+                    .collectList()
+                    .flatMap(roleList -> {
+                        userOut.setRoles(roleList);
+                        return Mono.just(userOut);
+                    });
+            });
     }
 
     @Override

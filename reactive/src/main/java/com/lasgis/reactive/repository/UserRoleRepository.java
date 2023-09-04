@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRoleRepository.java  last: 31.08.2023
+ *  @(#)UserRoleRepository.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -9,9 +9,13 @@
 package com.lasgis.reactive.repository;
 
 import com.lasgis.reactive.entity.UserRoleEntity;
+import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
 public interface UserRoleRepository extends ReactiveCrudRepository<UserRoleEntity, Long> {
+    @Query("DELETE FROM user_role WHERE user_id = :userId")
+    Mono<Void> deleteByUserId(Long userId);
 }

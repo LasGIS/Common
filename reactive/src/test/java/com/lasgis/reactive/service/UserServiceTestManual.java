@@ -21,6 +21,9 @@ import reactor.test.StepVerifier;
 
 import java.util.List;
 
+import static com.lasgis.reactive.entity.UserRole.ADMIN;
+import static com.lasgis.reactive.entity.UserRole.CHIEF;
+import static com.lasgis.reactive.entity.UserRole.SUPERVISOR;
 import static java.util.Objects.nonNull;
 
 /**
@@ -43,7 +46,7 @@ class UserServiceTestManual {
     }
 
     @Test
-    void getAllUserEntity() {
+    void getAllUser() {
         StepVerifier.create(service.findAll())
             .thenConsumeWhile(user -> {
                 log.info("\n  user = {}", user);
@@ -54,16 +57,38 @@ class UserServiceTestManual {
     }
 
     @Test
-    void saveUserEntity() {
+    void getUserById() {
+        StepVerifier.create(service.findById(1L))
+            .expectNextMatches(user -> {
+                Assertions.assertEquals("Владимир Ласкин", user.getName());
+                Assertions.assertEquals("LasGIS", user.getLogin());
+                Assertions.assertEquals("123", user.getPassword());
+                Assertions.assertEquals(false, user.getArchived());
+                assertEqualRoles(List.of(ADMIN, CHIEF, SUPERVISOR), user.getRoles());
+                return nonNull(user.getUserId());
+            })
+            .expectComplete()
+            .verify();
+    }
+
+    @Test
+    void saveNewUser() {
         final UserEntity user = UserEntity.builder()
             .name("name")
             .login("login")
             .password("password")
             .archived(true)
-            .roles(List.of(UserRole.CHIEF, UserRole.SUPERVISOR))
+            .roles(List.of(CHIEF, SUPERVISOR))
             .build();
         StepVerifier.create(service.save(user))
-            .expectNextMatches(userDto -> nonNull(userDto.getUserId()))
+            .expectNextMatches(userNew -> {
+                Assertions.assertEquals(user.getName(), userNew.getName());
+                Assertions.assertEquals(user.getLogin(), userNew.getLogin());
+                Assertions.assertEquals(user.getPassword(), userNew.getPassword());
+                Assertions.assertEquals(user.getArchived(), userNew.getArchived());
+                assertEqualRoles(user.getRoles(), userNew.getRoles());
+                return nonNull(userNew.getUserId());
+            })
             .expectComplete()
             .verify();
         Assertions.assertNotNull(user.getUserId());
@@ -71,5 +96,41 @@ class UserServiceTestManual {
             .expectNext()
             .expectComplete()
             .verify();
+    }
+
+    @Test
+    void updateOldUser() {
+        UserEntity[] users = new UserEntity[1];
+        StepVerifier.create(service.findByLogin("LasGIS"))
+            .expectNextMatches(foundUser -> {
+                users[0] = foundUser;
+                return true;
+            }).expectComplete()
+            .verify();
+
+        UserEntity user = users[0];
+        user.setPassword("password");
+        StepVerifier.create(service.save(user))
+            .expectNextMatches(userNew -> {
+                Assertions.assertEquals(1L, userNew.getUserId());
+                Assertions.assertEquals("LasGIS", userNew.getLogin());
+                Assertions.assertEquals("Владимир Ласкин", userNew.getName());
+                Assertions.assertEquals("password", userNew.getPassword());
+                Assertions.assertEquals(false, userNew.getArchived());
+                assertEqualRoles(List.of(ADMIN, CHIEF, SUPERVISOR), userNew.getRoles());
+                return true;
+            })
+            .expectComplete()
+            .verify();
+
+        user.setPassword("123");
+        StepVerifier.create(service.save(user)).expectNextCount(1).expectComplete().verify();
+    }
+
+    private static void assertEqualRoles(final List<UserRole> expected, final List<UserRole> actual) {
+        Assertions.assertEquals(expected.size(), actual.size());
+        for (final UserRole role : expected) {
+            Assertions.assertTrue(actual.contains(role));
+        }
     }
 }

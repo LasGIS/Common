@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRoleEntity.java  last: 31.08.2023
+ *  @(#)UserRoleEntity.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -31,4 +31,8 @@ public class UserRoleEntity {
     private Long userRoleId;
     private Long userId;
     private String roleId;
+
+    public static UserRoleEntity of(final Long userId, final String roleId) {
+        return UserRoleEntity.builder().userId(userId).roleId(roleId).build();
+    }
 }

@@ -28,9 +28,9 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long>
             usr.name,
             usr.password,
             usr.archived,
-            ARRAY_AGG(rol.role_id) AS roles
+            ARRAY_AGG(rol.role_id ORDER BY rol.role_id) AS roles
           FROM "user" usr
-             INNER JOIN user_role rol ON usr.user_id = rol.user_id
+             LEFT JOIN user_role rol ON usr.user_id = rol.user_id
          GROUP BY usr.user_id, login, name, password, archived
          ORDER BY user_id""")
     Flux<UserEntity> findAll();
@@ -43,9 +43,9 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long>
             usr.name,
             usr.password,
             usr.archived,
-            ARRAY_AGG(rol.role_id) AS roles
+            ARRAY_AGG(rol.role_id ORDER BY rol.role_id) AS roles
           FROM "user" usr
-             INNER JOIN user_role rol ON usr.user_id = rol.user_id
+             LEFT JOIN user_role rol ON usr.user_id = rol.user_id
          WHERE usr.user_id = :id
          GROUP BY usr.user_id, login, name, password, archived""")
     Mono<UserEntity> findById(@NonNull Long id);
@@ -57,9 +57,9 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long>
              usr.name,
              usr.password,
              usr.archived,
-             ARRAY_AGG(rol.role_id) AS roles
+             ARRAY_AGG(rol.role_id ORDER BY rol.role_id) AS roles
            FROM "user" usr
-              INNER JOIN user_role rol ON usr.user_id = rol.user_id
+              LEFT JOIN user_role rol ON usr.user_id = rol.user_id
           WHERE usr.login = :login
           GROUP BY usr.user_id, login, name, password, archived""")
     Mono<UserEntity> findByLogin(@NonNull String login);
