@@ -1,5 +1,5 @@
 /*
- *  @(#)UserService.java  last: 18.05.2023
+ *  @(#)UserService.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -8,19 +8,19 @@
 
 package com.lasgis.reactive.service;
 
-import com.lasgis.reactive.model.UserDto;
+import com.lasgis.reactive.entity.UserEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface UserService {
 
-    Flux<UserDto> findAll();
+    Flux<UserEntity> findAll();
 
-    Mono<UserDto> findByLogin(final String login);
+    Mono<UserEntity> findByLogin(final String login);
 
-    Mono<UserDto> findById(final Long id);
+    Mono<UserEntity> findById(final Long id);
 
-    Mono<UserDto> save(UserDto userDto);
+    Mono<UserEntity> save(UserEntity userEntity);
 
     Mono<Void> deleteById(Long id);
 }

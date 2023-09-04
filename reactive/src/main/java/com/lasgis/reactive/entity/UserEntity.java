@@ -1,5 +1,5 @@
 /*
- *  @(#)UserEntity.java  last: 31.08.2023
+ *  @(#)UserEntity.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class UserEntity {
     private String login;
     private String name;
     private String password;
+    @ReadOnlyProperty
     private List<UserRole> roles;
     private Boolean archived;
 }

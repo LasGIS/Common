@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceTestManual.java  last: 31.08.2023
+ *  @(#)UserServiceTestManual.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -9,8 +9,8 @@
 package com.lasgis.reactive.service;
 
 import com.lasgis.reactive.ReactiveApplication;
+import com.lasgis.reactive.entity.UserEntity;
 import com.lasgis.reactive.entity.UserRole;
-import com.lasgis.reactive.model.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ class UserServiceTestManual {
     }
 
     @Test
-    void getAllUserDto() {
+    void getAllUserEntity() {
         StepVerifier.create(service.findAll())
             .thenConsumeWhile(user -> {
                 log.info("\n  user = {}", user);
@@ -54,8 +54,8 @@ class UserServiceTestManual {
     }
 
     @Test
-    void saveUserDto() {
-        final UserDto user = UserDto.builder()
+    void saveUserEntity() {
+        final UserEntity user = UserEntity.builder()
             .name("name")
             .login("login")
             .password("password")

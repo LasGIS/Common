@@ -1,5 +1,5 @@
 /*
- *  @(#)UserEntityRepositoryTestManual.java  last: 31.08.2023
+ *  @(#)UserEntityRepositoryTestManual.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.

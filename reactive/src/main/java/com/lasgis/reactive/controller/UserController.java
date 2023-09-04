@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 01.09.2023
+ *  @(#)UserController.java  last: 04.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -10,7 +10,7 @@ package com.lasgis.reactive.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lasgis.reactive.model.UserDto;
+import com.lasgis.reactive.entity.UserEntity;
 import com.lasgis.reactive.model.errors.Error;
 import com.lasgis.reactive.model.errors.ErrorCode;
 import com.lasgis.reactive.model.exception.ItemNotFoundException;
@@ -55,7 +55,7 @@ public class UserController {
                 .flatMap(users -> ok().bodyValue(users))
         )
             .and(route(POST("/api/v1/user"), request ->
-                request.bodyToMono(UserDto.class)
+                request.bodyToMono(UserEntity.class)
                     .flatMap(userService::save)
                     .flatMap(user -> ok().bodyValue(user))
             ))
@@ -70,7 +70,7 @@ public class UserController {
             ))
             .and(route(PUT("/api/v1/user/{id}"), request -> {
                 final Long id = Long.valueOf(request.pathVariable("id"));
-                final Mono<UserDto> newUserMono = request.bodyToMono(UserDto.class);
+                final Mono<UserEntity> newUserMono = request.bodyToMono(UserEntity.class);
                 return userService.findById(id)
                     .flatMap(user ->
                         newUserMono.flatMap(newUser -> {
