@@ -20,6 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.LinkRelation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -27,6 +30,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.WebFilter;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.function.Function;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
@@ -47,26 +52,40 @@ public class UserController {
     private final UserService userService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * Constructor
+     *
+     * @param userService service
+     */
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @Bean
     RouterFunction<ServerResponse> composedRoutes() {
         return route(GET("/api/v1/user"), request ->
             userService.findAll()
+                .map(getUserEntityEntityModelFunction())
                 .collectList()
-                .flatMap(users -> ok().bodyValue(users))
+                .flatMap(models -> ok().bodyValue(models))
         )
             .and(route(POST("/api/v1/user"), request ->
                 request.bodyToMono(UserEntity.class)
                     .flatMap(userService::save)
-                    .flatMap(user -> ok().bodyValue(user))
+                    .map(getUserEntityEntityModelFunction())
+                    .flatMap(model -> ok().bodyValue(model))
             ))
             .and(route(GET("/api/v1/user/login"), request -> {
                 final String login = request.queryParam("login").orElse(null);
                 return userService.findByLogin(login)
-                    .flatMap(user -> ok().bodyValue(user));
+                    .map(getUserEntityEntityModelFunction())
+                    .flatMap(model -> ok().bodyValue(model));
             }))
             .and(route(GET("/api/v1/user/{id}"), request ->
                 userService.findById(Long.valueOf(request.pathVariable("id")))
-                    .flatMap(user -> ok().bodyValue(user))
+                    .map(getUserEntityEntityModelFunction())
+                    .flatMap(model -> ok().bodyValue(model))
             ))
             .and(route(PUT("/api/v1/user/{id}"), request -> {
                 final Long id = Long.valueOf(request.pathVariable("id"));
@@ -87,7 +106,9 @@ public class UserController {
                             newUser.setUserId(id);
                             return userService.save(newUser);
                         })
-                    ).flatMap(user -> ok().bodyValue(user));
+                    )
+                    .map(getUserEntityEntityModelFunction())
+                    .flatMap(user -> ok().bodyValue(user));
             }))
             .and(route(DELETE("/api/v1/user/{id}"), request ->
                 userService.deleteById(Long.valueOf(request.pathVariable("id")))
@@ -95,14 +116,12 @@ public class UserController {
             ));
     }
 
-    /**
-     * Constructor
-     *
-     * @param userService service
-     */
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    private static Function<UserEntity, EntityModel<UserEntity>> getUserEntityEntityModelFunction() {
+        return userEntity -> {
+            final EntityModel<UserEntity> model = EntityModel.of(userEntity);
+            model.add(Link.of("/api/v1/user/{id}", LinkRelation.of(Long.toString(userEntity.getUserId()))).withSelfRel());
+            return model;
+        };
     }
 
     @Bean

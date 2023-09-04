@@ -14,7 +14,6 @@ import com.lasgis.reactive.repository.UserRepository;
 import com.lasgis.reactive.repository.UserRoleRepository;
 import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,7 +23,7 @@ import static com.lasgis.reactive.service.converter.Converter.USER_ROLE_2_ENTITY
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService, CommandLineRunner {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
@@ -35,11 +34,6 @@ public class UserServiceImpl implements UserService, CommandLineRunner {
     ) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-
     }
 
     @Override
