@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 15px;
+  margin: 0 auto;
+  width: 100vh;
+//  max-width: 300px;
+  text-align: center;
+}
+
+.login-form-button {
+  width: 100%;
+}

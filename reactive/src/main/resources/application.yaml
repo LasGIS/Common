@@ -1,3 +1,6 @@
+server:
+    port: 8099
+
 spring:
     # r2dbc connection
     # see https://github.com/pgjdbc/r2dbc-postgresql
@@ -25,3 +28,7 @@ flyway:
         url: jdbc:postgresql://localhost:5432/generic
         username: generic
         password: generic
+
+settings:
+    name: UI reactive
+    version: ${project.version:0.0.1-SNAPSHOT}

@@ -1,5 +1,5 @@
 /*
- *  @(#)Error.java  last: 24.11.2022
+ *  @(#)Error.java  last: 05.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
