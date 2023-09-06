@@ -26,23 +26,25 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Basic Authority</h2>
-      <Form name="basic" form={form} onFinish={handleSubmit} title="Basic Authority">
-        <Form.Item name="username" rules={[{ required: true, message: 'Введите логин' }]}>
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Логин" />
-        </Form.Item>
+    <div className="main-login">
+      <div className="container-login">
+        <h2>Basic Authority</h2>
+        <Form name="basic" form={form} onFinish={handleSubmit} title="Basic Authority">
+          <Form.Item name="username" rules={[{ required: true, message: 'Введите логин' }]}>
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Логин" />
+          </Form.Item>
 
-        <Form.Item name="password" rules={[{ required: true, message: 'Введите пароль' }]}>
-          <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Пароль" />
-        </Form.Item>
+          <Form.Item name="password" rules={[{ required: true, message: 'Введите пароль' }]}>
+            <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Пароль" />
+          </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Войти
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Войти
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

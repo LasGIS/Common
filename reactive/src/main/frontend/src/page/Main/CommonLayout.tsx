@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppstoreOutlined, DesktopOutlined, LoginOutlined, LogoutOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
+import { AppstoreOutlined, DesktopOutlined, LoginOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
 import { useSelector } from 'react-redux';
 import type { MenuProps } from 'antd';
 import { Layout, Menu, Spin, theme } from 'antd';
@@ -18,9 +18,8 @@ const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 };
 
 const items: ItemType[] = [
-  { key: 1, icon: <DesktopOutlined />, label: <Link to="/counter">Counter Page</Link> },
+  { key: 1, icon: <DesktopOutlined />, label: <Link to="/">Counter Page</Link> },
   { key: 2, icon: <LoginOutlined />, label: <Link to="/login">Login</Link> },
-  { key: 3, icon: <LogoutOutlined />, label: <Link to="/Login.html">Login.html</Link> },
   // <Divider type="horizontal" style={{ margin: '6px 0' }} />,
   getItem('Navigation One', 'sub1', <MailOutlined />, [
     getItem('Item 2', 'g2', null, [getItem('Option 3', '33'), getItem('Option 4', '4')], 'group'),
@@ -92,7 +91,9 @@ const CommonLayout = () => {
           >
             <Outlet />
           </Content>
-          <Footer style={{ textAlign: 'right' }}>{`"${settings?.name}" v.${settings?.version}`}</Footer>
+          <Footer style={{ textAlign: 'right' }}>
+            {`${settings?.name}`} &nbsp; &nbsp; {`version: ${settings?.version}`}
+          </Footer>
         </Layout>
       </Layout>
     </Spin>
