@@ -1,4 +1,4 @@
-import {Role, ServiceUserDto} from '../../../types/dto/login-types';
+import { Role, ServiceUserDto } from '../../../types/dto/login-types';
 
 export const clearCurrentUser = () => {
   sessionStorage.removeItem('current_user_name');

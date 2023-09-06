@@ -1,20 +1,13 @@
-import React, {useState} from 'react';
-import {
-    AppstoreOutlined,
-    DesktopOutlined,
-    LoginOutlined,
-    LogoutOutlined,
-    MailOutlined,
-    SettingOutlined
-} from '@ant-design/icons/lib/icons';
-import {useSelector} from 'react-redux';
-import type {MenuProps} from 'antd';
-import {Layout, Menu, Spin, theme} from 'antd';
-import {findKeyByPathname} from './MenuHelper';
-import {Link, Outlet} from 'react-router-dom';
-import {commonLoadingSelector, commonSettingsSelector} from '../../reducer/common';
-import {AppSettingsConfig} from '../../reducer/redux-types';
-import {ItemType} from 'antd/lib/menu/hooks/useItems';
+import React, { useState } from 'react';
+import { AppstoreOutlined, DesktopOutlined, LoginOutlined, LogoutOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
+import { useSelector } from 'react-redux';
+import type { MenuProps } from 'antd';
+import { Layout, Menu, Spin, theme } from 'antd';
+import { findKeyByPathname } from './MenuHelper';
+import { Link, Outlet } from 'react-router-dom';
+import { commonLoadingSelector, commonSettingsSelector } from '../../reducer/common';
+import { AppSettingsConfig } from '../../reducer/redux-types';
+import { ItemType } from 'antd/lib/menu/hooks/useItems';
 
 const { Content, Header, Sider, Footer } = Layout;
 

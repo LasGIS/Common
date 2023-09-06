@@ -1,11 +1,11 @@
-import {useEffect} from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CommonLayout from './Main/CommonLayout';
 import CounterPage from './Counter/CounterPage';
 import LoginPage from './Login/LoginPage';
-import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../reducer/store';
-import {getAppSettings} from '../reducer/common';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../reducer/store';
+import { getAppSettings } from '../reducer/common';
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();

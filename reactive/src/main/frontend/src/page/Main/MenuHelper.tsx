@@ -1,5 +1,5 @@
 import React from 'react';
-import {DesktopOutlined} from '@ant-design/icons/lib/icons';
+import { DesktopOutlined } from '@ant-design/icons/lib/icons';
 
 export type MenuData = {
   key: string;

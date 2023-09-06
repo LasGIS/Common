@@ -31,4 +31,4 @@ flyway:
 
 settings:
     name: UI reactive
-    version: ${project.version:0.0.1-SNAPSHOT}
+    version: @project.version@
