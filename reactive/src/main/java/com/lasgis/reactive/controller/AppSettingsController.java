@@ -1,5 +1,5 @@
 /*
- *  @(#)AppSettingsController.java  last: 05.09.2023
+ *  @(#)AppSettingsController.java  last: 08.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since <pre>25.10.2022</pre>
  */
 @RestController
-@RequestMapping("/v1.0")
+@RequestMapping("api/v2.0")
 @RequiredArgsConstructor
 public class AppSettingsController {
 

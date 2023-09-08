@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 05.09.2023
+ *  @(#)UserController.java  last: 08.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -8,49 +8,44 @@
 
 package com.lasgis.reactive.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lasgis.reactive.entity.UserEntity;
-import com.lasgis.reactive.model.errors.Error;
-import com.lasgis.reactive.model.errors.ErrorCode;
-import com.lasgis.reactive.model.exception.ItemNotFoundException;
 import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.LinkRelation;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.ServerResponse;
-import org.springframework.web.server.WebFilter;
+import org.springframework.hateoas.mediatype.Affordances;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
-import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
-import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-import static org.springframework.web.reactive.function.server.ServerResponse.ok;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+//import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
+//import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
 
 /**
  * The Class UserController definition.
  *
  * @author VLaskin
- * @since 15.05.2023 : 17:22
+ * @since 05.09.2023 : 11:42
  */
 @Slf4j
-@Configuration
+@RestController
+@RequestMapping("api/v2.0/user")
 public class UserController {
     private final UserService userService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Constructor
@@ -58,85 +53,88 @@ public class UserController {
      * @param userService service
      */
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(final UserService userService) {
         this.userService = userService;
     }
 
-    @Bean
-    RouterFunction<ServerResponse> composedRoutes() {
-        return route(GET("/api/v1/user"), request ->
-            userService.findAll()
-                .map(getUserEntityEntityModelFunction())
-                .collectList()
-                .flatMap(models -> ok().bodyValue(models))
-        )
-            .and(route(POST("/api/v1/user"), request ->
-                request.bodyToMono(UserEntity.class)
-                    .flatMap(userService::save)
-                    .map(getUserEntityEntityModelFunction())
-                    .flatMap(model -> ok().bodyValue(model))
-            ))
-            .and(route(GET("/api/v1/user/login"), request -> {
-                final String login = request.queryParam("login").orElse(null);
-                return userService.findByLogin(login)
-                    .map(getUserEntityEntityModelFunction())
-                    .flatMap(model -> ok().bodyValue(model));
-            }))
-            .and(route(GET("/api/v1/user/{id}"), request ->
-                userService.findById(Long.valueOf(request.pathVariable("id")))
-                    .map(getUserEntityEntityModelFunction())
-                    .flatMap(model -> ok().bodyValue(model))
-            ))
-            .and(route(PUT("/api/v1/user/{id}"), request -> {
-                final Long id = Long.valueOf(request.pathVariable("id"));
-                final Mono<UserEntity> newUserMono = request.bodyToMono(UserEntity.class);
-                return userService.findById(id)
-                    .flatMap(user ->
-                        newUserMono.flatMap(newUser -> {
-                            user.setName(newUser.getName());
-                            user.setLogin(newUser.getLogin());
-                            user.setPassword(newUser.getPassword());
-                            user.setArchived(newUser.getArchived());
-                            user.setRoles(newUser.getRoles());
-                            return userService.save(user);
-                        })
-                    )
-                    .switchIfEmpty(
-                        newUserMono.flatMap(newUser -> {
-                            newUser.setUserId(id);
-                            return userService.save(newUser);
-                        })
-                    )
-                    .map(getUserEntityEntityModelFunction())
-                    .flatMap(user -> ok().bodyValue(user));
-            }))
-            .and(route(DELETE("/api/v1/user/{id}"), request ->
-                userService.deleteById(Long.valueOf(request.pathVariable("id")))
-                    .flatMap(unused -> ok().build())
-            ));
+    @GetMapping()
+    public Flux<EntityModel<UserEntity>> list() {
+        return userService.findAll().flatMap(getUserEntityEntityModelFunction());
     }
 
-    private static Function<UserEntity, EntityModel<UserEntity>> getUserEntityEntityModelFunction() {
+    @GetMapping(path = "{id}")
+    public Mono<EntityModel<UserEntity>> getUserById(@PathVariable("id") final Long id) {
+        return userService.findById(id).flatMap(getUserEntityEntityModelFunction());
+    }
+
+    @GetMapping(path = "login")
+    public Mono<EntityModel<UserEntity>> getUserByLogin(@RequestParam("login") final String login) {
+        return userService.findByLogin(login).flatMap(getUserEntityEntityModelFunction());
+    }
+
+    @PostMapping()
+    Mono<EntityModel<UserEntity>> createNewUser(@RequestBody UserEntity newUser) {
+        return userService.save(newUser).flatMap(getUserEntityEntityModelFunction());
+    }
+
+    @PutMapping("{id}")
+    Mono<EntityModel<UserEntity>> replaceEmployee(@RequestBody UserEntity newUser, @PathVariable Long id) {
+        return userService.findById(id)
+            .flatMap(user -> {
+                user.setName(newUser.getName());
+                user.setLogin(newUser.getLogin());
+                user.setPassword(newUser.getPassword());
+                user.setArchived(newUser.getArchived());
+                user.setRoles(newUser.getRoles());
+                return userService.save(user);
+            })
+            .switchIfEmpty(
+                Mono.defer(() -> {
+                    newUser.setUserId(id);
+                    return userService.save(newUser);
+                })
+            ).flatMap(getUserEntityEntityModelFunction());
+    }
+
+    @DeleteMapping("{id}")
+    Mono<Long> deleteEmployee(@PathVariable Long id) {
+        return userService.deleteById(id);
+    }
+
+    private static Function<UserEntity, Mono<EntityModel<UserEntity>>> getUserEntityEntityModelFunction() {
         return userEntity -> {
-            final EntityModel<UserEntity> model = EntityModel.of(userEntity);
-            model.add(Link.of("/api/v1/user/{id}", LinkRelation.of(Long.toString(userEntity.getUserId()))).withSelfRel());
-            return model;
+            final Class<UserController> controllerClass = UserController.class;
+            final Long id = userEntity.getUserId();
+            return Mono.just(EntityModel.of(userEntity,
+                Affordances.of(
+                    linkTo(methodOn(controllerClass).getUserById(id)).withSelfRel()
+                ).afford(HttpMethod.GET).toLink(),
+                Affordances.of(
+                        linkTo(methodOn(controllerClass).createNewUser(userEntity))
+                            .withRel("create")
+                            .withName("Создать")
+                            .withTitle("Создать нового пользователя")
+                    )
+                    .afford(HttpMethod.POST)
+                    .withInputAndOutput(UserEntity.class)
+                    .toLink(),
+                Affordances.of(
+                        linkTo(methodOn(controllerClass).replaceEmployee(userEntity, id))
+                            .withRel("update")
+                            .withName("Редактировать")
+                            .withTitle("Редактируем параметры старого пользователя")
+                    )
+                    .afford(HttpMethod.PUT)
+                    .withInputAndOutput(UserEntity.class)
+                    .toLink(),
+                Affordances.of(
+                    linkTo(methodOn(controllerClass).deleteEmployee(id))
+                        .withRel("delete")
+                        .withMedia(MediaType.APPLICATION_JSON_VALUE)
+                        .withName("Удалить")
+                        .withTitle("Удаляем пользователя со всеми потрохами")
+                ).afford(HttpMethod.DELETE).toLink()
+            ));
         };
-    }
-
-    @Bean
-    WebFilter dataNotFoundToBadRequest() {
-        return (exchange, next) -> next.filter(exchange)
-            .onErrorResume(ItemNotFoundException.class, ex -> {
-                final ServerHttpResponse response = exchange.getResponse();
-                response.setStatusCode(HttpStatus.NOT_FOUND);
-                try {
-                    final byte[] buf = objectMapper.writeValueAsBytes(Error.of(ErrorCode.USER_NOT_FOUND, ex.getMessage()));
-                    final DataBuffer dataBuffer = response.bufferFactory().wrap(buf);
-                    return response.writeWith(Flux.just(dataBuffer));
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-            });
     }
 }

@@ -11,10 +11,10 @@ export type MenuData = {
 };
 
 export const MENU_DATA: { [key: string]: MenuData } = {
-  Counter: {
+  user: {
     key: '1',
-    name: 'CounterPage',
-    pathname: '/counter',
+    name: 'UserPage',
+    pathname: '/user',
     icon: <DesktopOutlined />,
   },
   login: {
@@ -25,7 +25,7 @@ export const MENU_DATA: { [key: string]: MenuData } = {
   },
 };
 
-export const MENU_DATA_LIST: MenuData[] = [MENU_DATA.Counter];
+export const MENU_DATA_LIST: MenuData[] = [MENU_DATA.user];
 
 export const findKeyByPathname = (pathname: string): string => {
   const menu = MENU_DATA_LIST.find((menuData) => pathname.startsWith(menuData.pathname));

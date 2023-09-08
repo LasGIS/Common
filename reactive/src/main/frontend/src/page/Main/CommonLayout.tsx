@@ -8,6 +8,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { commonLoadingSelector, commonSettingsSelector } from '../../reducer/common';
 import { AppSettingsConfig } from '../../reducer/redux-types';
 import { ItemType } from 'antd/lib/menu/hooks/useItems';
+import { AppDispatch, useAppDispatch } from '../../reducer/store';
 
 const { Content, Header, Sider, Footer } = Layout;
 
@@ -18,7 +19,7 @@ const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 };
 
 const items: ItemType[] = [
-  { key: 1, icon: <DesktopOutlined />, label: <Link to="/">Counter Page</Link> },
+  { key: 1, icon: <DesktopOutlined />, label: <Link to="/user">Пользователи</Link> },
   { key: 2, icon: <LoginOutlined />, label: <Link to="/login">Login</Link> },
   // <Divider type="horizontal" style={{ margin: '6px 0' }} />,
   getItem('Navigation One', 'sub1', <MailOutlined />, [
@@ -37,7 +38,7 @@ const items: ItemType[] = [
 ];
 
 const CommonLayout = () => {
-  // const dispatch = useDispatch();
+  const dispatch: AppDispatch = useAppDispatch();
   const loading = useSelector(commonLoadingSelector) as boolean;
   const settings = useSelector(commonSettingsSelector) as AppSettingsConfig;
   const [isMenuCollapsed, setMenuCollapsed] = useState(false);

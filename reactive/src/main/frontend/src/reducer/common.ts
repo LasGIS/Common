@@ -2,8 +2,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import type { AppSettingsConfig, CommonStoreData } from './redux-types';
 import { RootStoreData } from './redux-types';
-import api from './service';
-import type { ErrorDto } from '../types/types';
+import { fetchAppSettings } from './service';
+import type { ErrorDto } from '../types';
 import type { AppDispatch } from './store';
 import { AxiosResponse } from 'axios';
 
@@ -15,15 +15,16 @@ export const getAppSettings = createAsyncThunk<
     state: CommonStoreData;
   }
 >('COMMON_GET_SYSTEM_SETTINGS', (v, thunkApi) => {
-  return api
-    .fetchAppSettings()
+  thunkApi.dispatch(commonShowLoader());
+  return fetchAppSettings()
     .then((response: AxiosResponse<AppSettingsConfig>) => {
       return response.data;
     })
     .catch((error) => {
       console.log(error);
       return thunkApi.rejectWithValue(error);
-    });
+    })
+    .finally(() => thunkApi.dispatch(commonHideLoader()));
 });
 
 // Define the initial state using that type

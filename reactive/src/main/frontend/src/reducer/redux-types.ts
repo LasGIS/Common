@@ -1,5 +1,6 @@
 import { RouterState } from 'connected-react-router';
-import { ErrorDto } from '../types/types';
+import { ErrorDto } from '../types';
+import { UserStoreData } from '../page/User/reducer/types';
 
 export type AppSettingsConfig = {
   name?: string;
@@ -15,4 +16,5 @@ export interface CommonStoreData {
 export type RootStoreData = {
   router: RouterState;
   common: CommonStoreData;
+  user: UserStoreData;
 };

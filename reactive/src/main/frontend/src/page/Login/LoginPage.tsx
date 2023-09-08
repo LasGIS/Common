@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { ErrorDto } from '../../types/types';
+import { ErrorDto } from '../../types';
 import { performLogin } from './services/actions';
 
 const LoginPage = () => {

@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceImpl.java  last: 04.09.2023
+ *  @(#)UserServiceImpl.java  last: 07.09.2023
  *
  * Title: LG prototype for java-spring-jdbc + vue-type-script
  * Description: Program for support Prototype.
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<Void> deleteById(Long id) {
-        return userRepository.deleteById(id);
+    public Mono<Long> deleteById(Long id) {
+        return userRepository.deleteById(id).thenReturn(id);
     }
 }

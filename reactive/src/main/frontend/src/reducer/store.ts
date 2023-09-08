@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import Common from './common';
+import CommonReducer from './common';
+import UserReducer from '../page/User/reducer';
 
 const store = configureStore({
   reducer: {
-    common: Common,
+    common: CommonReducer,
+    user: UserReducer,
   },
 });
 

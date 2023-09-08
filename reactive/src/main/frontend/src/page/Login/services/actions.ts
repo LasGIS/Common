@@ -1,7 +1,7 @@
 import { ServiceUserDto } from '../../../types/dto/login-types';
 import { fetchPerformLogin } from './service';
 import { clearCurrentUser, setCurrentUser } from './sessionStorage';
-import { ErrorDto } from '../../../types/types';
+import { ErrorDto } from '../../../types';
 
 export const performLogin = (username: string, password: string): Promise<ServiceUserDto> => {
   const formData = new FormData();
