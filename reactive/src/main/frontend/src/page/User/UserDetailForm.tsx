@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
-import { Button, Col, Descriptions, Form, Input, Modal, Row, Select } from 'antd';
-import cn from 'classnames';
+import { Button, Col, Form, Input, Modal, Row, Select } from 'antd';
 import { useParams } from 'react-router';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { DateTimeFormat } from '../../utils';
 import { deleteUserById, getUserById, selectCurrentUser } from './reducer';
 import { AppDispatch, useAppDispatch } from '../../reducer/store';
 import { useSelector } from 'react-redux';
 import { UserType } from './reducer/types';
 
-const { TextArea } = Input;
+const { Password } = Input;
 
 const { confirm } = Modal;
 
@@ -55,7 +53,7 @@ const UserDetailForm = () => {
           roles: values.roles,
         };
         // onSave(connectivity);
-        navigate({ pathname: "/user" });
+        navigate({ pathname: '/user' });
       }
     });
   };
@@ -68,64 +66,60 @@ const UserDetailForm = () => {
         if (record.userId) dispatch(deleteUserById(record.userId) as AppDispatch);
       },
       onCancel() {
-        console.log("onCancel()");
+        console.log('onCancel()');
       },
     });
   };
 
   const handleClose = () => {
-    navigate({ pathname: "/user" });
+    navigate({ pathname: '/user' });
   };
 
-  return (
+  return (<>
     <Row>
-      <Col span={14} style={{ paddingRight: 10 }}>
-        <Form layout="vertical" form={form}>
+      <Col style={{ paddingRight: 10 }}>
+        <Form layout='horizontal' form={form}>
+          <Form.Item name='userId' label='ID пользователя'>
+            <Input disabled />
+          </Form.Item>
           <Form.Item
-            name="username"
-            label="Имя учетной записи"
+            name='name'
+            label='Имя учетной записи'
             rules={[
               {
                 required: true,
-                message: "Имя учетной записи обязательно!",
+                message: 'Имя учетной записи обязательно!',
               },
             ]}
           >
-            <Input disabled />
-          </Form.Item>
-          <Form.Item name="skills" label="Навыки">
             <Input />
           </Form.Item>
-          <Form.Item name="website" label="Персональный веб-сайт">
+          <Form.Item name='login' label='Логин'>
             <Input />
           </Form.Item>
-          <Form.Item name="biography" label="Биография">
-            <TextArea rows={4} />
+          <Form.Item name='password' label='Пароль'>
+            <Password />
+          </Form.Item>
+          <Form.Item name='archived' label='Архивный'>
+            <Input />
+          </Form.Item>
+          <Form.Item name='roles' label='Роли'>
+            <Select mode='multiple' />
           </Form.Item>
         </Form>
       </Col>
-      <Col span={10} style={{ paddingLeft: 10 }}>
-        <Descriptions colon column={1} labelStyle={{ width: 140 }}>
-          <Descriptions.Item label="Системная роль">Пользователь Решения</Descriptions.Item>
-          <Descriptions.Item label="Системная роль">
-            <Select mode="tags" placeholder="Please select" style={{ width: "100%" }} />
-          </Descriptions.Item>
-        </Descriptions>
-      </Col>
-      <Col span={24}>
-        <Row justify="center">
-          <Form.Item noStyle>
-            <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-              Сохранить
-            </Button>
-            <Button style={{ marginLeft: 8 }} htmlType="reset" onClick={handleClose}>
-              Закрыть
-            </Button>
-          </Form.Item>
-        </Row>
-      </Col>
     </Row>
-  );
+    <Row justify='center'>
+      <Form.Item noStyle>
+        <Button type='primary' htmlType='submit' onClick={handleSubmit}>
+          Сохранить
+        </Button>
+        <Button style={{ marginLeft: 8 }} htmlType='reset' onClick={handleClose}>
+          Закрыть
+        </Button>
+      </Form.Item>
+    </Row>
+  </>);
 };
 
 export default UserDetailForm;

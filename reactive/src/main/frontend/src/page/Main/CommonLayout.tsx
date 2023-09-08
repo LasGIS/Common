@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-import { AppstoreOutlined, DesktopOutlined, LoginOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
+import './styles.scss';
+import React, { Suspense, useState } from 'react';
+import { AppstoreOutlined, DesktopOutlined, LoginOutlined, LogoutOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
 import { useSelector } from 'react-redux';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, Spin, theme } from 'antd';
+import { Dropdown, Layout, Menu, Spin } from 'antd';
 import { findKeyByPathname } from './MenuHelper';
 import { Link, Outlet } from 'react-router-dom';
-import { commonLoadingSelector, commonSettingsSelector } from '../../reducer/common';
-import { AppSettingsConfig } from '../../reducer/redux-types';
+import { commonAuthUserSelector, commonLoadingSelector, commonSettingsSelector } from '../../reducer/common';
+import { AppSettingsConfig, AuthUser } from '../../reducer/redux-types';
 import { ItemType } from 'antd/lib/menu/hooks/useItems';
-import { AppDispatch, useAppDispatch } from '../../reducer/store';
+import HeaderLogo from '../../style/img/evolution.gif';
+import UnknownUser from './UnknownUser.png';
 
 const { Content, Header, Sider, Footer } = Layout;
+
+const MENU_WIDTH = 230;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -38,64 +42,61 @@ const items: ItemType[] = [
 ];
 
 const CommonLayout = () => {
-  const dispatch: AppDispatch = useAppDispatch();
   const loading = useSelector(commonLoadingSelector) as boolean;
   const settings = useSelector(commonSettingsSelector) as AppSettingsConfig;
+  const authUser = useSelector(commonAuthUserSelector) as AuthUser;
   const [isMenuCollapsed, setMenuCollapsed] = useState(false);
-  const menuWidth = isMenuCollapsed ? 80 : 200;
+  const menuWidth = isMenuCollapsed ? 40 : MENU_WIDTH;
   const selectedKeys = [findKeyByPathname(window.location.pathname)];
 
-  const { token } = theme.useToken();
+  const headerMenu: ItemType[] = [
+    {
+      key: '1000',
+      icon: <LogoutOutlined />,
+      label: <a href="/logout">Выйти</a>,
+    },
+  ];
+
   return (
     <Spin spinning={loading} size="large" tip="Загрузка данных">
       <Layout style={{ minHeight: '100vh', minWidth: '100vw' }}>
-        <Sider
-          collapsible
-          collapsed={isMenuCollapsed}
-          onCollapse={(collapsed) => setMenuCollapsed(collapsed)}
-          style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: 0,
-          }}
-        >
-          <Menu theme="dark" mode="inline" selectedKeys={selectedKeys} items={items} />
-          {/*
-          <Menu theme="dark" mode="inline" selectedKeys={selectedKeys}>
-            <Menu.Item key={1}>
-              <DesktopOutlined />
-              <span>Counter Page</span>
-              <Link to="/counter" />
-            </Menu.Item>
-            <Menu.Item key="998" disabled style={{ height: '12px', cursor: 'auto' }}>
-              <Divider type="horizontal" style={{ margin: '6px 0' }} />
-            </Menu.Item>
-            <Menu.Item key="999">
-              <LogoutOutlined />
-              <span>
-                <a href="/logout">Logout</a>
-              </span>
-            </Menu.Item>
-          </Menu>
-*/}
-        </Sider>
-        <Layout className="site-layout" style={{ marginLeft: menuWidth }}>
-          <Header style={{ padding: 0, background: token.colorBgLayout }} />
+        <Header>
+          <div className="header-logo">
+            <img src={HeaderLogo} alt="Логотип" style={{ height: 40, width: 50 }} />
+          </div>
+          <div className="header-text">
+            <h3>Редактирование генеалогических связей</h3>
+          </div>
+          <div className="header-auth">
+            <p>
+              {authUser?.firstName} {authUser?.lastName}
+            </p>
+            <Dropdown className="header-auth" menu={{ items: headerMenu }} placement="topLeft">
+              <img src={UnknownUser} alt="изображение пользователя" />
+            </Dropdown>
+          </div>
+        </Header>
+        <Layout className="site-layout">
+          <Sider collapsible collapsed={isMenuCollapsed} onCollapse={(collapsed) => setMenuCollapsed(collapsed)} width={menuWidth} theme="light">
+            <Menu mode="inline" selectedKeys={selectedKeys} items={items} />
+          </Sider>
           <Content
             style={{
-              margin: '24px 16px 0',
-              padding: 24,
-              background: '#fff',
+              margin: '24px 24px 0 24px',
+              borderRadius: '16px',
+              padding: '24px 32px',
+              background: '#FFFFFF',
               minHeight: 280,
             }}
           >
-            <Outlet />
+            <Suspense fallback={<div>Загрузка...</div>}>
+              <Outlet />
+            </Suspense>
           </Content>
-          <Footer style={{ textAlign: 'right' }}>
-            {`${settings?.name}`} &nbsp; &nbsp; {`version: ${settings?.version}`}
-          </Footer>
         </Layout>
+        <Footer style={{ textAlign: 'left', background: '#F5F5F5', color: '#8C8C8C', fontSize: 14 }}>
+          {`${settings?.name}`} &nbsp; &nbsp; {`version: ${settings?.version}`}
+        </Footer>
       </Layout>
     </Spin>
   );

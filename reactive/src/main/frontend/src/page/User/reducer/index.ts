@@ -5,7 +5,7 @@ import { UserStoreData, UserType } from './types';
 import { AppDispatch } from '../../../reducer/store';
 import { clearErrors } from '../../../utils/notification-utils';
 import { commonHideLoader, commonShowLoader } from '../../../reducer/common';
-import { requestCreateNewUser, requestDeleteUser, requestGetAllUsers, requestGetUserById, requestUpdateUser } from './services';
+import api from './services';
 import { message } from 'antd';
 import { AxiosResponse } from 'axios';
 
@@ -13,8 +13,9 @@ export const getAllUsers = createAsyncThunk<UserType[], void, { dispatch: AppDis
   'USER_GET_ALL',
   (vd, { dispatch, rejectWithValue }) => {
     clearErrors();
-    dispatch(commonShowLoader);
-    return requestGetAllUsers()
+    dispatch(commonShowLoader());
+    return api
+      .requestGetAllUsers()
       .then((response: AxiosResponse<UserType[]>) => {
         return response.data;
       })
@@ -22,7 +23,7 @@ export const getAllUsers = createAsyncThunk<UserType[], void, { dispatch: AppDis
         return rejectWithValue(error);
       })
       .finally(() => {
-        dispatch(commonHideLoader);
+        dispatch(commonHideLoader());
       });
   },
 );
@@ -31,8 +32,9 @@ export const getUserById = createAsyncThunk<UserType, number, { dispatch: AppDis
   'USER_GET_BY_ID',
   (userId, { dispatch, rejectWithValue }) => {
     clearErrors();
-    dispatch(commonShowLoader);
-    return requestGetUserById(userId)
+    dispatch(commonShowLoader());
+    return api
+      .requestGetUserById(userId)
       .then((response: AxiosResponse<UserType>) => {
         return response.data;
       })
@@ -40,7 +42,7 @@ export const getUserById = createAsyncThunk<UserType, number, { dispatch: AppDis
         return rejectWithValue(error);
       })
       .finally(() => {
-        dispatch(commonHideLoader);
+        dispatch(commonHideLoader());
       });
   },
 );
@@ -64,7 +66,7 @@ export const getUserByLogin = createAsyncThunk<
       return rejectWithValue(error);
     })
     .finally(() => {
-      dispatch(commonHideLoader);
+      dispatch(commonHideLoader());
     });
 });
 */
@@ -73,8 +75,9 @@ export const insertUser = createAsyncThunk<UserType, { user: UserType; onSuccess
   'USER_CREATE',
   ({ user, onSuccess }, { dispatch, rejectWithValue }) => {
     clearErrors();
-    dispatch(commonShowLoader);
-    return requestCreateNewUser(user)
+    dispatch(commonShowLoader());
+    return api
+      .requestCreateNewUser(user)
       .then((response: AxiosResponse<UserType>) => {
         dispatch(getAllUsers() as AppDispatch);
         onSuccess();
@@ -84,7 +87,7 @@ export const insertUser = createAsyncThunk<UserType, { user: UserType; onSuccess
         return rejectWithValue({ error, user });
       })
       .finally(() => {
-        dispatch(commonHideLoader);
+        dispatch(commonHideLoader());
       });
   },
 );
@@ -93,8 +96,9 @@ export const updateUser = createAsyncThunk<UserType, { user: UserType; onSuccess
   'USER_UPDATE',
   ({ user, onSuccess }, { dispatch, rejectWithValue }) => {
     clearErrors();
-    dispatch(commonShowLoader);
-    return requestUpdateUser(user)
+    dispatch(commonShowLoader());
+    return api
+      .requestUpdateUser(user)
       .then((response: AxiosResponse<UserType>) => {
         dispatch(getAllUsers() as AppDispatch);
         onSuccess();
@@ -104,7 +108,7 @@ export const updateUser = createAsyncThunk<UserType, { user: UserType; onSuccess
         return rejectWithValue({ error, user });
       })
       .finally(() => {
-        dispatch(commonHideLoader);
+        dispatch(commonHideLoader());
       });
   },
 );
@@ -113,8 +117,9 @@ export const deleteUserById = createAsyncThunk<number, number, { dispatch: AppDi
   'USER_DELETE_USER',
   (userId, { dispatch, rejectWithValue }) => {
     clearErrors();
-    dispatch(commonShowLoader);
-    return requestDeleteUser(userId)
+    dispatch(commonShowLoader());
+    return api
+      .requestDeleteUser(userId)
       .then(() => {
         dispatch(getAllUsers() as AppDispatch);
         return userId;
@@ -123,7 +128,7 @@ export const deleteUserById = createAsyncThunk<number, number, { dispatch: AppDi
         return rejectWithValue(error);
       })
       .finally(() => {
-        dispatch(commonHideLoader);
+        dispatch(commonHideLoader());
       });
   },
 );
@@ -198,7 +203,7 @@ const userManagementSlice = createSlice({
         state.insertUserRequestState = RequestState.SUCCESS;
         message.info(`USER "${action.payload.login}" успешно ДОБАВЛЕН`);
       })
-      .addCase(insertUser.rejected.type, (state: UserStoreData, action: PayloadAction<{ error: any; user: UserType }>) => {
+      .addCase(insertUser.rejected.type, (state: UserStoreData, action: PayloadAction<{ error: unknown; user: UserType }>) => {
         state.isCurrentUserShow = true;
         state.currentUser = action.payload.user;
         state.insertUserRequestState = RequestState.FAIL;
@@ -215,7 +220,7 @@ const userManagementSlice = createSlice({
         state.updateUserRequestState = RequestState.SUCCESS;
         message.info(`USER "${action.payload.login}" успешно ОБНОВЛЕН`);
       })
-      .addCase(updateUser.rejected.type, (state: UserStoreData, action: PayloadAction<{ error: any; user: UserType }>) => {
+      .addCase(updateUser.rejected.type, (state: UserStoreData, action: PayloadAction<{ error: unknown; user: UserType }>) => {
         state.isCurrentUserShow = true;
         state.currentUser = action.payload.user;
         state.updateUserRequestState = RequestState.FAIL;

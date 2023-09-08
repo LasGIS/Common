@@ -115,7 +115,6 @@ const UsersPage = () => {
           </Row>
           <Row style={{ marginBottom: 20 }}>
             <Col span={12}>
-              {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
               <SearchInputWithDelay
                 onChange={(value: string, mandatory: boolean) => {
                   console.log(`(value: ${value}, mandatory: ${mandatory})`);
@@ -125,23 +124,6 @@ const UsersPage = () => {
               />
             </Col>
             <div style={{ flex: 'auto' }} />
-            <Col>
-              {/*
-              <Select
-                title="Статус блокировки"
-                placeholder="Статус блокировки"
-                style={{ width: 160 }}
-                value={enabled}
-                onChange={(value) => changeSearchCriteria({ enabled: value })}
-              >
-                {BLOCK_STATUS_OPTIONS.map((option, index) => (
-                  <Option key={`blocking_option_${index}`} value={option.code}>
-                    {option.name}
-                  </Option>
-                ))}
-              </Select>
-*/}
-            </Col>
           </Row>
           <Table<UserType>
             rowKey={(record) => record.login}
@@ -153,26 +135,6 @@ const UsersPage = () => {
             bordered
           />
         </Col>
-      </Row>
-      <Row justify="center" style={{ marginTop: 20 }}>
-        {/*
-        <Pagination
-          // showLessItems={true}
-          // hideOnSinglePage={true}
-          // showPrevNextJumpers={false}
-          showQuickJumper
-          onChange={(page: number, pageSize: number) => changeSearchCriteria({ page, pageSize })}
-          total={total}
-          current={page}
-          pageSize={pageSize}
-          showSizeChanger={true}
-          pageSizeOptions={[10, 30, 100]}
-          showTotal={(total, range) => `${range[0]}-${range[1]} из ${total}`}
-          defaultPageSize={pageSize}
-          defaultCurrent={1}
-          locale={PAGINATION_LOCALE}
-        />
-*/}
       </Row>
     </>
   );

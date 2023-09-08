@@ -7,9 +7,20 @@ export type AppSettingsConfig = {
   version?: string;
 };
 
+export type AuthUser = {
+  id?: string;
+  username?: string;
+  firstName: string;
+  lastName: string;
+  email?: string;
+  image?: string;
+  roles?: string[];
+};
+
 export interface CommonStoreData {
   loading: boolean;
   settings?: AppSettingsConfig;
+  authUser?: AuthUser;
   errors?: ErrorDto[];
 }
 
