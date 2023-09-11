@@ -6,7 +6,7 @@ CREATE TABLE person (
   first_name  TEXT   NOT NULL,
   last_name   TEXT   NOT NULL,
   middle_name TEXT,
-  sex TEXT NOT NULL CHECK (sex IN (
+  sex         TEXT   NOT NULL CHECK (sex IN (
     'MALE',  -- мужчина
     'FEMALE' -- женщина
   )),
@@ -25,14 +25,14 @@ CREATE TABLE person_relation (
   person_relation_id SERIAL,
   person_id          INTEGER     NOT NULL REFERENCES person (person_id) ON UPDATE RESTRICT ON DELETE CASCADE,
   person_to_id       INTEGER     NOT NULL REFERENCES person (person_id) ON UPDATE RESTRICT ON DELETE CASCADE,
-  "type" TEXT    UNIQUE NOT NULL    CHECK (
-    "type" IN ('PARENT',   -- родитель (мать или отец)
-               'CHILD',    -- ребёнок (сын или дочь)
-               'SPOUSE',   -- супруг (муж или жена)
-               'SIBLING',  -- родной брат или сестра (если отец или мать неизвестны)
-               'RELATIVE', -- родственник, родственница
-               'COLLEAGUE' -- коллега
-    )),
+  "type"             TEXT UNIQUE NOT NULL CHECK ("type" IN (
+    'PARENT',   -- родитель (мать или отец)
+    'CHILD',    -- ребёнок (сын или дочь)
+    'SPOUSE',   -- супруг (муж или жена)
+    'SIBLING',  -- родной брат или сестра (если отец или мать неизвестны)
+    'RELATIVE', -- родственник, родственница
+    'COLLEAGUE' -- коллега
+  )),
   CONSTRAINT person_role_pk PRIMARY KEY (person_relation_id),
   CONSTRAINT person_role_unique UNIQUE (person_id, person_to_id, "type")
 );
