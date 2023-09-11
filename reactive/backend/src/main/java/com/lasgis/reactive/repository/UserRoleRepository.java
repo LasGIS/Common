@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRoleRepository.java  last: 04.09.2023
+ *  @(#)UserRoleRepository.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 
 package com.lasgis.reactive.repository;
 
-import com.lasgis.reactive.entity.UserRoleEntity;
+import com.lasgis.reactive.model.entity.UserRoleEntity;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,5 +1,5 @@
 /*
- *  @(#)UserControllerRouter.java  last: 08.09.2023
+ *  @(#)UserControllerRouter.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -10,7 +10,7 @@ package com.lasgis.reactive.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lasgis.reactive.entity.UserEntity;
+import com.lasgis.reactive.model.entity.UserEntity;
 import com.lasgis.reactive.model.errors.Error;
 import com.lasgis.reactive.model.errors.ErrorCode;
 import com.lasgis.reactive.model.exception.ItemNotFoundException;

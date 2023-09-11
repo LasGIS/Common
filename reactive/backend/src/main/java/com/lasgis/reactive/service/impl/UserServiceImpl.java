@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceImpl.java  last: 08.09.2023
+ *  @(#)UserServiceImpl.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 
 package com.lasgis.reactive.service.impl;
 
-import com.lasgis.reactive.entity.UserEntity;
+import com.lasgis.reactive.model.entity.UserEntity;
 import com.lasgis.reactive.model.exception.ItemNotFoundException;
 import com.lasgis.reactive.repository.UserRepository;
 import com.lasgis.reactive.repository.UserRoleRepository;

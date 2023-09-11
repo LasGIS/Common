@@ -1,7 +1,7 @@
 /*
- *  @(#)UserEntityRepositoryTestManual.java  last: 04.09.2023
+ *  @(#)UserEntityRepositoryTestManual.java  last: 11.09.2023
  *
- * Title: LG prototype for java-spring-jdbc + vue-type-script
+ * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
@@ -9,8 +9,8 @@
 package com.lasgis.reactive.repository;
 
 import com.lasgis.reactive.ReactiveApplication;
-import com.lasgis.reactive.entity.UserRole;
-import com.lasgis.reactive.entity.UserRoleEntity;
+import com.lasgis.reactive.model.entity.UserRole;
+import com.lasgis.reactive.model.entity.UserRoleEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -59,14 +59,14 @@ class UserEntityRepositoryTestManual {
             .expectComplete()
             .verify();
 
-        saveRole(1L, List.of(
+        saveRole(List.of(
             UserRole.ADMIN, UserRole.CHIEF, UserRole.SUPERVISOR
         ));
     }
 
-    void saveRole(final Long userId, final List<UserRole> roleList) {
+    void saveRole(final List<UserRole> roleList) {
         StepVerifier.create(roleRepository.saveAll(
-                roleList.stream().map(role -> UserRoleEntity.of(userId, role.name())).toList()
+                roleList.stream().map(role -> UserRoleEntity.of(1L, role)).toList()
             ))
             .expectNextCount(3)
             .expectComplete()

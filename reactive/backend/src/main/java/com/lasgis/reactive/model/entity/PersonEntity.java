@@ -1,12 +1,12 @@
 /*
- *  @(#)UserRoleEntity.java  last: 04.09.2023
+ *  @(#)PersonEntity.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
 
-package com.lasgis.reactive.entity;
+package com.lasgis.reactive.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,23 +16,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
- * The Class UserRoleEntity definition.
+ * The Class Person definition.
  *
  * @author VLaskin
- * @since 17.05.2023 : 15:59
+ * @since 11.09.2023 : 15:20
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_role")
-public class UserRoleEntity {
-    @Id()
-    private Long userRoleId;
-    private Long userId;
-    private String roleId;
-
-    public static UserRoleEntity of(final Long userId, final String roleId) {
-        return UserRoleEntity.builder().userId(userId).roleId(roleId).build();
-    }
+@Table(name = "person")
+public class PersonEntity {
+    @Id
+    private Long PersonId;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private SexType sex;
 }

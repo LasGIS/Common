@@ -1,5 +1,5 @@
 /*
- *  @(#)UserController.java  last: 08.09.2023
+ *  @(#)UserController.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 
 package com.lasgis.reactive.controller;
 
-import com.lasgis.reactive.entity.UserEntity;
+import com.lasgis.reactive.model.entity.UserEntity;
 import com.lasgis.reactive.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

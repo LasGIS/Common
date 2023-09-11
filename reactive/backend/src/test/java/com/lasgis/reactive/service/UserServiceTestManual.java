@@ -1,7 +1,7 @@
 /*
- *  @(#)UserServiceTestManual.java  last: 04.09.2023
+ *  @(#)UserServiceTestManual.java  last: 11.09.2023
  *
- * Title: LG prototype for java-spring-jdbc + vue-type-script
+ * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
  * Copyright (c) 2023, LasGIS Company. All Rights Reserved.
  */
@@ -9,8 +9,8 @@
 package com.lasgis.reactive.service;
 
 import com.lasgis.reactive.ReactiveApplication;
-import com.lasgis.reactive.entity.UserEntity;
-import com.lasgis.reactive.entity.UserRole;
+import com.lasgis.reactive.model.entity.UserEntity;
+import com.lasgis.reactive.model.entity.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,9 +21,9 @@ import reactor.test.StepVerifier;
 
 import java.util.List;
 
-import static com.lasgis.reactive.entity.UserRole.ADMIN;
-import static com.lasgis.reactive.entity.UserRole.CHIEF;
-import static com.lasgis.reactive.entity.UserRole.SUPERVISOR;
+import static com.lasgis.reactive.model.entity.UserRole.ADMIN;
+import static com.lasgis.reactive.model.entity.UserRole.CHIEF;
+import static com.lasgis.reactive.model.entity.UserRole.SUPERVISOR;
 import static java.util.Objects.nonNull;
 
 /**
@@ -93,7 +93,7 @@ class UserServiceTestManual {
             .verify();
         Assertions.assertNotNull(user.getUserId());
         StepVerifier.create(service.deleteById(user.getUserId()))
-            .expectNext()
+            .expectNext(user.getUserId())
             .expectComplete()
             .verify();
     }

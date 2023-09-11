@@ -1,5 +1,5 @@
 /*
- *  @(#)UserService.java  last: 08.09.2023
+ *  @(#)UserService.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 
 package com.lasgis.reactive.service;
 
-import com.lasgis.reactive.entity.UserEntity;
+import com.lasgis.reactive.model.entity.UserEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

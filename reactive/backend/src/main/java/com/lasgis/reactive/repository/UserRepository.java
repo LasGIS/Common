@@ -1,5 +1,5 @@
 /*
- *  @(#)UserRepository.java  last: 04.09.2023
+ *  @(#)UserRepository.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,7 +8,7 @@
 
 package com.lasgis.reactive.repository;
 
-import com.lasgis.reactive.entity.UserEntity;
+import com.lasgis.reactive.model.entity.UserEntity;
 import io.micrometer.common.lang.NonNullApi;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
@@ -28,7 +28,7 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long>
             usr.name,
             usr.password,
             usr.archived,
-            ARRAY_AGG(rol.role_id ORDER BY rol.role_id) AS roles
+            ARRAY_AGG(rol.role ORDER BY rol.role) AS roles
           FROM "user" usr
              LEFT JOIN user_role rol ON usr.user_id = rol.user_id
          GROUP BY usr.user_id, login, name, password, archived
@@ -43,7 +43,7 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long>
             usr.name,
             usr.password,
             usr.archived,
-            ARRAY_AGG(rol.role_id ORDER BY rol.role_id) AS roles
+            ARRAY_AGG(rol.role ORDER BY rol.role) AS roles
           FROM "user" usr
              LEFT JOIN user_role rol ON usr.user_id = rol.user_id
          WHERE usr.user_id = :id
@@ -57,7 +57,7 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, Long>
              usr.name,
              usr.password,
              usr.archived,
-             ARRAY_AGG(rol.role_id ORDER BY rol.role_id) AS roles
+             ARRAY_AGG(rol.role ORDER BY rol.role) AS roles
            FROM "user" usr
               LEFT JOIN user_role rol ON usr.user_id = rol.user_id
           WHERE usr.login = :login

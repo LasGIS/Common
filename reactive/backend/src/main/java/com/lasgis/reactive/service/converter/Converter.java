@@ -1,5 +1,5 @@
 /*
- *  @(#)Converter.java  last: 04.09.2023
+ *  @(#)Converter.java  last: 11.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,8 +8,8 @@
 
 package com.lasgis.reactive.service.converter;
 
-import com.lasgis.reactive.entity.UserRole;
-import com.lasgis.reactive.entity.UserRoleEntity;
+import com.lasgis.reactive.model.entity.UserRole;
+import com.lasgis.reactive.model.entity.UserRoleEntity;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -22,12 +22,11 @@ import java.util.function.Function;
  */
 public class Converter {
 
-    public static final Function<UserRoleEntity, UserRole> ENTITY_2_USER_ROLE =
-        userRoleEntity -> UserRole.valueOf(userRoleEntity.getRoleId());
+    public static final Function<UserRoleEntity, UserRole> ENTITY_2_USER_ROLE = UserRoleEntity::getRole;
 
     public static final BiFunction<Long, UserRole, UserRoleEntity> USER_ROLE_2_ENTITY =
         (userId, userRole) -> UserRoleEntity.builder()
-            .roleId(userRole.name())
+            .role(userRole)
             .userId(userId)
             .build();
 }
