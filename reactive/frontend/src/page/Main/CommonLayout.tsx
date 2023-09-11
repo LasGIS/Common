@@ -1,61 +1,63 @@
 import './styles.scss';
-import React, { Suspense, useState } from 'react';
-import { AppstoreOutlined, DesktopOutlined, LoginOutlined, LogoutOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons/lib/icons';
+import React, { Suspense, useEffect, useState } from 'react';
+import { LogoutOutlined } from '@ant-design/icons/lib/icons';
 import { useSelector } from 'react-redux';
-import type { MenuProps } from 'antd';
 import { Dropdown, Layout, Menu, Spin } from 'antd';
-import { findKeyByPathname } from './MenuHelper';
+import { findKeyByPathname, MENU_DATA, MenuData } from './MenuHelper';
 import { Link, Outlet } from 'react-router-dom';
 import { commonAuthUserSelector, commonLoadingSelector, commonSettingsSelector } from '../../reducer/common';
 import { AppSettingsConfig, AuthUser } from '../../reducer/redux-types';
 import { ItemType } from 'antd/lib/menu/hooks/useItems';
 import HeaderLogo from '../../style/img/evolution.gif';
 import UnknownUser from './UnknownUser.png';
+import { useLocation } from 'react-router';
 
 const { Content, Header, Sider, Footer } = Layout;
 
 const MENU_WIDTH = 230;
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {
-  return { key, icon, children, label, type } as MenuItem;
+const getItem = (menuData: MenuData): ItemType => {
+  return {
+    key: menuData.key,
+    icon: menuData.icon,
+    //    type: menuData.children ? "group" : undefined,
+    label: menuData.link ? (
+      <Link to={menuData.link} title={menuData.title}>
+        {menuData.name}
+      </Link>
+    ) : (
+      <span title={menuData.title}>{menuData.name}</span>
+    ),
+    children: menuData.children ? getItems(menuData.children) : undefined,
+  };
 };
 
-const items: ItemType[] = [
-  { key: 1, icon: <DesktopOutlined />, label: <Link to="/user">Пользователи</Link> },
-  { key: 2, icon: <LoginOutlined />, label: <Link to="/login">Login</Link> },
-  // <Divider type="horizontal" style={{ margin: '6px 0' }} />,
-  getItem('Navigation One', 'sub1', <MailOutlined />, [
-    getItem('Item 2', 'g2', null, [getItem('Option 3', '33'), getItem('Option 4', '4')], 'group'),
-  ]),
-  getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-    getItem('Option 5', '5'),
-    getItem('Option 6', '6'),
-    getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-  ]),
-  { type: 'divider', theme: 'light', style: { margin: '6px 0' } } as MenuItem,
-  getItem('Navigation Three', 'sub4', <SettingOutlined />, [getItem('Option 9 group', '9'), getItem('Option 10 group', '10')], 'group'),
-  getItem('Option 11', '11'),
-  getItem('Option 12', '12'),
-  getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
+const getItems = (menuDataList: MenuData[]): ItemType[] => {
+  return menuDataList.map((menuData) => getItem(menuData));
+};
+
+const items: ItemType[] = getItems(MENU_DATA);
+
+const headerMenu: ItemType[] = [
+  {
+    key: '1000',
+    icon: <LogoutOutlined />,
+    label: <a href="/logout">Выйти</a>,
+  },
 ];
 
 const CommonLayout = () => {
+  const location = useLocation();
   const loading = useSelector(commonLoadingSelector) as boolean;
   const settings = useSelector(commonSettingsSelector) as AppSettingsConfig;
   const authUser = useSelector(commonAuthUserSelector) as AuthUser;
   const [isMenuCollapsed, setMenuCollapsed] = useState(false);
+  const [selectedKeys, setSelectedKeys] = useState(findKeyByPathname(location.pathname));
   const menuWidth = isMenuCollapsed ? 40 : MENU_WIDTH;
-  const selectedKeys = [findKeyByPathname(window.location.pathname)];
 
-  const headerMenu: ItemType[] = [
-    {
-      key: '1000',
-      icon: <LogoutOutlined />,
-      label: <a href="/logout">Выйти</a>,
-    },
-  ];
+  useEffect(() => {
+    setSelectedKeys(findKeyByPathname(location.pathname));
+  }, [location.pathname]);
 
   return (
     <Spin spinning={loading} size="large" tip="Загрузка данных">
