@@ -1,0 +1,21 @@
+server:
+    port: 8099
+
+spring:
+    # r2dbc connection
+    # see https://github.com/pgjdbc/r2dbc-postgresql
+    r2dbc:
+        url: r2dbc:postgresql://localhost:5432/generic
+        username: generic
+        password: generic
+        pool:
+            enabled: true
+            initial-size: 10
+            max-idle-time: 1m
+            max-size: 30
+
+    data.r2dbc.repositories.enabled: true
+
+settings:
+    name: UI reactive
+    version: @project.version@

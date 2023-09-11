@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lasgis</groupId>
+        <artifactId>reactive-parent</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>reactive-frontend</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>reactive-frontend</name>
+    <description>reactive-frontend</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <frontend-src-dir>${project.basedir}</frontend-src-dir>
+    </properties>
+    <profiles>
+        <profile>
+            <id>frontend</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-maven-plugin.version}</version>
+
+                        <configuration>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>provided</npmVersion>
+                            <yarnVersion>${yarn.version}</yarnVersion>
+                            <workingDirectory>${frontend-src-dir}</workingDirectory>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <id>install frontend tools</id>
+                                <goals>
+                                    <goal>install-node-and-yarn</goal>
+                                </goals>
+                            </execution>
+
+                            <execution>
+                                <id>yarn install</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install --frozen-lockfile</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>build frontend</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>build</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
