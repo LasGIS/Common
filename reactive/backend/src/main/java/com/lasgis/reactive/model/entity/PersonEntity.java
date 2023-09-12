@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonEntity.java  last: 11.09.2023
+ *  @(#)PersonEntity.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -28,7 +28,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(name = "person")
 public class PersonEntity {
     @Id
-    private Long PersonId;
+    private Long personId;
     private String firstName;
     private String lastName;
     private String middleName;

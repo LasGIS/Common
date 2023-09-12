@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceTestManual.java  last: 11.09.2023
+ *  @(#)UserServiceTestManual.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -13,6 +13,7 @@ import com.lasgis.reactive.model.entity.UserEntity;
 import com.lasgis.reactive.model.entity.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
@@ -39,6 +40,7 @@ import static java.util.Objects.nonNull;
 class UserServiceTestManual {
 
     private final UserService service;
+    private static Long newUserId;
 
     @Autowired
     public UserServiceTestManual(UserService service) {
@@ -72,6 +74,7 @@ class UserServiceTestManual {
     }
 
     @Test
+    @Order(1)
     void saveNewUser() {
         final UserEntity user = UserEntity.builder()
             .name("name")
@@ -91,9 +94,14 @@ class UserServiceTestManual {
             })
             .expectComplete()
             .verify();
-        Assertions.assertNotNull(user.getUserId());
-        StepVerifier.create(service.deleteById(user.getUserId()))
-            .expectNext(user.getUserId())
+        newUserId = user.getUserId();
+    }
+    @Test
+    @Order(2)
+    void deleteNewUser() {
+        Assertions.assertNotNull(newUserId);
+        StepVerifier.create(service.deleteById(newUserId))
+            .expectNext(newUserId)
             .expectComplete()
             .verify();
     }

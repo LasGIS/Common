@@ -1,5 +1,5 @@
 /*
- *  @(#)UserEntityRepositoryTestManual.java  last: 11.09.2023
+ *  @(#)UserEntityRepositoryTestManual.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -26,7 +26,6 @@ import static java.util.Objects.nonNull;
 @Slf4j
 @SpringBootTest(classes = ReactiveApplication.class)
 @AutoConfigureTestEntityManager
-//@Transactional
 class UserEntityRepositoryTestManual {
 
     private final UserRepository repository;

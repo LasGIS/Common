@@ -1,10 +1,10 @@
-INSERT INTO person (person_id, first_name, last_name, middle_name, sex)
-VALUES (1, 'Влади́мир', 'Владимирович', 'Маяковский', 'MALE');
-INSERT INTO person (person_id, first_name, last_name, middle_name, sex)
-VALUES (2, 'Владимир', 'Константинович', 'Маяковский', 'MALE');
-INSERT INTO person (person_id, first_name, last_name, middle_name, sex)
-VALUES (3, 'Александра Алексеевна', 'Константинович', 'Павленко', 'FEMALE');
+INSERT INTO person (person_id, first_name, middle_name, last_name, sex)
+VALUES (1, 'Влади́мир', 'Владимирович', 'Маяковский', 'MALE'),
+       (2, 'Владимир', 'Константинович', 'Маяковский', 'MALE'),
+       (3, 'Александра', 'Алексеевна', 'Павленко', 'FEMALE');
 
--- //UPDATE person SET father_id = 2, mother_id = 3 WHERE person_id = 1;
-INSERT INTO person_relation (person_id, person_to_id, type) VALUES (1, 2, 'PARENT');
-INSERT INTO person_relation (person_id, person_to_id, type) VALUES (1, 3, 'PARENT');
+INSERT INTO person_relation (person_id, person_to_id, type)
+VALUES (1, 2, 'PARENT'),
+       (1, 3, 'PARENT'),
+       (2, 1, 'CHILD'),
+       (3, 1, 'CHILD');

@@ -22,7 +22,6 @@ COMMENT ON COLUMN person.middle_name IS 'Отчество';
 -- Table: person_relation
 --==============================================================
 CREATE TABLE person_relation (
-  person_relation_id SERIAL,
   person_id          INTEGER     NOT NULL REFERENCES person (person_id) ON UPDATE RESTRICT ON DELETE CASCADE,
   person_to_id       INTEGER     NOT NULL REFERENCES person (person_id) ON UPDATE RESTRICT ON DELETE CASCADE,
   "type"             TEXT        NOT NULL CHECK ("type" IN (
@@ -33,11 +32,9 @@ CREATE TABLE person_relation (
     'RELATIVE', -- родственник, родственница
     'COLLEAGUE' -- коллега
   )),
-  CONSTRAINT person_role_pk PRIMARY KEY (person_relation_id),
   CONSTRAINT person_role_unique UNIQUE (person_id, person_to_id, "type")
 );
 COMMENT ON TABLE person_relation                     IS 'Таблица связи. Связывает одну персону с другими персонами';
-COMMENT ON COLUMN person_relation.person_relation_id IS 'Уникальный номер связи';
 COMMENT ON COLUMN person_relation.person_id          IS 'Id основной персоны';
 COMMENT ON COLUMN person_relation.person_to_id       IS 'Id связанной персоны';
 COMMENT ON COLUMN person_relation."type"             IS 'тип связи';

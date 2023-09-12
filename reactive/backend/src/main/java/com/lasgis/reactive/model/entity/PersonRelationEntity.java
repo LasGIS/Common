@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonRelationEntity.java  last: 11.09.2023
+ *  @(#)PersonRelationEntity.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
@@ -25,11 +24,9 @@ import org.springframework.data.relational.core.mapping.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "person")
+@Table(name = "person_relation")
 public class PersonRelationEntity {
-    @Id
-    private Long person_relation_id;
-    private Long person_id;
-    private Long person_to_id;
+    private Long personId;
+    private Long personToId;
     private PersonRelationType type;
 }

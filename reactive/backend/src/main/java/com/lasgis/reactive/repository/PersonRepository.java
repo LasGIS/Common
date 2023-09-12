@@ -1,5 +1,5 @@
 /*
- *  @(#)RoleRepository.java  last: 11.09.2023
+ *  @(#)PersonRepository.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,10 +8,10 @@
 
 package com.lasgis.reactive.repository;
 
-import com.lasgis.reactive.model.entity.RoleEntity;
+import com.lasgis.reactive.model.entity.PersonEntity;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends ReactiveCrudRepository<RoleEntity, Long> {
+public interface PersonRepository extends ReactiveCrudRepository<PersonEntity, Long> {
 }
