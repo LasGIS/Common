@@ -19,3 +19,8 @@ spring:
 settings:
     name: UI reactive
     version: @project.version@
+
+#debug: true
+#logging:
+#  level:
+#    root: ${ROOT_LOG_LEVEL:DEBUG}

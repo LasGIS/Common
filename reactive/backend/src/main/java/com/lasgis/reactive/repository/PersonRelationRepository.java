@@ -12,10 +12,14 @@ import com.lasgis.reactive.model.entity.PersonRelationEntity;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
 public interface PersonRelationRepository extends ReactiveCrudRepository<PersonRelationEntity, Void> {
     @Query("DELETE FROM person_relation WHERE person_id = :personId OR person_to_id = :personId")
     Mono<Void> deleteAllForPersonId(final Long personId);
+
+    @Query("SELECT * FROM person_relation WHERE person_id = :personId")
+    Flux<PersonRelationEntity> findByPersonId(Long personId);
 }

@@ -1,5 +1,5 @@
 /*
- *  @(#)Converter.java  last: 11.09.2023
+ *  @(#)Converter.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -8,6 +8,10 @@
 
 package com.lasgis.reactive.service.converter;
 
+import com.lasgis.reactive.model.Person;
+import com.lasgis.reactive.model.PersonRelation;
+import com.lasgis.reactive.model.entity.PersonEntity;
+import com.lasgis.reactive.model.entity.PersonRelationEntity;
 import com.lasgis.reactive.model.entity.UserRole;
 import com.lasgis.reactive.model.entity.UserRoleEntity;
 
@@ -28,5 +32,37 @@ public class Converter {
         (userId, userRole) -> UserRoleEntity.builder()
             .role(userRole)
             .userId(userId)
+            .build();
+
+    public static final Function<PersonEntity, Person> ENTITY_2_PERSON =
+        (entity) -> Person.builder()
+            .personId(entity.getPersonId())
+            .firstName(entity.getFirstName())
+            .lastName(entity.getLastName())
+            .middleName(entity.getMiddleName())
+            .sex(entity.getSex())
+            .build();
+
+    public static final Function<PersonRelationEntity, PersonRelation> ENTITY_2_PERSON_RELATION =
+        (entity) -> PersonRelation.builder()
+            .personId(entity.getPersonId())
+            .personToId(entity.getPersonToId())
+            .type(entity.getType())
+            .build();
+
+    public static final Function<Person, PersonEntity> PERSON_2_ENTITY =
+        (entity) -> PersonEntity.builder()
+            .personId(entity.getPersonId())
+            .firstName(entity.getFirstName())
+            .lastName(entity.getLastName())
+            .middleName(entity.getMiddleName())
+            .sex(entity.getSex())
+            .build();
+
+    public static final Function<PersonRelation, PersonRelationEntity> PERSON_RELATION_2_ENTITY =
+        (entity) -> PersonRelationEntity.builder()
+            .personId(entity.getPersonId())
+            .personToId(entity.getPersonToId())
+            .type(entity.getType())
             .build();
 }

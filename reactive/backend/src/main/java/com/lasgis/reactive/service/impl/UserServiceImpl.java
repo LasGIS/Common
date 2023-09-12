@@ -1,5 +1,5 @@
 /*
- *  @(#)UserServiceImpl.java  last: 11.09.2023
+ *  @(#)UserServiceImpl.java  last: 12.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -24,7 +24,6 @@ import static com.lasgis.reactive.service.converter.Converter.USER_ROLE_2_ENTITY
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
 
