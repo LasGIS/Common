@@ -74,9 +74,7 @@ class PersonRepositoryTestManual {
             PersonRelationEntity.builder().personId(1L).personToId(2L).type(PersonRelationType.PARENT).build(),
             PersonRelationEntity.builder().personId(2L).personToId(1L).type(PersonRelationType.CHILD).build(),
             PersonRelationEntity.builder().personId(1L).personToId(3L).type(PersonRelationType.PARENT).build(),
-            PersonRelationEntity.builder().personId(3L).personToId(1L).type(PersonRelationType.CHILD).build(),
-            PersonRelationEntity.builder().personId(2L).personToId(3L).type(PersonRelationType.SPOUSE).build(),
-            PersonRelationEntity.builder().personId(3L).personToId(2L).type(PersonRelationType.SPOUSE).build()
+            PersonRelationEntity.builder().personId(3L).personToId(1L).type(PersonRelationType.CHILD).build()
         ));
     }
 
