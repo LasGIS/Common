@@ -13,8 +13,10 @@ import com.lasgis.reactive.model.entity.UserEntity;
 import com.lasgis.reactive.model.entity.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,7 +38,7 @@ import static java.util.Objects.nonNull;
 @Slf4j
 @SpringBootTest(classes = ReactiveApplication.class)
 @AutoConfigureTestEntityManager
-//@RestClientTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UserServiceTestManual {
 
     private final UserService service;

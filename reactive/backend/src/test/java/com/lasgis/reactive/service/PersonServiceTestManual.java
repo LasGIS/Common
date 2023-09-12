@@ -67,7 +67,7 @@ class PersonServiceTestManual {
     @Test
     void save() {
         final Person ivanka = Person.builder()
-            .personId(7L)
+//            .personId(7L)
             .firstName("Матрона")
             .middleName("Ивановна")
             .lastName("Батьковна")
