@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonRelation.java  last: 12.09.2023
+ *  @(#)PersonRelation.java  last: 13.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 public class PersonRelation {
     private Long personId;
     private Long personToId;

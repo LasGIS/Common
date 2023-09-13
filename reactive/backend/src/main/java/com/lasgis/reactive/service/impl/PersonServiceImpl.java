@@ -9,7 +9,6 @@
 package com.lasgis.reactive.service.impl;
 
 import com.lasgis.reactive.model.Person;
-import com.lasgis.reactive.model.entity.PersonRelationEntity;
 import com.lasgis.reactive.repository.PersonRelationRepository;
 import com.lasgis.reactive.repository.PersonRepository;
 import com.lasgis.reactive.service.PersonService;
@@ -21,6 +20,8 @@ import reactor.core.publisher.Mono;
 import static com.lasgis.reactive.service.converter.Converter.ENTITY_2_PERSON;
 import static com.lasgis.reactive.service.converter.Converter.ENTITY_2_PERSON_RELATION;
 import static com.lasgis.reactive.service.converter.Converter.PERSON_2_ENTITY;
+import static com.lasgis.reactive.service.converter.Converter.PERSON_RELATION_2_ENTITY;
+import static com.lasgis.reactive.service.utils.Utils.NORMALIZED_PERSON_RELATION_LIST;
 
 /**
  * The Class PersonServiceImpl definition.
@@ -73,15 +74,11 @@ public class PersonServiceImpl implements PersonService {
                 relationRepository.deleteAllForPersonId(personOut.getPersonId()).thenReturn(personOut)
             )
             .flatMap(personOut -> {
-                person.setPersonId(personOut.getPersonId());
-                return Flux.fromIterable(person.getRelations())
-                    .flatMap(relation -> relationRepository.save(
-                        PersonRelationEntity.builder()
-                            .personId(personOut.getPersonId())
-                            .personToId(relation.getPersonToId())
-                            .type(relation.getType())
-                            .build()
-                    ))
+                final Long personId = personOut.getPersonId();
+                person.setPersonId(personId);
+                person.getRelations().forEach(rel -> rel.setPersonId(personId));
+                return Flux.fromIterable(NORMALIZED_PERSON_RELATION_LIST.apply(person.getRelations()))
+                    .flatMap(relation -> relationRepository.save(PERSON_RELATION_2_ENTITY.apply(relation)))
                     .map(ENTITY_2_PERSON_RELATION)
                     .collectList()
                     .flatMap(relationList -> {

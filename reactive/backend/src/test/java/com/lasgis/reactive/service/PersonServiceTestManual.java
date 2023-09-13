@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonServiceTestManual.java  last: 12.09.2023
+ *  @(#)PersonServiceTestManual.java  last: 13.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -74,8 +74,8 @@ class PersonServiceTestManual {
             .sex(SexType.FEMALE)
             .relations(List.of(
                 PersonRelation.builder().personToId(1L).type(PersonRelationType.SIBLING).build(),
-                PersonRelation.builder().personToId(2L).type(PersonRelationType.CHILD).build(),
-                PersonRelation.builder().personToId(3L).type(PersonRelationType.CHILD).build()
+                PersonRelation.builder().personToId(2L).type(PersonRelationType.PARENT).build(),
+                PersonRelation.builder().personToId(3L).type(PersonRelationType.PARENT).build()
             ))
             .build();
         StepVerifier.create(service.save(ivanka))

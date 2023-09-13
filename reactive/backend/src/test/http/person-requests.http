@@ -2,7 +2,7 @@
 GET http://localhost:8099/api/v2.0/person
 
 ### GET person ID=1
-GET http://localhost:8099/api/v2.0/person/1
+GET http://localhost:8099/api/v2.0/person/5
 
 ### create first person
 POST http://localhost:8099/api/v2.0/person
