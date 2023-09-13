@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CommonLayout from './Main/CommonLayout';
-import LoginPage from './Login/LoginPage';
-import { AppDispatch, useAppDispatch } from '../reducer/store';
-import { getAppSettings } from '../reducer/common';
-import UsersPage from './User/UsersPage';
-import UserDetailForm from './User/UserDetailForm';
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import CommonLayout from "./Main/CommonLayout";
+import LoginPage from "./Login/LoginPage";
+import { AppDispatch, useAppDispatch } from "../reducer/store";
+import { getAppSettings } from "../reducer/common";
+import UsersPage from "./User/UsersPage";
+import UserDetailForm from "./User/UserDetailForm";
+import PersonPage from "./Person/PersonPage";
+import PersonDetailForm from "./Person/PersonDetailForm";
 
 const App = () => {
   const dispatch: AppDispatch = useAppDispatch();
@@ -22,6 +24,8 @@ const App = () => {
           <Route path="/main" element={<div>Main</div>} />
           <Route path="/user" element={<UsersPage />} />
           <Route path="/user/:userId" element={<UserDetailForm />} />
+          <Route path="/person" element={<PersonPage />} />
+          <Route path="/person/:personId" element={<PersonDetailForm />} />
         </Route>
       </Routes>
     </Router>

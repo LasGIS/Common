@@ -1,5 +1,5 @@
-import React from 'react';
-import { LoginOutlined, SettingOutlined, UserOutlined, UserSwitchOutlined } from '@ant-design/icons';
+import React from "react";
+import { LoginOutlined, SettingOutlined, UserOutlined, UserSwitchOutlined } from "@ant-design/icons";
 
 export type MenuData = {
   key: string;
@@ -17,11 +17,11 @@ export const MENU_DATA: MenuData[] = [
     key: 'person',
     name: 'Персоны',
     title: 'Персоны, участвующие в строительстве генеалогического дерева',
-    link: '/main',
+    link: '/person',
     icon: <UserSwitchOutlined />,
   },
   {
-    key: 'user',
+    key: 'admin',
     name: 'Администрирование',
     icon: <SettingOutlined />,
     children: [
