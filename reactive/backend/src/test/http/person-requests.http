@@ -1,0 +1,41 @@
+### GET All persons
+GET http://localhost:8099/api/v2.0/person
+
+### GET person ID=1
+GET http://localhost:8099/api/v2.0/person/1
+
+### create first person
+POST http://localhost:8099/api/v2.0/person
+Content-Type: application/json
+
+{
+  "firstName": "Георгий",
+  "lastName": "Жуков",
+  "middleName": "Константинович",
+  "sex": "MALE",
+  "relations": [
+    {
+      "personToId": 1,
+      "type": "PARENT"
+    }]
+}
+
+### update first person to person2
+PUT http://localhost:8099/api/v2.0/person/9
+Content-Type: application/json
+
+{
+  "personId": 9,
+  "firstName": "Александр",
+  "lastName": "Суворов",
+  "middleName": "Васильевич",
+  "sex": "MALE",
+  "relations": [
+    {
+      "personToId": 1,
+      "type": "PARENT"
+    }]
+}
+
+### DELETE person 10
+DELETE http://localhost:8099/api/v2.0/person/10

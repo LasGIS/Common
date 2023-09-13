@@ -1,11 +1,11 @@
 ### GET user ID=1
-GET http://localhost:8080/api/v2/user/1
+GET http://localhost:8099/api/v2.0/user/1
 
 ### GET All users
-GET http://localhost:8080/api/v2/user
+GET http://localhost:8099/api/v2.0/user
 
 ### create first User
-POST http://localhost:8080/api/v2/user
+POST http://localhost:8099/api/v2.0/user
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### update first User to User2
-PUT http://localhost:8080/api/v2/user/3
+PUT http://localhost:8099/api/v2.0/user/11
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 
 ### GET login = Second
-GET http://localhost:8080/api/v2/user/login?login=Second
+GET http://localhost:8099/api/v2.0/user/login?login=Second
 
 ###
-GET http://localhost:8080/api/v2/user/roles
+GET http://localhost:8099/api/v2.0/user/roles

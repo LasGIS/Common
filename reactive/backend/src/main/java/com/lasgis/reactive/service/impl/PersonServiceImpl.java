@@ -1,5 +1,5 @@
 /*
- *  @(#)PersonServiceImpl.java  last: 12.09.2023
+ *  @(#)PersonServiceImpl.java  last: 13.09.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -93,6 +93,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Mono<Long> deleteByPersonId(Long personId) {
-        return null;
+        return personRepository.deleteById(personId).thenReturn(personId);
     }
 }
