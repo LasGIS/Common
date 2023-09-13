@@ -1,6 +1,6 @@
-import { PersonType } from "./types";
-import { AxiosResponse } from "axios";
-import { axiosApi } from "../../../reducer/service";
+import { PersonType } from './types';
+import { AxiosResponse } from 'axios';
+import { axiosApi } from '../../../reducer/service';
 
 export default {
   /** Get all Persons from backend */

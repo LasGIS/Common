@@ -1,13 +1,13 @@
-import { createAsyncThunk, createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RequestState } from "../../../types";
-import { RootStoreData } from "../../../reducer/redux-types";
-import { PersonStoreData, PersonType } from "./types";
-import { AppDispatch } from "../../../reducer/store";
-import { clearErrors } from "../../../utils/notification-utils";
-import { commonHideLoader, commonShowLoader } from "../../../reducer/common";
-import api from "./services";
-import { message } from "antd";
-import { AxiosResponse } from "axios";
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RequestState } from '../../../types';
+import { RootStoreData } from '../../../reducer/redux-types';
+import { PersonStoreData, PersonType } from './types';
+import { AppDispatch } from '../../../reducer/store';
+import { clearErrors } from '../../../utils/notification-utils';
+import { commonHideLoader, commonShowLoader } from '../../../reducer/common';
+import api from './services';
+import { message } from 'antd';
+import { AxiosResponse } from 'axios';
 
 export const getAllPersons = createAsyncThunk<PersonType[], void, { dispatch: AppDispatch; state: PersonStoreData }>(
   'PERSON_GET_ALL',

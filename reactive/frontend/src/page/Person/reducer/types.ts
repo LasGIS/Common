@@ -1,4 +1,4 @@
-import { RequestState } from "../../../types";
+import { RequestState } from '../../../types';
 
 export type PersonRelationType = 'PARENT' | 'CHILD' | 'SPOUSE' | 'SIBLING' | 'RELATIVE' | 'COLLEAGUE';
 export type SexType = 'MALE' | 'FEMALE';

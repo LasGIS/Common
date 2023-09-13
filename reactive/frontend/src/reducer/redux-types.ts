@@ -1,7 +1,7 @@
-import { RouterState } from "connected-react-router";
-import { ErrorDto } from "../types";
-import { UserStoreData } from "../page/User/reducer/types";
-import { PersonStoreData } from "../page/Person/reducer/types";
+import { RouterState } from 'connected-react-router';
+import { ErrorDto } from '../types';
+import { UserStoreData } from '../page/User/reducer/types';
+import { PersonStoreData } from '../page/Person/reducer/types';
 
 export type AppSettingsConfig = {
   name?: string;

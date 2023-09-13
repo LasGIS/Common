@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import CommonReducer from "./common";
-import UserReducer from "../page/User/reducer";
-import PersonReducer from "../page/Person/reducer";
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import CommonReducer from './common';
+import UserReducer from '../page/User/reducer';
+import PersonReducer from '../page/Person/reducer';
 
 const store = configureStore({
   reducer: {

@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Button, Col, Form, Input, Modal, Row, Select } from "antd";
-import { useParams } from "react-router";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import { deletePersonById, getPersonById, selectCurrentPerson } from "./reducer";
-import { AppDispatch, useAppDispatch } from "../../reducer/store";
-import { useSelector } from "react-redux";
-import { PersonType } from "./reducer/types";
+import React, { useEffect } from 'react';
+import { Button, Col, Form, Input, Modal, Row, Select } from 'antd';
+import { useParams } from 'react-router';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { deletePersonById, getPersonById, selectCurrentPerson } from './reducer';
+import { AppDispatch, useAppDispatch } from '../../reducer/store';
+import { useSelector } from 'react-redux';
+import { PersonType } from './reducer/types';
 
 const { Password } = Input;
 

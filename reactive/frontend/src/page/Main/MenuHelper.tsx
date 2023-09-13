@@ -1,5 +1,5 @@
-import React from "react";
-import { LoginOutlined, SettingOutlined, UserOutlined, UserSwitchOutlined } from "@ant-design/icons";
+import React from 'react';
+import { LoginOutlined, SettingOutlined, UserOutlined, UserSwitchOutlined } from '@ant-design/icons';
 
 export type MenuData = {
   key: string;
