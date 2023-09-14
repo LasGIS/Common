@@ -2,15 +2,16 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CommonLayout from './Main/CommonLayout';
 import LoginPage from './Login/LoginPage';
-import { AppDispatch, useAppDispatch } from '../reducer/store';
+import { AppDispatch } from '../reducer/store';
 import { getAppSettings } from '../reducer/common';
 import UsersPage from './User/UsersPage';
 import UserDetailForm from './User/UserDetailForm';
 import PersonPage from './Person/PersonPage';
 import PersonDetailForm from './Person/PersonDetailForm';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
-  const dispatch: AppDispatch = useAppDispatch();
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     dispatch(getAppSettings() as AppDispatch);
   }, [dispatch]);

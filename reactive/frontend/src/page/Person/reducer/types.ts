@@ -1,7 +1,23 @@
 import { RequestState } from '../../../types';
 
 export type PersonRelationType = 'PARENT' | 'CHILD' | 'SPOUSE' | 'SIBLING' | 'RELATIVE' | 'COLLEAGUE';
-export type SexType = 'MALE' | 'FEMALE';
+export type SexType = 'UNDEF' | 'MALE' | 'FEMALE';
+
+export const PersonRelationTypeOption = [
+  { code: 'UNDEF', name: ' ' },
+  { code: 'PARENT', name: 'родитель (мать или отец)' },
+  { code: 'CHILD', name: 'ребёнок (сын или дочь)' },
+  { code: 'SPOUSE', name: 'супруг (муж или жена)' },
+  { code: 'SIBLING', name: 'родной брат или сестра' },
+  { code: 'RELATIVE', name: 'родственник, родственница' },
+  { code: 'COLLEAGUE', name: 'коллега по работе' },
+];
+
+export const SexTypeOption = [
+  { code: 'UNDEF', name: ' ' },
+  { code: 'MALE', name: 'Мужчина' },
+  { code: 'FEMALE', name: 'Женщина' },
+];
 
 export type RelationType = {
   personId: number;
@@ -14,10 +30,26 @@ export type PersonType = {
   personId: number;
   firstName: string;
   lastName: string;
-  middleName: string;
+  middleName?: string;
   sex: SexType;
   relations: RelationType[];
 };
+
+export class NewPerson implements PersonType {
+  personId: number;
+  firstName: string;
+  lastName: string;
+  sex: SexType;
+  relations: [];
+
+  constructor() {
+    this.personId = 0;
+    this.firstName = '';
+    this.lastName = '';
+    this.sex = 'UNDEF';
+    this.relations = [];
+  }
+}
 
 export interface PersonStoreData {
   searchValue: string;

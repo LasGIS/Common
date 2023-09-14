@@ -3,19 +3,19 @@ import { Button, Col, Form, Input, Modal, Row, Select } from 'antd';
 import { useParams } from 'react-router';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { deletePersonById, getPersonById, selectCurrentPerson } from './reducer';
-import { AppDispatch, useAppDispatch } from '../../reducer/store';
-import { useSelector } from 'react-redux';
-import { PersonType } from './reducer/types';
-
-const { Password } = Input;
+import { deletePersonById, getPersonById, selectCurrentPerson, selectIsNewPerson } from './reducer';
+import { AppDispatch } from '../../reducer/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { PersonType, SexTypeOption } from './reducer/types';
 
 const { confirm } = Modal;
+const { Option } = Select;
 
 const PersonDetailForm = () => {
   const navigate = useNavigate();
-  const dispatch: AppDispatch = useAppDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const currentPerson: PersonType = useSelector(selectCurrentPerson) as PersonType;
+  const isNewPerson: boolean = useSelector(selectIsNewPerson) as boolean;
   const { personId } = useParams<{ personId: string }>();
   const [form] = Form.useForm();
 
@@ -53,7 +53,7 @@ const PersonDetailForm = () => {
           relations: values.relations,
         };
         // onSave(connectivity);
-        navigate({ pathname: '/person' });
+        navigate({ pathname: "/person" });
       }
     });
   };
@@ -66,55 +66,53 @@ const PersonDetailForm = () => {
         if (record.personId) dispatch(deletePersonById(record.personId) as AppDispatch);
       },
       onCancel() {
-        console.log('onCancel()');
+        console.log("onCancel()");
       },
     });
   };
 
   const handleClose = () => {
-    navigate({ pathname: '/person' });
+    navigate({ pathname: "/person" });
   };
 
   return (<>
     <Row>
-      <Col style={{ paddingRight: 10 }}>
-        <Form layout='horizontal' form={form}>
-          <Form.Item name='personId' label='ID пользователя'>
-            <Input disabled />
+      <Col span={12} style={{ paddingRight: 10 }}>
+        <Form labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} form={form}>
+          <Form.Item name="personId" label="ID персоны">
+            <Input disabled={!isNewPerson} />
           </Form.Item>
-          <Form.Item
-            name='name'
-            label='Имя учетной записи'
-            rules={[
-              {
-                required: true,
-                message: 'Имя учетной записи обязательно!',
-              },
-            ]}
+          <Form.Item name="firstName" label="Имя" rules={[{ required: true, message: "Имя обязательно!" }]}
           >
             <Input />
           </Form.Item>
-          <Form.Item name='login' label='Логин'>
+          <Form.Item name="middleName" label="Отчество" rules={[{ required: true, message: "Имя обязательно!" }]}>
             <Input />
           </Form.Item>
-          <Form.Item name='password' label='Пароль'>
-            <Password />
-          </Form.Item>
-          <Form.Item name='archived' label='Архивный'>
+          <Form.Item name="lastName" label="Фамилия" rules={[{ required: true, message: "Фамилия обязательно!" }]}>
             <Input />
           </Form.Item>
-          <Form.Item name='roles' label='Роли'>
-            <Select mode='multiple' />
+          <Form.Item name="sex" label="Пол">
+            <Select>
+              {SexTypeOption.map((option, index) => (
+                <Option key={`sex_option_${index}`} value={option.code}>
+                  {option.name}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </Col>
+      <Col span={12}>
+
+      </Col>
     </Row>
-    <Row justify='center'>
+    <Row justify="center">
       <Form.Item noStyle>
-        <Button type='primary' htmlType='submit' onClick={handleSubmit}>
+        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
           Сохранить
         </Button>
-        <Button style={{ marginLeft: 8 }} htmlType='reset' onClick={handleClose}>
+        <Button style={{ marginLeft: 8 }} htmlType="reset" onClick={handleClose}>
           Закрыть
         </Button>
       </Form.Item>

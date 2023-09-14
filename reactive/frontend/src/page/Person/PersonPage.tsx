@@ -4,21 +4,21 @@ import { Button, Col, Modal, Row, Table, Tooltip } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { compareAlphabetically } from '../../utils';
 import { ColumnProps } from 'antd/lib/table/Column';
-import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons/lib';
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import SearchInputWithDelay from '../components/SearchInputWithDelay';
 import { getSearchWords } from '../../utils/SearchValueUtils';
 import { ColumnsType } from 'antd/lib/table';
-import { AppDispatch, useAppDispatch } from '../../reducer/store';
-import { PersonType } from './reducer/types';
-import { deletePersonById, getAllPersons, selectAllPersons, selectSearchValue } from './reducer';
-import { useSelector } from 'react-redux';
+import { AppDispatch } from '../../reducer/store';
+import { NewPerson, PersonType } from './reducer/types';
+import { createPerson, deletePersonById, getAllPersons, selectAllPersons, selectSearchValue } from './reducer';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { confirm } = Modal;
 // const { Option } = Select;
 
 const PersonPage = () => {
   const navigate = useNavigate();
-  const dispatch: AppDispatch = useAppDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const allPersons: PersonType[] = useSelector(selectAllPersons) as PersonType[];
   const search: string = useSelector(selectSearchValue) as string;
 
@@ -27,8 +27,12 @@ const PersonPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const editRecord = (personId: number) => {
+  const editRecord = (personId?: number) => {
     navigate(`/person/${personId}`);
+  };
+
+  const createNewPerson = () => {
+    dispatch(createPerson(new NewPerson()) as AppDispatch);
   };
 
   const deleteRecord = (record: PersonType) => {
@@ -119,6 +123,11 @@ const PersonPage = () => {
               />
             </Col>
             <div style={{ flex: 'auto' }} />
+            <Col>
+              <Button style={{ alignItems: 'end' }} type="link" icon={<PlusOutlined />} onClick={createNewPerson}>
+                Добавить персону
+              </Button>
+            </Col>
           </Row>
           <Table<PersonType>
             rowKey={(record) => record.personId}

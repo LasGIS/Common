@@ -1,6 +1,6 @@
 import './styles.scss';
 import React, { Suspense, useEffect, useState } from 'react';
-import { LogoutOutlined } from '@ant-design/icons/lib/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { Dropdown, Layout, Menu, Spin } from 'antd';
 import { findKeyByPathname, MENU_DATA, MenuData } from './MenuHelper';

@@ -4,17 +4,17 @@ import { useParams } from 'react-router';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { deleteUserById, getUserById, selectCurrentUser } from './reducer';
-import { AppDispatch, useAppDispatch } from '../../reducer/store';
-import { useSelector } from 'react-redux';
-import { UserType } from './reducer/types';
+import { AppDispatch } from '../../reducer/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserRoleTypeOption, UserType } from './reducer/types';
 
 const { Password } = Input;
-
 const { confirm } = Modal;
+const { Option } = Select;
 
 const UserDetailForm = () => {
   const navigate = useNavigate();
-  const dispatch: AppDispatch = useAppDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const currentUser: UserType = useSelector(selectCurrentUser) as UserType;
   const { userId } = useParams<{ userId: string }>();
   const [form] = Form.useForm();
@@ -78,7 +78,7 @@ const UserDetailForm = () => {
   return (<>
     <Row>
       <Col style={{ paddingRight: 10 }}>
-        <Form layout='horizontal' form={form}>
+        <Form labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} form={form}>
           <Form.Item name='userId' label='ID пользователя'>
             <Input disabled />
           </Form.Item>
@@ -104,7 +104,13 @@ const UserDetailForm = () => {
             <Input />
           </Form.Item>
           <Form.Item name='roles' label='Роли'>
-            <Select mode='multiple' />
+            <Select mode='multiple' >
+              {UserRoleTypeOption.map((option, index) => (
+                <Option key={`sex_option_${index}`} value={option.code}>
+                  {option.name}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </Col>

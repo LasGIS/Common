@@ -92,7 +92,7 @@ export const updatePerson = createAsyncThunk<
 });
 
 export const deletePersonById = createAsyncThunk<number, number, { dispatch: AppDispatch; state: PersonStoreData }>(
-  'Person_DELETE_Person',
+  'PERSON_DELETE_PERSON',
   (PersonId, { dispatch, rejectWithValue }) => {
     clearErrors();
     dispatch(commonShowLoader());
@@ -119,8 +119,6 @@ const PersonManagementSlice = createSlice({
     currentPerson: undefined,
     isCurrentPersonShow: false,
     isNewPerson: false,
-    isTrackingShow: true,
-    isArchivedShow: true,
 
     personsRequestState: RequestState.UNDEFINED,
     getPersonRequestState: RequestState.UNDEFINED,
@@ -236,9 +234,9 @@ export const { setCurrentPerson, currentPersonShow, setIsNewPerson, setPersonSea
 
 export const createPerson = (person: PersonType) => (dispatch: AppDispatch) => {
   clearErrors();
-  dispatch(setCurrentPerson)(person);
-  dispatch(setIsNewPerson)(true);
-  dispatch(currentPersonShow)(true);
+  dispatch(setCurrentPerson(person));
+  dispatch(setIsNewPerson(true));
+  dispatch(currentPersonShow(true));
 };
 
 export default PersonManagementSlice.reducer;

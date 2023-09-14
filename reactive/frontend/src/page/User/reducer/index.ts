@@ -141,8 +141,6 @@ const userManagementSlice = createSlice({
     currentUser: undefined,
     isCurrentUserShow: false,
     isNewUser: false,
-    isTrackingShow: true,
-    isArchivedShow: true,
 
     usersRequestState: RequestState.UNDEFINED,
     getUserRequestState: RequestState.UNDEFINED,

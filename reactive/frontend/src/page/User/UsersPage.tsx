@@ -4,21 +4,21 @@ import { Button, Col, Modal, Row, Table, Tooltip } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { compareAlphabetically, compareBoolean } from '../../utils';
 import { ColumnProps } from 'antd/lib/table/Column';
-import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons/lib';
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import SearchInputWithDelay from '../components/SearchInputWithDelay';
 import { getSearchWords } from '../../utils/SearchValueUtils';
 import { ColumnsType } from 'antd/lib/table';
-import { AppDispatch, useAppDispatch } from '../../reducer/store';
+import { AppDispatch } from '../../reducer/store';
 import { UserType } from './reducer/types';
 import { deleteUserById, getAllUsers, selectAllUsers, selectSearchValue } from './reducer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { confirm } = Modal;
 // const { Option } = Select;
 
 const UsersPage = () => {
   const navigate = useNavigate();
-  const dispatch: AppDispatch = useAppDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const allUsers: UserType[] = useSelector(selectAllUsers) as UserType[];
   const search: string = useSelector(selectSearchValue) as string;
 
