@@ -89,9 +89,7 @@ const PersonPage = () => {
         sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.sex, b.sex),
         render: (value: string, record: PersonType) => renderWithHighlight(personToSex(record)),
       },
-      {
-        render: () => '',
-      },
+      {},
     ];
 
     columns.push({

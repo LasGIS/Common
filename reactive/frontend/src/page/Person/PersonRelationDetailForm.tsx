@@ -41,9 +41,7 @@ const PersonRelationDetailForm = ({ relations }: Props) => {
         sorter: (a: RelationType, b: RelationType) => compareAlphabetically(a.personTo.sex, b.personTo.sex),
         render: (value: string, record: RelationType) => personToSex(record.personTo),
       },
-      {
-        render: () => '',
-      },
+      {},
     ];
 
     columns.push({
