@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Col, Row, Table, Tooltip } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-import { PersonRelationType, RelationType } from './reducer/types';
+import { PersonRelationType, RelationType, SexType } from './reducer/types';
 import { ColumnProps } from 'antd/lib/table/Column';
 import { compareAlphabetically } from '../../utils';
 import { ColumnsType } from 'antd/lib/table';
-import { personToFio, personToSex } from './reducer/utils';
+import { personRelationType, personToFio, personToSex } from './reducer/utils';
 
 type Props = {
   relations: RelationType[];
@@ -32,14 +32,14 @@ const PersonRelationDetailForm = ({ relations }: Props) => {
         dataIndex: 'type',
         width: 100,
         sorter: (a: RelationType, b: RelationType) => compareAlphabetically(`${a.type}`, `${b.type}`),
-        render: (value: PersonRelationType) => <div>{value}</div>,
+        render: (value: PersonRelationType, record: RelationType) => personRelationType(record.type, record?.personTo?.sex),
       },
       {
         title: 'Пол',
         dataIndex: 'sex',
         width: 100,
         sorter: (a: RelationType, b: RelationType) => compareAlphabetically(a.personTo.sex, b.personTo.sex),
-        render: (value: string, record: RelationType) => personToSex(record.personTo),
+        render: (value: SexType, record: RelationType) => personToSex(record.personTo),
       },
       {},
     ];

@@ -1,20 +1,18 @@
 import { RequestState } from '../../../types';
 
 export type PersonRelationType = 'PARENT' | 'CHILD' | 'SPOUSE' | 'SIBLING' | 'RELATIVE' | 'COLLEAGUE';
-export type SexType = 'UNDEF' | 'MALE' | 'FEMALE';
+export type SexType = 'MALE' | 'FEMALE';
 
-export const PersonRelationTypeOption = [
-  { code: 'UNDEF', name: ' ' },
-  { code: 'PARENT', name: 'родитель (мать или отец)' },
-  { code: 'CHILD', name: 'ребёнок (сын или дочь)' },
-  { code: 'SPOUSE', name: 'супруг (муж или жена)' },
-  { code: 'SIBLING', name: 'родной брат или сестра' },
-  { code: 'RELATIVE', name: 'родственник, родственница' },
-  { code: 'COLLEAGUE', name: 'коллега по работе' },
-];
+export const PersonRelationTypeMap: Record<PersonRelationType, { name: string; MALE: string; FEMALE: string }> = {
+  PARENT: { name: 'родитель (мать или отец)', MALE: 'отец', FEMALE: 'мать' },
+  CHILD: { name: 'ребёнок (сын или дочь)', MALE: 'сын', FEMALE: 'дочь' },
+  SPOUSE: { name: 'супруг (муж или жена)', MALE: 'муж', FEMALE: 'жена' },
+  SIBLING: { name: 'родной брат или сестра', MALE: 'брат', FEMALE: 'сестра' },
+  RELATIVE: { name: 'родственник или родственница', MALE: 'родственник', FEMALE: 'родственница' },
+  COLLEAGUE: { name: 'коллега по работе', MALE: 'сотрудник', FEMALE: 'сотрудница' },
+};
 
 export const SexTypeOption: { code: SexType; name: string }[] = [
-  { code: 'UNDEF', name: ' ' },
   { code: 'MALE', name: 'Мужчина' },
   { code: 'FEMALE', name: 'Женщина' },
 ];
@@ -36,7 +34,7 @@ export type PersonType = {
   firstName: string;
   lastName: string;
   middleName?: string;
-  sex: SexType;
+  sex?: SexType;
   relations: RelationType[];
 };
 
@@ -44,14 +42,12 @@ export class NewPerson implements PersonType {
   personId: number;
   firstName: string;
   lastName: string;
-  sex: SexType;
   relations: [];
 
   constructor() {
     this.personId = 0;
     this.firstName = '';
     this.lastName = '';
-    this.sex = 'UNDEF';
     this.relations = [];
   }
 }
