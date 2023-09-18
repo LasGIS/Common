@@ -7,6 +7,7 @@ import { deletePersonById, getPersonById, selectCurrentPerson, selectIsNewPerson
 import { AppDispatch } from '../../reducer/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { PersonType, SexTypeOption } from './reducer/types';
+import PersonRelationDetailForm from './PersonRelationDetailForm';
 
 const { confirm } = Modal;
 const { Option } = Select;
@@ -77,7 +78,7 @@ const PersonDetailForm = () => {
 
   return (<>
     <Row>
-      <Col span={12} style={{ paddingRight: 10 }}>
+      <Col span={8} style={{ paddingRight: 20 }}>
         <Form labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} form={form}>
           <Form.Item name="personId" label="ID персоны">
             <Input disabled={!isNewPerson} />
@@ -103,9 +104,11 @@ const PersonDetailForm = () => {
           </Form.Item>
         </Form>
       </Col>
-      <Col span={12}>
-
-      </Col>
+      {currentPerson && currentPerson.relations &&
+        <Col span={16}>
+          <PersonRelationDetailForm relations={currentPerson.relations} />
+        </Col>
+      }
     </Row>
     <Row justify="center">
       <Form.Item noStyle>

@@ -12,6 +12,7 @@ import { AppDispatch } from '../../reducer/store';
 import { NewPerson, PersonType } from './reducer/types';
 import { createPerson, deletePersonById, getAllPersons, selectAllPersons, selectSearchValue } from './reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { personToSex } from './reducer/utils';
 
 const { confirm } = Modal;
 // const { Option } = Select;
@@ -69,7 +70,8 @@ const PersonPage = () => {
       {
         title: 'ФИО персонажа',
         dataIndex: 'firstName',
-        fixed: 'left',
+        width: 330,
+        // fixed: 'left',
         sorter: (a: PersonType, b: PersonType) =>
           compareAlphabetically(`${a.firstName} ${a.middleName} ${a.lastName}`, `${b.firstName} ${b.middleName} ${b.lastName}`),
         render: (value: string, record: PersonType) => (
@@ -83,8 +85,12 @@ const PersonPage = () => {
       {
         title: 'Пол',
         dataIndex: 'sex',
+        width: 100,
         sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.sex, b.sex),
-        render: renderWithHighlight,
+        render: (value: string, record: PersonType) => renderWithHighlight(personToSex(record)),
+      },
+      {
+        render: () => '',
       },
     ];
 
@@ -109,7 +115,7 @@ const PersonPage = () => {
       <Row justify="center">
         <Col style={{ width: '100%' }}>
           <Row>
-            <h2>Пользователи</h2>
+            <h2>Персоны</h2>
             <div style={{ flex: 'auto' }} />
           </Row>
           <Row style={{ marginBottom: 20 }}>
@@ -131,7 +137,7 @@ const PersonPage = () => {
           </Row>
           <Table<PersonType>
             rowKey={(record) => record.personId}
-            scroll={{ x: 1000, y: 'calc(100vh - 433px)' }}
+            scroll={{ y: 'calc(100vh - 433px)' }}
             dataSource={allPersons}
             columns={columns}
             size="small"

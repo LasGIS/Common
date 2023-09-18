@@ -13,11 +13,16 @@ export const PersonRelationTypeOption = [
   { code: 'COLLEAGUE', name: 'коллега по работе' },
 ];
 
-export const SexTypeOption = [
+export const SexTypeOption: { code: SexType; name: string }[] = [
   { code: 'UNDEF', name: ' ' },
   { code: 'MALE', name: 'Мужчина' },
   { code: 'FEMALE', name: 'Женщина' },
 ];
+
+export const SexTypeMap: Record<SexType, string> = SexTypeOption.reduce((acc, option) => {
+  acc[option.code] = option.name;
+  return acc;
+}, {} as Record<SexType, string>);
 
 export type RelationType = {
   personId: number;
