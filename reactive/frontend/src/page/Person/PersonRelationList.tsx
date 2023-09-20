@@ -5,27 +5,27 @@ import { PersonRelationType, RelationType, SexType } from './reducer/types';
 import { ColumnProps } from 'antd/lib/table/Column';
 import { compareAlphabetically } from '../../utils';
 import { ColumnsType } from 'antd/lib/table';
-import { personRelationType, personToFio, personToSex } from './reducer/utils';
+import { personRelationType, personToSex } from './reducer/utils';
 
 type Props = {
   relations: RelationType[];
 };
-const PersonRelationDetailForm = ({ relations }: Props) => {
+const PersonRelationList = ({ relations }: Props) => {
   const deleteRelation = (record: RelationType) => {
     console.log(`deleteRelation(${record.personToId}:)`);
   };
 
   const createColumns = (): ColumnProps<RelationType>[] => {
-    const columns: ColumnProps<RelationType>[] = [
+    return [
       {
-        title: 'ФИО персонажа',
+        title: 'ФИО',
         dataIndex: 'personTo',
-        width: 300,
-        // fixed: 'left',
+        width: 170,
+        fixed: 'left',
         sorter: (a: RelationType, b: RelationType) => {
-          return compareAlphabetically(personToFio(a.personTo), personToFio(b.personTo));
+          return compareAlphabetically(a.personTo.fio, b.personTo.fio);
         },
-        render: (value: string, record: RelationType) => personToFio(record.personTo),
+        render: (value: string, record: RelationType) => record.personTo.fio,
       },
       {
         title: 'Отношение',
@@ -42,20 +42,17 @@ const PersonRelationDetailForm = ({ relations }: Props) => {
         render: (value: SexType, record: RelationType) => personToSex(record.personTo),
       },
       {},
+      {
+        dataIndex: 'personId',
+        fixed: 'right',
+        width: 50,
+        render: (value: unknown, record: RelationType) => (
+          <Tooltip placement="topLeft" title={`Удалить связь ${record.personId}`}>
+            <Button type="link" icon={<DeleteOutlined />} onClick={() => deleteRelation(record)} />
+          </Tooltip>
+        ),
+      },
     ];
-
-    columns.push({
-      dataIndex: 'personId',
-      fixed: 'right',
-      width: 50,
-      render: (value: unknown, record: RelationType) => (
-        <Tooltip placement="topLeft" title={`Удалить связь ${record.personId}`}>
-          <Button type="link" icon={<DeleteOutlined />} onClick={() => deleteRelation(record)} />
-        </Tooltip>
-      ),
-    });
-
-    return columns;
   };
 
   const columns: ColumnsType<RelationType> = createColumns();
@@ -83,4 +80,4 @@ const PersonRelationDetailForm = ({ relations }: Props) => {
   );
 };
 
-export default PersonRelationDetailForm;
+export default PersonRelationList;

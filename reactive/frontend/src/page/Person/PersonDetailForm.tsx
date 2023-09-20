@@ -7,7 +7,7 @@ import { deletePersonById, getPersonById, selectCurrentPerson, selectIsNewPerson
 import { AppDispatch } from '../../reducer/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { PersonType, SexTypeOption } from './reducer/types';
-import PersonRelationDetailForm from './PersonRelationDetailForm';
+import PersonRelationList from './PersonRelationList';
 
 const { confirm } = Modal;
 const { Option } = Select;
@@ -106,7 +106,7 @@ const PersonDetailForm = () => {
       </Col>
       {currentPerson && currentPerson.relations &&
         <Col span={16}>
-          <PersonRelationDetailForm relations={currentPerson.relations} />
+          <PersonRelationList relations={currentPerson.relations} />
         </Col>
       }
     </Row>

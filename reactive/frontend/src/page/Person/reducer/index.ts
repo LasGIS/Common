@@ -1,23 +1,24 @@
 import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RequestState } from '../../../types';
 import { RootStoreData } from '../../../reducer/redux-types';
-import { PersonStoreData, PersonType } from './types';
+import { PersonStoreData, PersonType, PersonTypeJson } from './types';
 import { AppDispatch } from '../../../reducer/store';
 import { clearErrors } from '../../../utils/notification-utils';
 import { commonHideLoader, commonShowLoader } from '../../../reducer/common';
 import api from './services';
 import { message } from 'antd';
 import { AxiosResponse } from 'axios';
+import { JsonToPersonType, JsonToPersonTypeArray } from './utils';
 
-export const getAllPersons = createAsyncThunk<PersonType[], void, { dispatch: AppDispatch; state: PersonStoreData }>(
+export const getAllPersons = createAsyncThunk<PersonTypeJson[], void, { dispatch: AppDispatch; state: PersonStoreData }>(
   'PERSON_GET_ALL',
   (vd, { dispatch, rejectWithValue }) => {
     clearErrors();
     dispatch(commonShowLoader());
     return api
       .requestGetAllPersons()
-      .then((response: AxiosResponse<PersonType[]>) => {
-        return response.data;
+      .then((response: AxiosResponse<PersonTypeJson[]>) => {
+        return JsonToPersonTypeArray(response.data);
       })
       .catch((error) => {
         return rejectWithValue(error);
@@ -30,13 +31,13 @@ export const getAllPersons = createAsyncThunk<PersonType[], void, { dispatch: Ap
 
 export const getPersonById = createAsyncThunk<PersonType, number, { dispatch: AppDispatch; state: PersonStoreData }>(
   'PERSON_GET_BY_ID',
-  (PersonId, { dispatch, rejectWithValue }) => {
+  (personId, { dispatch, rejectWithValue }) => {
     clearErrors();
     dispatch(commonShowLoader());
     return api
-      .requestGetPersonById(PersonId)
-      .then((response: AxiosResponse<PersonType>) => {
-        return response.data;
+      .requestGetPersonById(personId)
+      .then((response: AxiosResponse<PersonTypeJson>) => {
+        return JsonToPersonType(response.data);
       })
       .catch((error) => {
         return rejectWithValue(error);
@@ -56,10 +57,10 @@ export const insertNewPerson = createAsyncThunk<
   dispatch(commonShowLoader());
   return api
     .requestCreateNewPerson(person)
-    .then((response: AxiosResponse<PersonType>) => {
+    .then((response: AxiosResponse<PersonTypeJson>) => {
       dispatch(getAllPersons() as AppDispatch);
       onSuccess();
-      return response.data;
+      return JsonToPersonType(response.data);
     })
     .catch((error) => {
       return rejectWithValue({ error, person: person });
@@ -78,10 +79,10 @@ export const updatePerson = createAsyncThunk<
   dispatch(commonShowLoader());
   return api
     .requestUpdatePerson(person)
-    .then((response: AxiosResponse<PersonType>) => {
+    .then((response: AxiosResponse<PersonTypeJson>) => {
       dispatch(getAllPersons() as AppDispatch);
       onSuccess();
-      return response.data;
+      return JsonToPersonType(response.data);
     })
     .catch((error) => {
       return rejectWithValue({ error, person: person });
@@ -93,14 +94,14 @@ export const updatePerson = createAsyncThunk<
 
 export const deletePersonById = createAsyncThunk<number, number, { dispatch: AppDispatch; state: PersonStoreData }>(
   'PERSON_DELETE_PERSON',
-  (PersonId, { dispatch, rejectWithValue }) => {
+  (personId, { dispatch, rejectWithValue }) => {
     clearErrors();
     dispatch(commonShowLoader());
     return api
-      .requestDeletePerson(PersonId)
+      .requestDeletePerson(personId)
       .then(() => {
         dispatch(getAllPersons() as AppDispatch);
-        return PersonId;
+        return personId;
       })
       .catch((error) => {
         return rejectWithValue(error);

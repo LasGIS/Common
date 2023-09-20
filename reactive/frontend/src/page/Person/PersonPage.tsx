@@ -66,21 +66,41 @@ const PersonPage = () => {
 
     const renderWithHighlight = (text: string) => <div style={{ whiteSpace: 'pre-line' }}>{renderWithHighlightSingle(text)}</div>;
 
-    const columns: ColumnProps<PersonType>[] = [
+    return [
       {
-        title: 'ФИО персонажа',
-        dataIndex: 'firstName',
-        width: 330,
-        // fixed: 'left',
-        sorter: (a: PersonType, b: PersonType) =>
-          compareAlphabetically(`${a.firstName} ${a.middleName} ${a.lastName}`, `${b.firstName} ${b.middleName} ${b.lastName}`),
+        title: 'ФИО',
+        dataIndex: 'fio',
+        width: 170,
+        fixed: 'left',
+        sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.fio, b.fio),
         render: (value: string, record: PersonType) => (
-          <Tooltip placement="topLeft" title={`Просмотреть запись пользователя  "${record.firstName} ${record.middleName} ${record.lastName}"`}>
+          <Tooltip placement="topLeft" title={`Просмотреть запись пользователя  "${record.fio}"`}>
             <Button type="link" icon={<EditOutlined />} onClick={() => editRecord(record.personId)}>
-              {renderWithHighlightSingle(`${record.firstName} ${record.middleName} ${record.lastName}`)}
+              {renderWithHighlightSingle(record.fio)}
             </Button>
           </Tooltip>
         ),
+      },
+      {
+        title: 'Фамилия',
+        dataIndex: 'lastName',
+        width: 200,
+        sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.lastName, b.lastName),
+        render: (value: string, record: PersonType) => renderWithHighlightSingle(record.lastName),
+      },
+      {
+        title: 'Имя',
+        dataIndex: 'firstName',
+        width: 200,
+        sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.firstName, b.firstName),
+        render: (value: string, record: PersonType) => renderWithHighlightSingle(record.firstName),
+      },
+      {
+        title: 'Отчество',
+        dataIndex: 'middleName',
+        width: 200,
+        sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.middleName, b.middleName),
+        render: (value: string, record: PersonType) => renderWithHighlightSingle(record.middleName || ''),
       },
       {
         title: 'Пол',
@@ -90,20 +110,17 @@ const PersonPage = () => {
         render: (value: string, record: PersonType) => renderWithHighlight(personToSex(record)),
       },
       {},
+      {
+        dataIndex: 'personId',
+        fixed: 'right',
+        width: 50,
+        render: (value: unknown, record: PersonType) => (
+          <Tooltip placement="topLeft" title={`Удалить персону ${record.personId}`}>
+            <Button type="link" icon={<DeleteOutlined />} onClick={() => deleteRecord(record)} />
+          </Tooltip>
+        ),
+      },
     ];
-
-    columns.push({
-      dataIndex: 'personId',
-      fixed: 'right',
-      width: 50,
-      render: (value: unknown, record: PersonType) => (
-        <Tooltip placement="topLeft" title={`Удалить персону ${record.personId}`}>
-          <Button type="link" icon={<DeleteOutlined />} onClick={() => deleteRecord(record)} />
-        </Tooltip>
-      ),
-    });
-
-    return columns;
   };
 
   const columns: ColumnsType<PersonType> = createColumns();

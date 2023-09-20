@@ -31,6 +31,7 @@ export type RelationType = {
 
 export type PersonType = {
   personId: number;
+  fio: string;
   firstName: string;
   lastName: string;
   middleName?: string;
@@ -38,14 +39,18 @@ export type PersonType = {
   relations: RelationType[];
 };
 
+export type PersonTypeJson = Omit<PersonType, 'fio'>;
+
 export class NewPerson implements PersonType {
   personId: number;
+  fio: string;
   firstName: string;
   lastName: string;
   relations: [];
 
   constructor() {
     this.personId = 0;
+    this.fio = '';
     this.firstName = '';
     this.lastName = '';
     this.relations = [];
