@@ -1,22 +1,37 @@
 import React from 'react';
 import { Button, Col, Row, Table, Tooltip } from 'antd';
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { PersonRelationType, RelationType, SexType } from './reducer/types';
 import { ColumnProps } from 'antd/lib/table/Column';
 import { compareAlphabetically } from '../../utils';
 import { ColumnsType } from 'antd/lib/table';
 import { personRelationType, personToSex } from './reducer/utils';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   relations: RelationType[];
 };
+
 const PersonRelationList = ({ relations }: Props) => {
+  const navigate = useNavigate();
+
+  const gotoPerson = (personId?: number) => {
+    navigate(`/person/${personId}`);
+  };
+
   const deleteRelation = (record: RelationType) => {
     console.log(`deleteRelation(${record.personToId}:)`);
   };
 
   const createColumns = (): ColumnProps<RelationType>[] => {
     return [
+      {
+        title: 'Отношение',
+        dataIndex: 'type',
+        width: 100,
+        sorter: (a: RelationType, b: RelationType) => compareAlphabetically(`${a.type}`, `${b.type}`),
+        render: (value: PersonRelationType, record: RelationType) => personRelationType(record.type, record?.personTo?.sex),
+      },
       {
         title: 'ФИО',
         dataIndex: 'personTo',
@@ -25,14 +40,13 @@ const PersonRelationList = ({ relations }: Props) => {
         sorter: (a: RelationType, b: RelationType) => {
           return compareAlphabetically(a.personTo.fio, b.personTo.fio);
         },
-        render: (value: string, record: RelationType) => record.personTo.fio,
-      },
-      {
-        title: 'Отношение',
-        dataIndex: 'type',
-        width: 100,
-        sorter: (a: RelationType, b: RelationType) => compareAlphabetically(`${a.type}`, `${b.type}`),
-        render: (value: PersonRelationType, record: RelationType) => personRelationType(record.type, record?.personTo?.sex),
+        render: (value: string, record: RelationType) => (
+          <Tooltip placement="topLeft" title={`Перейти к просмотру "${record.personTo.fio}"`}>
+            <Button type="link" icon={<EditOutlined />} onClick={() => gotoPerson(record.personToId)}>
+              {record.personTo.fio}
+            </Button>
+          </Tooltip>
+        ),
       },
       {
         title: 'Пол',
@@ -60,12 +74,12 @@ const PersonRelationList = ({ relations }: Props) => {
   return (
     <>
       <Row style={{ marginBottom: 20 }}>
-        <div style={{ flex: 'auto' }} />
         <Col>
           <Button style={{ alignItems: 'end' }} type="link" icon={<PlusOutlined />}>
-            Добавить персону
+            Добавить связь
           </Button>
         </Col>
+        <div style={{ flex: 'auto' }} />
       </Row>
       <Table<RelationType>
         rowKey={(record) => `relation_to_${record.personToId}`}

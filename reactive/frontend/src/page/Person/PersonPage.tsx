@@ -28,7 +28,7 @@ const PersonPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const editRecord = (personId?: number) => {
+  const gotoPerson = (personId?: number) => {
     navigate(`/person/${personId}`);
   };
 
@@ -39,7 +39,9 @@ const PersonPage = () => {
   const deleteRecord = (record: PersonType) => {
     confirm({
       icon: <ExclamationCircleOutlined />,
-      content: <div>Вы действительно хотите удалить пользователя: {record.firstName}?</div>,
+      title: `Удалить: ${record.fio}`,
+      type: 'warning',
+      content: `Вы действительно хотите навсегда удалить: ${record.fio}?`,
       onOk() {
         if (record.personId) dispatch(deletePersonById(record.personId) as AppDispatch);
       },
@@ -70,37 +72,37 @@ const PersonPage = () => {
       {
         title: 'ФИО',
         dataIndex: 'fio',
-        width: 170,
+        width: 200,
         fixed: 'left',
         sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.fio, b.fio),
         render: (value: string, record: PersonType) => (
-          <Tooltip placement="topLeft" title={`Просмотреть запись пользователя  "${record.fio}"`}>
-            <Button type="link" icon={<EditOutlined />} onClick={() => editRecord(record.personId)}>
+          <Tooltip placement="topLeft" title={`Просмотреть запись пользователя "${record.fio}"`}>
+            <Button type="link" icon={<EditOutlined />} onClick={() => gotoPerson(record.personId)}>
               {renderWithHighlightSingle(record.fio)}
             </Button>
           </Tooltip>
         ),
       },
       {
-        title: 'Фамилия',
-        dataIndex: 'lastName',
-        width: 200,
-        sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.lastName, b.lastName),
-        render: (value: string, record: PersonType) => renderWithHighlightSingle(record.lastName),
-      },
-      {
         title: 'Имя',
         dataIndex: 'firstName',
-        width: 200,
+        width: 180,
         sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.firstName, b.firstName),
         render: (value: string, record: PersonType) => renderWithHighlightSingle(record.firstName),
       },
       {
         title: 'Отчество',
         dataIndex: 'middleName',
-        width: 200,
+        width: 180,
         sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.middleName, b.middleName),
         render: (value: string, record: PersonType) => renderWithHighlightSingle(record.middleName || ''),
+      },
+      {
+        title: 'Фамилия',
+        dataIndex: 'lastName',
+        width: 180,
+        sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.lastName, b.lastName),
+        render: (value: string, record: PersonType) => renderWithHighlightSingle(record.lastName),
       },
       {
         title: 'Пол',

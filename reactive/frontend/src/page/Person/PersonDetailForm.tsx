@@ -24,8 +24,7 @@ const PersonDetailForm = () => {
     if (personId) {
       dispatch(getPersonById(Number(personId)) as AppDispatch);
     }
-    /* eslint-disable */
-  }, []);
+  }, [dispatch, personId]);
 
   useEffect(() => {
     if (currentPerson) {
@@ -44,7 +43,7 @@ const PersonDetailForm = () => {
   const handleSubmit = () => {
     form.validateFields().then((values) => {
       if (currentPerson) {
-        const connectivity: PersonType = {
+        const person: PersonType = {
           ...currentPerson,
           personId: values.personId,
           firstName: values.firstName,
@@ -53,8 +52,8 @@ const PersonDetailForm = () => {
           sex: values.sex,
           relations: values.relations,
         };
-        // onSave(connectivity);
-        navigate({ pathname: "/person" });
+        // onSave(person);
+        navigate({ pathname: '/person' });
       }
     });
   };
@@ -67,60 +66,61 @@ const PersonDetailForm = () => {
         if (record.personId) dispatch(deletePersonById(record.personId) as AppDispatch);
       },
       onCancel() {
-        console.log("onCancel()");
+        console.log('onCancel()');
       },
     });
   };
 
   const handleClose = () => {
-    navigate({ pathname: "/person" });
+    navigate({ pathname: '/person' });
   };
 
-  return (<>
-    <Row>
-      <Col span={8} style={{ paddingRight: 20 }}>
-        <Form labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} form={form}>
-          <Form.Item name="personId" label="ID персоны">
-            <Input disabled={!isNewPerson} />
-          </Form.Item>
-          <Form.Item name="firstName" label="Имя" rules={[{ required: true, message: "Имя обязательно!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item name="middleName" label="Отчество" rules={[{ required: true, message: "Имя обязательно!" }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="lastName" label="Фамилия" rules={[{ required: true, message: "Фамилия обязательно!" }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="sex" label="Пол">
-            <Select>
-              {SexTypeOption.map((option, index) => (
-                <Option key={`sex_option_${index}`} value={option.code}>
-                  {option.name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-        </Form>
-      </Col>
-      {currentPerson && currentPerson.relations &&
-        <Col span={16}>
-          <PersonRelationList relations={currentPerson.relations} />
+  return (
+    <>
+      <Row>
+        <Col style={{ paddingRight: 20, width: 250 }}>
+          <Form labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} form={form}>
+            <Form.Item name="personId" label="ID персоны">
+              <Input disabled={!isNewPerson} />
+            </Form.Item>
+            <Form.Item name="firstName" label="Имя" rules={[{ required: true, message: 'Имя обязательно!' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="middleName" label="Отчество" rules={[{ required: true, message: 'Имя обязательно!' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="lastName" label="Фамилия" rules={[{ required: true, message: 'Фамилия обязательно!' }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="sex" label="Пол">
+              <Select>
+                {SexTypeOption.map((option, index) => (
+                  <Option key={`sex_option_${index}`} value={option.code}>
+                    {option.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+          </Form>
         </Col>
-      }
-    </Row>
-    <Row justify="center">
-      <Form.Item noStyle>
-        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-          Сохранить
-        </Button>
-        <Button style={{ marginLeft: 8 }} htmlType="reset" onClick={handleClose}>
-          Закрыть
-        </Button>
-      </Form.Item>
-    </Row>
-  </>);
+        {currentPerson && currentPerson.relations && (
+          <Col style={{ width: 'calc(100% - 250px)' }}>
+            <PersonRelationList relations={currentPerson.relations} />
+          </Col>
+        )}
+      </Row>
+      <Row justify="center">
+        <Form.Item noStyle>
+          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
+            Сохранить
+          </Button>
+          <Button style={{ marginLeft: 8 }} htmlType="reset" onClick={handleClose}>
+            Закрыть
+          </Button>
+        </Form.Item>
+      </Row>
+    </>
+  );
 };
 
 export default PersonDetailForm;
