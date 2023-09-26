@@ -70,7 +70,7 @@ class PersonServiceTestManual {
 //            .personId(7L)
             .firstName("Матрона")
             .middleName("Ивановна")
-            .lastName("Батьковна")
+            .lastName("Батькова")
             .sex(SexType.FEMALE)
             .relations(List.of(
                 PersonRelation.builder().personToId(1L).type(PersonRelationType.SIBLING).build(),

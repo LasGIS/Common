@@ -76,7 +76,11 @@ const PersonPage = () => {
         fixed: 'left',
         sorter: (a: PersonType, b: PersonType) => compareAlphabetically(a.fio, b.fio),
         render: (value: string, record: PersonType) => (
-          <Tooltip placement="topLeft" title={`Просмотреть запись пользователя "${record.fio}"`}>
+          <Tooltip
+            placement="topLeft"
+            overlayStyle={{ whiteSpace: 'nowrap', maxWidth: 300 }}
+            title={`${record.firstName} ${record.middleName || ''} ${record.lastName}`}
+          >
             <Button type="link" icon={<EditOutlined />} onClick={() => gotoPerson(record.personId)}>
               {renderWithHighlightSingle(record.fio)}
             </Button>
