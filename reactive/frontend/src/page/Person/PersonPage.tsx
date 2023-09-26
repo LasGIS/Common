@@ -78,11 +78,18 @@ const PersonPage = () => {
         render: (value: string, record: PersonType) => (
           <Tooltip
             placement="topLeft"
-            overlayStyle={{ whiteSpace: 'nowrap', maxWidth: 300 }}
+            overlayStyle={{ whiteSpace: 'nowrap', maxWidth: 400 }}
             title={`${record.firstName} ${record.middleName || ''} ${record.lastName}`}
           >
-            <Button type="link" icon={<EditOutlined />} onClick={() => gotoPerson(record.personId)}>
-              {renderWithHighlightSingle(record.fio)}
+            <Button
+              type="link"
+              block
+              style={{ textAlign: 'left', height: 'unset' }}
+              styles={{ icon: { display: 'inline' } }}
+              icon={<EditOutlined />}
+              onClick={() => gotoPerson(record.personId)}
+            >
+              <span style={{ whiteSpace: 'break-spaces', display: 'inline' }}>{renderWithHighlightSingle(record.fio)}</span>
             </Button>
           </Tooltip>
         ),

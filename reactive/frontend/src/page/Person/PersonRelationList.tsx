@@ -41,7 +41,11 @@ const PersonRelationList = ({ relations }: Props) => {
           return compareAlphabetically(a.personTo.fio, b.personTo.fio);
         },
         render: (value: string, record: RelationType) => (
-          <Tooltip placement="topLeft" title={`${record.personTo.firstName} ${record.personTo.middleName || ''} ${record.personTo.lastName}`}>
+          <Tooltip
+            placement="topLeft"
+            overlayStyle={{ whiteSpace: 'nowrap', maxWidth: 400 }}
+            title={`${record.personTo.firstName} ${record.personTo.middleName || ''} ${record.personTo.lastName}`}
+          >
             <Button type="link" icon={<EditOutlined />} onClick={() => gotoPerson(record.personToId)}>
               {record.personTo.fio}
             </Button>
