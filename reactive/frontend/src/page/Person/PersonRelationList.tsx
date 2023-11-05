@@ -29,6 +29,7 @@ const PersonRelationList = ({ relations }: Props) => {
         title: 'Отношение',
         dataIndex: 'type',
         width: 100,
+        fixed: 'left',
         sorter: (a: RelationType, b: RelationType) => compareAlphabetically(`${a.type}`, `${b.type}`),
         render: (value: PersonRelationType, record: RelationType) => personRelationType(record.type, record?.personTo?.sex),
       },
@@ -36,12 +37,15 @@ const PersonRelationList = ({ relations }: Props) => {
         title: 'ФИО',
         dataIndex: 'personTo',
         width: 170,
-        fixed: 'left',
         sorter: (a: RelationType, b: RelationType) => {
           return compareAlphabetically(a.personTo.fio, b.personTo.fio);
         },
         render: (value: string, record: RelationType) => (
-          <Tooltip placement="topLeft" title={`Перейти к просмотру "${record.personTo.fio}"`}>
+          <Tooltip
+            placement="topLeft"
+            overlayStyle={{ whiteSpace: 'nowrap', maxWidth: 400 }}
+            title={`${record.personTo.firstName} ${record.personTo.middleName || ''} ${record.personTo.lastName}`}
+          >
             <Button type="link" icon={<EditOutlined />} onClick={() => gotoPerson(record.personToId)}>
               {record.personTo.fio}
             </Button>
@@ -82,6 +86,7 @@ const PersonRelationList = ({ relations }: Props) => {
         <div style={{ flex: 'auto' }} />
       </Row>
       <Table<RelationType>
+        style={{ marginBottom: 24 }}
         rowKey={(record) => `relation_to_${record.personToId}`}
         scroll={{ y: 'calc(100vh - 433px)' }}
         dataSource={relations}

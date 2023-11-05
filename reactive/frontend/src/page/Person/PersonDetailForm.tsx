@@ -3,7 +3,7 @@ import { Button, Col, Form, Input, Modal, Row, Select } from 'antd';
 import { useParams } from 'react-router';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { deletePersonById, getPersonById, selectCurrentPerson, selectIsNewPerson } from './reducer';
+import { deletePersonById, getPersonById, selectCurrentPerson, selectIsNewPerson, updatePerson } from './reducer';
 import { AppDispatch } from '../../reducer/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { PersonType, SexTypeOption } from './reducer/types';
@@ -40,7 +40,7 @@ const PersonDetailForm = () => {
     }
   }, [form, currentPerson]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (isRelations: boolean) => {
     form.validateFields().then((values) => {
       if (currentPerson) {
         const person: PersonType = {
@@ -50,9 +50,9 @@ const PersonDetailForm = () => {
           lastName: values.lastName,
           middleName: values.middleName,
           sex: values.sex,
-          relations: values.relations,
+          relations: isRelations ? values.relations : null,
         };
-        // onSave(person);
+        dispatch(updatePerson({ person, onSuccess: () => undefined }) as AppDispatch);
         navigate({ pathname: '/person' });
       }
     });
@@ -111,8 +111,11 @@ const PersonDetailForm = () => {
       </Row>
       <Row justify="center">
         <Form.Item noStyle>
-          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-            Сохранить
+          <Button type="primary" htmlType="submit" onClick={() => handleSubmit(false)}>
+            Сохранить Имена
+          </Button>
+          <Button type="primary" style={{ marginLeft: 8 }} htmlType="submit" onClick={() => handleSubmit(true)}>
+            Сохранить все
           </Button>
           <Button style={{ marginLeft: 8 }} htmlType="reset" onClick={handleClose}>
             Закрыть
