@@ -45,7 +45,7 @@ public class YandexStatusController {
     @ApiResponses(value = {
         @ApiResponse(
             responseCode = "200",
-            content = @Content(schema = @Schema(implementation = GetYandexOrderHistoryRestResponse.class))),
+            content = @Content(schema = @Schema(implementation = GetYandexOrderStatusRestResponse.class))),
         @ApiResponse(
             responseCode = "400",
             description = "Bad request. Check input data",

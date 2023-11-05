@@ -20,6 +20,13 @@ settings:
     name: UI reactive
     version: @project.version@
 
+springdoc:
+    api-docs:
+        enabled: true
+        path: "/v3/api-docs"
+    swagger-ui:
+        enabled: true
+
 #debug: true
 #logging:
 #  level:
