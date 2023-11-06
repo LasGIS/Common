@@ -1,5 +1,5 @@
 /*
- *  @(#)UserControllerRouter.java  last: 11.09.2023
+ *  @(#)UserControllerRouter.java  last: 07.11.2023
  *
  * Title: LG prototype for java-reactive-jdbc + type-script-react-redux-antd
  * Description: Program for support Prototype.
@@ -24,6 +24,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.LinkRelation;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -35,13 +36,17 @@ import java.util.function.Function;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
+import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 /**
  * The Class UserControllerRouter definition.
+ * <pre>
+ *     <a href="https://docs.spring.io/spring-framework/reference/web/webflux-functional.html">Functional Endpoints</a>
+ *     <a href="https://github.com/springdoc/springdoc-openapi-demos/tree/master/springdoc-openapi-spring-boot-2-webflux-functional">demo: springdoc-openapi-spring-boot-2-webflux-functional</a>
+ * </pre>
  *
  * @author VLaskin
  * @since 15.05.2023 : 17:22
@@ -64,30 +69,30 @@ public class UserControllerRouter {
 
     @Bean
     RouterFunction<ServerResponse> composedRoutes() {
-        return route(GET("/api/v1/user"), request ->
-            userService.findAll()
-                .map(getUserEntityEntityModelFunction())
-                .collectList()
-                .flatMap(models -> ok().bodyValue(models))
-        )
-            .and(route(POST("/api/v1/user"), request ->
+        return route().GET("/api/v1/user", accept(MediaType.APPLICATION_JSON), request ->
+                userService.findAll()
+                    .map(getUserEntityEntityModelFunction())
+                    .collectList()
+                    .flatMap(models -> ok().bodyValue(models))
+            ).build()
+            .and(route().POST("/api/v1/user", accept(MediaType.APPLICATION_JSON), request ->
                 request.bodyToMono(UserEntity.class)
                     .flatMap(userService::save)
                     .map(getUserEntityEntityModelFunction())
                     .flatMap(model -> ok().bodyValue(model))
-            ))
-            .and(route(GET("/api/v1/user/login"), request -> {
+            ).build())
+            .and(route().GET("/api/v1/user/login", request -> {
                 final String login = request.queryParam("login").orElse(null);
                 return userService.findByLogin(login)
                     .map(getUserEntityEntityModelFunction())
                     .flatMap(model -> ok().bodyValue(model));
-            }))
-            .and(route(GET("/api/v1/user/{id}"), request ->
+            }).build())
+            .and(route().GET("/api/v1/user/{id}", request ->
                 userService.findById(Long.valueOf(request.pathVariable("id")))
                     .map(getUserEntityEntityModelFunction())
                     .flatMap(model -> ok().bodyValue(model))
-            ))
-            .and(route(PUT("/api/v1/user/{id}"), request -> {
+            ).build())
+            .and(route().PUT("/api/v1/user/{id}", request -> {
                 final Long id = Long.valueOf(request.pathVariable("id"));
                 final Mono<UserEntity> newUserMono = request.bodyToMono(UserEntity.class);
                 return userService.findById(id)
@@ -109,11 +114,11 @@ public class UserControllerRouter {
                     )
                     .map(getUserEntityEntityModelFunction())
                     .flatMap(user -> ok().bodyValue(user));
-            }))
-            .and(route(DELETE("/api/v1/user/{id}"), request ->
+            }).build())
+            .and(route().DELETE("/api/v1/user/{id}", request ->
                 userService.deleteById(Long.valueOf(request.pathVariable("id")))
                     .flatMap(unused -> ok().build())
-            ));
+            ).build());
     }
 
     private static Function<UserEntity, EntityModel<UserEntity>> getUserEntityEntityModelFunction() {

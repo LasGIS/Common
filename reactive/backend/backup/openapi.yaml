@@ -1,0 +1,629 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8099
+  description: Generated server url
+paths:
+  /api/v2.0/user/{id}:
+    get:
+      tags:
+      - user-controller
+      operationId: getUserById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EntityModelUserEntity'
+    put:
+      tags:
+      - user-controller
+      operationId: replaceEmployee
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEntity'
+        required: true
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EntityModelUserEntity'
+    delete:
+      tags:
+      - user-controller
+      operationId: deleteEmployee
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+  /api/v2.0/person/{personId}:
+    get:
+      tags:
+      - Person
+      summary: Find all Person
+      description: Find all Person
+      operationId: getPersonById
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Person'
+        "400":
+          description: Bad request. Check input data
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+      - Person
+      operationId: replaceEmployee_1
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Person'
+    delete:
+      tags:
+      - Person
+      operationId: deleteEmployee_1
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+  /api/v2.0/user:
+    get:
+      tags:
+      - user-controller
+      operationId: list
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityModelUserEntity'
+    post:
+      tags:
+      - user-controller
+      operationId: createNewUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEntity'
+        required: true
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EntityModelUserEntity'
+  /api/v2.0/person:
+    get:
+      tags:
+      - Person
+      operationId: findAll
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+    post:
+      tags:
+      - Person
+      operationId: createNewPerson
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Person'
+  /api/v2.0/user/login:
+    get:
+      tags:
+      - user-controller
+      operationId: getUserByLogin
+      parameters:
+      - name: login
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EntityModelUserEntity'
+  /api/v2.0/settings:
+    get:
+      tags:
+      - app-settings-controller
+      operationId: getAppSettings
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AppSettingsConfig'
+  /api/v1/auth/user:
+    get:
+      tags:
+      - auth-controller
+      operationId: getAuthUser
+      responses:
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthUser'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+          - USER_NOT_FOUND
+          - DUPLICATE_KEY_VALUE
+        message:
+          type: string
+    UserEntity:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        login:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+            - ADMIN
+            - CHIEF
+            - OPERATOR
+            - SUPERVISOR
+        archived:
+          type: boolean
+    EntityModelUserEntity:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        login:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+            - ADMIN
+            - CHIEF
+            - OPERATOR
+            - SUPERVISOR
+        archived:
+          type: boolean
+        _links:
+          $ref: '#/components/schemas/Links'
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
+    Person:
+      type: object
+      properties:
+        personId:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        middleName:
+          type: string
+        sex:
+          type: string
+          enum:
+          - MALE
+          - FEMALE
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonRelation'
+    PersonRelation:
+      type: object
+      properties:
+        personId:
+          type: integer
+          format: int64
+        personToId:
+          type: integer
+          format: int64
+        personTo:
+          $ref: '#/components/schemas/Person'
+        type:
+          type: string
+          enum:
+          - PARENT
+          - CHILD
+          - SPOUSE
+          - SIBLING
+          - RELATIVE
+          - COLLEAGUE
+    AppSettingsConfig:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+    AuthUser:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        image:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        hreflang:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+        templated:
+          type: boolean
