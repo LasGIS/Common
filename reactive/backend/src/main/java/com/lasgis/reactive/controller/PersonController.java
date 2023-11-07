@@ -38,7 +38,7 @@ import reactor.core.publisher.Mono;
  * @since 13.09.2023 : 13:00
  */
 @Slf4j
-@Tag(name = "Person")
+@Tag(name = "Person", description = "Add, Edit or Delete Person")
 @RestController
 @RequestMapping("api/v2.0/person")
 public class PersonController {
@@ -70,17 +70,62 @@ public class PersonController {
             responseCode = "400",
             description = "Bad request. Check input data",
             content = @Content(schema = @Schema(implementation = Error.class))),
-    })
+        @ApiResponse(
+            responseCode = "404",
+            description = "Order not found",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Internal server error",
+            content = @Content(schema = @Schema(implementation = Error.class)))})
     @GetMapping(path = "{personId}")
     public ResponseEntity<Mono<Person>> getPersonById(@PathVariable("personId") final Long personId) {
         return ResponseEntity.ok(service.findByPersonId(personId));
     }
 
+    @Operation(
+        summary = "Looks for orders status.",
+        description = "Looks for Orders Status")
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            content = @Content(schema = @Schema(implementation = Person.class))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Bad request. Check input data",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Order not found",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Internal server error",
+            content = @Content(schema = @Schema(implementation = Error.class)))})
     @PostMapping()
     public ResponseEntity<Mono<Person>> createNewPerson(@RequestBody Person newPerson) {
         return ResponseEntity.ok(service.save(newPerson));
     }
 
+    @Operation(
+        summary = "Looks for orders status.",
+        description = "Looks for Orders Status")
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            content = @Content(schema = @Schema(implementation = Person.class))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Bad request. Check input data",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Order not found",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Internal server error",
+            content = @Content(schema = @Schema(implementation = Error.class)))})
     @PutMapping("{personId}")
     public ResponseEntity<Mono<Person>> replaceEmployee(@RequestBody Person newPerson, @PathVariable Long personId) {
         return ResponseEntity.ok(service.findByPersonId(personId)
@@ -101,6 +146,25 @@ public class PersonController {
             ));
     }
 
+    @Operation(
+        summary = "Looks for orders status.",
+        description = "Looks for Orders Status")
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            content = @Content(schema = @Schema(implementation = Person.class))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Bad request. Check input data",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Order not found",
+            content = @Content(schema = @Schema(implementation = Error.class))),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Internal server error",
+            content = @Content(schema = @Schema(implementation = Error.class)))})
     @DeleteMapping("{personId}")
     ResponseEntity<Mono<Long>> deleteEmployee(@PathVariable Long personId) {
         return ResponseEntity.ok(service.deleteByPersonId(personId));

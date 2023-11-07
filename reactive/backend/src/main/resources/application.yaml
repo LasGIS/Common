@@ -1,34 +1,46 @@
 server:
-    port: 8099
+  port: 8099
 
 spring:
-    # r2dbc connection
-    # see https://github.com/pgjdbc/r2dbc-postgresql
-    r2dbc:
-        url: r2dbc:postgresql://localhost:5432/generic
-        username: generic
-        password: generic
-        pool:
-            enabled: true
-            initial-size: 10
-            max-idle-time: 1m
-            max-size: 30
+  # r2dbc connection
+  # see https://github.com/pgjdbc/r2dbc-postgresql
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/generic
+    username: generic
+    password: generic
+    pool:
+      enabled: true
+      initial-size: 10
+      max-idle-time: 1m
+      max-size: 30
 
-    data.r2dbc.repositories.enabled: true
+  data.r2dbc.repositories.enabled: true
 
 settings:
-    name: UI reactive
-    version: @project.version@
+  name: UI reactive
+  version: @project.version@
 
+# SpringDoc
 springdoc:
-    api-docs:
-        enabled: true
-        path: /v3/api-docs
-    swagger-ui:
-        enabled: true
-#        path: /you-path/swagger-ui.html
+  model-converters:
+    polymorphic-converter:
+      enabled: true
+#  show-actuator: true
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+#    path: /you-path/swagger-ui.html
+
+#springdoc:
+#    swagger-ui:
+##        oauth:
+##            realm: ${keycloak.realm}
+##            app-name: ${spring.security.oauth2.client.registration.keycloak.clientName}
+##        oauth2-redirect-url: ${spring.security.oauth2.client.registration.keycloak.redirect-uri}
 
 #debug: true
-#logging:
-#  level:
-#    root: ${ROOT_LOG_LEVEL:DEBUG}
+logging:
+  level:
+    root: ${ROOT_LOG_LEVEL:DEBUG}

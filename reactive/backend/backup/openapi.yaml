@@ -6,6 +6,73 @@ servers:
 - url: http://localhost:8099
   description: Generated server url
 paths:
+  /api/v2.0/user:
+    get:
+      tags:
+        - user-controller
+      operationId: list
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityModelUserEntity'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - user-controller
+      operationId: createNewUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEntity'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EntityModelUserEntity'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/v2.0/user/{id}:
     get:
       tags:
@@ -19,12 +86,12 @@ paths:
           type: integer
           format: int64
       responses:
-        "503":
-          description: Service Unavailable
+        "200":
+          description: OK
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/EntityModelUserEntity'
         "404":
           description: Not Found
           content:
@@ -37,12 +104,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: OK
+        "503":
+          description: Service Unavailable
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/EntityModelUserEntity'
+                $ref: '#/components/schemas/Error'
     put:
       tags:
       - user-controller
@@ -61,12 +128,12 @@ paths:
               $ref: '#/components/schemas/UserEntity'
         required: true
       responses:
-        "503":
-          description: Service Unavailable
+        "200":
+          description: OK
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/EntityModelUserEntity'
         "404":
           description: Not Found
           content:
@@ -79,12 +146,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: OK
+        "503":
+          description: Service Unavailable
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/EntityModelUserEntity'
+                $ref: '#/components/schemas/Error'
     delete:
       tags:
       - user-controller
@@ -97,24 +164,6 @@ paths:
           type: integer
           format: int64
       responses:
-        "503":
-          description: Service Unavailable
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: Not Found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "409":
-          description: Conflict
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: OK
           content:
@@ -122,172 +171,35 @@ paths:
               schema:
                 type: integer
                 format: int64
-  /api/v2.0/person/{personId}:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v2.0/user/login:
     get:
       tags:
-      - Person
-      summary: Find all Person
-      description: Find all Person
-      operationId: getPersonById
+        - user-controller
+      operationId: getUserByLogin
       parameters:
-      - name: personId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "503":
-          description: Service Unavailable
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: Not Found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "409":
-          description: Conflict
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Person'
-        "400":
-          description: Bad request. Check input data
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-    put:
-      tags:
-      - Person
-      operationId: replaceEmployee_1
-      parameters:
-      - name: personId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Person'
-        required: true
-      responses:
-        "503":
-          description: Service Unavailable
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: Not Found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "409":
-          description: Conflict
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Person'
-    delete:
-      tags:
-      - Person
-      operationId: deleteEmployee_1
-      parameters:
-      - name: personId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "503":
-          description: Service Unavailable
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: Not Found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "409":
-          description: Conflict
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: integer
-                format: int64
-  /api/v2.0/user:
-    get:
-      tags:
-      - user-controller
-      operationId: list
-      responses:
-        "503":
-          description: Service Unavailable
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: Not Found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "409":
-          description: Conflict
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EntityModelUserEntity'
-    post:
-      tags:
-      - user-controller
-      operationId: createNewUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserEntity'
-        required: true
+        - name: login
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         "503":
           description: Service Unavailable
@@ -316,7 +228,7 @@ paths:
   /api/v2.0/person:
     get:
       tags:
-      - Person
+        - Person
       operationId: findAll
       responses:
         "503":
@@ -347,7 +259,7 @@ paths:
                   $ref: '#/components/schemas/Person'
     post:
       tags:
-      - Person
+        - Person
       operationId: createNewPerson
       requestBody:
         content:
@@ -380,20 +292,29 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Person'
-  /api/v2.0/user/login:
+  /api/v2.0/person/{personId}:
     get:
       tags:
-      - user-controller
-      operationId: getUserByLogin
+      - Person
+      summary: Find all Person
+      description: Find all Person
+      operationId: getPersonById
       parameters:
-      - name: login
-        in: query
+      - name: personId
+        in: path
         required: true
         schema:
-          type: string
+          type: integer
+          format: int64
       responses:
-        "503":
-          description: Service Unavailable
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Person'
+        "400":
+          description: Bad request. Check input data
           content:
             '*/*':
               schema:
@@ -410,12 +331,91 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Error'
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+      - Person
+      operationId: replaceEmployee_1
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
         "200":
           description: OK
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/EntityModelUserEntity'
+                $ref: '#/components/schemas/Person'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+      - Person
+      operationId: deleteEmployee_1
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+        "503":
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/v2.0/settings:
     get:
       tags:
@@ -537,10 +537,6 @@ components:
           type: boolean
         _links:
           $ref: '#/components/schemas/Links'
-    Links:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Link'
     Person:
       type: object
       properties:
@@ -608,6 +604,10 @@ components:
           type: array
           items:
             type: string
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
