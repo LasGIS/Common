@@ -25,6 +25,8 @@ springdoc:
   model-converters:
     polymorphic-converter:
       enabled: true
+    deprecating-converter:
+      enabled: true
 #  show-actuator: true
   api-docs:
     enabled: true
@@ -40,7 +42,7 @@ springdoc:
 ##            app-name: ${spring.security.oauth2.client.registration.keycloak.clientName}
 ##        oauth2-redirect-url: ${spring.security.oauth2.client.registration.keycloak.redirect-uri}
 
-#debug: true
+#debug: true TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
 logging:
   level:
-    root: ${ROOT_LOG_LEVEL:DEBUG}
+    root: ${ROOT_LOG_LEVEL:INFO}
