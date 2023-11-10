@@ -47,11 +47,11 @@ public abstract class IntegrationTest {
 
     abstract String basePath();
 
-    public RequestSpecification requestSpecification(final String basePath) {
+    public RequestSpecification requestSpecification() {
         return new RequestSpecBuilder()
             .setBaseUri("http://localhost")
             .setPort(localServerPort)
-            .setBasePath(basePath)
+            .setBasePath(basePath())
             .setRelaxedHTTPSValidation()
             .setContentType(JSON)
             .setAccept(JSON)
@@ -72,7 +72,7 @@ public abstract class IntegrationTest {
     }
 
     public ValidatableResponse assertGet(final String path, final Consumer<RequestSpecification> beforeGet) {
-        final var request = RestAssured.given(requestSpecification(basePath()))
+        final var request = RestAssured.given(requestSpecification())
             .log().all()
             .when();
         beforeGet.accept(request);
