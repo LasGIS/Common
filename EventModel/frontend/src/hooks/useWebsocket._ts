@@ -1,4 +1,4 @@
-import { ArrayQueue, ConstantBackoff, Websocket, WebsocketBuilder } from 'websocket-ts';
+import { ArrayQueue, ConstantBackoff, Websocket, WebsocketBuilder, WebsocketEvent } from 'websocket-ts';
 import { useEffect, useState } from 'react';
 
 interface WebsocketInputType<MessageType> {
@@ -42,17 +42,26 @@ const useWebsocket = <MessageType, SendType extends string | ArrayBufferLike | B
         }
         console.log('WebSocket error');
       })
-      .onMessage((_, ev: MessageEvent<MessageType>) => {
-        if (onMessage) {
-          onMessage(ev.data);
-        }
-        console.log('message');
-      })
       .onRetry((/*i, ev*/) => console.log('retry'))
       .onReconnect((/*i, ev*/) => console.log('reconnect'))
       .build();
+
+    websocket.addEventListener(WebsocketEvent.message, onMessageEvent);
+
     setWebsocket(websocket);
+
+    return () => {
+      websocket.close(1000, 'Нормальное закрытие');
+      websocket.removeEventListener(WebsocketEvent.message, onMessageEvent);
+    };
   }, []);
+
+  const onMessageEvent = (_, ev: MessageEvent<MessageType>) => {
+    if (onMessage) {
+      onMessage(ev.data);
+    }
+    console.log(`message ${ev.lastEventId}`);
+  };
 
   const close = (code: number, reason: string) => {
     websocket?.close(code, reason);
