@@ -5,7 +5,7 @@ import DemoPage from '@pages/DemoPage';
 
 const routerConfig = createBrowserRouter([
   { path: '/', element: (<WindowPage />) },
-  { path: '/demo', element: (<DemoPage />) },
+  { path: '/dmo', element: (<DemoPage />) },
 ]);
 
 export default routerConfig;

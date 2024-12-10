@@ -28,7 +28,7 @@ public class GreetingController {
         name = message.getName();
     }
 
-    @Scheduled(fixedRate = 2, timeUnit = TimeUnit.SECONDS)
+    @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)
     public void fireGreeting() {
         if (nonNull(name)) {
             this.template.convertAndSend("/topic/greetings", new Greeting("Hello, " + HtmlUtils.htmlEscape(name) + "!"));

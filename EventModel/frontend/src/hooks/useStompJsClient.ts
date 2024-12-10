@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 import { Client } from '@stomp/stompjs';
 import { IFrame } from '@stomp/stompjs/src/i-frame.ts';
 
@@ -16,13 +16,12 @@ interface WebsocketOutputType<SendType> {
   send: (message: SendType) => void;
 }
 
-const useStompJsClient = <MessageType, SendType>({
+const useStompJsClient = <MessageType, SendType>(ref: MutableRefObject<Client | null>, {
   url, onMessage,
 }: WebsocketInputType<MessageType>): WebsocketOutputType<SendType> => {
-  const [ client, setClient ] = useState<Client | null>(null);
 
   useEffect(() => {
-    if (!client) {
+    if (!ref.current) {
       const client = new Client({
         brokerURL: url,
         onConnect: () => {
@@ -33,6 +32,9 @@ const useStompJsClient = <MessageType, SendType>({
             // console.log(`message: ${JSON.stringify(greeting, null, 2)}`);
           });
         },
+        debug: ((msg) => {
+          console.log(`StompJsClient.debug: ${msg}`);
+        }),
         onDisconnect: (frame: IFrame) => {
           console.log(`onDisconnect: ${JSON.stringify(frame)}`);
         },
@@ -43,28 +45,31 @@ const useStompJsClient = <MessageType, SendType>({
           console.log(`onStompError: ${JSON.stringify(frame)}`);
         },
       });
-      setClient(client);
+      ref.current = client;
+      setTimeout(() => {
+        ref.current?.activate();
+      });
     }
 
     return () => {
-      client?.deactivate().then(() => {
+      ref.current?.deactivate().then(() => {
         console.log('client.deactivate ПРИ закрытии');
       });
     };
   }, []);
 
   const connect = () => {
-    client?.activate();
+    ref.current?.activate();
   };
 
   const close = async () => {
-    return client?.deactivate().then(() => {
+    return ref.current?.deactivate().then(() => {
       console.log('client.deactivate ПО кнопке');
     });
   };
 
   const send = (message: SendType) => {
-    return client?.publish({
+    return ref.current?.publish({
       destination: '/app/hello',
       body: JSON.stringify({ name: message }),
     });

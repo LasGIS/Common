@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import useStompJsClient from '@/hooks/useStompJsClient.ts';
 
 const DemoPage: React.FC = () => {
-  const { connect, send, close } = useStompJsClient<string, string>({
+  const ref = useRef(null);
+  const { connect, send, close } = useStompJsClient<string, string>(ref, {
     url: 'ws://localhost:8088/gs-guide-websocket',
     onMessage: (message) => {
       console.log(message);
