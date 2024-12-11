@@ -30,6 +30,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'quotes': [2, 'single', { 'avoidEscape': true }],
+      'react-hooks/exhaustive-deps': 'off',
       'react/jsx-tag-spacing': ['error', {
         'beforeSelfClosing': 'always',
       }],

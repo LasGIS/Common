@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 import { ActivationState, Client } from '@stomp/stompjs';
 import { IFrame } from '@stomp/stompjs/src/i-frame.ts';
 
@@ -10,6 +10,9 @@ const ActivationStateName = {
 
 interface StompJsClient<MessageType> {
   url: string;
+  subscribeDestination: string;
+  publishDestination: string;
+  debug?: boolean;
   onOpen?: (ev: Event) => void;
   onClose?: (ev: CloseEvent) => void;
   onError?: (ev: Event) => void;
@@ -17,46 +20,48 @@ interface StompJsClient<MessageType> {
 }
 
 interface StompJsClientOut<SendType> {
-  // connect: () => void;
-  // close: () => Promise<void>;
   send: (message: SendType) => void;
 }
 
 const useStompJsClient = <MessageType, SendType>(
   ref: MutableRefObject<Client | null>,
-  { url, onMessage }: StompJsClient<MessageType>
+  { url, subscribeDestination, publishDestination, onMessage, debug = false }: StompJsClient<MessageType>,
 ): StompJsClientOut<SendType> => {
 
   useEffect(() => {
     if (!ref.current) {
       const client = new Client({
         brokerURL: url,
-        onConnect: () => {
-          client.subscribe('/topic/greetings', (greeting) => {
-            if (onMessage) {
-              onMessage(JSON.parse(greeting.body).content as MessageType);
-            }
-            // console.log(`message: ${JSON.stringify(greeting, null, 2)}`);
-          });
-        },
-        debug: ((msg) => {
-          console.log(`StompJsClient.debug: ${msg}`);
-        }),
         onDisconnect: (frame: IFrame) => {
-          // ref.current = null;
           console.log(`onDisconnect: ${JSON.stringify(frame)}`);
         },
         onChangeState: (state: ActivationState) => {
           console.log(`onChangeState: ${ActivationStateName[state]}`);
         },
         onWebSocketError: (frame: IFrame) => {
-          console.log(`onStompError: ${JSON.stringify(frame)}`);
+          console.log(`onWebSocketError: ${JSON.stringify(frame)}`);
         },
         onStompError: (frame: IFrame) => {
           console.log(`onStompError: ${JSON.stringify(frame)}`);
         },
       });
       ref.current = client;
+
+      client.onConnect = () => {
+        client.subscribe(subscribeDestination, (greeting) => {
+          if (onMessage) {
+            onMessage(JSON.parse(greeting.body) as MessageType);
+          }
+          //// console.log(`message: ${JSON.stringify(greeting, null, 2)}`);
+        });
+      };
+
+      if (debug) {
+        client.debug = (msg) => {
+          console.log(`StompJsClient.debug: ${msg}`);
+        };
+      }
+
       setTimeout(() => {
         ref.current?.activate();
       });
@@ -69,24 +74,10 @@ const useStompJsClient = <MessageType, SendType>(
     };
   }, []);
 
-/*
-    const connect = () => {
-      ref.current?.activate();
-    };
-*/
-
-/*
-  const close = async () => {
-    return ref.current?.deactivate().then(() => {
-      console.log('client.deactivate ПО кнопке');
-    });
-  };
-*/
-
   const send = (message: SendType) => {
     return ref.current?.publish({
-      destination: '/app/hello',
-      body: JSON.stringify({ name: message }),
+      destination: publishDestination,
+      body: JSON.stringify(message)
     });
   };
 
