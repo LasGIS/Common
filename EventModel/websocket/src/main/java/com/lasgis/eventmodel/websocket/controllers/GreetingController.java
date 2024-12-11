@@ -26,6 +26,7 @@ public class GreetingController {
     @MessageMapping("/hello")
     public void greeting(HelloMessage message) throws Exception {
         name = message.getName();
+        this.template.convertAndSend("/topic/greetings", new Greeting("First send: " + HtmlUtils.htmlEscape(name)));
     }
 
     @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)

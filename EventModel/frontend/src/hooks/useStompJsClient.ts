@@ -1,8 +1,14 @@
 import { MutableRefObject, useEffect } from 'react';
-import { Client } from '@stomp/stompjs';
+import { ActivationState, Client } from '@stomp/stompjs';
 import { IFrame } from '@stomp/stompjs/src/i-frame.ts';
 
-interface WebsocketInputType<MessageType> {
+const ActivationStateName = {
+  0: 'ACTIVE',
+  1: 'DEACTIVATING',
+  2: 'INACTIVE',
+};
+
+interface StompJsClient<MessageType> {
   url: string;
   onOpen?: (ev: Event) => void;
   onClose?: (ev: CloseEvent) => void;
@@ -10,15 +16,16 @@ interface WebsocketInputType<MessageType> {
   onMessage?: (message: MessageType) => void;
 }
 
-interface WebsocketOutputType<SendType> {
-  connect: () => void;
-  close: () => Promise<void>;
+interface StompJsClientOut<SendType> {
+  // connect: () => void;
+  // close: () => Promise<void>;
   send: (message: SendType) => void;
 }
 
-const useStompJsClient = <MessageType, SendType>(ref: MutableRefObject<Client | null>, {
-  url, onMessage,
-}: WebsocketInputType<MessageType>): WebsocketOutputType<SendType> => {
+const useStompJsClient = <MessageType, SendType>(
+  ref: MutableRefObject<Client | null>,
+  { url, onMessage }: StompJsClient<MessageType>
+): StompJsClientOut<SendType> => {
 
   useEffect(() => {
     if (!ref.current) {
@@ -36,10 +43,14 @@ const useStompJsClient = <MessageType, SendType>(ref: MutableRefObject<Client | 
           console.log(`StompJsClient.debug: ${msg}`);
         }),
         onDisconnect: (frame: IFrame) => {
+          // ref.current = null;
           console.log(`onDisconnect: ${JSON.stringify(frame)}`);
         },
-        onChangeState: (state) => {
-          console.log(`onChangeState: ${JSON.stringify(state)}`);
+        onChangeState: (state: ActivationState) => {
+          console.log(`onChangeState: ${ActivationStateName[state]}`);
+        },
+        onWebSocketError: (frame: IFrame) => {
+          console.log(`onStompError: ${JSON.stringify(frame)}`);
         },
         onStompError: (frame: IFrame) => {
           console.log(`onStompError: ${JSON.stringify(frame)}`);
@@ -58,15 +69,19 @@ const useStompJsClient = <MessageType, SendType>(ref: MutableRefObject<Client | 
     };
   }, []);
 
-  const connect = () => {
-    ref.current?.activate();
-  };
+/*
+    const connect = () => {
+      ref.current?.activate();
+    };
+*/
 
+/*
   const close = async () => {
     return ref.current?.deactivate().then(() => {
       console.log('client.deactivate ПО кнопке');
     });
   };
+*/
 
   const send = (message: SendType) => {
     return ref.current?.publish({
@@ -75,7 +90,7 @@ const useStompJsClient = <MessageType, SendType>(ref: MutableRefObject<Client | 
     });
   };
 
-  return { connect, close, send };
+  return { send };
 };
 
 export default useStompJsClient;
