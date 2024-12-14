@@ -27,19 +27,19 @@ const DemoPage: React.FC = () => {
   });
 
   return (
-    <MainContent className="main-content">
+    <MainContent>
       <h3>@pages\DemoPage.tsx</h3>
-      <Row className="row">
+      <Row>
         <InlineForm>
-          <label htmlFor="connect">WebSocket connection:</label>
-          <button id="connect" className="btn btn-default" type="submit">Connect</button>
-          <button id="disconnect" className="btn btn-default" type="submit" disabled={true}>Disconnect</button>
+          <label htmlFor="connect">Connection:</label>
+          <button id="connect" type="submit">Connect</button>
+          <button id="disconnect" type="submit" disabled={true}>Disconnect</button>
         </InlineForm>
         <InlineForm>
           <label htmlFor="name">Сообщение:</label>
-          <input type="text" id="name" className="form-control" placeholder="Your name here..." />
-          <button className="btn btn-default" onClick={() => send({ name: 'message' })}>Послать</button>
-          <Link to="/">Вернуться</Link>
+          <input type="text" id="name" placeholder="Your name here..." />
+          <button type='button' onClick={() => send({ name: 'message' })}>Послать</button>
+          <Link to="/" role='button'>Вернуться</Link>
         </InlineForm>
       </Row>
     </MainContent>

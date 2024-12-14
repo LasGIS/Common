@@ -6,12 +6,10 @@ interface FormProps {
 }
 
 const InlineForm: React.FC<FormProps> = ({ children }) => (
-  <InlineFormBloc className="col-md-6">
-    <form className='form-inline'>
-      <InlineFormGroup className='form-group'>
-        {children}
-      </InlineFormGroup>
-    </form>
+  <InlineFormBloc>
+    <InlineFormGroup>
+      {children}
+    </InlineFormGroup>
   </InlineFormBloc>
 );
 
