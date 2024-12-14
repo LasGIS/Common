@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 import { ActivationState, Client } from '@stomp/stompjs';
 import { IFrame } from '@stomp/stompjs/src/i-frame.ts';
 
