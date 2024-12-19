@@ -6,5 +6,5 @@ import App from './App.tsx';
 createRoot(document.getElementById('root')!).render(
   <Suspense fallback={<div>Загрузка</div>}>
     <App />
-  </Suspense>,
+  </Suspense>
 );

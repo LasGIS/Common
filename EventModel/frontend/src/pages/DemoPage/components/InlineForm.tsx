@@ -7,9 +7,7 @@ interface FormProps {
 
 const InlineForm: React.FC<FormProps> = ({ children }) => (
   <InlineFormBloc>
-    <InlineFormGroup>
-      {children}
-    </InlineFormGroup>
+    <InlineFormGroup>{children}</InlineFormGroup>
   </InlineFormBloc>
 );
 

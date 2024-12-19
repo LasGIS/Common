@@ -25,9 +25,8 @@ interface StompJsClientOut<SendType> {
 
 const useStompJsClient = <MessageType, SendType>(
   ref: MutableRefObject<Client | null>,
-  { url, subscribeDestination, publishDestination, onMessage, debug = false }: StompJsClient<MessageType>,
+  { url, subscribeDestination, publishDestination, onMessage, debug = false }: StompJsClient<MessageType>
 ): StompJsClientOut<SendType> => {
-
   useEffect(() => {
     if (!ref.current) {
       const client = new Client({
@@ -77,7 +76,7 @@ const useStompJsClient = <MessageType, SendType>(
   const send = (message: SendType) => {
     return ref.current?.publish({
       destination: publishDestination,
-      body: JSON.stringify(message)
+      body: JSON.stringify(message),
     });
   };
 

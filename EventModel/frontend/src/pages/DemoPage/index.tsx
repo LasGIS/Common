@@ -32,14 +32,22 @@ const DemoPage: React.FC = () => {
       <Row>
         <InlineForm>
           <label htmlFor="connect">Connection:</label>
-          <button id="connect" type="submit">Connect</button>
-          <button id="disconnect" type="submit" disabled={true}>Disconnect</button>
+          <button id="connect" type="submit">
+            Connect
+          </button>
+          <button id="disconnect" type="submit" disabled={true}>
+            Disconnect
+          </button>
         </InlineForm>
         <InlineForm>
           <label htmlFor="name">Сообщение:</label>
           <input type="text" id="name" placeholder="Your name here..." />
-          <button type='button' onClick={() => send({ name: 'message' })}>Послать</button>
-          <Link to="/" role='button'>Вернуться</Link>
+          <button type="button" onClick={() => send({ name: 'message' })}>
+            Послать
+          </button>
+          <Link to="/" role="button">
+            Вернуться
+          </Link>
         </InlineForm>
       </Row>
     </MainContent>
