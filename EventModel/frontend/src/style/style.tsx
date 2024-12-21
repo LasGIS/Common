@@ -14,26 +14,31 @@ export const MainContent = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5px;
-  //margin-left: -15px;
-  //margin-right: -15px;
+  gap: 10px;
 `;
 
-export const InlineFormBloc = styled.div`
+export const FormBloc = styled.div`
   position: relative;
   min-height: 1px;
-  //padding-left: 15px;
-  //padding-right: 15px;
   float: left;
   width: 50%;
 `;
 
 export const FormInline = styled.form``;
 
-export const InlineFormGroup = styled.div`
+export const FormGroup = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
   margin-bottom: 0;
   vertical-align: middle;
+`;
+
+export const ListBloc = styled.div`
+  border: 1px solid #e5e5e5;
+  margin-top: 10px;
+  padding: 10px;
+  overflow: auto;
+  max-height: calc(100vh - 200px);
+  text-align: left;
 `;
