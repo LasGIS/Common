@@ -5,7 +5,7 @@ import { MainContent } from '@/style/style.tsx';
 const WindowPage: React.FC = () => {
   return (
     <MainContent>
-      <h1>Vite + React</h1>
+      {/*<h1>Vite + React</h1>*/}
       <ul>
         <li>
           <Link to="/dmo">Demo</Link>

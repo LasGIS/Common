@@ -1,0 +1,1449 @@
+{
+  "title": {
+    "appName": "ДельтаМод"
+  },
+  "window": {
+    "basisManager": "Базис менеджер",
+    "settings": "Настройки проекта",
+    "objectNavigator": "Навигатор объектов",
+    "shortcuts": "Горячие клавиши"
+  },
+  "header": {
+    "appName": "ДельтаМод",
+    "menu": {
+      "settings": "Настройки",
+      "model": {
+        "name": "Окна модели",
+        "flowSheet": "Технологическая схема",
+        "flowSheetOp": "Подпроцесс",
+        "palette": "Палитра объектов",
+        "debug": "Окно отладки",
+        "events": "Панель событий",
+        "valveModal": "Клапан",
+        "floatComponent": "Свойства объекта",
+        "restoreAll": "Восстановить все",
+        "column": "Колонна",
+        "restoreSpace": "Восстановить пространство",
+        "showFloatWindows": "Показать окна",
+        "hideFloatWindows": "Скрыть окна",
+        "closeWindows": "Закрыть окна",
+        "objects": "Объекты",
+        "subcircuits": "Подсхема",
+        "basisManager": "Базис менеджер",
+        "closeAll": "Закрыть все"
+      },
+      "certificate": {
+        "name": "Справка",
+        "shortcuts": "Горячие клавиши"
+      },
+      "import": "Импорт",
+      "export": "Экспорт",
+      "about": "О программе",
+      "units": "Единицы измерения"
+    },
+    "projectControl": {
+      "home": "Стартовая страница",
+      "create": "Создать проект",
+      "open": "Открыть проект",
+      "save": "Сохранить в файл"
+    },
+    "basisManager": {
+      "open": "Открыть базис менеджер"
+    },
+    "windowProfile": {
+      "open": "Конфигурация окон"
+    },
+    "flowSheetControl": {
+      "open": "Открыть технологическую схему",
+      "arrangeWindows": "Выстроить окна"
+    },
+    "simulationControl": {
+      "start": "Запустить решатель",
+      "stop": "Остановить решатель",
+      "pause": "Приостановить решатель",
+      "finishEditingBaseManager": "Завершите редактирование в базис менеджере"
+    },
+    "unitSetsControl": {
+      "placeholder": "Набор ед.измерения"
+    },
+    "objectNavigator": {
+      "Status": "Статус",
+      "Name": "Имя",
+      "Type": "Тип",
+      "OwnerFlowSheet": "Рабочая область"
+    },
+    "calculationOrder": {
+      "calcOrder": "Порядок вычислений"
+    },
+    "lang": {
+      "ru": "RU",
+      "en": "EN",
+      "eng": "EN"
+    },
+    "theme": {
+      "dark": "Включить темную тему",
+      "light": "Включить светлую тему"
+    },
+    "utilsManager": {
+      "open" : "Менеджер утилит"
+    }
+  },
+  "startScreen": {
+    "description": "Серверы моделирования",
+    "createProject": "Создать проект",
+    "startServer": "Запустить",
+    "openProject": "Открыть проект"
+  },
+  "login": {
+    "welcome": "Добро пожаловать",
+    "description": "Для продолжения необходимо выполнить вход",
+    "grant": "Предоставить доступ",
+    "my_echo": "Тестировать JsonRPC",
+    "login": "Войти",
+    "getUser": "Получить информацию о пользователе",
+    "api": "Вызвать локальный метод",
+    "refresh": "Обновить права",
+    "logout": "Выйти",
+    "noAuthorization": "без авторизации"
+  },
+  "basisManager": {
+    "create": {
+      "componentList": "Создать компонентный лист",
+      "fluidPackage": "Создать флюидный пакет",
+      "hypo": "Создать гипогруппу",
+      "hypoComponent": "Создать гипокомпонент",
+      "correlationSet": "Создать набор корреляций"
+    },
+    "tree": {
+      "copy": "Скопировать",
+      "remove": "Удалить",
+      "componentList": {
+        "name": "Список компонентов"
+      },
+      "fluidPackage": {
+        "name": "Флюидные пакеты"
+      },
+      "hypo": {
+        "name": "Группы гипокомпонентов"
+      },
+      "corrSet": {
+        "name": "Набор Корреляций",
+        "CorrName": "Имя зависимости",
+        "CalcType": "Способ расчета",
+        "MolWeightCorr": "Молекулярная масса",
+        "DensityCorr": "Плотность",
+        "CritTempCorr": "Критическая температура",
+        "CritPresCorr": "Критическое давление",
+        "AcentricFactorCorr": "Ацентрический фактор",
+        "CritVolumeCorr": "Критический объем",
+        "IdGasEnthCoeffsCorr": "Коэффициенты энтальпии",
+        "NBPCorr": "Температура кипения",
+        "LowerHeatValCorr": "Низшая теплота сгорания",
+        "StdFormEnthCorr": "Энтальпия образования"
+      }
+    },
+    "componentList": {
+      "listNameLabel": "Имя",
+      "componentFilterLabel": "Поиск по названию компонента",
+      "selectedComponentsLabel": "Выбранные",
+      "componentType": {
+        "librarian": "Библиотечные компоненты",
+        "hypothetical": "Гипокомпоненты"
+      }
+    },
+    "fluidPackage": {
+      "packageNameLabel": "Имя",
+      "compListSelect": "Компонентный лист",
+      "tempPackageLabel": "Термопакет",
+      "binaryCoefficientSelect": "Тип бинарных коэффициентов",
+      "EstBinCoeff": "Рассчитать бинарные коэффициенты",
+      "DefaultFP": "Флюидный пакет по умолчанию",
+      "ParentFP": "Флюидный пакет родителя",
+      "TypeAssign": "Тип наследования флюидного пакета",
+      "ChangeDefaultFP": "Выбор флюидного пакета по умолчанию",
+      "binaryCoefficient": "Бинарные коэффициенты",
+      "FlashSettings": "Настройки флеша",
+      "tolerance": {
+        "EpsT": "Погрешность по температуре",
+        "EpsP": "Погрешность по давлению",
+        "EpsVF": "Погрешность мольной доли фракции",
+        "EpsH": "Погрешность по молярной энтальпии",
+        "MinMolCompFrac": "Минимальная доля компонента"
+      }
+    },
+    "hypo": {
+      "column": {
+        "name": "Группа гипокомпонентов"
+      },
+      "group": {
+        "name": "Имя группы",
+        "class": "Класс",
+        "more": "Подробнее",
+        "copy": "Скопировать",
+        "remove": "Удалить",
+        "estimate": "Рассчитать свойства гипогруппы",
+        "properties": {
+          "base": "Базовые свойства",
+          "enthalpy": "Энтальпия"
+        },
+        "table": {
+          "Name": "Имя",
+          "NormalBoilingPoint": "Точка кипения",
+          "StdLiquidDensity": "Плотн. жидк.",
+          "MolecularWeight": "Молек. масса",
+          "CriticalTemperature": "Tc",
+          "CriticalPressure": "Pc",
+          "CriticalVolume": "Vc",
+          "Acentricity": "Коэф. ацентр.",
+          "EnthBasisOffset": "Корр. энтальп.",
+          "IdealHTmin": "Tmin",
+          "IdealHTmax": "Tmax",
+          "C0": "C0",
+          "C1": "C1",
+          "C2": "C2",
+          "C3": "C3",
+          "C4": "C4",
+          "C5": "C5",
+          "C6": "C6"
+        }
+      },
+      "component": {
+        "more": "Подробнее",
+        "copy": "Скопировать",
+        "move": "Переместить в другую группу",
+        "estimate": "Рассчитать",
+        "remove": "Удалить"
+      }
+    },
+    "thermodynamicPackage": {
+      "PengRob": "Пенг — Робинсон",
+      "PRSV": "ПРСВ",
+      "SRK": "СРК"
+    }
+  },
+  "storage": {
+    "folderAlreadyExist": "Папка с таким именем уже существует",
+    "fileSaved": "Файл успешно сохранен",
+    "fileSaveError": "Не удалось сохранить файл",
+    "modelFileNotFound": "Файл модели не найден! Пожалуйста, сохраните модель еще раз!"
+  },
+  "simCase": {
+    "simCaseList": "Список моделей",
+    "activeCaseList": "Инициализированные модели",
+    "savedCaseList": "Сохраненные модели",
+    "createSimCase": "Создать проект на сервере",
+    "newServer": "Новый сервер",
+    "newServerName": "Имя сервера",
+    "newFolderName": "Имя папки",
+    "pathIsRequired": "Выберите путь сохранения",
+    "fileNameAlreadyExist": "Файл с таким именем уже существует",
+    "modelName": "Имя модели",
+    "inputSimCaseName": "Задайте имя модели",
+    "invalidSimCaseName": "Имя модели содержит недопустимые символы (\",\", \".\", <, >, :, \", /, \\, |, ?, *)",
+    "simCaseNameAlreadyExist": "Модель с таким именем уже существует",
+    "openFromFile": "Открыть из файла",
+    "openFromFileInNewTab": "Открыть из файла в новой вкладке",
+    "openInNewTab": "Открыть в новой вкладке",
+    "saveAs": "Сохранить модель как...",
+    "activate": "Активировать",
+    "activateInCurrentTab": "Активировать модель в текущей вкладке браузера",
+    "activateInNewTab": "Активировать модель в новой вкладке браузера",
+    "dontShowAgain": "Не показывать больше",
+    "closeNewTabInfo": "Понятно"
+  },
+  "localFile": {
+    "modalError": {
+      "title": "Ошибка открытия файла",
+      "description": "Модель содержит ошибку"
+    },
+    "options": {
+      "description": "Файлы формата модели DeltaMod"
+    }
+  },
+  "debug": {
+    "tooltip": {
+      "solved": "Рассчитан",
+      "ignored": "Отключен",
+      "optional": "Инфо",
+      "warning": "Предупреждение",
+      "notSolved": "Не рассчитан",
+      "required": "Важно",
+      "error": "Ошибка"
+    }
+  },
+  "events": {
+    "basisManagerIsChanging": {
+      "graphTopologyModification": "Базис менеджер в режиме редактирования",
+      "solverModification": "Базис менеджер в режиме редактирования"
+    },
+    "consistency": {
+      "windowTitle": "Ошибка совместности",
+      "sectionVarInfoTitle": "Информация о переменной",
+      "sectionSourceValueInfoTitle": "Информация об источниках значений",
+      "rowVarName": "Имя объекта",
+      "rowTypeName": "Тип объекта",
+      "rowObjName": "Имя объекта",
+      "rowObjType": "Тип объекта",
+      "rowDiscrepancy": "Расхождение",
+      "rowSpec": "Задано/рассчитано",
+      "rowValue": "Значение",
+      "colOldCalc": "Старый расчет",
+      "colNewCalc": "Новый расчет",
+      "colSpec": "ЗАДАНО",
+      "colCalc": "РАССЧИТАНО"
+    }
+  },
+  "object": {
+    "columnCalculationControl": {
+      "start": "Запустить расчет",
+      "stop": "Остановить расчет",
+      "reset": "Сбросить колонну"
+    },
+    "name": {
+      "Valve": "Клапан",
+      "MaterialStream": "Материальный поток",
+      "DataTable": "Таблица переменных",
+      "EnergyStream": "Энергетический поток",
+      "Compressor": "Компрессор",
+      "Separator2P": "Сепаратор двухфазный",
+      "Separator3P": "Сепаратор трехфазный",
+      "FlowsheetOp": "Подпроцесс",
+      "HeatPoint": "Точка Нагрева",
+      "HeatExchanger": "Теплообменник",
+      "ComponentSplitter": "Компонентный делитель",
+      "Pump": "Насос",
+      "Mixer": "Смеситель",
+      "Splitter": "Делитель",
+      "Recycle": "Рецикл",
+      "Condenser": "Конденсатор",
+      "Reboiler": "Ребойлер",
+      "Adjust": "Настройка параметра",
+      "Set": "Задание параметра",
+      "ColumnOp": "Колонна",
+      "TraySection": "Секция тарелок",
+      "LabelWrapper": "Обертка названия",
+      "CaptionBlock": "Подпись объекта",
+      "LabelTextBlock": "Текстовый блок",
+      "DynamicTooltip": "Динамическая подсказка",
+      "PaletteObjects": "Палитра объектов",
+      "addTextBlock": "Добавить текстовый блок",
+      "AddTextBlock": "Текстовый блок"
+    },
+    "tree": {
+      "state": "Состояние",
+      "properties": "Свойства",
+      "compounds": "Состав",
+      "summary": "Сводка",
+      "carried": "Унос",
+      "relations": "Связи",
+      "statuses": "Статус",
+      "nrx": "НРХ",
+      "list": "Список",
+      "edit": "Правка",
+      "variables": "Переменные",
+      "settings": "Настройки",
+      "sensitivies": "Чувствительность",
+      "transferDirection": "Направление",
+      "profile": {
+        "main": "Профиль",
+        "gasCompounds": "Составы газа",
+        "liquidCompounds": "Составы жидкости",
+        "productsFlow": "Расходы продуктов"
+      },
+      "calculationMethod": "Метод расчета",
+      "results": {
+        "main": "Результаты",
+        "gasCompounds": "Составы газа",
+        "liquidCompounds": "Составы жидкости",
+        "productsFlow": "Расходы продуктов"
+      },
+      "graphs": {
+        "main": "Графики",
+        "temperature": "Температура"
+      }
+    },
+    "label": {
+      "FlowBasis": {
+        "0": "Массовый",
+        "1": "Мольный"
+      },
+      "Phase": {
+        "0": "Газ",
+        "1": "Жидкость"
+      },
+      "SpecType": {
+        "1": "Расход потока",
+        "2": "Тепловая нагрузка",
+        "3": "Температура",
+        "4": "Расход с тарелки",
+        "5": "Содержание компонента"
+      },
+      "logicalWindow": {
+        "titlePanelTarget": "Целевая переменная",
+        "titlePanelSource": "Исходная переменная",
+        "titlePanelSourcePropType": "Выбор исходного объекта и переменной",
+        "titlePanelTargetPropType": "Выбор целевого объекта и переменной"
+      },
+      "stream": "Поток",
+      "options": "Опции",
+      "currentTraySection": "Текущее количество тарелок",
+      "positionTraySection": "Позиция тарелки",
+      "numTraySection": "Изменение количества тарелок",
+      "unit": "Единицы",
+      "type": "Тип",
+      "parameters": "Параметры",
+      "carriedCoefficient": "Коэффициенты уноса",
+      "name": "Имя",
+      "value": "Значение",
+      "inlet": "Вход",
+      "inlets": "Входы",
+      "outlet": "Выход",
+      "outlets": "Выходы",
+      "energy": "Энергия",
+      "energyIn": "Энергия (вход)",
+      "energyOut": "Энергия (выход)",
+      "multiPortInlet": "Добавить вход",
+      "multiPortOutlet": "Добавить выход",
+      "tubeSideInlet": "Вход (труб.)",
+      "tubeSideOutlet": "Выход (труб.)",
+      "shellSideInlet": "Вход (м/т)",
+      "shellSideOutlet": "Выход (м/т)",
+      "energyOptional": "Подогрев (опция)",
+      "heat": "Подогрев (опция)",
+      "gas": "Газ",
+      "lightLiquid": {
+        "0": "Жидкость",
+        "1": "Легкая жидкость"
+      },
+      "heavyLiquid": "Тяжелая жидкость",
+      "overheadproduct": "Верхний продукт",
+      "botproduct": "Нижний продукт",
+      "streamNotConnected": "Поток не подключен",
+      "specifications": "Спецификации",
+      "specDetails": "Детали спецификации",
+      "errorChanging": "Изменение ошибок",
+      "addSpecification": "Добавить спецификацию",
+      "flowRate": "Расход потока",
+      "thermalLoad": "Тепловая нагрузка",
+      "temperature": "Температура",
+      "consumptionFromPlate": "Расход с тарелки",
+      "componentContent": "Содержание компонента",
+      "solverParameters": "Параметры решателя",
+      "TopProd": "Верхн. поток",
+      "BotProd": "Нижний поток"
+    },
+    "placeholder": {
+      "addInlet": "Добавить вход",
+      "addOutlet": "Добавить выход"
+    },
+    "error": {
+      "nameAlreadyExist": "Модель с таким именем уже существует",
+      "emptyTableValues": "Заданы не все значения таблицы",
+      "emptyCurveValues": "Заданы не все значения характеристики",
+      "headFlowTableError": "В таблице 'Расход-Напор' присутствуют точки с одинаковым значением расхода",
+      "effFlowTableError": "В таблице 'Расход-КПД' присутствуют точки с одинаковым значением расхода",
+      "effValuesExceeded": "Превышено значение(-я) КПД",
+      "editingProhibited": "Редактирование состава запрещено",
+      "calcOrderError": "Выберите минимум 1 юнитоп"
+    },
+    "actions": {
+      "edit": "Редактировать",
+      "editing": "Редактирование",
+      "textEditing": "Редактирование текста",
+      "changeCompoundType": "При изменении типа брать значения из потока",
+      "erase": "Очистить",
+      "equalize": "Сделать равными",
+      "normalize": "Нормировать",
+      "reset": "Сбросить",
+      "commit": "Применить",
+      "addCurve": "Добавить характеристику",
+      "addPoint": "Добавить точку",
+      "deleteAll": "Удалить все",
+      "successTableCopy": "Таблица скопирована в буфер обмена",
+      "tableCopy": "Скопировать таблицу",
+      "tablePaste": "Вставить таблицу",
+      "sameFlowPoints": "Одинаковые точки расхода",
+      "default": "По умолчанию"
+    },
+    "select": {
+      "separator2p": "Двухфазный сепаратор",
+      "separator3p": "Трехфазный сепаратор",
+      "incomingStream": "Входной поток",
+      "equilibrium": "Равновесный",
+      "carryOverModel0": "Отсутствует",
+      "carryOverModel1": "Доли входа",
+      "curveType": "Тип характеристик",
+      "polCurveType": "Политропный",
+      "adCurveType": "Адиабатический",
+      "curve": "Характеристика",
+      "gas": "Газ",
+      "lightLiquid": "Легкая жидкость",
+      "heavyLiquid": "Тяжелая жидкость"
+    },
+    "table": {
+      "NumberOfTrays": "Число тарелок",
+      "Multiplier": "Множитель",
+      "Offset": "Смещение",
+      "all": "Все",
+      "name": "Имя",
+      "Name": "Имя",
+      "Unit": "Ед. Изм.",
+      "Component": "Компонент",
+      "Pol": "Политропн.",
+      "Ad": "Адиабатич.",
+      "phase": "Фаза {{number}}",
+      "phase-0": "Газ",
+      "phase-1": "Жидкость 1",
+      "phase-2": "Жидкость 2",
+      "phase-3": "Водная фаза",
+      "phase-4": "Твердая фаза",
+      "CompMolFractions": "Мольные доли",
+      "CompMassFractions": "Массовые доли",
+      "CompMolFlows": "Мольные расходы",
+      "CompMassFlows": "Массовые расходы",
+      "VapourFraction": "Мольная доля пара/фазы",
+      "Temperature": "Температура",
+      "ReidVapourPressure": "ДНП",
+      "SurfaceTension": "Поверхностное натяжение",
+      "HeatCapacity": "Теплоемкость ",
+      "ThermalConductivity": "Теплопроводность",
+      "Cp": "Cp",
+      "Cv": "Cv",
+      "CpCv": "Cp/Cv",
+      "DewPoint": "Точка росы",
+      "BubblePoint": "Температура начала кипения",
+      "HeatOfVaporization": "Теплота парообразования",
+      "Pressure": "Давление",
+      "MolEnthalpy": "Энтальпия молярная",
+      "MassEnthalpy": "Энтальпия массовая",
+      "MolEntropy": "Энтропия молярная",
+      "MassEntropy": "Энтропия массовая",
+      "HeatFlow": "Тепловой поток",
+      "MolFlow": "Мольный расход",
+      "MassFlow": "Массовый расход",
+      "PhaseMassFraction": "Массовая  доля пара/фазы",
+      "PhaseMolecularWeight": "Молекулярная масса",
+      "PhaseMassDensity": "Плотность массовая",
+      "PhaseMolDensity": "Плотность мольная",
+      "PhaseDynViscosity": "Вязкость динамическая",
+      "PhaseKinViscosity": "Вязкость кинематическая",
+      "PhaseActualVolumeFlow": "Объемный расход при р.у.",
+      "SeparatorType": "Тип сосуда",
+      "EmptyStreamCompType": "Состав отсутствующих фаз",
+      "InletDeltaP": "Перепад давления на входе",
+      "VapDeltaP": "Перепад давления по газу",
+      "Duty": "Тепловая нагрузка",
+      "CarryOverModel": "Тип уноса",
+      "Gas": "Газ",
+      "LightLiquid": "Легкая жидкость",
+      "HeavyLiquid": "Тяжелая жидкость",
+      "DirectionFrom": "Откуда",
+      "DirectionWhere": "Куда",
+      "DeltaEnth": "Изменение энтальпии",
+      "DeltaTemp": "Изменение температуры",
+      "PresDrop": "Перепад давления",
+      "SubFlName": "Подпроцесс",
+      "SubFlFluidPackId": "Флюидный пакет",
+      "InternalStream": "Внутренние потоки",
+      "ExternalStream": "Внешние  потоки",
+      "PresRise": "Повышение давления",
+      "PresRatio": "Отношение давлений",
+      "Head": "Напор",
+      "Heads": "Напор",
+      "FluidHead": "Удельная работа",
+      "Eff": "КПД",
+      "Effs": "КПД",
+      "Power": "Мощность идеальная",
+      "PowerAct": "Мощность фактическая",
+      "ActVolFlow": "Объемн. расх (р.у.) на приеме",
+      "SpeedCol": "Скорость",
+      "Speed": "Частота вращения вала",
+      "UseCurves": "Расчет по НРХ",
+      "Flow": "Расход",
+      "HeadFlows": "Расход",
+      "EffFlows": "Расход",
+      "dependency": "Зависимость",
+      "legend": "Легенда",
+      "TubeSidePresDrop": "Перепад давления в трубном пространстве",
+      "ShellSidePresDrop": "Перепад давления в межтрубном пространстве",
+      "TubeSideDeltaTemp": "Изменение температуры в трубном пространстве",
+      "ShellSideDeltaTemp": "Изменение температуры в межтрубном пространстве",
+      "TubeSideDeltaEnth": "Изменение энтальпии в трубном пространстве",
+      "ShellSideDeltaEnth": "Изменение энтальпии в межтрубном пространстве",
+      "TubeSide": "Трубное пространство",
+      "ShellSide": "Межтрубное пространство",
+      "Parameters": "Параметры",
+      "TopProdCompSplits": "Top Product Compomponent Splits",
+      "BotProdCompSplits": "Bottom Product CompomponentSplits",
+      "MolarFlow": "Мольный расход",
+      "Composition": "Состав",
+      "DegreesOfFreedom": "Количество степеней свободы",
+      "MaxIterations": "Максимальное число итераций",
+      "MaxEqError": "Максимальная ошибка по равновесию",
+      "MaxHeatError": "Максимальная ошибка по равновесию",
+      "SpecType": "Тип спецификации",
+      "StreamId": "Поток",
+      "StageId": "Ступень",
+      "FlowCompound": "Тип состава",
+      "FlowBasis": "Тип расхода",
+      "MolFlowProfile": "Расходы",
+      "MolCompProfile": "Составы",
+      "MolCompSettings": "Настройка составов",
+      "Phase": "Фаза",
+      "CompId": "Компонент",
+      "GoalValue": "Целевое значение",
+      "CurrentValue": "Текущее значение",
+      "WeightedError": "Взвешенная ошибка",
+      "SepStage": "Ступень",
+      "PressureProfile": "Давление",
+      "TemperatureProfile": "Температура",
+      "Capacitor": "К",
+      "Reboiler": "Р",
+      "LiqMolFlowProfile": "Жидкость",
+      "VapMolFlowProfile": "Газ",
+      "Start": "Начальные приближения",
+      "VapourStart": "Начальные приближения по составам газа",
+      "LiquidStart": "Начальные приближения по составам жидкости",
+      "Iteration": "#",
+      "Balance": "Равн.",
+      "Specification": "Спец.",
+      "Stream": "Поток",
+      "StreamFlowEstimates": "Расход жидкости"
+    },
+    "errors": {
+      "speedIsEmpty": "Не задана скорость кривой",
+      "curveAlreadyActivated": "Характеристика с указанной скоростью уже активирована",
+      "notPoints": "Задано недостаточно точек для характеристики",
+      "goalValueEmpty": "Не задано целевое значение",
+      "detailsEmpty": "Заданы не все детали спецификации",
+      "itemEqual": "Спецификация с потоком {{name}} уже активирована",
+      "pasteError": "Ошибка валидации при вставке данных из буфера обмена. Проверьте корректность задания типов.",
+      "pasteSelectKeyError": "Ошибка валидации при вставке данных из буфера обмена. Значение ключей не соответствует системным."
+    }
+  },
+  "valve": {
+    "name": "Клапан",
+    "tree": {
+      "relations": "Связи",
+      "summary": "Сводка",
+      "statuses": "Статус",
+      "estimate": "Оценка",
+      "worksheet": "Рабочий лист",
+      "productivity": "Производительность",
+      "dynamic": "Динамика"
+    },
+    "relations": {
+      "name": "Имя",
+      "inlet": "Вход",
+      "outlet": "Выход",
+      "feed": {
+        "errorAttach": "Входной поток с таким названием уже существует",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "Выходной поток с таким названием уже существует",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "Клапан с таким именем уже существует"
+    },
+    "summary": {
+      "name": "Параметр",
+      "value": "Значение"
+    }
+  },
+  "Splitter": {
+    "name": "Splitter",
+    "tree": {
+      "Values": "Значение"
+    },
+    "relations": {
+      "name": "Name",
+      "inlet": "Inlet",
+      "outlet": "Outlet",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Condenser": {
+    "name": "Condenser",
+    "tree": {
+      "VapProd": "Газ",
+      "LiqProd": "Тяжелая жидкость",
+      "RefluxId": "Рефлюкс",
+      "WaterProdId": "Легкая жидкость",
+      "EnergyOutId": "Выход энергии"
+    },
+    "relations": {
+      "name": "Имя",
+      "inlet": "Вход",
+      "outlet": "Выход",
+      "energyOutlet": "Энергия (выход)",
+      "reflux": "Рефлюкс",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Mixer": {
+    "name": "Mixer",
+    "tree": {
+      "PresAssingmentType": "Перенос давления",
+      "SetOutletToLowestInlet": "Установить выход по минимальному входу",
+      "EqualizeAll": "Уравнять все"
+    },
+    "relations": {
+      "name": "Name",
+      "inlet": "Inlet",
+      "outlet": "Outlet",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Reboiler": {
+    "name": "Reboiler",
+    "tree": {
+      "FeedsIds": "FeedsIds",
+      "VapProdId": "VapProdId",
+      "LiqProdId": "LiqProdId",
+      "BoilupId": "BoilupId",
+      "EnergyInId": "EnergyInId",
+      "Values": "Значение"
+    },
+    "relations": {
+      "name": "Name",
+      "inlet": "Inlet",
+      "outlet": "Outlet",
+      "vapOutlet": "Газ (выход)",
+      "liqOutlet": "Выход жидкости",
+      "boilupOutlet": "Газ (возврат)",
+      "energyInlet": "Энергия (вход)",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Pump": {
+    "name": "Pump",
+    "tree": {
+      "UseCurves": "Расчет по НРХ",
+      "EffAd": "КПД",
+      "PresRise": "Повышение давления",
+      "PresRatio": "Отношение давлений",
+      "PowerAd": "Мощность идеальная",
+      "PowerAct": "Мощность фактическая",
+      "HeadAd": "Напор",
+      "FluidHeadAd": "Удельная работа",
+      "Speed": "Частота вращения вала",
+      "ActVolFlow": "Объемн. расх (р.у.) на приеме"
+    },
+    "relations": {
+      "name": "Name",
+      "inlet": "Inlet",
+      "outlet": "Outlet",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Adjust": {
+    "name": "Adjust",
+    "tree": {
+      "TargetSpec": "Значение целевого параметра",
+      "AdjMinBound": "Минимум (необязательно)",
+      "AdjMaxBound": "Максимум (необязательно)",
+      "MaxIterations": "Максимум итераций",
+      "MaxStepSize": "Максимальный размер шага",
+      "Tolerance": "Точность",
+      "InitStepSize": "Начальный размер шага",
+      "CalcParameters": "Параметры расчета"
+    },
+    "windows": {
+      "titlePanelTarget": "Целевая переменная",
+      "titlePanelAdjust": "Регулируемая переменная",
+      "titlePanelSourcePropType": "Выбор исходного объекта и переменной",
+      "titlePanelTargetPropType": "Выбор целевого объекта и переменной",
+      "confirm_ok": "Ок",
+      "disconnect": "Отключить"
+    },
+    "relations": {
+      "name": "Name",
+      "inlet": "Inlet",
+      "outlet": "Outlet",
+      "variable": "Переменная",
+      "selectVariable": "Выбрать переменную",
+      "object": "Объект",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Set": {
+    "name": "Set",
+    "tree": {
+      "Multiplier": "Множитель",
+      "Offset": "Смещение"
+    },
+    "windows": {
+      "titlePanelTarget": "Целевая переменная",
+      "titlePanelSource": "Исходная переменная",
+      "confirm_ok": "Ок",
+      "disconnect": "Отключить",
+      "titlePanelTargetPropType": "Выбор целевого объекта и переменной"
+    },
+    "relations": {
+      "variable": "Переменная",
+      "object": "Объект",
+      "selectVariable": "Выбрать переменную",
+      "name": "Name",
+      "inlet": "Inlet",
+      "outlet": "Outlet",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "Recycle": {
+    "name": "Recycle",
+    "tree": {
+      "VapFracSens": "Доля отгона",
+      "TempSens": "Температура",
+      "PresSens": "Давление",
+      "MolFlowSens": "Мольный расход",
+      "MasFlowSens": "Массовый расход",
+      "EnthSens": "Мольная энтальпия",
+      "HeatSens": "Тепловой поток",
+      "CompSens": "Состав",
+      "MaxIterations": "Максимум итераций",
+      "InitPeriod": "Период задержки",
+      "AccelPeriod": "Начальный период задержки",
+      "AccelCoefMaxBound": "Q максимальный",
+      "AccelCoefMinBound": "Q минимальный",
+      "NotTransfered": "Не переносится",
+      "Forwards": "Вперед",
+      "Backwards": "Назад",
+      "Values": "Значение",
+      "Сalculation": "Расчет"
+    },
+    "relations": {
+      "name": "Имя",
+      "inlet": "Вход",
+      "outlet": "Выход",
+      "feed": {
+        "errorAttach": "А feed stream with this name already exists",
+        "errorDetach": "DETACH_FEED failure error"
+      },
+      "product": {
+        "errorAttach": "А product stream with this name already exists",
+        "errorDetach": "DETACH_PRODUCT failure error"
+      },
+      "nameAlreadyExist": "A valve with this name already exists"
+    }
+  },
+  "component": {
+    "unit": {
+      "absent": "<не определено>"
+    },
+    "properties": {
+      "Name": "Имя",
+      "Class": "Класс",
+      "Acentricity": "Коэффициент ацентричности",
+      "CAS": "Номер CAS",
+      "CriticalPressure": "Давление",
+      "CriticalTemperature": "Температура",
+      "CriticalVolume": "Молярный объем",
+      "COSTALDAcentricity": "COSTALD - Ацентричность",
+      "COSTALDVolume": "COSTALD - Объем",
+      "CavettA": "Коэф. тепл. парообраз. A (Каветт)",
+      "CavettB": "Коэф. тепл. парообраз. B (Каветт)",
+      "DipoleMoment": "Дипольный момент",
+      "EnthBasisOffset": "Коррекция точки отсчета энтальпии",
+      "Formula": "Формула",
+      "HeatOfCombustion": "Теплота сгорания при 25 C",
+      "HeatOfFormation": "Энтальпия образования при 25 C",
+      "Kappa": "PRSV - Kappa",
+      "MolecularWeight": "Молекулярная масса",
+      "NormalBoilingPoint": "Точка кипения при н.у.",
+      "Parachor": "Парахор",
+      "RadiusOfGyration": "Radius of gyration",
+      "StdLiquidDensity": "Плотность идеальной жидк.",
+      "UNIQUAC_R": "UNIQUAC - R",
+      "UNIQUAC_Q": "UNIQUAC - Q",
+      "ViscThetaA": "Коэффициент вязкости A",
+      "ViscThetaB": "Коэффициент вязкости B",
+      "AntoineTmax": "",
+      "AntoineTmin": "",
+      "GibbsTmax": "",
+      "GibbsTmin": "",
+      "IdealHTmax": "",
+      "IdealHTmin": "",
+      "TCondTmax": "",
+      "TCondTmin": "",
+      "Tmin": "Tmin",
+      "Tmax": "Tmax",
+      "C0": "C0",
+      "C1": "C1",
+      "C2": "C2",
+      "C3": "C3",
+      "C4": "C4",
+      "C5": "C5",
+      "C6": "C6"
+    },
+    "identifiers": {
+      "name": "Идентификаторы",
+      "nameLabel": "Имя",
+      "class": "Класс"
+    },
+    "main": {
+      "name": "Основное",
+      "base": "Базовые свойства",
+      "critical": "Критическая точка"
+    },
+    "details": {
+      "name": "Детали"
+    },
+    "fluidPackage": {
+      "name": "Флюидный пакет"
+    },
+    "dependencies": {
+      "name": "Зависимости",
+      "select": "Тип свойств",
+      "Antoine": "Давление насышенных паров",
+      "Gibbs": "Энергия Гиббса идеального газа",
+      "TCond": "Теплопроводность",
+      "IdealH": "Энтальпия идеального газа"
+    }
+  },
+  "common": {
+    "name": "Имя",
+    "empty": "empty",
+    "actions": {
+      "select": "Выбрать",
+      "resetWindowSize": "Размер по умолчанию",
+      "enterWindow": "Вписать контент",
+      "imageExport": "Экспорт в изображение...",
+      "hideTable": "Скрыть таблицу",
+      "openSettings": "Открыть настройки",
+      "addTextBlock": "Добавить текст",
+      "openStreamProperty": "Открыть окно свойств потока",
+      "removeWaypoints": "Удалить промежуточные точки",
+      "breakConnection": "Разорвать связь",
+      "resetUserUnits": "Сбросить единицы измерения",
+      "create": "Создать",
+      "createVariableTable": "Создать таблицу",
+      "showTable": "Показать таблицу",
+      "createInNewTab": "Создать в новой вкладке",
+      "edit": "Редактировать",
+      "save": "Сохранить",
+      "saveAs": "Сохранить как",
+      "open": "Открыть",
+      "openSubScheme": "Открыть схему",
+      "openSchemeInNewTab": "Открыть схему в новой вкладке",
+      "close": "Закрыть",
+      "unload": "Выгрузить проект",
+      "delete": "Удалить",
+      "stopServer": "Остановить сервер",
+      "createModel": "Создать модель",
+      "closeModel": "Закрыть модель",
+      "openModel": "Открыть модель",
+      "disable": "Отключить",
+      "enable": "Включить",
+      "changeIcon": "Изменить иконку",
+      "properties": "Свойства",
+      "duplicate": "Дублировать",
+      "add": "Добавить",
+      "show": "Просмотр",
+      "change": "Изменить",
+      "changeFluidPackage": "Поменять флюидный пакет",
+      "compress": "Сжать",
+      "expand": "Расширить",
+      "flipX": "Отразить по горизонтали",
+      "flipY": "Отразить по вертикали",
+      "copy": "Скопировать",
+      "paste": "Вставить",
+      "selectAllObjects": "Выделить все объекты",
+      "rotate": "Вращение",
+      "reverseRotate": "Обратное вращение",
+      "openWindowCopy": "Открыть копию окна",
+      "defaultWindowSize": "Размер по умолчанию",
+      "unlockPartition": "Открепить раздел",
+      "selections_duplicate": "Дублировать",
+      "selections_copy": "Скопировать",
+      "selections_delete": "Удалить",
+      "selections_order": "Порядок вычислений",
+      "createFolder": "Создать папку",
+      "set": "Задать",
+      "newValue": "Новое значение",
+      "rename": "Переименовать",
+      "openSystemDialog": "Открыть системный диалог",
+      "inputFolderName": "Укажите имя папки"
+    },
+    "noData": "Нет данных"
+  },
+  "modelModal": {
+    "centralStorage": "Центральное хранилище",
+    "folders": "Папки",
+    "files": "Файлы",
+    "thisPc": "Этот компьютер"
+  },
+  "aboutModal": {
+    "title": "ДельтаМод",
+    "description": "Сервис технологического моделирования процессов",
+    "version": "Версия",
+    "copyright": "Центр цифровых технологий"
+  },
+  "confirmModal": {
+    "submit": "Да",
+    "continue": "Продолжить",
+    "cancel": "Отмена",
+    "title": "Внимание!",
+    "objectChangeCompressorContent": "Изменения набора точек в характеристике не будут применены. Продолжить?",
+    "objectChangePumpContent": "Изменения набора точек в характеристике не будут применены. Продолжить?",
+    "objectDeleteCurve": "Вы действительно хотите удалить характеристику?",
+    "objectDeleteAllCurve": "Вы действительно хотите удалить все характеристики?",
+    "objectDeleteCurvePoint": "Вы действительно хотите удалить точку характеристики?",
+    "objectDeleteAllCurvePoint": "Вы действительно хотите удалить все точки характеристики?",
+    "objectDeleteSpecification": "Вы действительно хотите удалить спецификацию?",
+    "stopServer": "При остановке сервера все модели будут закрыты. Продолжить?",
+    "deleteFolder": "Папка {{folder}} будет удалена!",
+    "deleteFile": "Файл {{file}} будет удален!",
+    "fileIsExist": "В папке {{folder}} уже существует модель с именем {{file}}, хотите его заменить?"
+  },
+  "settings": {
+    "projectSettings": "Настройки проекта",
+    "simCaseSettings": "Настройки модели",
+    "sessionSettings": "Настройки сессии",
+    "windowProfile": {
+      "name": "Конфигурация окон",
+      "currentProfile": "Текущий профиль",
+      "create": "Создать",
+      "remove": "Удалить",
+      "download": "Загрузить",
+      "updateSelected": "Обновить выбранную",
+      "wordName": "Имя",
+      "availableWindows": "Доступные окна",
+      "pinnedWindows": "Закрепленные окна",
+      "floatingWindows": "Плавающие окна",
+      "cancel" : "Отмена"
+
+    },
+    "defaultUnitSet": "Набор по умолчанию",
+    "resetUserUnits": "Сброс переопределения",
+    "resetUserUnitsTooltip": "Сброс переопределенных единиц измерения до настроек активного набора",
+    "availableUnitSets": "Доступные наборы",
+    "units": "Единицы измерения",
+    "unit": "Единица измерения",
+    "typeUnit": "Тип величины",
+    "addUnit": "Добавление единицы измерения",
+    "editUnit": "Преобразование единицы измерения",
+    "showUnit": "Просмотр единицы измерения",
+    "factorError": "Пожалуйста, введите положительное число.",
+    "format": {
+      "title": "Форматы чисел",
+      "reset": "Сбросить",
+      "resetAll": "Сбросить все",
+      "defaultUnitSet": "По умолчанию",
+      "radioExponential": "Экспоненциальный формат",
+      "radioFixedDot": "Знаки после запятой",
+      "radioSignificant": "Значащие цифры",
+      "tableFormatColumn": "Формат",
+      "tableNameColumn": "Наименование",
+      "showExample": "Показать пример",
+      "hideExample": "Скрыть пример",
+      "exponentialTableLabel": "зн., экспоненц.",
+      "fixedTableLabel": "зн. после зап.",
+      "significantTableLabel": "знач. цифры",
+      "alert": "Множественное изменение",
+      "significantDigitsLabel": "Количество",
+      "fixedDigitsLabel": "Количество",
+      "exponentialDigitsLabel": "Количество"
+    }
+  },
+  "graphSettings": {
+    "settings": "Настройки графика",
+    "resetSettings": "Сбросить настройки",
+    "dataSets": {
+      "lineSelection": "Выбор линии",
+      "name": "Наборы данных",
+      "lineSettings": "Настройки линии",
+      "markerSettings": "Настройки маркера",
+      "lineDisplay": "Отображение",
+      "lineThickness": "Толщина",
+      "strokeType": "Тип штриха",
+      "lineColour": "Цвет",
+      "lineTransparency": "Прозрачность",
+      "displayingTheMarker": "Отображение",
+      "shapeOfTheMarker": "Форма",
+      "markerSize": "Размер",
+      "parametersOfTheMarkerBoundaryLine": "Параметры границы",
+      "thicknessOfTheMarkerBorderLine": "Толщина границы",
+      "markerBoundaryLineColour": "Цвет границы",
+      "transparencyOfTheMarkerBorderLine": "Прозрачность границы",
+      "markerFillColour": "Цвет заливки",
+      "markerDisplayInterval": "Интервал отображения",
+      "width": "Толщина",
+      "markerColour": "Цвет",
+      "transparency": "Прозрачность",
+      "borderDashLineLength": "Пикселей линия",
+      "borderDashGap": "Пикселей разрыв",
+      "operatingPoint": "Рабочая точка",
+      "temperature": "Температура",
+      "pressure": "Давление",
+      "fluidFlowRate": "Расход жидкости",
+      "steamConsumption": "Расход газа",
+      "circle": "Круг",
+      "cross": "Крест",
+      "crossRot": "Повёрнутый крест",
+      "dash": "Штрих",
+      "line": "Линия",
+      "rect": "Прямоугольник",
+      "rectRounded": "Скруглённый прямоугольник",
+      "rectRot": "Повёрнутый прямоугольник",
+      "star": "Звезда",
+      "triangle": "Треугольник",
+      "false": "Скрыть",
+      "numberOfMarkers": "Кол-во маркеров",
+      "minimumDistance": "Мин. расстояние"
+    },
+    "axes": {
+      "name": "Оси",
+      "unitsOfMeasurement": "Единицы измерения",
+      "valueRange": "Диапазон значений",
+      "display": "Отображение подписи",
+      "axisLabelFont": "Шрифт подписей",
+      "axisValueDisplay": "Отображение значений",
+      "axisValueFont": "Шрифт значений",
+      "minValue": "Минимальное значение",
+      "maxValue": "Максимальное значение",
+      "automatic": "Автоматический",
+      "fixed": "Фиксированный",
+      "adaptive": "Адаптивный"
+    },
+    "gridLines": {
+      "name": "Линии сетки",
+      "display": "Отображение",
+      "background": "Фон",
+      "border": "Граница",
+      "grid": "Сетка",
+      "opacity": "Прозрачность",
+      "width": "Ширина",
+      "gridStep": "Шаг сетки"
+    },
+    "constructionArea": {
+      "name": "Область построения",
+      "display": "Отображение",
+      "background": "Фон",
+      "border": "Рамка",
+      "borderColor": "Цвет рамки",
+      "borderType": "Тип рамки",
+      "borderThickness": "Толщина линии рамки",
+      "dotted": "Пунктирный",
+      "dashed": "Штриховой",
+      "solid": "Сплошной",
+      "double": "Двойной",
+      "groove": "Вдавленный",
+      "ridge": "Рельефный",
+      "inset": "Внутренний",
+      "outset": "Внешний",
+      "none": "Нет",
+      "hidden": "Скрытый"
+    },
+    "caption": {
+      "name": "Заголовок",
+      "title": "Наименование",
+      "display": "Отображение",
+      "color": "Цвет",
+      "font": "Шрифт",
+      "background": "Фон",
+      "backgroundDisplay": "Отображение фона",
+      "border": "Граница",
+      "borderDisplay": "Отображение границы"
+    },
+    "legend": {
+      "name": "Легенда",
+      "display": "Отображение легенды"
+    }
+  },
+  "shortCuts": {
+    "default": {
+      "name": "Правка",
+      "closeWindow": "Закрыть активное окно",
+      "cut": "Вырезать",
+      "copy": "Копировать",
+      "paste": "Вставить",
+      "delete": "Удалить выделенное значение"
+    },
+    "model": {
+      "name": "Модель",
+      "createNewModel": "Создать новую модель",
+      "openModel": "Открыть модель",
+      "saveModel": "Сохранить модель",
+      "saveModelAs": "Сохранить модель как...",
+      "simulationSessionDisconnect": "Отключиться от сессии моделирования",
+      "closeCurrentModel": "Закрыть текущую модель",
+      "openObjectsNavigator": "Открыть окно Навигатора объектов",
+      "openBasisManager": "Открыть окно Менеджера базиса",
+      "toggleBasisManager": "Включить/выключить режим редактирования базиса",
+      "enableSolver": "Активировать солвер",
+      "pauseSolver": "Поставить солвер на паузу",
+      "stopSolver": "Остановить солвер",
+      "startColumnSolver": "Запустить солвер колонны",
+      "stopColumnSolver": "Остановить солвер колонны"
+    },
+    "flowSheet": {
+      "name": "Тех. схема",
+      "removeObject": "Удалить объект",
+      "openObjectCard": "Открыть карточку выделенного объекта",
+      "openObjectSchema": "Открыть подсхему",
+      "copyObject": "Копировать объект",
+      "duplicateObject": "Дублировать объект",
+      "pasteObject": "Вставить объект",
+      "rotateObjectTo90Clockwise": "Повернуть иконку на 90° по ч.с.",
+      "rotateObjectTo90Counterclockwise": "Повернуть иконку на 90° против ч.с.",
+      "rotateObjectTo180": "Повернуть иконку на 180°",
+      "flipObjectByX": "Отразить иконку относительно горизонтальной оси",
+      "flipObjectByY": "Отразить иконку относительно вертикальной оси",
+      "selectAllObjects": "Выделить все объекты",
+      "defaultScale": "Задать масштаб 100%"
+    }
+  },
+  "paletteObjects" : {
+    "settingTitle" : "Объекты на палитре",
+    "column" : "Колонна",
+    "flowSheet" : "Подпроцесс",
+    "standard" : "Стандартная",
+    "type" : "Тип схемы",
+    "sort" : "Использовать сортировку по популярности",
+    "paletteCursor" : "Палитра у курсора"
+  },
+  "variableSettings": {
+    "header": "Таблица переменных объекта",
+    "tabs": {
+      "variables": "Переменные",
+      "variablesSets": "Наборы переменных",
+      "style": "Стиль",
+      "stylesCollections": "Коллекции стилей"
+    },
+    "tableVariables": {
+      "addButton": "Добавить переменную",
+      "columns": {
+        "description": "Описание",
+        "value": "Значение",
+        "unit": "Единицы измерения",
+        "format": "Форматы чисел"
+      },
+      "removeOk": "Удалить",
+      "removeCancel": "Отмена",
+      "removeText": "Вы действительно хотите удалить характеристику?",
+      "formatWindowTitle": "Формат числа",
+      "variable": "Переменная",
+      "variableWindowTitle": "Добавление переменной"
+    },
+    "variablesSets": {
+      "save": "Сохранить текущий набор",
+      "apply": "Применить выбранный набор",
+      "saveCurrentSet": "Обновить из текущего набора",
+      "applyForSchema": "Применить для подсхемы",
+      "applyForModel": "Применить для модели",
+      "default": "Использовать по умолчанию",
+      "name": "Имя",
+      "variableNameColumn": "Название",
+      "itemName": "Набор"
+    },
+    "variableStyle": {
+      "nameVisibility": "Показать имя",
+      "lineNameVisibility": "Показать названия",
+      "unitVisibility": "Показать единицы измерения",
+      "specVisibility": "Отображать только спецификации",
+      "tableBorder": "Толщина границы таблицы",
+      "tableBorderColor": "Цвет границы таблицы",
+      "tableBgColor": "Цвет фона таблицы",
+      "font": "Шрифт",
+      "fontSize": "Размер шрифта",
+      "fontColor": "Цвет шрифта",
+      "padding": "Отступы"
+    },
+    "variableStylesCollections": {
+      "save": "Сохранить текущий стиль",
+      "apply": "Применить выбранный стиль",
+      "name": "Имя",
+      "example": "Пример",
+      "default": "Использовать по умолчанию",
+      "saveCurrentSet": "Обновить из текущего набора",
+      "applyForSchema": "Применить для подсхемы",
+      "applyForModel": "Применить для модели",
+      "itemName": "Стиль"
+    }
+  },
+  "utilsManager" : {
+    "utilsManager" : "Менеджер утилит",
+    "status" : "Статус",
+    "name" : "Имя",
+    "type" : "Тип",
+    "remove" : "Удалить",
+    "addUtil" : "Добавить утилиту",
+    "turnOff" : "Выключить",
+    "turnOn" : "Включить",
+    "utilType" : {
+      "EnvelopeUtility" : "Фазовая диаграмма"
+    },
+    "phaseDiagram" : {
+      "name" : "Фазовая диаграмма",
+      "treeData" : {
+        "summary" : "Сводка",
+        "graphs" : "Графики",
+        "tables" : "Таблицы",
+        "statuses" : "Статусы"
+      }
+    }
+  },
+  "phaseDiagram" : {
+    "name" : "Название",
+    "stream" : "Поток",
+    "choose" : "Выбрать",
+    "parameters" : "Параметры",
+    "eliminateWater" : "Исключить воду",
+    "results" : "Результаты",
+    "point" : "Точка",
+    "Temperature" : "Температура",
+    "Pressure" : "Давление",
+    "Volume" : "Молярный объем",
+    "MolarVolume" : "Молярный объем",
+    "Enthalpy" : "Энтальпия",
+    "Entropy" : "Энтропия",
+    "OperatingPoint" : "Рабочая точка",
+    "сalculationOptions" : "Опции расчета",
+    "calculateInConjunctionWithFlow" : "Рассчитывать совместно с потоком",
+    "diagramType" : "Тип диаграммы",
+    "phaseFraction" : "Доля фазы",
+    "CriticalPoint" : "Критическая точка",
+    "Cricondetherm" : "Крикондентерма",
+    "Cricondebar" : "Криконденбара",
+    "kPa" : "[кПа(изб.)]",
+    "m3" : "[м³]",
+    "kJ/kmol" : "[кДж/кмол]",
+    "kJ/kmol*c" : "[кДж/(кмол*C)]",
+    "Temperature - Pressure": "Температура - Давление",
+    "Molar Volume - Pressure": "Молярный объем - Давление",
+    "Enthalpy - Pressure": "Энтальпия - Давление",
+    "Entropy - Pressure": "Энтропия - Давление",
+    "Molar Volume - Temperature": "Молярный объем - Температура",
+    "Enthalpy - Temperature": "Энтальпия - Температура",
+    "Entropy - Temperature": "Энтропия - Температура",
+    "curve" : "Кривая",
+    "DewPtsCurve" : "Конденсация",
+    "BubblePtsCurve" : "Кипение",
+    "Quality1Curve" : "Фаза Q1",
+    "Quality2Curve" : "Фаза Q2",
+    "fraction" : "[доля]"
+  },
+  "export": {
+    "windowTitle": "Экспорт технологической схемы",
+    "format": "Формат",
+    "area": "Область",
+    "allArea": "Вся технологическая схема",
+    "visibleArea": "Видимая на экране область",
+    "selectedArea": "Выделенная область",
+    "padding": "Отступы [px]",
+    "scale": "Масштаб [%]",
+    "dpi": "Разрешение [DPI]",
+    "size": "Размер",
+    "width": "Ширина",
+    "height": "Высота",
+    "originalSize": "Исходный [px]",
+    "resultSize": "Конечный [px]",
+    "printSize": "Печать [мм]",
+    "showGrid": "Отображать сетку",
+    "transparentBg": "Прозрачный фон",
+    "submit": "Экспортировать",
+    "areaNotSelected": "Выделите область для экспорта"
+  },
+  "flowSheetInfo": {
+    "name": "Имя",
+    "fluidPackage": "Флюидный пакет"
+  },
+  "componentPicker": {
+    "base": {
+      "ok": "Ок",
+      "cancel": "Отмена",
+      "search": "Поиск",
+      "technologicalSchemesTitle": "Технологические схемы",
+      "subTreeCheckbox": "Выделять с поддеревом",
+      "allObjects": "Все объекты",
+      "type": "Тип",
+      "element": "Элемент",
+      "dimension": "измерение",
+      "objects": "Объекты"
+    }
+  },
+  "bollingCurves" : {
+    "bollingCurves": "Утилита кривых кипения",
+    "basis" : "Базис",
+    "summary": {
+      "constructionParameters": "Параметры построения",
+      "table": {
+        "ASTMD86": "Методология строительства ASTM D86",
+        "ASTMD1160" : "Давление абс. ASTM D1160 [Торр]",
+        "EFV" : "Методика построения EFV"
+      },
+      "streamList": "Список потоков",
+      "mixedStream": "Смешанный поток",
+      "listsStream": "Список потоков",
+      "сalculationOptions": "Опции расчета",
+      "add" : "Добавить"
+    },
+    "charts" : {
+      "Mole" : "Мольный",
+      "Mass" : "Массовый",
+      "Volume" : "Объемный",
+      "standards" : "Стандарты",
+      "stream" : "Поток"
+    },
+    "table" : {
+      "distillationFraction" : "Distillation fraction"
+    }
+  }
+}

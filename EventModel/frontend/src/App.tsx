@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import './App.scss';
 import routerConfig from '@/router/Router.tsx';
+import Providers from '@components/Providers.tsx';
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,9 @@ function App() {
 
   return (
     <Provider store={store}>
-      <RouterProvider router={routerConfig} />
+      <Providers>
+        <RouterProvider router={routerConfig} />
+      </Providers>
     </Provider>
   );
 }

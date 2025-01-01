@@ -3,4 +3,6 @@ enum LangType {
   ENG = 'eng',
 }
 
-export { LangType };
+const SUPPORTED_LANGUAGES = [LangType.RU, LangType.ENG];
+
+export { LangType, SUPPORTED_LANGUAGES };

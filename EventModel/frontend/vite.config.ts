@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite';
+import svgr from '@svgr/rollup';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import version from 'vite-plugin-package-version';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [ react() ],
+  plugins: [
+    version(),
+    react(),
+    svgr({
+      include: '**/*.svg',
+    }),
+  ],
   server: {
     port: 8090,
   },
