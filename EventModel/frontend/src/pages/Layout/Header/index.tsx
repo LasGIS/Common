@@ -2,6 +2,7 @@ import { Divider, Layout, Space } from 'antd';
 import styled from 'styled-components';
 import Navigation from '@pages/Layout/Header/controls/navigation/Navigation.tsx';
 import LangControl from '@pages/Layout/Header/controls/LangControl';
+import NavigationButtonsControl from '@pages/Layout/Header/controls/NavigationButtonsControl.tsx';
 
 const LayoutHeader = styled(Layout.Header)`
   height: 42px;
@@ -26,6 +27,7 @@ const Header = () => {
       <Space style={{ gap: 4 }}>
         <Navigation />
         <StyledDivider type="vertical" />
+        <NavigationButtonsControl />
       </Space>
       <Space style={{ gap: 4 }}>
         <LangControl />

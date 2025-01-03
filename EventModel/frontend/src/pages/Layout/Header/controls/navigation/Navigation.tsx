@@ -7,16 +7,16 @@ import { Logo } from './Logo.tsx';
 const Navigation = () => {
   const [modal, contextHolder] = Modal.useModal();
 
-  const items = useNavigation({ showAboutModal });
-
-  function showAboutModal() {
+  const showAboutModal = () => {
     modal.info({
       width: '500px',
       centered: true,
       title: <Translation>{(t) => t('aboutModal.title')}</Translation>,
       content: <About />,
     });
-  }
+  };
+
+  const items = useNavigation({ showAboutModal });
 
   return (
     <>

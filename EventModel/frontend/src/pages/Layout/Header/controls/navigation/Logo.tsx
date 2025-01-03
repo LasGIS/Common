@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 import { Space } from 'antd';
-import { ReactComponent as LogoSvg } from '@/assets/logo/Logo_22x28.svg';
-import { ReactComponent as NameLogoSvg } from '@/assets/logo/DeltaMod.svg';
+import { ReactComponent as LogoSvg } from '@/assets/logo/Logo.svg';
+import { ReactComponent as NameLogoSvg } from '@/assets/logo/EventModel.svg';
 import { ReactComponent as ChevronSvg } from '@/assets/logo/Chevron.svg';
 import { useNavigate } from 'react-router-dom';
+
+const StyledChevronSvg = styled(ChevronSvg)`
+  color: #1c4682;
+`;
+const StyledLogoSvg = styled(LogoSvg)`
+  color: #1c4682;
+`;
 
 const StyledSpace = styled(Space)`
   display: flex;
@@ -18,8 +25,8 @@ export const Logo = () => {
   return (
     <StyledSpace onClick={() => navigate('/')}>
       <NameLogoSvg />
-      <LogoSvg />
-      <ChevronSvg />
+      <StyledLogoSvg />
+      <StyledChevronSvg />
     </StyledSpace>
   );
 };

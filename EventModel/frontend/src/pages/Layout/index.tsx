@@ -1,16 +1,18 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import Header from '@pages/Layout/Header';
 import { createGlobalStyle } from 'styled-components';
+import { Outlet } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
 `;
 
-const BaseLayout: React.FC<PropsWithChildren> = ({ children }) => {
+const BaseLayout: React.FC = () => {
   return (
     <>
       <GlobalStyle />
       <Header />
-      {children}
+      <Outlet />
+      <footer>Footer Content</footer>
     </>
   );
 };

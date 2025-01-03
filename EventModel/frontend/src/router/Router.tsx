@@ -6,19 +6,17 @@ import BaseLayout from '@pages/Layout';
 const routerConfig = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <BaseLayout>
-        <WindowPage />
-      </BaseLayout>
-    ),
-  },
-  {
-    path: '/dmo',
-    element: (
-      <BaseLayout>
-        <DemoPage />
-      </BaseLayout>
-    ),
+    element: <BaseLayout />,
+    children: [
+      {
+        index: true,
+        element: <WindowPage />,
+      },
+      {
+        path: '/demo',
+        element: <DemoPage />,
+      },
+    ],
   },
 ]);
 

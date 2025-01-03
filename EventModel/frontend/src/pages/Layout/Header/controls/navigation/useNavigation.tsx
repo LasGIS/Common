@@ -1,27 +1,26 @@
 import { useState } from 'react';
 import { MenuProps } from 'antd/es/menu/menu';
 import { Translation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   showAboutModal: () => void;
 }
 
 const useNavigation = ({ showAboutModal }: Props) => {
+  // const [t] = useTranslation();
+  const navigate = useNavigate();
   const items = [
     {
-      key: 'create',
-      label: <Translation>{(t) => t('common.actions.create')}</Translation>,
-      onClick: () => {
-        console.log('common.actions.create');
-      },
+      key: 'main',
+      label: <Translation>{(t) => t('header.menu.main')}</Translation>,
+      onClick: () => navigate('/'),
       disabled: false,
     },
     {
-      key: 'open',
-      label: <Translation>{(t) => t('common.actions.open')}</Translation>,
-      onClick: () => {
-        console.log('common.actions.create');
-      },
+      key: 'demo',
+      label: <Translation>{(t) => t('header.menu.demo')}</Translation>,
+      onClick: () => navigate('/demo'),
       disabled: false,
     },
     {
