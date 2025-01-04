@@ -11,7 +11,7 @@ const LayoutHeader = styled(Layout.Header)`
   justify-content: space-between;
   padding: 0 20px;
   line-height: 1em;
-  border-bottom: 1px solid #f5faff;
+  border-bottom: 1px solid #e5e5e5;
   background: #f5faff;
   box-shadow: 2px 2px 10px 0 #000000a1;
 `;
