@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 
 export const MainContent = styled.div`
-  max-width: 951px;
-  padding: 2em 3em;
-  margin: 0 auto 20px;
+  padding: 10px;
+  margin: 0 auto;
+  height: calc(100vh - 88px);
   background-color: #fff;
   border: 1px solid #e5e5e5;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
 `;
 
 export const Row = styled.div`
@@ -39,6 +36,6 @@ export const ListBloc = styled.div`
   margin-top: 10px;
   padding: 10px;
   overflow: auto;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 154px);
   text-align: left;
 `;

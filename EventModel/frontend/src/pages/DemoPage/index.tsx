@@ -1,6 +1,4 @@
-// import './css/style.scss';
 import React, { ChangeEvent, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import useStompJsClient from '@/hooks/useStompJsClient.ts';
 import { Client } from '@stomp/stompjs';
 import { MainContent, Row } from '@/style/style.tsx';
@@ -37,9 +35,7 @@ const DemoPage: React.FC = () => {
 
   return (
     <MainContent>
-      <h3>Demo</h3>
       <Row>
-        {/*<Form>*/}
         <label htmlFor="connect">Connection:</label>
         <button id="connect" type="submit">
           Connect
@@ -47,17 +43,11 @@ const DemoPage: React.FC = () => {
         <button id="disconnect" type="submit" disabled={true}>
           Disconnect
         </button>
-        {/*</Form>*/}
-        {/*<Form>*/}
         <label htmlFor="name">Сообщение:</label>
         <input type="text" id="name" placeholder="Your name here..." onChange={onChange} />
         <button type="button" onClick={() => send({ name })}>
           Послать
         </button>
-        <Link to="/" role="button">
-          Вернуться
-        </Link>
-        {/*</Form>*/}
       </Row>
       <List list={list} />
     </MainContent>
