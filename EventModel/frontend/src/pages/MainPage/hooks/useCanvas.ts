@@ -2,6 +2,9 @@ import { MutableRefObject, useEffect, useState } from 'react';
 import { Canvas } from '@/canvas/Canvas.ts';
 // import { useAppDispatch } from '@/redux';
 
+const TEXT_MARGIN_WIDTH = 10;
+const TEXT_MARGIN_HEIGHT = 5;
+
 export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | null>): Canvas | undefined => {
   const [canvas, setCanvas] = useState<Canvas | undefined>();
   // const dispatch = useAppDispatch();
@@ -44,12 +47,15 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
     if (canvas) {
       const ctx = canvas.ctx;
       ctx.save();
+      ctx.font = '14px Roboto, sans-serif';
+      ctx.textAlign = 'center';
       const metrics: TextMetrics = ctx.measureText(text);
+      const width = metrics.width + TEXT_MARGIN_WIDTH * 2;
+      const height = metrics.fontBoundingBoxAscent + TEXT_MARGIN_HEIGHT * 2;
       ctx.fillStyle = 'rgb(200, 200, 200)';
-      ctx.clearRect(10, 10, metrics.width + 40, metrics.fontBoundingBoxAscent + 4);
-      // ctx.beginPath();
+      ctx.fillRect(10, 10, width, height);
       ctx.fillStyle = 'black';
-      ctx.fillText(text, 10 + 2, 10 + metrics.fontBoundingBoxAscent);
+      ctx.fillText(text, 10 + width / 2, 10 + metrics.actualBoundingBoxAscent + TEXT_MARGIN_HEIGHT);
       ctx.restore();
     }
   };
