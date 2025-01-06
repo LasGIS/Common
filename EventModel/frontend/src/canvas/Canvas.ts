@@ -31,4 +31,20 @@ export class Canvas {
     this.canvasElement.width = this.canvasElement.parentElement.clientWidth;
     this.canvasElement.height = this.canvasElement.parentElement?.clientHeight;
   }
+
+  addEventListener<K extends keyof HTMLElementEventMap>(
+    type: K,
+    listener: (this: HTMLCanvasElement, ev: HTMLElementEventMap[K]) => unknown /*,
+    options?: boolean | AddEventListenerOptions*/
+  ): void {
+    this.canvasElement.addEventListener(type, listener);
+  }
+
+  removeEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject /*,
+    options?: boolean | EventListenerOptions*/
+  ): void {
+    this.canvasElement.removeEventListener(type, listener);
+  }
 }

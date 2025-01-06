@@ -7,24 +7,50 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
   // const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const initial = new Canvas(containerRef.current!);
-    if (initial) {
+    console.log(`containerRef.current = ${containerRef.current}`);
+    if (!canvas) {
+      const initial = new Canvas(containerRef.current!);
       setCanvas(initial);
       initial.setDraw(draw);
       initial.resize();
       initial.draw();
-      window.addEventListener('resize', onResize);
     }
-    return () => {
-      console.log("window.removeEventListener('resize', onResize);");
-      window.removeEventListener('resize', onResize);
-    };
-  }, [containerRef.current]);
+  }, []);
 
-  const onResize = () => {
+  useEffect(() => {
+    if (canvas) {
+      console.log("window.addEventListener('resize', onResize);");
+      window.addEventListener('resize', onResize);
+      canvas.addEventListener('mousemove', onMousemove);
+
+      return () => {
+        console.log("window.removeEventListener('resize', onResize);");
+        window.removeEventListener('resize', onResize);
+        canvas.removeEventListener('mousemove', onMousemove);
+      };
+    }
+  }, [canvas]);
+
+  const onResize = (event) => {
+    console.log(`event: ${event}`);
     if (canvas) {
       canvas.resize();
       canvas.draw();
+    }
+  };
+
+  const onMousemove = (event: MouseEvent) => {
+    const text = `type: ${event.type}, x:${event.offsetX}, y:${event.offsetY}`;
+    if (canvas) {
+      const ctx = canvas.ctx;
+      ctx.save();
+      const metrics: TextMetrics = ctx.measureText(text);
+      ctx.fillStyle = 'rgb(200, 200, 200)';
+      ctx.clearRect(10, 10, metrics.width + 40, metrics.fontBoundingBoxAscent + 4);
+      // ctx.beginPath();
+      ctx.fillStyle = 'black';
+      ctx.fillText(text, 10 + 2, 10 + metrics.fontBoundingBoxAscent);
+      ctx.restore();
     }
   };
 
