@@ -1,3 +1,7 @@
+interface SettingsState {
+  lang?: LangType;
+}
+
 enum LangType {
   RU = 'ru',
   ENG = 'eng',
@@ -5,4 +9,4 @@ enum LangType {
 
 const SUPPORTED_LANGUAGES = [LangType.RU, LangType.ENG];
 
-export { LangType, SUPPORTED_LANGUAGES };
+export { SettingsState, LangType, SUPPORTED_LANGUAGES };

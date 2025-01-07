@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LangType } from '@/types/redux/SettingsTypes.ts';
-
-interface SettingsState {
-  lang?: LangType;
-}
+import { LangType, SettingsState } from '@/types/redux/SettingsTypes.ts';
 
 const initialState: SettingsState = {
   lang: (localStorage.getItem('language') as LangType) || LangType.RU,
