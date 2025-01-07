@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
-import useStompJsClient from '@/hooks/useStompJsClient.ts';
+import useStompJsClient from '@/hooks/websocket/useStompJsClient.ts';
 import { Client } from '@stomp/stompjs';
 import { MainContent, Row } from '@/style/style.tsx';
 import List from '@pages/DemoPage/components/List.tsx';

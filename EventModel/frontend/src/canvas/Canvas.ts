@@ -30,21 +30,26 @@ export class Canvas {
   resize(): void {
     this.canvasElement.width = this.canvasElement.parentElement.clientWidth;
     this.canvasElement.height = this.canvasElement.parentElement?.clientHeight;
+    // console.log(`resize(width:${this.canvasElement.width}, height:${this.canvasElement.height})`);
   }
 
-  addEventListener<K extends keyof HTMLElementEventMap>(
-    type: K,
-    listener: (this: HTMLCanvasElement, ev: HTMLElementEventMap[K]) => unknown /*,
-    options?: boolean | AddEventListenerOptions*/
+  addEventListener<Type extends keyof HTMLElementEventMap>(
+    type: Type,
+    listener: (this: HTMLCanvasElement, ev: HTMLElementEventMap[Type], canvas: Canvas) => unknown,
+    options?: boolean | AddEventListenerOptions | undefined
   ): void {
-    this.canvasElement.addEventListener(type, listener);
+    // console.log(`canvas.addEventListener('${type}', ...);`);
+    const handle = (event: HTMLElementEventMap[Type]) => listener(event, this);
+    this.canvasElement.addEventListener(type, handle, { ...options });
   }
 
-  removeEventListener(
-    type: string,
-    listener: EventListenerOrEventListenerObject /*,
-    options?: boolean | EventListenerOptions*/
+  removeEventListener<Type extends keyof HTMLElementEventMap>(
+    type: Type,
+    listener: (this: HTMLCanvasElement, ev: HTMLElementEventMap[Type], canvas: Canvas) => unknown,
+    options?: boolean | EventListenerOptions
   ): void {
-    this.canvasElement.removeEventListener(type, listener);
+    // console.log(`canvas.removeEventListener('${type}', ...);`);
+    const handle = (event: HTMLElementEventMap[Type]) => listener(event, this);
+    this.canvasElement.removeEventListener(type, handle, { ...options });
   }
 }
