@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { Canvas } from '@/canvas/Canvas.ts';
+import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
 
-const useCorrectOnResize = (canvas: Canvas | undefined) => {
+const useCorrectOnResize = (canvas: Canvas | null) => {
   useEffect(() => {
     if (canvas) {
-      // console.log("window.addEventListener('resize', onResize);");
       window.addEventListener('resize', onResize);
 
       return () => {
-        // console.log("window.removeEventListener('resize', onResize);");
         window.removeEventListener('resize', onResize);
       };
     }
@@ -20,6 +19,8 @@ const useCorrectOnResize = (canvas: Canvas | undefined) => {
       canvas.draw();
     }
   };
+
+  useCanvasEvent('contextmenu', canvas, (e) => e.preventDefault());
 };
 
 export default useCorrectOnResize;

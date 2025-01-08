@@ -44,26 +44,5 @@ export class Canvas {
   resize(): void {
     this.canvasElement.width = this.canvasElement.parentElement.clientWidth;
     this.canvasElement.height = this.canvasElement.parentElement?.clientHeight;
-    // console.log(`resize(width:${this.canvasElement.width}, height:${this.canvasElement.height})`);
-  }
-
-  addEventListener<Type extends keyof HTMLElementEventMap>(
-    type: Type,
-    listener: (this: HTMLCanvasElement, ev: HTMLElementEventMap[Type], canvas: Canvas) => unknown,
-    options?: boolean | AddEventListenerOptions
-  ): void {
-    // console.log(`canvas.addEventListener('${type}', ...);`);
-    const handle = (event: HTMLElementEventMap[Type]) => listener(event, this);
-    this.canvasElement.addEventListener(type, handle, { ...options });
-  }
-
-  removeEventListener<Type extends keyof HTMLElementEventMap>(
-    type: Type,
-    listener: (this: HTMLCanvasElement, ev: HTMLElementEventMap[Type], canvas: Canvas) => unknown,
-    options?: boolean | EventListenerOptions
-  ): void {
-    // console.log(`canvas.removeEventListener('${type}', ...);`);
-    const handle = (event: HTMLElementEventMap[Type]) => listener(event, this);
-    this.canvasElement.removeEventListener(type, handle, { ...options });
   }
 }

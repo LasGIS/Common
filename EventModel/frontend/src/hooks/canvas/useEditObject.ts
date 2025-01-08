@@ -3,16 +3,23 @@ import { useRef } from 'react';
 import { GeoObject, Point } from '@/types/redux/ObjectsTypes.ts';
 import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
 import { toPoint } from '@/utils/GeoObjectUtils.ts';
-import { useAppDispatch } from '@/redux';
-import { addGeoObject } from '@/redux/reducer/ObjectsReducer.ts';
+import { useAddGeoObject } from '@/hooks/canvas/useAddGeoObject.ts';
 
-const useEditObject = (canvas: Canvas | undefined) => {
-  const dispatch = useAppDispatch();
+const useEditObject = (canvas: Canvas | null) => {
   const geoRef = useRef<GeoObject>();
+  const addGeoObject = useAddGeoObject();
 
   const drawRectPoint = (ctx, pnt: Point) => {
     ctx.fillStyle = '#112d9b';
-    ctx.fillRect(pnt.x - 2, pnt.y - 2, 5, 5);
+    ctx.fillRect(pnt.x - 3, pnt.y - 3, 6, 6);
+  };
+
+  const drawCirclePoint = (ctx, pnt: Point) => {
+    ctx.beginPath();
+    ctx.fillStyle = '#119b18';
+    ctx.arc(pnt.x, pnt.y, 5, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
   };
 
   const drawGeoObject = (ctx, geo: GeoObject) => {
@@ -31,16 +38,25 @@ const useEditObject = (canvas: Canvas | undefined) => {
             ctx.lineTo(pnt.x, pnt.y);
           }
         });
+        ctx.closePath();
         ctx.strokeStyle = geo.strokeStyle || '#222';
         ctx.lineWidth = geo.lineWidth || 1;
         ctx.stroke();
+
+        polygon.forEach((pnt, index) => {
+          if (index === 0) {
+            drawRectPoint(ctx, pnt);
+          } else {
+            drawCirclePoint(ctx, pnt);
+          }
+        });
       }
       // ctx.restore();
     }
   };
 
-  const onMouseDown = (event: MouseEvent) => {
-    if (event.buttons === 1) {
+  useCanvasEvent('mousedown', canvas, (event: MouseEvent) => {
+    if ([0, 2].includes(event.button)) {
       const pnt: Point = toPoint(event);
       console.log(`onMouseDown ${JSON.stringify(pnt)}`);
       const geo = geoRef.current;
@@ -54,9 +70,10 @@ const useEditObject = (canvas: Canvas | undefined) => {
         };
       }
     }
-  };
+  });
 
-  const onMouseUp = (event: MouseEvent, canvas: Canvas) => {
+  useCanvasEvent('mouseup', canvas, (event: MouseEvent, canvas: Canvas) => {
+    event.preventDefault();
     const pnt: Point = toPoint(event);
     const geo = geoRef.current;
     if (geo) {
@@ -68,19 +85,17 @@ const useEditObject = (canvas: Canvas | undefined) => {
       } else {
         drawRectPoint(canvas.ctx, pnt);
       }
-      if (event.button === 0) {
-        console.log(`onMouseUp event.button === 1 ${JSON.stringify(pnt)}`);
-      } else if (event.button === 2) {
+      if (event.button === 2 || event.ctrlKey) {
         console.log('onMouseUp event.button === 2');
-        dispatch(addGeoObject(geo));
+        addGeoObject(geo);
         geoRef.current = undefined;
       } else {
         console.log(`onMouseUp event.button: ${event.button}, event.buttons: ${event.buttons}`);
       }
     }
-  };
+  });
 
-  const onMouseMove = (event: MouseEvent, canvas: Canvas) => {
+  useCanvasEvent('mousemove', canvas, (event: MouseEvent, canvas: Canvas) => {
     const pnt: Point = toPoint(event);
     const geo = geoRef.current;
     if (event.buttons > 0) {
@@ -95,11 +110,7 @@ const useEditObject = (canvas: Canvas | undefined) => {
         }
       }
     }
-  };
-
-  useCanvasEvent('mousedown', canvas, onMouseDown);
-  useCanvasEvent('mouseup', canvas, onMouseUp);
-  useCanvasEvent('mousemove', canvas, onMouseMove);
+  });
 };
 
 export default useEditObject;

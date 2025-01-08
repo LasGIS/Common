@@ -7,8 +7,8 @@ import { useAppDispatch } from '@/redux';
 import { addGeoObject } from '@/redux/reducer/ObjectsReducer.ts';
 import useEditObject from '@/hooks/canvas/useEditObject.ts';
 
-export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | null>): Canvas | undefined => {
-  const [canvas, setCanvas] = useState<Canvas | undefined>();
+export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | null>): Canvas | null => {
+  const [canvas, setCanvas] = useState<Canvas | null>(null);
   const dispatch = useAppDispatch();
 
   function addMockGeoObject() {
@@ -34,11 +34,11 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
   }
 
   useEffect(() => {
-    if (!canvas) {
+    if (canvas === null) {
       const initial = new Canvas(containerRef.current!);
-      setCanvas(initial);
       initial.resize();
       addMockGeoObject();
+      setCanvas(initial);
     }
   }, []);
 
@@ -49,3 +49,5 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
 
   return canvas;
 };
+
+export default useCanvas;

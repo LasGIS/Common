@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { useCanvas } from '@/hooks/canvas/useCanvas.ts';
+import useCanvas from '@/hooks/canvas/useCanvas.ts';
 
 const CanvasWrapper = styled.div`
   width: 100vw;

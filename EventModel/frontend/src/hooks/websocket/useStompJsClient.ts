@@ -51,7 +51,7 @@ const useStompJsClient = <MessageType, SendType>(
           if (onMessage) {
             onMessage(JSON.parse(greeting.body) as MessageType);
           }
-          //// console.log(`message: ${JSON.stringify(greeting, null, 2)}`);
+          // console.log(`message: ${JSON.stringify(greeting, null, 2)}`);
         });
       };
 

@@ -4,11 +4,11 @@ import { objectsSelector } from '@/redux/reducer/ObjectsReducer.ts';
 import { useSelector } from 'react-redux';
 import { GeoObject } from '@/types/redux/ObjectsTypes.ts';
 
-const useDrawObjects = (canvas: Canvas | undefined) => {
+const useDrawObjects = (canvas: Canvas | null) => {
   const objects = useSelector(objectsSelector);
 
   useEffect(() => {
-    if (canvas !== undefined) {
+    if (canvas !== null) {
       canvas.addDraw('2-Objects', draw);
       canvas.draw();
 
@@ -19,8 +19,8 @@ const useDrawObjects = (canvas: Canvas | undefined) => {
   }, [canvas]);
 
   useEffect(() => {
-    if (canvas !== undefined) {
-      // canvas.addDraw('2-Objects', draw);
+    if (canvas !== null) {
+      canvas.addDraw('2-Objects', draw);
       canvas.draw();
     }
   }, [objects]);

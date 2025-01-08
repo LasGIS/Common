@@ -4,7 +4,7 @@ import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
 const TEXT_MARGIN_WIDTH = 10;
 const TEXT_MARGIN_HEIGHT = 5;
 
-const useShowCoordinates = (canvas: Canvas | undefined) => {
+const useShowCoordinates = (canvas: Canvas | null) => {
   useCanvasEvent('mousemove', canvas, (event: MouseEvent, canvas: Canvas) => {
     const text = `type: ${event.type}, x:${event.offsetX}, y:${event.offsetY}`;
     if (canvas) {
