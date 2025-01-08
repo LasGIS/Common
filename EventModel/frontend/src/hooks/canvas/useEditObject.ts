@@ -85,7 +85,7 @@ const useEditObject = (canvas: Canvas | null) => {
       } else {
         drawRectPoint(canvas.ctx, pnt);
       }
-      if (event.button === 2 || event.ctrlKey) {
+      if ((event.button === 2 || event.ctrlKey) && last > 0) {
         console.log('onMouseUp event.button === 2');
         addGeoObject(geo);
         geoRef.current = undefined;
