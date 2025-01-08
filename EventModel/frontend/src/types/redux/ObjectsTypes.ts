@@ -4,7 +4,7 @@ interface Point {
 }
 
 interface GeoObject {
-  id: number;
+  id?: number;
   fillStyle?: CanvasFillStrokeStyles['fillStyle'];
   strokeStyle?: CanvasFillStrokeStyles['strokeStyle'];
   lineWidth?: number;
@@ -13,6 +13,7 @@ interface GeoObject {
 }
 
 interface ObjectsState {
+  lastId: number;
   objects: Record<number, GeoObject>;
   selected?: GeoObject;
 }

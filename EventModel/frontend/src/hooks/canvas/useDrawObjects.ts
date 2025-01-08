@@ -20,6 +20,7 @@ const useDrawObjects = (canvas: Canvas | undefined) => {
 
   useEffect(() => {
     if (canvas !== undefined) {
+      // canvas.addDraw('2-Objects', draw);
       canvas.draw();
     }
   }, [objects]);

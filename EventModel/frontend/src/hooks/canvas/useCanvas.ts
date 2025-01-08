@@ -5,6 +5,7 @@ import useCorrectOnResize from '@/hooks/canvas/useCorrectOnResize.ts';
 import useDrawObjects from '@/hooks/canvas/useDrawObjects.ts';
 import { useAppDispatch } from '@/redux';
 import { addGeoObject } from '@/redux/reducer/ObjectsReducer.ts';
+import useEditObject from '@/hooks/canvas/useEditObject.ts';
 
 export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | null>): Canvas | undefined => {
   const [canvas, setCanvas] = useState<Canvas | undefined>();
@@ -44,6 +45,7 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
   useCorrectOnResize(canvas);
   useShowCoordinates(canvas);
   useDrawObjects(canvas);
+  useEditObject(canvas);
 
   return canvas;
 };
