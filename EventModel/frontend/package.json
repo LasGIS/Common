@@ -12,6 +12,7 @@
     "test": "jest src"
   },
   "dependencies": {
+    "@react-hook/resize-observer": "^2.0.2",
     "@reduxjs/toolkit": "^2.4.0",
     "@stomp/stompjs": "^7.0.0",
     "@svgr/rollup": "^8.1.0",

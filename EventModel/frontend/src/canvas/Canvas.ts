@@ -41,9 +41,40 @@ export class Canvas {
     return this.ctx;
   }
 
-  resize(): Canvas {
-    this.canvasElement.width = this.canvasElement.parentElement.clientWidth;
-    this.canvasElement.height = this.canvasElement.parentElement?.clientHeight;
+  public resize(): Canvas {
+    if (this.canvasElement && this.canvasElement.parentElement) {
+      const parentElement = this.canvasElement.parentElement;
+      this.canvasElement.width = parentElement.clientWidth;
+      this.canvasElement.height = parentElement.clientHeight;
+    }
+    return this;
+  }
+
+  public setSize(width: number, height: number): Canvas {
+    console.log(`setSize(${width}, ${height})`);
+    this.canvasElement.width = width;
+    this.canvasElement.height = height;
+    this.draw();
+    return this;
+  }
+
+  public addEventListener<Type extends keyof HTMLElementEventMap>(
+    type: Type,
+    handler: (event: HTMLElementEventMap[Type], canvas: Canvas) => unknown
+  ): Canvas {
+    console.log(`canvas.addEventListener('${type}', ${handler.name});`);
+    const handle = (event: HTMLElementEventMap[Type]) => handler(event, this);
+    this.canvasElement.addEventListener(type, handle);
+    return this;
+  }
+
+  public removeEventListener<Type extends keyof HTMLElementEventMap>(
+    type: Type,
+    handler: (event: HTMLElementEventMap[Type], canvas: Canvas) => unknown
+  ): Canvas {
+    console.log(`canvas.removeEventListener('${type}', ${handler.name});`);
+    const handle = (event: HTMLElementEventMap[Type]) => handler(event, this);
+    this.canvasElement.removeEventListener(type, handle);
     return this;
   }
 }

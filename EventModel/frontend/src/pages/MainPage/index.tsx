@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useCanvas from '@/hooks/canvas/useCanvas.ts';
 
@@ -9,13 +9,12 @@ const CanvasWrapper = styled.div`
 `;
 
 const MainPage: React.FC = () => {
-  const containerRef = useRef<HTMLCanvasElement | null>(null);
-
-  useCanvas(containerRef);
+  const { containerRef, canvas } = useCanvas();
+  console.log(`canvas: ${canvas?.width} x ${canvas?.height}`);
 
   return (
     <CanvasWrapper>
-      <canvas ref={containerRef} id="canvas" width={3000} height={1500}></canvas>
+      <canvas ref={containerRef}></canvas>
     </CanvasWrapper>
   );
 };
