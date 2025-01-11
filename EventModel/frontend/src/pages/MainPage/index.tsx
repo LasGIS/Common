@@ -9,12 +9,13 @@ const CanvasWrapper = styled.div`
 `;
 
 const MainPage: React.FC = () => {
-  const canvasContainerRef = useRef<HTMLCanvasElement | null>(null);
-  useCanvas(canvasContainerRef);
+  const containerRef = useRef<HTMLCanvasElement | null>(null);
+
+  useCanvas(containerRef);
 
   return (
     <CanvasWrapper>
-      <canvas ref={canvasContainerRef} id="canvas" width={3000} height={1500}></canvas>
+      <canvas ref={containerRef} id="canvas" width={3000} height={1500}></canvas>
     </CanvasWrapper>
   );
 };

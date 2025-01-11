@@ -1,11 +1,11 @@
 import { Canvas } from '@/canvas/Canvas.ts';
 import { useEffect } from 'react';
 import { objectsSelector } from '@/redux/reducer/ObjectsReducer.ts';
-import { useSelector } from 'react-redux';
 import { GeoObject } from '@/types/redux/ObjectsTypes.ts';
+import { useAppSelector } from '@/redux';
 
 const useDrawObjects = (canvas: Canvas | null) => {
-  const objects = useSelector(objectsSelector);
+  const objects = useAppSelector(objectsSelector);
 
   useEffect(() => {
     if (canvas !== null) {

@@ -41,8 +41,9 @@ export class Canvas {
     return this.ctx;
   }
 
-  resize(): void {
+  resize(): Canvas {
     this.canvasElement.width = this.canvasElement.parentElement.clientWidth;
     this.canvasElement.height = this.canvasElement.parentElement?.clientHeight;
+    return this;
   }
 }

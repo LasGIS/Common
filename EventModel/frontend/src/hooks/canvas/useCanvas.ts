@@ -34,14 +34,19 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
   }
 
   useEffect(() => {
-    if (canvas === null) {
-      const initial = new Canvas(containerRef.current!);
-      initial.resize();
+    const can = document.getElementById('canvas');
+    console.log(`useEffect(containerRef.current: ${containerRef.current}),
+      document.getElementById('canvas') => ${can ? can.dir : can}
+      `);
+    if (containerRef.current !== null && canvas === null) {
+      console.log('const initial = new Canvas(containerRef.current!);');
+      const initial = new Canvas(containerRef.current as HTMLCanvasElement);
       addMockGeoObject();
-      setCanvas(initial);
+      setCanvas(initial.resize());
     }
-  }, []);
+  }, [containerRef.current]);
 
+  console.log('---=== useCanvas ===---');
   useCorrectOnResize(canvas);
   useShowCoordinates(canvas);
   useDrawObjects(canvas);
