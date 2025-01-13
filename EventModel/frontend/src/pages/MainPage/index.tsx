@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useCanvas from '@/hooks/canvas/useCanvas.ts';
+import UseDrawObjects from '@/hooks/canvas/useDrawObjects.ts';
 
 const CanvasWrapper = styled.div`
   width: 100vw;
@@ -15,6 +16,7 @@ const MainPage: React.FC = () => {
   return (
     <CanvasWrapper>
       <canvas ref={containerRef}></canvas>
+      {canvas && <UseDrawObjects canvas={canvas} />}
     </CanvasWrapper>
   );
 };

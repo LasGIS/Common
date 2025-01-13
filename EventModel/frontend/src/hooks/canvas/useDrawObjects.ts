@@ -4,25 +4,25 @@ import { objectsSelector } from '@/redux/reducer/ObjectsReducer.ts';
 import { GeoObject } from '@/types/redux/ObjectsTypes.ts';
 import { useAppSelector } from '@/redux';
 
-const useDrawObjects = (canvas: Canvas | null) => {
+interface Prop {
+  canvas: Canvas;
+}
+
+const useDrawObjects = ({ canvas }: Prop) => {
   const objects = useAppSelector(objectsSelector);
 
   useEffect(() => {
-    if (canvas !== null) {
-      canvas.addDraw('2-Objects', draw);
-      canvas.draw();
+    canvas.addDraw('2-Objects', draw);
+    canvas.draw();
 
-      return () => {
-        canvas.removeDraw('2-Objects');
-      };
-    }
+    return () => {
+      canvas.removeDraw('2-Objects');
+    };
   }, [canvas]);
 
   useEffect(() => {
-    if (canvas !== null) {
-      canvas.addDraw('2-Objects', draw);
-      canvas.draw();
-    }
+    canvas.addDraw('2-Objects', draw);
+    canvas.draw();
   }, [objects]);
 
   const draw = (ctx: CanvasRenderingContext2D) => {

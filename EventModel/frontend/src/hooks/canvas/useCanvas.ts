@@ -69,7 +69,7 @@ export const useCanvas = (): {
   useCanvasEvent('contextmenu', canvas, (e) => e.preventDefault());
   // useCorrectOnResize(canvas);
   useShowCoordinates(canvas);
-  useDrawObjects(canvas);
+  // useDrawObjects(canvas);
   useEditObject(canvas);
 
   return { containerRef, canvas };
