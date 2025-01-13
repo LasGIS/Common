@@ -6,7 +6,7 @@ import { ReactComponent as AboutIcon } from '@/assets/header/search.svg';
 import { useTranslation } from 'react-i18next';
 import { ButtonToolbar } from '../styles.tsx';
 import { StyledTooltip } from '@pages/Layout/Header/components/StyledTooltip.tsx';
-import { useRoute, RouteType } from '@/router/RouteProvider.tsx';
+import { RouteType, useRoute } from '@/router/RouteProvider.tsx';
 
 const NavigationButtonsControl = () => {
   const [t] = useTranslation();

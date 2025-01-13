@@ -1,7 +1,6 @@
 import { RefCallback, useCallback, useState } from 'react';
 import { Canvas } from '@/canvas/Canvas.ts';
 import useShowCoordinates from '@/hooks/canvas/useShowCoordinates.ts';
-import useDrawObjects from '@/hooks/canvas/useDrawObjects.ts';
 import { useAppDispatch } from '@/redux';
 import { addGeoObject } from '@/redux/reducer/ObjectsReducer.ts';
 import useEditObject from '@/hooks/canvas/useEditObject.ts';

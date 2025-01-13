@@ -4,6 +4,14 @@ export class Canvas {
   public readonly canvasElement: HTMLCanvasElement;
   private drawFunctionMap: Record<string, DrawFunction> = {};
 
+  constructor(canvasElement: HTMLCanvasElement) {
+    this.canvasElement = canvasElement;
+    this.addDraw('0-start', (ctx: CanvasRenderingContext2D, cnv: Canvas) => {
+      ctx.fillStyle = '#e0e0e0';
+      ctx.fillRect(10, 10, cnv.width - 20, cnv.height - 20);
+    });
+  }
+
   public get width(): number {
     return this.canvasElement.width;
   }
@@ -14,14 +22,6 @@ export class Canvas {
 
   public get ctx(): CanvasRenderingContext2D {
     return this.canvasElement.getContext('2d');
-  }
-
-  constructor(canvasElement: HTMLCanvasElement) {
-    this.canvasElement = canvasElement;
-    this.addDraw('0-start', (ctx: CanvasRenderingContext2D, cnv: Canvas) => {
-      ctx.fillStyle = '#e0e0e0';
-      ctx.fillRect(10, 10, cnv.width - 20, cnv.height - 20);
-    });
   }
 
   public addDraw(key: string, drawFun: DrawFunction) {
