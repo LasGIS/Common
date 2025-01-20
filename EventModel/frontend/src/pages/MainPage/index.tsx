@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useCanvas from '@/hooks/canvas/useCanvas.ts';
 import UseDrawObjects from '@/hooks/canvas/useDrawObjects.ts';
+import UseBroadcastChannel from '@pages/MainPage/UseBroadcastChannel.ts';
 
 const CanvasWrapper = styled.div`
   width: 100vw;
@@ -17,6 +18,7 @@ const MainPage: React.FC = () => {
     <CanvasWrapper>
       <canvas ref={containerRef}></canvas>
       {canvas && <UseDrawObjects canvas={canvas} />}
+      <UseBroadcastChannel />
     </CanvasWrapper>
   );
 };
