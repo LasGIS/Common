@@ -16,6 +16,9 @@ export default defineConfig({
   server: {
     port: 8090,
   },
+  preview: {
+    port: 8092,
+  },
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },

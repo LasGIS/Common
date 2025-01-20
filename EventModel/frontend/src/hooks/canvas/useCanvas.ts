@@ -1,13 +1,16 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { RefCallback, useCallback, useState } from 'react';
 import { Canvas } from '@/canvas/Canvas.ts';
 import useShowCoordinates from '@/hooks/canvas/useShowCoordinates.ts';
-import useCorrectOnResize from '@/hooks/canvas/useCorrectOnResize.ts';
-import useDrawObjects from '@/hooks/canvas/useDrawObjects.ts';
 import { useAppDispatch } from '@/redux';
 import { addGeoObject } from '@/redux/reducer/ObjectsReducer.ts';
 import useEditObject from '@/hooks/canvas/useEditObject.ts';
+import useResizeObserver from '@react-hook/resize-observer';
+import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
 
-export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | null>): Canvas | null => {
+export const useCanvas = (): {
+  canvas: Canvas | null;
+  containerRef: RefCallback<HTMLCanvasElement>;
+} => {
   const [canvas, setCanvas] = useState<Canvas | null>(null);
   const dispatch = useAppDispatch();
 
@@ -33,21 +36,42 @@ export const useCanvas = (containerRef: MutableRefObject<HTMLCanvasElement | nul
     }
   }
 
-  useEffect(() => {
-    if (canvas === null) {
-      const initial = new Canvas(containerRef.current!);
-      initial.resize();
+  /**
+   * Используем useCallback для получения DOM элемента.
+   * Для этого containerRef подкладываем в ref элемента. Например: <pre>
+   *     <canvas ref={containerRef}></canvas>
+   * </pre>
+   * containerRef функция гарантированно будет вызвана при монтировании и размонтировании элементов.
+   *
+   * @param element при монтировании возвращается объект HTMLElement,</br>
+   * при размонтировании элементов - null
+   * @return callback функция, которую надо положить в ref элемента
+   */
+  const containerRef = useCallback((element: HTMLCanvasElement | null) => {
+    if (element !== null) {
+      console.log(`Монтируем new Canvas(${element})`);
+      const initial = new Canvas(element);
       addMockGeoObject();
-      setCanvas(initial);
+      setCanvas(initial.resize());
+    } else {
+      console.log(`Размонтируем old canvas = ${canvas}`);
+      setCanvas(null);
     }
   }, []);
 
-  useCorrectOnResize(canvas);
+  useResizeObserver(canvas?.canvasElement.parentElement, (entry) => {
+    const { width, height } = entry.contentRect;
+    canvas?.setSize(width, height);
+  });
+
+  console.log('---=== useCanvas ===---');
+  useCanvasEvent('contextmenu', canvas, (e) => e.preventDefault());
+  // useCorrectOnResize(canvas);
   useShowCoordinates(canvas);
-  useDrawObjects(canvas);
+  // useDrawObjects(canvas);
   useEditObject(canvas);
 
-  return canvas;
+  return { containerRef, canvas };
 };
 
 export default useCanvas;

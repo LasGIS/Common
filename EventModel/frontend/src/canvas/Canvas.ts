@@ -4,6 +4,14 @@ export class Canvas {
   public readonly canvasElement: HTMLCanvasElement;
   private drawFunctionMap: Record<string, DrawFunction> = {};
 
+  constructor(canvasElement: HTMLCanvasElement) {
+    this.canvasElement = canvasElement;
+    this.addDraw('0-start', (ctx: CanvasRenderingContext2D, cnv: Canvas) => {
+      ctx.fillStyle = '#e0e0e0';
+      ctx.fillRect(10, 10, cnv.width - 20, cnv.height - 20);
+    });
+  }
+
   public get width(): number {
     return this.canvasElement.width;
   }
@@ -14,14 +22,6 @@ export class Canvas {
 
   public get ctx(): CanvasRenderingContext2D {
     return this.canvasElement.getContext('2d');
-  }
-
-  constructor(canvasElement: HTMLCanvasElement) {
-    this.canvasElement = canvasElement;
-    this.addDraw('0-start', (ctx: CanvasRenderingContext2D, cnv: Canvas) => {
-      ctx.fillStyle = '#e0e0e0';
-      ctx.fillRect(10, 10, cnv.width - 20, cnv.height - 20);
-    });
   }
 
   public addDraw(key: string, drawFun: DrawFunction) {
@@ -41,8 +41,39 @@ export class Canvas {
     return this.ctx;
   }
 
-  resize(): void {
-    this.canvasElement.width = this.canvasElement.parentElement.clientWidth;
-    this.canvasElement.height = this.canvasElement.parentElement?.clientHeight;
+  public resize(): Canvas {
+    if (this.canvasElement && this.canvasElement.parentElement) {
+      const parentElement = this.canvasElement.parentElement;
+      this.canvasElement.width = parentElement.clientWidth;
+      this.canvasElement.height = parentElement.clientHeight;
+    }
+    return this;
+  }
+
+  public setSize(width: number, height: number): Canvas {
+    this.canvasElement.width = width;
+    this.canvasElement.height = height;
+    this.draw();
+    return this;
+  }
+
+  public addEventListener<Type extends keyof HTMLElementEventMap>(
+    type: Type,
+    handler: (event: HTMLElementEventMap[Type], canvas: Canvas) => unknown
+  ): Canvas {
+    console.log(`canvas.addEventListener('${type}', ${handler.name});`);
+    const handle = (event: HTMLElementEventMap[Type]) => handler(event, this);
+    this.canvasElement.addEventListener(type, handle);
+    return this;
+  }
+
+  public removeEventListener<Type extends keyof HTMLElementEventMap>(
+    type: Type,
+    handler: (event: HTMLElementEventMap[Type], canvas: Canvas) => unknown
+  ): Canvas {
+    console.log(`canvas.removeEventListener('${type}', ${handler.name});`);
+    const handle = (event: HTMLElementEventMap[Type]) => handler(event, this);
+    this.canvasElement.removeEventListener(type, handle);
+    return this;
   }
 }
