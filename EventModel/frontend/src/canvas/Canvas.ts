@@ -51,7 +51,6 @@ export class Canvas {
   }
 
   public setSize(width: number, height: number): Canvas {
-    console.log(`setSize(${width}, ${height})`);
     this.canvasElement.width = width;
     this.canvasElement.height = height;
     this.draw();
