@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import store from '@/redux';
 import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
 import './App.scss';
+import routerConfig from '@/router/Router.tsx';
 import Providers from '@components/Providers.tsx';
-import BaseLayout from '@pages/Layout';
 
 function App() {
   useEffect(() => {
@@ -13,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Providers>
-        <BaseLayout />
+        <RouterProvider router={routerConfig} />
       </Providers>
     </Provider>
   );

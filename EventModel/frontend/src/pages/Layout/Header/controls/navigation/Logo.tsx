@@ -3,7 +3,7 @@ import { Space } from 'antd';
 import { ReactComponent as LogoSvg } from '@/assets/logo/Logo.svg';
 import { ReactComponent as NameLogoSvg } from '@/assets/logo/EventModel.svg';
 import { ReactComponent as ChevronSvg } from '@/assets/logo/Chevron.svg';
-import { RouteType, useRoute } from '@/router/RouteProvider.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const StyledChevronSvg = styled(ChevronSvg)`
   color: #1c4682;
@@ -20,10 +20,10 @@ const StyledSpace = styled(Space)`
 `;
 
 export const Logo = () => {
-  const { setRoute } = useRoute();
+  const navigate = useNavigate();
 
   return (
-    <StyledSpace onClick={() => setRoute(RouteType.MAIN_PAGE)}>
+    <StyledSpace onClick={() => navigate('/')}>
       <NameLogoSvg />
       <StyledLogoSvg />
       <StyledChevronSvg />

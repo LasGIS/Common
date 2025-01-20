@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MenuProps } from 'antd/es/menu/menu';
 import { Translation } from 'react-i18next';
-import { RouteType, useRoute } from '@/router/RouteProvider.tsx';
+import { useNavigate } from 'react-router-dom';
 import type { ItemType } from 'antd/es/menu/interface';
 
 interface Props {
@@ -9,18 +9,18 @@ interface Props {
 }
 
 const useNavigation = ({ showAboutModal }: Props) => {
-  const { setRoute } = useRoute();
+  const navigate = useNavigate();
   const items: ItemType[] = [
     {
       key: 'main',
       label: <Translation>{(t) => t('header.menu.main')}</Translation>,
-      onClick: () => setRoute(RouteType.MAIN_PAGE),
+      onClick: () => navigate('/'),
       disabled: false,
     },
     {
       key: 'demo',
       label: <Translation>{(t) => t('header.menu.demo')}</Translation>,
-      onClick: () => setRoute(RouteType.DEMO_PAGE),
+      onClick: () => navigate('/demo'),
       disabled: false,
     },
     {
