@@ -1,4 +1,5 @@
 import type { DrawFunction } from '@/types/CanvasTypes.ts';
+import { Point } from '@/types/redux/ObjectsTypes.ts';
 
 export class Canvas {
   public readonly canvasElement: HTMLCanvasElement;
@@ -7,8 +8,9 @@ export class Canvas {
   constructor(canvasElement: HTMLCanvasElement) {
     this.canvasElement = canvasElement;
     this.addDraw('0-start', (ctx: CanvasRenderingContext2D, cnv: Canvas) => {
-      ctx.fillStyle = '#e0e0e0';
-      ctx.fillRect(10, 10, cnv.width - 20, cnv.height - 20);
+      ctx.clearRect(0, 0, cnv.width, cnv.height);
+      // ctx.fillStyle = '#ffffffff';
+      // ctx.fillRect(10, 10, cnv.width - 20, cnv.height - 20);
     });
   }
 
@@ -32,11 +34,11 @@ export class Canvas {
     delete this.drawFunctionMap[key];
   }
 
-  public draw(): CanvasRenderingContext2D {
+  public draw(mousePnt?: Point): CanvasRenderingContext2D {
     Object.keys(this.drawFunctionMap)
       .sort()
       .forEach((key) => {
-        this.drawFunctionMap[key](this.ctx, this);
+        this.drawFunctionMap[key](this.ctx, this, mousePnt);
       });
     return this.ctx;
   }

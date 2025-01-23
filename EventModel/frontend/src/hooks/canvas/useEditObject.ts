@@ -4,23 +4,11 @@ import { GeoObject, Point } from '@/types/redux/ObjectsTypes.ts';
 import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
 import { toPoint } from '@/utils/GeoObjectUtils.ts';
 import { useAddGeoObject } from '@/hooks/canvas/useAddGeoObject.ts';
+import { drawCirclePoint, drawRectPoint } from '@/canvas/canvasUtils.ts';
 
 const useEditObject = (canvas: Canvas | null) => {
-  const geoRef = useRef<GeoObject>();
+  const geoRef = useRef<GeoObject | undefined>(undefined);
   const addGeoObject = useAddGeoObject();
-
-  const drawRectPoint = (ctx, pnt: Point) => {
-    ctx.fillStyle = '#112d9b';
-    ctx.fillRect(pnt.x - 3, pnt.y - 3, 6, 6);
-  };
-
-  const drawCirclePoint = (ctx, pnt: Point) => {
-    ctx.beginPath();
-    ctx.fillStyle = '#119b18';
-    ctx.arc(pnt.x, pnt.y, 5, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.fill();
-  };
 
   const drawGeoObject = (ctx, geo: GeoObject) => {
     if (ctx && geo) {
@@ -65,8 +53,9 @@ const useEditObject = (canvas: Canvas | null) => {
       } else {
         geoRef.current = {
           polygon: [pnt],
-          lineWidth: 2,
-          strokeStyle: '#afafff',
+          lineWidth: 3,
+          strokeStyle: '#404080',
+          fillStyle: '#408040',
         };
       }
     }
@@ -78,7 +67,7 @@ const useEditObject = (canvas: Canvas | null) => {
     const geo = geoRef.current;
     if (geo) {
       const last = geo.polygon.length - 1;
-      canvas.draw();
+      canvas.draw(pnt);
       if (last >= 0) {
         geo.polygon[last] = pnt;
         drawGeoObject(canvas.ctx, geo);
@@ -101,7 +90,7 @@ const useEditObject = (canvas: Canvas | null) => {
     if (event.buttons > 0) {
       if (geo) {
         const last = geo.polygon.length - 1;
-        canvas.draw();
+        canvas.draw(pnt);
         if (last >= 0) {
           geo.polygon[last] = pnt;
           drawGeoObject(canvas.ctx, geo);
@@ -109,6 +98,8 @@ const useEditObject = (canvas: Canvas | null) => {
           drawRectPoint(canvas.ctx, pnt);
         }
       }
+    } else if (event.shiftKey) {
+      canvas.draw(pnt);
     }
   });
 };
