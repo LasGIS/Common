@@ -1,12 +1,13 @@
 import { Canvas } from '@/canvas/Canvas.ts';
 import { useRef } from 'react';
 import { GeoObject, Point } from '@/types/redux/ObjectsTypes.ts';
-import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
 import { toPoint } from '@/utils/GeoObjectUtils.ts';
-import { useAddGeoObject } from '@/hooks/canvas/useAddGeoObject.ts';
+import { useAddGeoObject } from '@/hooks/useAddGeoObject.ts';
 import { drawCirclePoint, drawRectPoint } from '@/canvas/canvasUtils.ts';
+import { Scene } from '@/canvas/Scene.ts';
+import { useSceneEvent } from '@/hooks/scene/useSceneEvent.ts';
 
-const useEditObject = (canvas: Canvas | null) => {
+const useEditObject = (scene: Scene | null) => {
   const geoRef = useRef<GeoObject | undefined>(undefined);
   const addGeoObject = useAddGeoObject();
 
@@ -43,7 +44,7 @@ const useEditObject = (canvas: Canvas | null) => {
     }
   };
 
-  useCanvasEvent('mousedown', canvas, (event: MouseEvent) => {
+  useSceneEvent('mousedown', 'work', scene, (event: MouseEvent) => {
     if ([0, 2].includes(event.button)) {
       const pnt: Point = toPoint(event);
       console.log(`onMouseDown ${JSON.stringify(pnt)}`);
@@ -61,13 +62,13 @@ const useEditObject = (canvas: Canvas | null) => {
     }
   });
 
-  useCanvasEvent('mouseup', canvas, (event: MouseEvent, canvas: Canvas) => {
+  useSceneEvent('mouseup', 'work', scene, (event: MouseEvent, canvas: Canvas) => {
     event.preventDefault();
     const pnt: Point = toPoint(event);
     const geo = geoRef.current;
     if (geo) {
       const last = geo.polygon.length - 1;
-      canvas.draw(pnt);
+      canvas.draw();
       if (last >= 0) {
         geo.polygon[last] = pnt;
         drawGeoObject(canvas.ctx, geo);
@@ -78,13 +79,14 @@ const useEditObject = (canvas: Canvas | null) => {
         console.log('onMouseUp event.button === 2');
         addGeoObject(geo);
         geoRef.current = undefined;
+        canvas.draw();
       } else {
         console.log(`onMouseUp event.button: ${event.button}, event.buttons: ${event.buttons}`);
       }
     }
   });
 
-  useCanvasEvent('mousemove', canvas, (event: MouseEvent, canvas: Canvas) => {
+  useSceneEvent('mousemove', 'work', scene, (event: MouseEvent, canvas: Canvas) => {
     const pnt: Point = toPoint(event);
     const geo = geoRef.current;
     if (event.buttons > 0) {
@@ -98,8 +100,6 @@ const useEditObject = (canvas: Canvas | null) => {
           drawRectPoint(canvas.ctx, pnt);
         }
       }
-    } else if (event.shiftKey) {
-      canvas.draw(pnt);
     }
   });
 };

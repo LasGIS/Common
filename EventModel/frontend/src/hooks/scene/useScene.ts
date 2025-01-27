@@ -1,17 +1,17 @@
 import { RefCallback, useCallback, useState } from 'react';
-import { Canvas } from '@/canvas/Canvas.ts';
-import useShowCoordinates from '@/hooks/canvas/useShowCoordinates.ts';
+import { Scene } from '@/canvas/Scene.ts';
+import useShowCoordinates from '@/hooks/scene/useShowCoordinates.ts';
 import { useAppDispatch } from '@/redux';
 import { addGeoObject } from '@/redux/reducer/ObjectsReducer.ts';
-import useEditObject from '@/hooks/canvas/useEditObject.ts';
+import useEditObject from '@/hooks/scene/useEditObject.ts';
 import useResizeObserver from '@react-hook/resize-observer';
-import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
+import { useSceneEvent } from '@/hooks/scene/useSceneEvent.ts';
 
-export const useCanvas = (): {
-  canvas: Canvas | null;
-  containerRef: RefCallback<HTMLCanvasElement>;
+export const useScene = (): {
+  scene: Scene | null;
+  containerRef: RefCallback<HTMLElement>;
 } => {
-  const [canvas, setCanvas] = useState<Canvas | null>(null);
+  const [scene, setScene] = useState<Scene | null>(null);
   const dispatch = useAppDispatch();
 
   function addMockGeoObject() {
@@ -47,31 +47,42 @@ export const useCanvas = (): {
    * при размонтировании элементов - null
    * @return callback функция, которую надо положить в ref элемента
    */
-  const containerRef = useCallback((element: HTMLCanvasElement | null) => {
+  const containerRef = useCallback((element: HTMLElement | null) => {
     if (element !== null) {
-      console.log(`Монтируем new Canvas(${element})`);
-      const initial = new Canvas(element);
+      console.log(`Монтируем new Scene(${element})`);
+      const initial = new Scene(element, [
+        // { type: 'back', zIndex: 1000 },
+        // { type: 'scale', zIndex: 1010 },
+        { type: 'main', zIndex: 1020 },
+        { type: 'work', zIndex: 1030 },
+        { type: 'info', zIndex: 1040 },
+      ]);
       addMockGeoObject();
-      setCanvas(initial.resize());
+      setScene(initial.resize());
     } else {
-      console.log(`Размонтируем old canvas = ${canvas}`);
-      setCanvas(null);
+      scene?.clear();
+      console.log(`Размонтируем old scene = ${scene}`);
+      setScene(null);
     }
+    return () => {
+      console.log(`Размонтируем scene = ${scene}`);
+      scene?.clear();
+    };
   }, []);
 
-  useResizeObserver(canvas?.canvasElement.parentElement, (entry) => {
+  useResizeObserver(scene?.container, (entry) => {
     const { width, height } = entry.contentRect;
-    canvas?.setSize(width, height);
+    scene?.getAllCanvases().forEach((canvas) => canvas.setSize(width, height));
   });
 
-  console.log('---=== useCanvas ===---');
-  useCanvasEvent('contextmenu', canvas, (e) => e.preventDefault());
-  // useCorrectOnResize(canvas);
-  useShowCoordinates(canvas);
-  // useDrawObjects(canvas);
-  useEditObject(canvas);
+  console.log('---=== useScene ===---');
+  useSceneEvent('contextmenu', 'main', scene, (e) => e.preventDefault());
+  // useCorrectOnResize(scene);
+  useShowCoordinates(scene);
+  // useDrawObjects(scene);
+  useEditObject(scene);
 
-  return { containerRef, canvas };
+  return { containerRef, scene };
 };
 
-export default useCanvas;
+export default useScene;

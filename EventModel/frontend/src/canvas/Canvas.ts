@@ -14,6 +14,10 @@ export class Canvas {
     });
   }
 
+  public clear() {
+    this.drawFunctionMap = {};
+  }
+
   public get width(): number {
     return this.canvasElement.width;
   }

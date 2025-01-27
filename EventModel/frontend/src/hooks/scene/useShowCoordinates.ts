@@ -1,16 +1,16 @@
 import { Canvas } from '@/canvas/Canvas.ts';
-import { useCanvasEvent } from '@/hooks/canvas/useCanvasEvent.ts';
-// import { toPoint } from '@/utils/GeoObjectUtils.ts';
+import { useSceneEvent } from '@/hooks/scene/useSceneEvent.ts';
+import { Scene } from '@/canvas/Scene.ts';
+import { toPoint } from '@/utils/GeoObjectUtils.ts';
 
 const TEXT_MARGIN_WIDTH = 10;
 const TEXT_MARGIN_HEIGHT = 5;
 
-const useShowCoordinates = (canvas: Canvas | null) => {
-  useCanvasEvent('mousemove', canvas, (event: MouseEvent, canvas: Canvas) => {
-    // const mousePnt = toPoint(event);
-    const text = `type: ${event.type}, x:${event.offsetX}, y:${event.offsetY}`;
+const useShowCoordinates = (scene: Scene | null) => {
+  useSceneEvent('mousemove', 'info', scene, (event: MouseEvent, canvas: Canvas) => {
+    const mousePnt = toPoint(event);
+    const text = `type: ${event.type}, x:${mousePnt.x}, y:${mousePnt.y}`;
     const ctx = canvas.ctx;
-    // canvas.draw(mousePnt);
     ctx.save();
     ctx.font = '14px Roboto, sans-serif';
     ctx.textAlign = 'center';
