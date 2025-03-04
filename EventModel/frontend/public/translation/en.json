@@ -7,9 +7,9 @@
   },
   "aboutModal": {
     "title": "EventModel",
-    "description": "Process Technology Modeling service",
+    "description": "Analysis of problems with the event model",
     "version": "Version",
-    "copyright": "Digital Technology Center"
+    "copyright": "Craft projects for hobbies"
   },
   "header": {
     "appName": "EventModel",

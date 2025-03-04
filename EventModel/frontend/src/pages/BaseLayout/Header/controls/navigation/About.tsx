@@ -1,7 +1,6 @@
-import { ReactElement } from 'react';
 import { Translation } from 'react-i18next';
 
-export function About(): ReactElement {
+export function About() {
   const currentYear = new Date().getFullYear();
 
   return (
