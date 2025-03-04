@@ -1,7 +1,8 @@
 {
   "name": "event-model-frontend-websocket",
   "private": true,
-  "version": "0.0.0.2",
+  "version": "0.0.0.3",
+  "description": "Проверка работы websocket + js.canvas",
   "type": "module",
   "scripts": {
     "dev": "vite",
