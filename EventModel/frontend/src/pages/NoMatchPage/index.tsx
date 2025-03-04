@@ -3,7 +3,7 @@ import { MainContent } from '@/style/style.tsx';
 import { useTranslation } from 'react-i18next';
 
 const NoMatchPage: React.FC = () => {
-  const [t] = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <MainContent>

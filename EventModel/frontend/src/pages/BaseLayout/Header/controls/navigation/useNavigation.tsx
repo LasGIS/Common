@@ -9,7 +9,6 @@ interface Props {
 }
 
 const useNavigation = ({ showAboutModal }: Props) => {
-  // const [t] = useTranslation();
   const navigate = useNavigate();
   const items: ItemType[] = [
     {

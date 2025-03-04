@@ -1,0 +1,310 @@
+Subject: [PATCH] EventModel: перевел на Single Page Application (<RouteProvider>)
+---
+Index: frontend/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/package.json b/frontend/package.json
+--- a/frontend/package.json	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/package.json	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -1,8 +1,7 @@
+ {
+   "name": "event-model-frontend-websocket",
+   "private": true,
+-  "version": "0.0.1.0",
+-  "description": "Проверка работы websocket + js.canvas",
++  "version": "0.0.0.2",
+   "type": "module",
+   "scripts": {
+     "dev": "vite",
+@@ -22,6 +21,7 @@
+     "react-dom": "^18.3.1",
+     "react-i18next": "^14.0.5",
+     "react-redux": "^9.1.2",
++    "react-router-dom": "^7.0.2",
+     "styled-components": "^6.1.13"
+   },
+   "devDependencies": {
+Index: frontend/src/App.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/App.tsx b/frontend/src/App.tsx
+--- a/frontend/src/App.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/src/App.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -1,9 +1,10 @@
+ import { useEffect } from 'react';
+ import store from '@/redux';
+ import { Provider } from 'react-redux';
++import { RouterProvider } from 'react-router-dom';
+ import './App.scss';
++import routerConfig from '@/router/Router.tsx';
+ import Providers from '@components/Providers.tsx';
+-import BaseLayout from '@pages/Layout';
+ 
+ function App() {
+   useEffect(() => {
+@@ -13,7 +14,7 @@
+   return (
+     <Provider store={store}>
+       <Providers>
+-        <BaseLayout />
++        <RouterProvider router={routerConfig} />
+       </Providers>
+     </Provider>
+   );
+Index: frontend/src/components/Providers.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/components/Providers.tsx b/frontend/src/components/Providers.tsx
+--- a/frontend/src/components/Providers.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/src/components/Providers.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -2,15 +2,10 @@
+ import React from 'react';
+ import { I18nextProvider } from 'react-i18next';
+ import i18nInstance, { useLanguageDetector } from '@/i18n';
+-import RouteProvider from '@/router/RouteProvider.tsx';
+ 
+ const Providers: React.FC<PropsWithChildren> = ({ children }) => {
+   useLanguageDetector(i18nInstance);
+-  return (
+-    <I18nextProvider i18n={i18nInstance}>
+-      <RouteProvider>{children}</RouteProvider>
+-    </I18nextProvider>
+-  );
++  return <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>;
+ };
+ 
+ export default Providers;
+Index: frontend/src/pages/Layout/Header/controls/NavigationButtonsControl.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/pages/Layout/Header/controls/NavigationButtonsControl.tsx b/frontend/src/pages/Layout/Header/controls/NavigationButtonsControl.tsx
+--- a/frontend/src/pages/Layout/Header/controls/NavigationButtonsControl.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/src/pages/Layout/Header/controls/NavigationButtonsControl.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -5,23 +5,23 @@
+ import { ReactComponent as AboutIcon } from '@/assets/header/search.svg';
+ import { useTranslation } from 'react-i18next';
+ import { ButtonToolbar } from '../styles.tsx';
++import { useNavigate } from 'react-router-dom';
+ import { StyledTooltip } from '@pages/Layout/Header/components/StyledTooltip.tsx';
+-import { useRoute, RouteType } from '@/router/RouteProvider.tsx';
+ 
+ const NavigationButtonsControl = () => {
+   const [t] = useTranslation();
+-  const { setRoute } = useRoute();
++  const navigate = useNavigate();
+ 
+   return (
+     <Space style={{ gap: 4 }}>
+       <StyledTooltip title={t('header.menu.main')}>
+-        <ButtonToolbar type="text" icon={<HomeIcon />} onClick={() => setRoute(RouteType.MAIN_PAGE)} />
++        <ButtonToolbar type="text" icon={<HomeIcon />} onClick={() => navigate('/')} />
+       </StyledTooltip>
+       <StyledTooltip title={t('header.menu.demo')}>
+-        <ButtonToolbar type="text" icon={<DemoIcon />} onClick={() => setRoute(RouteType.DEMO_PAGE)} />
++        <ButtonToolbar type="text" icon={<DemoIcon />} onClick={() => navigate('/demo')} />
+       </StyledTooltip>
+       <StyledTooltip title={t('header.menu.about')}>
+-        <ButtonToolbar type="text" icon={<AboutIcon />} onClick={() => setRoute(RouteType.NO_MATCH_PAGE)} />
++        <ButtonToolbar type="text" icon={<AboutIcon />} onClick={() => navigate('/about')} />
+       </StyledTooltip>
+     </Space>
+   );
+Index: frontend/src/pages/Layout/Header/controls/navigation/Logo.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/pages/Layout/Header/controls/navigation/Logo.tsx b/frontend/src/pages/Layout/Header/controls/navigation/Logo.tsx
+--- a/frontend/src/pages/Layout/Header/controls/navigation/Logo.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/src/pages/Layout/Header/controls/navigation/Logo.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -3,7 +3,7 @@
+ import { ReactComponent as LogoSvg } from '@/assets/logo/Logo.svg';
+ import { ReactComponent as NameLogoSvg } from '@/assets/logo/EventModel.svg';
+ import { ReactComponent as ChevronSvg } from '@/assets/logo/Chevron.svg';
+-import { RouteType, useRoute } from '@/router/RouteProvider.tsx';
++import { useNavigate } from 'react-router-dom';
+ 
+ const StyledChevronSvg = styled(ChevronSvg)`
+   color: #1c4682;
+@@ -20,10 +20,10 @@
+ `;
+ 
+ export const Logo = () => {
+-  const { setRoute } = useRoute();
++  const navigate = useNavigate();
+ 
+   return (
+-    <StyledSpace onClick={() => setRoute(RouteType.MAIN_PAGE)}>
++    <StyledSpace onClick={() => navigate('/')}>
+       <NameLogoSvg />
+       <StyledLogoSvg />
+       <StyledChevronSvg />
+Index: frontend/src/pages/Layout/Header/controls/navigation/useNavigation.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/pages/Layout/Header/controls/navigation/useNavigation.tsx b/frontend/src/pages/Layout/Header/controls/navigation/useNavigation.tsx
+--- a/frontend/src/pages/Layout/Header/controls/navigation/useNavigation.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/src/pages/Layout/Header/controls/navigation/useNavigation.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -1,7 +1,7 @@
+ import React, { useState } from 'react';
+ import { MenuProps } from 'antd/es/menu/menu';
+ import { Translation } from 'react-i18next';
+-import { RouteType, useRoute } from '@/router/RouteProvider.tsx';
++import { useNavigate } from 'react-router-dom';
+ import type { ItemType } from 'antd/es/menu/interface';
+ 
+ interface Props {
+@@ -9,18 +9,19 @@
+ }
+ 
+ const useNavigation = ({ showAboutModal }: Props) => {
+-  const { setRoute } = useRoute();
++  // const [t] = useTranslation();
++  const navigate = useNavigate();
+   const items: ItemType[] = [
+     {
+       key: 'main',
+       label: <Translation>{(t) => t('header.menu.main')}</Translation>,
+-      onClick: () => setRoute(RouteType.MAIN_PAGE),
++      onClick: () => navigate('/'),
+       disabled: false,
+     },
+     {
+       key: 'demo',
+       label: <Translation>{(t) => t('header.menu.demo')}</Translation>,
+-      onClick: () => setRoute(RouteType.DEMO_PAGE),
++      onClick: () => navigate('/demo'),
+       disabled: false,
+     },
+     {
+Index: frontend/src/pages/Layout/index.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/pages/Layout/index.tsx b/frontend/src/pages/Layout/index.tsx
+--- a/frontend/src/pages/Layout/index.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ b/frontend/src/pages/Layout/index.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -2,33 +2,17 @@
+ import Header from '@pages/Layout/Header';
+ import Footer from '@pages/Layout/Footer';
+ import { createGlobalStyle } from 'styled-components';
+-import { RouteType, useRoute } from '@/router/RouteProvider.tsx';
+-import MainPage from '@pages/MainPage';
+-import DemoPage from '@pages/DemoPage';
+-import NoMatchPage from '@pages/NoMatchPage';
++import { Outlet } from 'react-router-dom';
+ 
+ const GlobalStyle = createGlobalStyle`
+ `;
+ 
+ const BaseLayout: React.FC = () => {
+-  const { route } = useRoute();
+-
+-  const toRoute = () => {
+-    switch (route) {
+-      case RouteType.MAIN_PAGE:
+-        return <MainPage />;
+-      case RouteType.DEMO_PAGE:
+-        return <DemoPage />;
+-      case RouteType.NO_MATCH_PAGE:
+-        return <NoMatchPage />;
+-    }
+-  };
+-
+   return (
+     <>
+       <GlobalStyle />
+       <Header />
+-      {toRoute()}
++      <Outlet />
+       <Footer />
+     </>
+   );
+Index: frontend/src/router/RouteProvider.tsx
+===================================================================
+diff --git a/frontend/src/router/RouteProvider.tsx b/frontend/src/router/RouteProvider.tsx
+deleted file mode 100644
+--- a/frontend/src/router/RouteProvider.tsx	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
++++ /dev/null	(revision 33529e50a89d169b746f75676ea34ea5bccb7bc5)
+@@ -1,32 +0,0 @@
+-import React, { PropsWithChildren, useState } from 'react';
+-
+-enum RouteType {
+-  MAIN_PAGE = 'MainPage',
+-  DEMO_PAGE = 'DemoPage',
+-  NO_MATCH_PAGE = 'NoMatchPage',
+-}
+-
+-interface RouteContextType {
+-  route: RouteType;
+-  setRoute: (route: RouteType) => void;
+-}
+-
+-const RouteContext = React.createContext<RouteContextType>(null!);
+-
+-const RouteProvider: React.FC<PropsWithChildren> = ({ children }) => {
+-  const [route, setRoute] = useState<RouteType>(RouteType.MAIN_PAGE);
+-  return (
+-    <RouteContext.Provider
+-      value={{
+-        route,
+-        setRoute,
+-      }}
+-    >
+-      {children}
+-    </RouteContext.Provider>
+-  );
+-};
+-
+-export const useRoute = () => React.useContext(RouteContext);
+-export { RouteType };
+-export default RouteProvider;
+Index: frontend/src/router/Router.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/router/Router.tsx b/frontend/src/router/Router.tsx
+new file mode 100644
+--- /dev/null	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
++++ b/frontend/src/router/Router.tsx	(revision 05dfce0258cdb2abb9c8ff9b58fa724a41af9b04)
+@@ -0,0 +1,28 @@
++import { createBrowserRouter } from 'react-router-dom';
++import MainPage from '@pages/MainPage';
++import DemoPage from '@pages/DemoPage';
++import BaseLayout from '@pages/Layout';
++import NoMatchPage from '@pages/NoMatchPage';
++
++const routerConfig = createBrowserRouter([
++  {
++    path: '/',
++    element: <BaseLayout />,
++    children: [
++      {
++        index: true,
++        element: <MainPage />,
++      },
++      {
++        path: '/demo',
++        element: <DemoPage />,
++      },
++      {
++        path: '*',
++        element: <NoMatchPage />,
++      },
++    ],
++  },
++]);
++
++export default routerConfig;

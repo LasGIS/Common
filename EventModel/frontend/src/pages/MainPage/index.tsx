@@ -1,6 +1,8 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useCanvas from '@/hooks/canvas/useCanvas.ts';
+import UseDrawObjects from '@/hooks/canvas/useDrawObjects.ts';
+import UseBroadcastChannel from '@pages/MainPage/UseBroadcastChannel.ts';
 
 const CanvasWrapper = styled.div`
   width: 100vw;
@@ -9,12 +11,14 @@ const CanvasWrapper = styled.div`
 `;
 
 const MainPage: React.FC = () => {
-  const canvasContainerRef = useRef<HTMLCanvasElement | null>(null);
-  useCanvas(canvasContainerRef);
+  const { containerRef, canvas } = useCanvas();
+  console.log(`canvas: ${canvas?.width} x ${canvas?.height}`);
 
   return (
     <CanvasWrapper>
-      <canvas ref={canvasContainerRef} id="canvas" width={3000} height={1500}></canvas>
+      <canvas ref={containerRef}></canvas>
+      {canvas && <UseDrawObjects canvas={canvas} />}
+      <UseBroadcastChannel />
     </CanvasWrapper>
   );
 };
