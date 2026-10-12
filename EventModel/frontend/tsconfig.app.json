@@ -21,21 +21,11 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "./src/*",
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@types/*": [
-        "src/@types/*"
-      ],
-      "@public/*": [
-        "public/*"
-      ]
+      "@/*": ["./src/*"],
+      "@pages/*": ["src/pages/*"],
+      "@components/*": ["src/components/*"],
+      "@types/*": ["src/@types/*"],
+      "@public/*": ["public/*"]
     },
     /* Linting */
     "strict": true,
@@ -45,5 +35,5 @@
     "allowSyntheticDefaultImports": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "public"]
 }

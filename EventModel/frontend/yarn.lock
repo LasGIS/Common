@@ -1489,12 +1489,40 @@
     "@babel/runtime" "^7.10.1"
     rc-util "^5.27.0"
 
+"@rc-component/dropdown@~1.0.0", "@rc-component/dropdown@~1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@rc-component/dropdown/-/dropdown-1.0.3.tgz"
+  integrity sha512-YTST/N6kpqpDz3IMuM/PSSZnrDpSOA6dgHv12gPA90ZTSLv2CoqkZ0+9NtwTY6BeO7dstPblSic2QJg7dSFy/g==
+  dependencies:
+    "@rc-component/trigger" "^3.0.0"
+    "@rc-component/util" "^1.11.1"
+    clsx "^2.1.1"
+
+"@rc-component/menu@~1.5.0":
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/@rc-component/menu/-/menu-1.5.0.tgz"
+  integrity sha512-RjvzPsZkwVEg3xu+/jDDqDeUCBJAnWylONFlGeQgg5enlNAnlpybqhaMGE/UPEIvr6hL90PGhjFBguJqj0Qb2Q==
+  dependencies:
+    "@rc-component/motion" "^1.1.4"
+    "@rc-component/overflow" "^1.0.0"
+    "@rc-component/trigger" "^3.0.0"
+    "@rc-component/util" "^1.11.1"
+    clsx "^2.1.1"
+
 "@rc-component/mini-decimal@^1.0.1":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@rc-component/mini-decimal/-/mini-decimal-1.1.0.tgz"
   integrity sha512-jS4E7T9Li2GuYwI6PyiVXmxTiM6b07rlD9Ge8uGZSCz3WlzcG5ZK7g5bbuKNeZ9pgUuPK/5guV781ujdVpm4HQ==
   dependencies:
     "@babel/runtime" "^7.18.0"
+
+"@rc-component/motion@^1.1.3", "@rc-component/motion@^1.1.4", "@rc-component/motion@^1.3.3":
+  version "1.3.3"
+  resolved "https://registry.npmjs.org/@rc-component/motion/-/motion-1.3.3.tgz"
+  integrity sha512-Xh3IszxvlSv3/PLYFyC2UZi9LNB83yOnkB/LNmRzaypZLvkhqUIPS7MQpGZcCMWrNsXV2p6YTSWbSGvFpEle9A==
+  dependencies:
+    "@rc-component/util" "^1.11.0"
+    clsx "^2.1.1"
 
 "@rc-component/mutate-observer@^1.1.0":
   version "1.1.0"
@@ -1505,6 +1533,16 @@
     classnames "^2.3.2"
     rc-util "^5.24.4"
 
+"@rc-component/overflow@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@rc-component/overflow/-/overflow-1.0.1.tgz"
+  integrity sha512-syfmgAABaHCnCDzPwHZ/2tuvIcpOO3jefYZMmfkN+pmo8HKTzsfhS57vxo4ksPdN0By+uWVJhJWNFozNBxi2eA==
+  dependencies:
+    "@babel/runtime" "^7.11.1"
+    "@rc-component/resize-observer" "^1.0.1"
+    "@rc-component/util" "^1.4.0"
+    clsx "^2.1.1"
+
 "@rc-component/portal@^1.0.0-8", "@rc-component/portal@^1.0.0-9", "@rc-component/portal@^1.0.2", "@rc-component/portal@^1.1.0", "@rc-component/portal@^1.1.1":
   version "1.1.2"
   resolved "https://registry.npmjs.org/@rc-component/portal/-/portal-1.1.2.tgz"
@@ -1514,6 +1552,14 @@
     classnames "^2.3.2"
     rc-util "^5.24.4"
 
+"@rc-component/portal@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/@rc-component/portal/-/portal-2.2.1.tgz"
+  integrity sha512-ck+r1kW/JSv0wxPji3KN2ss9K6Z0qqwusw/mf/0JobXhZ8hC2ejZwCJObW/SvDi0uhA0VzmCnx0CaCci95tcmA==
+  dependencies:
+    "@rc-component/util" "^1.11.0"
+    clsx "^2.1.1"
+
 "@rc-component/qrcode@~1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@rc-component/qrcode/-/qrcode-1.0.0.tgz"
@@ -1522,6 +1568,25 @@
     "@babel/runtime" "^7.24.7"
     classnames "^2.3.2"
     rc-util "^5.38.0"
+
+"@rc-component/resize-observer@^1.0.0", "@rc-component/resize-observer@^1.0.1", "@rc-component/resize-observer@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/@rc-component/resize-observer/-/resize-observer-1.1.2.tgz"
+  integrity sha512-t/Bb0W8uvL4PYKAB3YcChC+DlHh0Wt5kM7q/J+0qpVEUMLe7Hk5zuvc9km0hMnTFPSx5Z7Wu/fzCLN6erVLE8Q==
+  dependencies:
+    "@rc-component/util" "^1.2.0"
+
+"@rc-component/tabs@~1.13.0":
+  version "1.13.0"
+  resolved "https://registry.npmjs.org/@rc-component/tabs/-/tabs-1.13.0.tgz"
+  integrity sha512-3FXr+9ZII8tFLWuDWrgjRaxZd2mazkKJAGRFEfVmp4r1qnBglOlxQ78l54Td1aj6/iFaaEReKSAF2HToztU5uw==
+  dependencies:
+    "@rc-component/dropdown" "~1.0.0"
+    "@rc-component/menu" "~1.5.0"
+    "@rc-component/motion" "^1.1.3"
+    "@rc-component/resize-observer" "^1.0.0"
+    "@rc-component/util" "^1.11.1"
+    clsx "^2.1.1"
 
 "@rc-component/tour@~1.15.1":
   version "1.15.1"
@@ -1545,6 +1610,25 @@
     rc-motion "^2.0.0"
     rc-resize-observer "^1.3.1"
     rc-util "^5.44.0"
+
+"@rc-component/trigger@^3.0.0":
+  version "3.10.1"
+  resolved "https://registry.npmjs.org/@rc-component/trigger/-/trigger-3.10.1.tgz"
+  integrity sha512-mXlDN0IXdtV8Yqqm8195ECCyrbmfvvfKvwVvSlH0+qvKD6BUF8gRhEjSy0FOcD1+CcDRHgTiX99LoxfQrmh3Cw==
+  dependencies:
+    "@rc-component/motion" "^1.3.3"
+    "@rc-component/portal" "^2.2.1"
+    "@rc-component/resize-observer" "^1.1.2"
+    "@rc-component/util" "^1.11.1"
+    clsx "^2.1.1"
+
+"@rc-component/util@^1.11.0", "@rc-component/util@^1.11.1", "@rc-component/util@^1.2.0", "@rc-component/util@^1.4.0":
+  version "1.13.0"
+  resolved "https://registry.npmjs.org/@rc-component/util/-/util-1.13.0.tgz"
+  integrity sha512-IXf2zBfZrbQGT+G8LxnoICDBGnMHIPIiq5HCRn3EDfKUx28x1rnbZBj46ULJf4sM8ImTG1SepqfNBdxZziqQ4w==
+  dependencies:
+    is-mobile "^5.0.0"
+    react-is "^19.2.7"
 
 "@react-hook/latest@^1.0.2":
   version "1.0.3"
@@ -2393,6 +2477,11 @@ boolbase@^1.0.0:
   resolved "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
+bowser@^2.11.0:
+  version "2.14.1"
+  resolved "https://registry.npmjs.org/bowser/-/bowser-2.14.1.tgz"
+  integrity sha512-tzPjzCxygAKWFOJP011oxFHs57HzIhOEracIgAePE4pqB3LikALKnSzUyU4MGs9/iCEUuHlAJTjTc5M+u7YEGg==
+
 brace-expansion@^1.1.7:
   version "1.1.14"
   resolved "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.14.tgz"
@@ -2558,6 +2647,11 @@ cliui@^8.0.1:
     string-width "^4.2.0"
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
+
+clsx@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz"
+  integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
 co@^4.6.0:
   version "4.6.0"
@@ -3783,6 +3877,11 @@ is-map@^2.0.3:
   resolved "https://registry.npmjs.org/is-map/-/is-map-2.0.3.tgz"
   integrity sha512-1Qed0/Hr2m+YqxnM09CjA2d/i6YZNfF6R2oRAOj36eUdS6qIV/huPJNSEpKbupewFs+ZsJlxsjjPbc0/afW6Lw==
 
+is-mobile@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/is-mobile/-/is-mobile-5.0.0.tgz"
+  integrity sha512-Tz/yndySvLAEXh+Uk8liFCxOwVH6YutuR74utvOcu7I9Di+DwM0mtdPVZNaVvvBUM2OXxne/NhOs1zAO7riusQ==
+
 is-negative-zero@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npmjs.org/is-negative-zero/-/is-negative-zero-2.0.3.tgz"
@@ -4445,6 +4544,11 @@ lodash.merge@^4.6.2:
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
+lodash@^4.17.20, lodash@^4.17.21:
+  version "4.18.1"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.18.1.tgz"
+  integrity sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==
+
 loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
@@ -4957,6 +5061,18 @@ rc-dialog@~9.6.0:
     rc-motion "^2.3.0"
     rc-util "^5.21.0"
 
+rc-dock@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/rc-dock/-/rc-dock-4.1.0.tgz"
+  integrity sha512-LbffHQZ/OIcw6dg9OT+SKNWno7lbSbZNP595C83G3gQUOsFrv4wKoOtFCMAtp0gZL1irUKZ333TljeXNPLc7fg==
+  dependencies:
+    "@rc-component/dropdown" "~1.0.3"
+    "@rc-component/menu" "~1.5.0"
+    "@rc-component/tabs" "~1.13.0"
+    classnames "^2.5.1"
+    lodash "^4.17.21"
+    rc-new-window "^0.1.13"
+
 rc-drawer@~7.3.0:
   version "7.3.0"
   resolved "https://registry.npmjs.org/rc-drawer/-/rc-drawer-7.3.0.tgz"
@@ -5052,6 +5168,16 @@ rc-motion@^2.0.0, rc-motion@^2.0.1, rc-motion@^2.3.0, rc-motion@^2.3.4, rc-motio
     "@babel/runtime" "^7.11.1"
     classnames "^2.2.1"
     rc-util "^5.44.0"
+
+rc-new-window@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.npmjs.org/rc-new-window/-/rc-new-window-0.1.13.tgz"
+  integrity sha512-KqANLQVfgNcfs+R4ntpzV5ELyqXMlAUimdSfFHapk2VwsoZX3y+BK2RjFBFb7q865yqAshP87g0PbIPqblKVTg==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    bowser "^2.11.0"
+    classnames "2.x"
+    lodash "^4.17.20"
 
 rc-notification@~5.6.4:
   version "5.6.4"
@@ -5267,7 +5393,7 @@ rc-virtual-list@^3.14.2, rc-virtual-list@^3.5.1, rc-virtual-list@^3.5.2:
     rc-resize-observer "^1.0.0"
     rc-util "^5.36.0"
 
-react-dom@*, react-dom@^19.0.0, "react-dom@>= 16.8.0", react-dom@>=16.0.0, react-dom@>=16.11.0, react-dom@>=16.9.0, react-dom@>=18:
+react-dom@*, react-dom@^19.0.0, "react-dom@>= 16.8.0", react-dom@>=16.0.0, react-dom@>=16.11.0, react-dom@>=16.9.0, react-dom@>=18, react-dom@>=18.0.0:
   version "19.1.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-19.1.1.tgz"
   integrity sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==
@@ -5297,6 +5423,11 @@ react-is@^18.2.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
+react-is@^19.2.7:
+  version "19.3.0"
+  resolved "https://registry.npmjs.org/react-is/-/react-is-19.3.0.tgz"
+  integrity sha512-UpMYezM4v5/18F28aC66AEsjXIgE02kyEMH6yLdgLXu/UTfa1Ntwck/nNLrbqJsEXW7gPb0coNO9FQse9WTovA==
+
 "react-redux@^7.2.1 || ^8.1.3 || ^9.0.0", react-redux@^9.2.0:
   version "9.2.0"
   resolved "https://registry.npmjs.org/react-redux/-/react-redux-9.2.0.tgz"
@@ -5325,7 +5456,7 @@ react-router@7.15.1:
     cookie "^1.0.1"
     set-cookie-parser "^2.6.0"
 
-react@*, "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.9.0 || ^17.0.0 || ^18 || ^19", "react@^18.0 || ^19", react@^19.0.0, react@^19.1.1, "react@>= 16.8.0", react@>=16.0.0, react@>=16.11.0, react@>=16.8, react@>=16.9.0, react@>=18:
+react@*, "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.9.0 || ^17.0.0 || ^18 || ^19", "react@^18.0 || ^19", react@^19.0.0, react@^19.1.1, "react@>= 16.8.0", react@>=16.0.0, react@>=16.11.0, react@>=16.8, react@>=16.9.0, react@>=18, react@>=18.0.0:
   version "19.1.1"
   resolved "https://registry.npmjs.org/react/-/react-19.1.1.tgz"
   integrity sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==

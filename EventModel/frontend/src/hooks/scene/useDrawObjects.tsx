@@ -31,7 +31,7 @@ const useDrawObjects = ({ scene }: Prop) => {
     canvas.draw();
   }, [objects]);
 
-  const draw = (ctx: CanvasRenderingContext2D, _, mousePnt?: Point) => {
+  const draw = (ctx: CanvasRenderingContext2D, _: unknown, mousePnt?: Point) => {
     Object.values(objects).forEach((geo: GeoObject) => {
       ctx.beginPath();
       geo.polygon.forEach((pnt, index) => {

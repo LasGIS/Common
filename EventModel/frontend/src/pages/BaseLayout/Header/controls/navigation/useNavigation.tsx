@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MenuProps } from 'antd/es/menu/menu';
 import { Translation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,12 @@ const useNavigation = ({ showAboutModal }: Props) => {
       key: 'demo',
       label: <Translation>{(t) => t('header.menu.demo')}</Translation>,
       onClick: () => navigate('/demo'),
+      disabled: false,
+    },
+    {
+      key: 'demo',
+      label: <Translation>{(t) => t('header.menu.rc-dock')}</Translation>,
+      onClick: () => navigate('/rc-dock'),
       disabled: false,
     },
     {

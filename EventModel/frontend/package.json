@@ -19,6 +19,7 @@
     "antd": "^5.23.1",
     "i18next": "^26.2.0",
     "i18next-http-backend": "^3.0.1",
+    "rc-dock": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.0",

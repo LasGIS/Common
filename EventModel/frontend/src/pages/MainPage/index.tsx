@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import UseDrawObjects from '@/hooks/scene/useDrawObjects.ts';
-import UseBroadcastChannel from '@pages/MainPage/UseBroadcastChannel.ts';
-import useScene from '@/hooks/scene/useScene.ts';
+import UseDrawObjects from '@/hooks/scene/useDrawObjects';
+import UseBroadcastChannel from '@/pages/MainPage/UseBroadcastChannel';
+import useScene from '@/hooks/scene/useScene';
 
 const CanvasWrapper = styled.div`
   width: 100vw;

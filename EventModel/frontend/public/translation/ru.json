@@ -17,7 +17,8 @@
       "main": "Главная",
       "demo": "проверка WebSocket",
       "external": "Внешние ссылки",
-      "about": "О программе"
+      "about": "О программе",
+      "rc-dock": "Проверка rc-dock"
     },
     "lang": {
       "ru": "RU",

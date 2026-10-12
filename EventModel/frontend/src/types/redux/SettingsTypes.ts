@@ -1,5 +1,6 @@
-interface SettingsState {
-  lang?: LangType;
+enum AlgorithmType {
+  DARK = 'darkAlgorithm',
+  DEFAULT = 'defaultAlgorithm',
 }
 
 enum LangType {
@@ -9,4 +10,11 @@ enum LangType {
 
 const SUPPORTED_LANGUAGES = [LangType.RU, LangType.EN];
 
-export { SettingsState, LangType, SUPPORTED_LANGUAGES };
+interface SettingsState {
+  lang?: LangType;
+  algorithm: AlgorithmType;
+}
+
+export type { SettingsState };
+
+export { AlgorithmType, LangType, SUPPORTED_LANGUAGES };

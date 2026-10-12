@@ -17,7 +17,8 @@
       "main": "Home",
       "demo": "test WebSocket",
       "external": "External links" ,
-      "about": "About"
+      "about": "About",
+      "rc-dock": "rcDock"
     },
     "lang": {
       "ru": "RU",
