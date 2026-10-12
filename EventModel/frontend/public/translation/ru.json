@@ -18,6 +18,7 @@
       "demo": "проверка WebSocket",
       "external": "Внешние ссылки",
       "about": "О программе",
+      "adv-save-layout": "Расширенная Компоновка Сохранения",
       "rc-dock": "Проверка rc-dock"
     },
     "lang": {

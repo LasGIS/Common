@@ -24,6 +24,12 @@ const useNavigation = ({ showAboutModal }: Props) => {
       disabled: false,
     },
     {
+      key: 'adv-save-layout',
+      label: <Translation>{(t) => t('header.menu.adv-save-layout')}</Translation>,
+      onClick: () => navigate('/adv-save-layout'),
+      disabled: false,
+    },
+    {
       key: 'demo',
       label: <Translation>{(t) => t('header.menu.rc-dock')}</Translation>,
       onClick: () => navigate('/rc-dock'),

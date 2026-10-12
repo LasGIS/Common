@@ -18,6 +18,7 @@
       "demo": "test WebSocket",
       "external": "External links" ,
       "about": "About",
+      "adv-save-layout": "Advanced save layout",
       "rc-dock": "rcDock"
     },
     "lang": {

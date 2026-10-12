@@ -119,7 +119,7 @@ const RcDockPage: React.FC = () => {
 
   return (
     <MainContent>
-      <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
         {/* Панель управления с кнопкой */}
         <div style={{ padding: 10, background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
           <button onClick={addNewTab} style={{ padding: '8px 16px', cursor: 'pointer' }}>
