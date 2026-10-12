@@ -44,7 +44,7 @@ const tab0 = {
   content: <div>This tab will be added back to main panel every time you load layout.</div>,
 };
 
-const Demo: React.FC = () => {
+const AdvancedSaveLayout: React.FC = () => {
   const dockLayoutRef = useRef<DockLayout>(null);
 
   const defaultLayout: LayoutData = {
@@ -153,4 +153,4 @@ const Demo: React.FC = () => {
   );
 };
 
-export default Demo;
+export default AdvancedSaveLayout;
