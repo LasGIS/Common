@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import { MainContent } from '@/style/style.tsx';
 import { BoxBase, DockLayout, LayoutBase, PanelBase, TabBase, TabData } from 'rc-dock';
 import 'rc-dock/dist/rc-dock.css';
-import { tabsRegistry } from './components/TabsRegistry';
+import { removeCyclicReferences } from './utils';
+// import { tabsRegistry } from './components/TabsRegistry';
 
 // Ключ для хранения данных в LocalStorage
 const LOCAL_STORAGE_KEY = 'my-dock-layout';
@@ -53,12 +54,23 @@ const RcDockPage: React.FC = () => {
       return data as TabData;
     }
     return (
+      (data.id && {
+        id: data.id,
+        title: data.id,
+        content: componentMap[data.id],
+      }) || {
+        id: data.id,
+        title: data.id,
+        content: <div style={{ padding: 15 }}>Динамический контент {data.id}</div>,
+      }
+    );
+    /* return (
       tabsRegistry.initializeTab(data, {}) ?? {
         id: data.id,
         title: 'Unknown',
         content: <div>Unknown tab with id &quot;{data.id}&quot;</div>,
       }
-    );
+    );*/
   };
 
   // Инициализируем состояние из LocalStorage
@@ -90,12 +102,7 @@ const RcDockPage: React.FC = () => {
     setLayout(newLayout);
 
     // Перед сохранением очищаем свойства content, так как JSX не сериализуется в JSON
-    const cleanLayout = JSON.parse(
-      JSON.stringify(newLayout, (key, value) => {
-        if (key === 'content') return undefined;
-        return value;
-      })
-    );
+    const cleanLayout = removeCyclicReferences(newLayout);
 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cleanLayout));
   };

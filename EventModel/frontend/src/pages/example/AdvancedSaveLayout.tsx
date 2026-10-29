@@ -33,9 +33,7 @@ class InputTab extends React.PureComponent<InputTabProps> {
     );
   }
 
-  static create(tabData: TabDataInputValue) {
-    return <InputTab tabData={tabData} />;
-  }
+  static create = (tabData: TabDataInputValue) => <InputTab tabData={tabData} />;
 }
 
 const tab0 = {
@@ -128,7 +126,7 @@ const AdvancedSaveLayout: React.FC = () => {
         saveTab={saveTab}
         loadTab={loadTab}
         afterPanelLoaded={afterPanelLoaded}
-        style={{ position: 'absolute', left: 10, top: 60, right: 10, bottom: 10 }}
+        style={{ position: 'absolute', left: 10, top: 160, right: 10, bottom: 10 }}
       />
       <div className="top-panel">
         <button
