@@ -25,5 +25,22 @@
       "ru": "RU",
       "en": "EN"
     }
+  },
+  "component": {
+    "header": {
+      "model": {
+        "start": "Model Start",
+        "modeling": {
+          "tables": "Tables",
+          "objects": "Objects",
+          "scheme": "Scheme"
+        },
+        "reports": "Reports",
+        "results": "Scheme",
+        "results-objects": "Objects",
+        "report": "Running log",
+        "statistics": "Model Statistics"
+      }
+    }
   }
 }

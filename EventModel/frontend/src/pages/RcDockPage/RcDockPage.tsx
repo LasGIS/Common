@@ -1,35 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { MainContent } from '@/style/style.tsx';
+import { RcDockContent } from './style';
 import { BoxBase, DockLayout, LayoutBase, PanelBase, TabBase, TabData } from 'rc-dock';
 import 'rc-dock/dist/rc-dock.css';
 import { removeCyclicReferences } from './utils';
-// import { tabsRegistry } from './components/TabsRegistry';
+import { tabsRegistry } from './components/TabsRegistry';
+import { modelingLayoutData } from './context/dockConst';
 
 // Ключ для хранения данных в LocalStorage
 const LOCAL_STORAGE_KEY = 'my-dock-layout';
-
-// 1. Начальная раскладка по умолчанию (если в LocalStorage ничего нет)
-const initialLayout: LayoutBase = {
-  dockbox: {
-    mode: 'horizontal',
-    children: [
-      {
-        id: 'left-panel',
-        tabs: [{ id: 'tab-1', title: 'Главная', content: <div style={{ padding: 15 }}>Основной контент</div> }],
-      },
-      {
-        id: 'right-panel',
-        tabs: [{ id: 'tab-2', title: 'Логи', content: <div style={{ padding: 15 }}>Консоль разработчика</div> }],
-      },
-    ],
-  },
-};
-
-// Карта компонентов для восстановления контента после загрузки из JSON
-const componentMap: Record<string, React.ReactElement> = {
-  'tab-1': <div style={{ padding: 15 }}>Основной контент</div>,
-  'tab-2': <div style={{ padding: 15 }}>Консоль разработчика</div>,
-};
 
 // Функция для безопасной загрузки раскладки
 const loadLayout = (): LayoutBase => {
@@ -43,7 +21,7 @@ const loadLayout = (): LayoutBase => {
       console.error('Ошибка парсинга layout из LocalStorage', e);
     }
   }
-  return initialLayout;
+  return modelingLayoutData;
 };
 
 const RcDockPage: React.FC = () => {
@@ -54,23 +32,12 @@ const RcDockPage: React.FC = () => {
       return data as TabData;
     }
     return (
-      (data.id && {
-        id: data.id,
-        title: data.id,
-        content: componentMap[data.id],
-      }) || {
-        id: data.id,
-        title: data.id,
-        content: <div style={{ padding: 15 }}>Динамический контент {data.id}</div>,
-      }
-    );
-    /* return (
       tabsRegistry.initializeTab(data, {}) ?? {
         id: data.id,
         title: 'Unknown',
         content: <div>Unknown tab with id &quot;{data.id}&quot;</div>,
       }
-    );*/
+    );
   };
 
   // Инициализируем состояние из LocalStorage
@@ -81,9 +48,14 @@ const RcDockPage: React.FC = () => {
     const restoreContent = (box: BoxBase | PanelBase) => {
       if ((box as PanelBase).tabs) {
         (box as PanelBase).tabs.forEach((tab) => {
-          tab.content = (tab.id && componentMap[tab.id]) || (
-            <div style={{ padding: 15 }}>Динамический контент {tab.id}</div>
-          );
+          const data = tab.id && tabsRegistry.initializeTab(tab, {});
+          if (data) {
+            const tabData = tab as TabData;
+            tabData.title = data.title;
+            tabData.content = data.content;
+          } else {
+            tab.content = <div style={{ padding: 15 }}>Динамический контент {tab.id}</div>;
+          }
         });
       }
       if ((box as BoxBase).children) {
@@ -125,12 +97,12 @@ const RcDockPage: React.FC = () => {
   };
 
   return (
-    <MainContent>
-      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <RcDockContent>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row' }}>
         {/* Панель управления с кнопкой */}
         <div style={{ padding: 10, background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
           <button onClick={addNewTab} style={{ padding: '8px 16px', cursor: 'pointer' }}>
-            ➕ Добавить вкладку
+            ➕
           </button>
         </div>
 
@@ -140,13 +112,13 @@ const RcDockPage: React.FC = () => {
             ref={dockRef}
             layout={layout}
             onLayoutChange={handleLayoutChange}
-            style={{ position: 'absolute', left: 10, top: 10, right: 10, bottom: 10 }}
+            style={{ position: 'absolute', left: 4, top: 4, right: 4, bottom: 4 }}
             saveTab={(tabData) => tabData}
             loadTab={loadTab}
           />
         </div>
       </div>
-    </MainContent>
+    </RcDockContent>
   );
 };
 

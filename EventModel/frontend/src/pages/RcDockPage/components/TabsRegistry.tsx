@@ -1,4 +1,3 @@
-import React from 'react';
 import { Translation } from 'react-i18next';
 import { TabBase, TabData } from 'rc-dock';
 import { LayoutGroupType } from '../types/LayoutGroupType';
@@ -7,7 +6,7 @@ import ModelModelingTablesWindow from '@/components/Window/ModelModelingTablesWi
 import ModelModelingObjectsWindow from '@/components/Window/ModelModelingObjectsWindow/ModelModelingObjectsWindow';
 import ModelModelingSchemeWindow from '@/components/Window/ModelModelingSchemeWindow/ModelModelingSchemeWindow';
 import ModelStatisticsWindow from '@/components/Window/ModelStatisticsWindow';
-import ModelRunLogWindow from '@/components/Window/ModelStatisticsWindow';
+import ModelRunLogWindow from '@/components/Window/ModelRunLogWindow';
 
 export type EmptyObject = Record<string, never>;
 

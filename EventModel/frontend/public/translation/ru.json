@@ -25,5 +25,22 @@
       "ru": "RU",
       "en": "EN"
     }
+  },
+  "component": {
+    "header": {
+      "model": {
+        "start": "Начало модели",
+        "modeling": {
+          "tables": "Таблицы",
+          "objects": "Объекты",
+          "scheme": "Схема"
+        },
+        "reports": "Отчеты",
+        "results": "Схема",
+        "results-objects": "Объекты",
+        "report": "Журнал прогона",
+        "statistics": "Статистика модели"
+      }
+    }
   }
 }
