@@ -8,9 +8,11 @@ import { ReactComponent as SchemeIcon } from '@/assets/rc-dock/Scheme.svg';
 import { ReactComponent as StatisticsIcon } from '@/assets/rc-dock/Statistics.svg';
 import { ReactComponent as CodeSearchIcon } from '@/assets/rc-dock/CodeSearch.svg';
 import { ReactComponent as ReportIcon } from '@/assets/rc-dock/Report.svg';
+import { ReactComponent as AnalysisIcon } from '@/assets/rc-dock/Analysis.svg';
 import { removeCyclicReferences } from './utils';
 import { tabsRegistry } from './components/TabsRegistry';
 import { modelingLayoutData } from './context/dockConst';
+import { ComponentType, LayoutPanelType } from './types';
 
 // Ключ для хранения данных в LocalStorage
 const LOCAL_STORAGE_KEY = 'my-dock-layout';
@@ -85,6 +87,10 @@ const RcDockPage: React.FC = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cleanLayout));
   };
 
+  const restoreLocalStorage = () => {
+    setLayout(modelingLayoutData);
+  };
+
   // 3. Динамическое добавление новой вкладки
   const addNewTab = () => {
     const newTabId = `dynamic-${Date.now()}`;
@@ -102,15 +108,37 @@ const RcDockPage: React.FC = () => {
     }
   };
 
+  const addToWorkspace = (id: ComponentType) => {
+    const tabData: TabData = loadTab({ id });
+    if (dockRef.current) {
+      dockRef.current.dockMove(tabData, LayoutPanelType.WORKSPACE_PANEL, 'middle');
+    }
+  };
+
   return (
     <RcDockContent>
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row' }}>
         {/* Панель управления с кнопкой */}
         <ControlPanel>
           <RcDockButtonGroup>
-            <RcDockButton type="text" onClick={addNewTab} icon={<TableIcon />} />
-            <RcDockButton type="text" onClick={addNewTab} icon={<ObjectsIcon />} />
-            <RcDockButton type="text" onClick={addNewTab} icon={<SchemeIcon />} />
+            <RcDockButton
+              type="text"
+              onClick={() => addToWorkspace(ComponentType.MODEL_MODELING_TABLES)}
+              icon={<TableIcon />}
+            />
+            <RcDockButton
+              type="text"
+              onClick={() => addToWorkspace(ComponentType.MODEL_MODELING_OBJECTS)}
+              icon={<ObjectsIcon />}
+            />
+            <RcDockButton
+              type="text"
+              onClick={() => addToWorkspace(ComponentType.MODEL_MODELING_SCHEME)}
+              icon={<SchemeIcon />}
+            />
+          </RcDockButtonGroup>
+          <RcDockButtonGroup>
+            <RcDockButton type="text" onClick={restoreLocalStorage} icon={<AnalysisIcon />} />
           </RcDockButtonGroup>
           <RcDockButtonGroup>
             <RcDockButton type="text" onClick={addNewTab} icon={<StatisticsIcon />} />

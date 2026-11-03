@@ -61,7 +61,7 @@ export const tabsRegistry: TabsRegistry<EmptyObject> = new TabsManager<EmptyObje
   }))
   .registerTab(ComponentType.MODEL_MODELING_SCHEME, (data) => ({
     ...data,
-    closable: true,
+    closable: false,
     group: LayoutGroupType.MODEL_WORKSPACE,
     title: <Translation>{(t) => t('component.header.model.modeling.scheme')}</Translation>,
     content: <ModelModelingSchemeWindow />,
