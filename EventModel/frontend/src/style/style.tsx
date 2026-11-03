@@ -5,7 +5,6 @@ export const MainContent = styled.div`
   margin: 0 auto;
   height: calc(100vh - 88px);
   background-color: #fff;
-  border: 1px solid #e5e5e5;
 `;
 
 export const Row = styled.div`

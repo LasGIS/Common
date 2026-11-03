@@ -1,7 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { RcDockContent } from './style';
-import { BoxBase, DockLayout, LayoutBase, PanelBase, TabBase, TabData } from 'rc-dock';
 import 'rc-dock/dist/rc-dock.css';
+import React, { useState, useRef } from 'react';
+import { ControlPanel, RcDockButton, RcDockButtonGroup, RcDockContent } from './style';
+import { BoxBase, DockLayout, LayoutBase, PanelBase, TabBase, TabData } from 'rc-dock';
+import { ReactComponent as TableIcon } from '@/assets/rc-dock/Table.svg';
+import { ReactComponent as ObjectsIcon } from '@/assets/rc-dock/Objects.svg';
+import { ReactComponent as SchemeIcon } from '@/assets/rc-dock/Scheme.svg';
+import { ReactComponent as StatisticsIcon } from '@/assets/rc-dock/Statistics.svg';
+import { ReactComponent as CodeSearchIcon } from '@/assets/rc-dock/CodeSearch.svg';
+import { ReactComponent as ReportIcon } from '@/assets/rc-dock/Report.svg';
 import { removeCyclicReferences } from './utils';
 import { tabsRegistry } from './components/TabsRegistry';
 import { modelingLayoutData } from './context/dockConst';
@@ -100,11 +106,18 @@ const RcDockPage: React.FC = () => {
     <RcDockContent>
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row' }}>
         {/* Панель управления с кнопкой */}
-        <div style={{ padding: 10, background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
-          <button onClick={addNewTab} style={{ padding: '8px 16px', cursor: 'pointer' }}>
-            ➕
-          </button>
-        </div>
+        <ControlPanel>
+          <RcDockButtonGroup>
+            <RcDockButton type="text" onClick={addNewTab} icon={<TableIcon />} />
+            <RcDockButton type="text" onClick={addNewTab} icon={<ObjectsIcon />} />
+            <RcDockButton type="text" onClick={addNewTab} icon={<SchemeIcon />} />
+          </RcDockButtonGroup>
+          <RcDockButtonGroup>
+            <RcDockButton type="text" onClick={addNewTab} icon={<StatisticsIcon />} />
+            <RcDockButton type="text" onClick={addNewTab} icon={<CodeSearchIcon />} />
+            <RcDockButton type="text" onClick={addNewTab} icon={<ReportIcon />} />
+          </RcDockButtonGroup>
+        </ControlPanel>
 
         {/* Контейнер для DockLayout */}
         <div style={{ flexGrow: 1, position: 'relative' }}>
