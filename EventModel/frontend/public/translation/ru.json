@@ -39,7 +39,8 @@
         "results": "Схема",
         "results-objects": "Объекты",
         "report": "Журнал прогона",
-        "statistics": "Статистика модели"
+        "statistics": "Статистика модели",
+        "codeSearch": "Поиск кодов"
       }
     }
   }

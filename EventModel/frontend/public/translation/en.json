@@ -39,7 +39,8 @@
         "results": "Scheme",
         "results-objects": "Objects",
         "report": "Running log",
-        "statistics": "Model Statistics"
+        "statistics": "Model Statistics",
+        "codeSearch": "Code Search"
       }
     }
   }

@@ -1,15 +1,12 @@
-export type LayoutType = 'startWindow' | 'modeling' | 'reports' | 'results';
+import { BoxData, PanelData, TabData } from 'rc-dock';
 
 export enum ComponentType {
   MODEL_RUN_LOG = 'modelRunLog',
+  MODEL_CODE_SEARCH = 'modelCodeSearch',
   MODEL_STATISTICS = 'modelStatistics',
   MODEL_MODELING_TABLES = 'modelModelingTablesWindow',
   MODEL_MODELING_SCHEME = 'modelModelingSchemeWindow',
   MODEL_MODELING_OBJECTS = 'modelModelingObjectsWindow',
-}
-
-export enum FlowSheetType {
-  MODEL_CODE_SEARCH = 'modelCodeSearch',
   MODEL_SUB_SCHEME = 'modelSubScheme',
 }
 
@@ -20,3 +17,10 @@ export enum LayoutPanelType {
   MODEL_RUN_LOG_PANEL = 'modelRunLogPanel',
   MODEL_STATISTICS_PANEL = 'modelStatisticsPanel',
 }
+
+export enum LayoutGroupType {
+  MODEL_WORKSPACE = 'workspace',
+  MODEL_TOOLSBOX = 'toolsBox',
+}
+
+export type SearchResult = PanelData | TabData | BoxData | undefined;

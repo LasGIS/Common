@@ -1,12 +1,12 @@
 import { Translation } from 'react-i18next';
 import { TabBase, TabData } from 'rc-dock';
-import { LayoutGroupType } from '../types/LayoutGroupType';
-import { ComponentType } from '../types';
+import { ComponentType, LayoutGroupType } from '../types';
 import ModelModelingTablesWindow from '@/components/Window/ModelModelingTablesWindow';
 import ModelModelingObjectsWindow from '@/components/Window/ModelModelingObjectsWindow/ModelModelingObjectsWindow';
 import ModelModelingSchemeWindow from '@/components/Window/ModelModelingSchemeWindow/ModelModelingSchemeWindow';
 import ModelStatisticsWindow from '@/components/Window/ModelStatisticsWindow';
 import ModelRunLogWindow from '@/components/Window/ModelRunLogWindow';
+import ModelCodeSearchWindow from '@/components/Window/ModelCodeSearchWindow';
 
 export type EmptyObject = Record<string, never>;
 
@@ -45,6 +45,13 @@ export const tabsRegistry: TabsRegistry<EmptyObject> = new TabsManager<EmptyObje
     title: <Translation>{(t) => t('component.header.model.statistics')}</Translation>,
     content: <ModelStatisticsWindow />,
   }))
+  .registerTab(ComponentType.MODEL_CODE_SEARCH, (data) => ({
+    ...data,
+    closable: true,
+    group: LayoutGroupType.MODEL_TOOLSBOX,
+    title: <Translation>{(t) => t('component.header.model.codeSearch')}</Translation>,
+    content: <ModelCodeSearchWindow />,
+  }))
   .registerTab(ComponentType.MODEL_MODELING_TABLES, (data) => ({
     ...data,
     closable: true,
@@ -61,7 +68,7 @@ export const tabsRegistry: TabsRegistry<EmptyObject> = new TabsManager<EmptyObje
   }))
   .registerTab(ComponentType.MODEL_MODELING_SCHEME, (data) => ({
     ...data,
-    closable: false,
+    closable: true,
     group: LayoutGroupType.MODEL_WORKSPACE,
     title: <Translation>{(t) => t('component.header.model.modeling.scheme')}</Translation>,
     content: <ModelModelingSchemeWindow />,

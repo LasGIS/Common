@@ -1,7 +1,7 @@
 import 'rc-dock/dist/rc-dock.css';
 import React, { useState, useRef } from 'react';
 import { ControlPanel, RcDockButton, RcDockButtonGroup, RcDockContent } from './style';
-import { BoxBase, DockLayout, LayoutBase, PanelBase, TabBase, TabData } from 'rc-dock';
+import { BoxBase, DockLayout, LayoutBase, PanelBase, TabData } from 'rc-dock';
 import { ReactComponent as TableIcon } from '@/assets/rc-dock/Table.svg';
 import { ReactComponent as ObjectsIcon } from '@/assets/rc-dock/Objects.svg';
 import { ReactComponent as SchemeIcon } from '@/assets/rc-dock/Scheme.svg';
@@ -9,10 +9,11 @@ import { ReactComponent as StatisticsIcon } from '@/assets/rc-dock/Statistics.sv
 import { ReactComponent as CodeSearchIcon } from '@/assets/rc-dock/CodeSearch.svg';
 import { ReactComponent as ReportIcon } from '@/assets/rc-dock/Report.svg';
 import { ReactComponent as AnalysisIcon } from '@/assets/rc-dock/Analysis.svg';
+import { ComponentType } from './types';
 import { removeCyclicReferences } from './utils';
 import { tabsRegistry } from './components/TabsRegistry';
 import { modelingLayoutData } from './context/dockConst';
-import { ComponentType, LayoutPanelType } from './types';
+import useDockLayout from './hooks/useDockLayout';
 
 // Ключ для хранения данных в LocalStorage
 const LOCAL_STORAGE_KEY = 'my-dock-layout';
@@ -34,19 +35,7 @@ const loadLayout = (): LayoutBase => {
 
 const RcDockPage: React.FC = () => {
   const dockRef = useRef<DockLayout | null>(null);
-
-  const loadTab = (data: TabBase): TabData => {
-    if ('content' in data) {
-      return data as TabData;
-    }
-    return (
-      tabsRegistry.initializeTab(data, {}) ?? {
-        id: data.id,
-        title: 'Unknown',
-        content: <div>Unknown tab with id &quot;{data.id}&quot;</div>,
-      }
-    );
-  };
+  const { loadTab, addToToolsBox, addToWorkspace } = useDockLayout(dockRef);
 
   // Инициализируем состояние из LocalStorage
   const [layout, setLayout] = useState<LayoutBase>(() => {
@@ -91,30 +80,6 @@ const RcDockPage: React.FC = () => {
     setLayout(modelingLayoutData);
   };
 
-  // 3. Динамическое добавление новой вкладки
-  const addNewTab = () => {
-    const newTabId = `dynamic-${Date.now()}`;
-    const newTab = {
-      id: newTabId,
-      title: `Вкладка ${newTabId.slice(-4)}`,
-      content: <div style={{ padding: 15 }}>Это созданная кнопкой вкладка {newTabId}</div>,
-      closable: true, // Разрешаем закрывать эту вкладку
-    };
-
-    // Используем API ref от rc-dock для точечного добавления вкладки во вселенную доков
-    // Добавляем во вкладку 'left-panel' в качестве примера
-    if (dockRef.current) {
-      dockRef.current.dockMove(newTab, 'left-panel', 'middle');
-    }
-  };
-
-  const addToWorkspace = (id: ComponentType) => {
-    const tabData: TabData = loadTab({ id });
-    if (dockRef.current) {
-      dockRef.current.dockMove(tabData, LayoutPanelType.WORKSPACE_PANEL, 'middle');
-    }
-  };
-
   return (
     <RcDockContent>
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row' }}>
@@ -141,9 +106,21 @@ const RcDockPage: React.FC = () => {
             <RcDockButton type="text" onClick={restoreLocalStorage} icon={<AnalysisIcon />} />
           </RcDockButtonGroup>
           <RcDockButtonGroup>
-            <RcDockButton type="text" onClick={addNewTab} icon={<StatisticsIcon />} />
-            <RcDockButton type="text" onClick={addNewTab} icon={<CodeSearchIcon />} />
-            <RcDockButton type="text" onClick={addNewTab} icon={<ReportIcon />} />
+            <RcDockButton
+              type="text"
+              onClick={() => addToToolsBox(ComponentType.MODEL_STATISTICS)}
+              icon={<StatisticsIcon />}
+            />
+            <RcDockButton
+              type="text"
+              onClick={() => addToToolsBox(ComponentType.MODEL_CODE_SEARCH)}
+              icon={<CodeSearchIcon />}
+            />
+            <RcDockButton
+              type="text"
+              onClick={() => addToToolsBox(ComponentType.MODEL_RUN_LOG)}
+              icon={<ReportIcon />}
+            />
           </RcDockButtonGroup>
         </ControlPanel>
 

@@ -1,6 +1,5 @@
 import { LayoutBase, TabData } from 'rc-dock';
-import { ComponentType, LayoutPanelType } from '../types';
-import { LayoutGroupType } from '../types/LayoutGroupType';
+import { ComponentType, LayoutPanelType, LayoutGroupType } from '../types';
 
 export const modelingLayoutData: LayoutBase = {
   dockbox: {
