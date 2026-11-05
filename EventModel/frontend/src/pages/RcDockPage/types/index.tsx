@@ -23,4 +23,6 @@ export enum LayoutGroupType {
   MODEL_TOOLSBOX = 'toolsBox',
 }
 
-export type SearchResult = PanelData | TabData | BoxData | undefined;
+export type ChangesType = TabData | PanelData | BoxData;
+
+export type SearchResult = ChangesType | undefined;

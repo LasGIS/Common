@@ -1,7 +1,13 @@
-import DockLayout, { TabBase, TabData } from 'rc-dock';
-import { ComponentType, LayoutGroupType, SearchResult } from '../types';
+import DockLayout, { BoxData, DropDirection, PanelData, TabBase, TabData } from 'rc-dock';
+import { ComponentType, LayoutGroupType } from '../types';
 import { Filter } from 'rc-dock/lib/Algorithm';
 import { tabsRegistry } from '../components/TabsRegistry';
+
+const ORDER_TOOLS_BOX_COMPONENTS: Record<string, number> = {
+  [ComponentType.MODEL_RUN_LOG]: 1,
+  [ComponentType.MODEL_CODE_SEARCH]: 2,
+  [ComponentType.MODEL_STATISTICS]: 3,
+}
 
 const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
   const loadTab = (data: TabBase): TabData => {
@@ -25,17 +31,21 @@ const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
     dockRef.current?.updateTab(id, null, true);
   };
 
-  const findSiblingPanel = (group: LayoutGroupType): { siblingTab: SearchResult; panel: SearchResult } => {
-    const siblingTab = dockRef.current?.find((item) => {
+  const findPanels = (group: LayoutGroupType): {
+    tab: TabData | undefined,
+    panel: PanelData | undefined,
+    box: BoxData | undefined,
+    dockbox: BoxData | undefined,
+  } => {
+    const tab = dockRef.current?.find((item) => {
       return 'group' in item && item.group === group;
-    }, Filter.AnyTab);
-    const panel =
-      siblingTab && siblingTab.parent
-        ? siblingTab.parent
-        : dockRef.current?.find((item) => {
-            return 'group' in item && item.group === group;
-          }, Filter.AnyPanel);
-    return { siblingTab, panel };
+    }, Filter.Tab | Filter.Docked) as TabData | undefined;
+    const panel = dockRef.current?.find((item) => {
+      return 'group' in item && item.group === group;
+    }, Filter.Panel | Filter.Docked) as PanelData | undefined;
+    const box = dockRef.current?.find(() => true, Filter.Box | Filter.Docked) as BoxData | undefined;
+    const dockbox = dockRef.current?.find(() => true, Filter.Docked) as BoxData | undefined;
+    return { tab, panel, box, dockbox };
   };
 
   const addToWorkspace = (id: ComponentType) => {
@@ -44,11 +54,43 @@ const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
         setWindowActive(id);
       } else {
         const tabData: TabData = loadTab({ id });
-        const { siblingTab, panel } = findSiblingPanel(LayoutGroupType.MODEL_WORKSPACE);
-        dockRef.current.dockMove(tabData, panel ? panel : siblingTab || null, 'middle');
+        const { tab, panel, box, dockbox } = findPanels(LayoutGroupType.MODEL_WORKSPACE);
+        const parent = tab && tab.parent ? tab.parent : panel;
+        if (parent) {
+          dockRef.current.dockMove(tabData, parent, 'middle');
+        } else if (box) {
+          dockRef.current.dockMove(tabData, box, 'top');
+        } else if (dockbox) {
+          dockRef.current.dockMove(tabData, dockbox, 'top');
+        }
       }
     }
   };
+
+  const getToolsBoxDirection = (id: ComponentType, panel: PanelData): { panel: PanelData, direction: DropDirection } => {
+    if (panel.parent && panel.activeId) {
+      const order = ORDER_TOOLS_BOX_COMPONENTS[id];
+      const panelOrder = ORDER_TOOLS_BOX_COMPONENTS[panel.activeId];
+      const children = panel.parent.children as PanelData[];
+      return children.reduce((acc: { panel: PanelData, direction: DropDirection }, item) => {
+        const itemId = item.activeId;
+        const accId = acc.panel.activeId;
+        if (itemId && accId) {
+          const orderItem = ORDER_TOOLS_BOX_COMPONENTS[itemId];
+          const orderAcc = ORDER_TOOLS_BOX_COMPONENTS[accId];
+          if (orderItem && orderAcc) {
+            if (orderAcc < order && orderItem < order && orderAcc < orderItem) {
+              return { panel: item, direction: 'right' as DropDirection };
+            } else if (orderAcc > order && orderItem > order && orderAcc > orderItem) {
+              return { panel: item, direction: 'left' as DropDirection };
+            }
+          }
+        }
+        return acc;
+      }, { panel: panel, direction: order > panelOrder ? 'right' : 'left' });
+    }
+    return { panel, direction: 'left' };
+  }
 
   const addToToolsBox = (id: ComponentType) => {
     if (dockRef.current) {
@@ -56,8 +98,16 @@ const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
         setWindowActive(id);
       } else {
         const tabData: TabData = loadTab({ id });
-        const { siblingTab, panel } = findSiblingPanel(LayoutGroupType.MODEL_TOOLSBOX);
-        dockRef.current.dockMove(tabData, panel ? panel : siblingTab || null, 'left');
+        const { tab, panel, box, dockbox } = findPanels(LayoutGroupType.MODEL_TOOLSBOX);
+        const parent = tab && tab.parent ? tab.parent : panel;
+        if (parent) {
+          const { panel, direction } = getToolsBoxDirection(id, parent);
+          dockRef.current.dockMove(tabData, panel, direction);
+        } else if (box) {
+          dockRef.current.dockMove(tabData, box, 'bottom');
+        } else if (dockbox) {
+          dockRef.current.dockMove(tabData, dockbox, 'bottom');
+        }
       }
     }
   };
