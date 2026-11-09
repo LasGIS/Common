@@ -7,7 +7,7 @@ const ORDER_TOOLS_BOX_COMPONENTS: Record<string, number> = {
   [ComponentType.MODEL_RUN_LOG]: 1,
   [ComponentType.MODEL_CODE_SEARCH]: 2,
   [ComponentType.MODEL_STATISTICS]: 3,
-}
+};
 
 const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
   const loadTab = (data: TabBase): TabData => {
@@ -31,17 +31,52 @@ const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
     dockRef.current?.updateTab(id, null, true);
   };
 
-  const findPanels = (group: LayoutGroupType): {
+  const getToolsBoxDirection = (id: ComponentType, panel: PanelData): { panel: PanelData; direction: DropDirection } => {
+    if (panel.parent && panel.activeId) {
+      const order = ORDER_TOOLS_BOX_COMPONENTS[id];
+      const panelOrder = ORDER_TOOLS_BOX_COMPONENTS[panel.activeId];
+      const children = panel.parent.children as PanelData[];
+      return children.reduce((acc: { panel: PanelData; direction: DropDirection }, item) => {
+        const itemId = item.activeId;
+        const accId = acc.panel.activeId;
+        if (itemId && accId) {
+          const orderItem = ORDER_TOOLS_BOX_COMPONENTS[itemId];
+          const orderAcc = ORDER_TOOLS_BOX_COMPONENTS[accId];
+          if (orderItem && orderAcc) {
+            if (orderAcc < order && orderItem < order && orderAcc < orderItem) {
+              return { panel: item, direction: 'right' as DropDirection };
+            } else if (orderAcc > order && orderItem > order && orderAcc > orderItem) {
+              return { panel: item, direction: 'left' as DropDirection };
+            }
+          }
+        }
+        return acc;
+      }, { panel: panel, direction: order > panelOrder ? 'right' : 'left' });
+    }
+    return { panel, direction: 'left' };
+  };
+
+  const checkOnToolsBoxValid = (panel: PanelData): boolean => {
+    const parent = panel.parent;
+    const isParentOutGroup = parent?.children.some((item) => 'group' in item && item.group !== LayoutGroupType.MODEL_TOOLSBOX);
+    return panel.tabs.length === 1 && (
+      parent?.children.length === 1 ||
+      (isParentOutGroup && parent?.mode === 'vertical') ||
+      (!isParentOutGroup && parent?.mode === 'horizontal')
+    );
+  };
+
+  const findPanels = (group: LayoutGroupType, onCheck?: (panel: PanelData) => boolean): {
     tab: TabData | undefined,
     panel: PanelData | undefined,
-    box: BoxData | undefined,
-    dockbox: BoxData | undefined,
+    box: BoxData | undefined;
+    dockbox: BoxData | undefined;
   } => {
     const tab = dockRef.current?.find((item) => {
       return 'group' in item && item.group === group;
     }, Filter.Tab | Filter.Docked) as TabData | undefined;
     const panel = dockRef.current?.find((item) => {
-      return 'group' in item && item.group === group;
+      return 'group' in item && item.group === group && typeof onCheck === 'function' && onCheck(item as PanelData);
     }, Filter.Panel | Filter.Docked) as PanelData | undefined;
     const box = dockRef.current?.find(() => true, Filter.Box | Filter.Docked) as BoxData | undefined;
     const dockbox = dockRef.current?.find(() => true, Filter.Docked) as BoxData | undefined;
@@ -67,38 +102,13 @@ const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
     }
   };
 
-  const getToolsBoxDirection = (id: ComponentType, panel: PanelData): { panel: PanelData, direction: DropDirection } => {
-    if (panel.parent && panel.activeId) {
-      const order = ORDER_TOOLS_BOX_COMPONENTS[id];
-      const panelOrder = ORDER_TOOLS_BOX_COMPONENTS[panel.activeId];
-      const children = panel.parent.children as PanelData[];
-      return children.reduce((acc: { panel: PanelData, direction: DropDirection }, item) => {
-        const itemId = item.activeId;
-        const accId = acc.panel.activeId;
-        if (itemId && accId) {
-          const orderItem = ORDER_TOOLS_BOX_COMPONENTS[itemId];
-          const orderAcc = ORDER_TOOLS_BOX_COMPONENTS[accId];
-          if (orderItem && orderAcc) {
-            if (orderAcc < order && orderItem < order && orderAcc < orderItem) {
-              return { panel: item, direction: 'right' as DropDirection };
-            } else if (orderAcc > order && orderItem > order && orderAcc > orderItem) {
-              return { panel: item, direction: 'left' as DropDirection };
-            }
-          }
-        }
-        return acc;
-      }, { panel: panel, direction: order > panelOrder ? 'right' : 'left' });
-    }
-    return { panel, direction: 'left' };
-  }
-
   const addToToolsBox = (id: ComponentType) => {
     if (dockRef.current) {
       if (isOpenedWindow(id)) {
         setWindowActive(id);
       } else {
         const tabData: TabData = loadTab({ id });
-        const { tab, panel, box, dockbox } = findPanels(LayoutGroupType.MODEL_TOOLSBOX);
+        const { tab, panel, box, dockbox } = findPanels(LayoutGroupType.MODEL_TOOLSBOX, checkOnToolsBoxValid);
         const parent = tab && tab.parent ? tab.parent : panel;
         if (parent) {
           const { panel, direction } = getToolsBoxDirection(id, parent);

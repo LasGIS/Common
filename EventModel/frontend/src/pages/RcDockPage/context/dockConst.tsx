@@ -1,4 +1,4 @@
-import { LayoutBase, TabData } from 'rc-dock';
+import { LayoutBase, PanelData, TabData } from 'rc-dock';
 import { ComponentType, LayoutPanelType, LayoutGroupType } from '../types';
 
 export const modelingLayoutData: LayoutBase = {
@@ -9,6 +9,7 @@ export const modelingLayoutData: LayoutBase = {
       {
         id: LayoutPanelType.WORKSPACE_PANEL,
         size: 200,
+        // panelLock: { panelStyle: 'panel-style', minHeight: 400, minWidth: 300 },
         tabs: [
           {
             id: ComponentType.MODEL_MODELING_TABLES,
@@ -27,7 +28,7 @@ export const modelingLayoutData: LayoutBase = {
           } as TabData,
         ],
         group: LayoutGroupType.MODEL_WORKSPACE,
-      },
+      } as PanelData,
       {
         id: LayoutPanelType.TOOLSBOX_PANEL,
         mode: 'horizontal',
@@ -35,6 +36,7 @@ export const modelingLayoutData: LayoutBase = {
         children: [
           {
             id: LayoutPanelType.MODEL_RUN_LOG_PANEL,
+            // panelLock: { panelStyle: 'tools-box-panel', minHeight: 1, minWidth: 1 },
             tabs: [
               { id: ComponentType.MODEL_RUN_LOG, group: LayoutGroupType.MODEL_TOOLSBOX, closable: true } as TabData,
             ],
