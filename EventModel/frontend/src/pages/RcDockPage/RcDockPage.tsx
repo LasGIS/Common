@@ -1,6 +1,6 @@
 import 'rc-dock/dist/rc-dock.css';
 import React, { useState, useRef } from 'react';
-import { ControlPanel, RcDockButton, RcDockButtonGroup, RcDockContent } from './style';
+import { ControlPanel, RcDockButton, RcDockButtonGroup, RcDockContent, RcDockLayout } from './style';
 import { BoxBase, DockLayout, LayoutBase, PanelBase, TabData } from 'rc-dock';
 import { ReactComponent as TableIcon } from '@/assets/rc-dock/Table.svg';
 import { ReactComponent as ObjectsIcon } from '@/assets/rc-dock/Objects.svg';
@@ -125,7 +125,7 @@ const RcDockPage: React.FC = () => {
         </ControlPanel>
 
         {/* Контейнер для DockLayout */}
-        <div style={{ flexGrow: 1, position: 'relative' }}>
+        <RcDockLayout style={{ flexGrow: 1, position: 'relative' }}>
           <DockLayout
             ref={dockRef}
             layout={layout}
@@ -134,7 +134,7 @@ const RcDockPage: React.FC = () => {
             saveTab={(tabData) => tabData}
             loadTab={loadTab}
           />
-        </div>
+        </RcDockLayout>
       </div>
     </RcDockContent>
   );

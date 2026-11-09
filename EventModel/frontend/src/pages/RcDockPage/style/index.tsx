@@ -32,3 +32,16 @@ export const RcDockButton = styled(Button)`
   // padding: 8px 16px;
   cursor: pointer;
 `;
+
+export const RcDockLayout = styled.div`
+  flex-grow: 1;
+  position: relative;
+  & .dock-panel {
+    &.dock-style-workspace {
+      background: #EEEEFF;
+    }
+    &.dock-style-toolsBox {
+      background: #EEFFEE;
+    }
+  }
+`;
