@@ -102,12 +102,39 @@ const useDockLayout = (dockRef: React.RefObject<DockLayout | null>) => {
     }
   };
 
+  const getBottomLeftPanelData = (node: BoxData | PanelData) => {
+    const isBoxData = 'children' in node && Array.isArray(node.children);
+    if (isBoxData) {
+      const nFirst = node.children.at(0);
+      const nLast = node.children.at(node.children.length - 1);
+      if (node.mode === 'horizontal' && nFirst) {
+        return getBottomLeftPanelData(nFirst);
+      } else if (node.mode === 'vertical' && nLast) {
+        return getBottomLeftPanelData(nLast);
+      }
+    }
+    const isPanelData = 'tabs' in node && Array.isArray(node.tabs);
+    if (isPanelData && node.tabs.at(0)) {
+      const tab = node.tabs.at(0);
+      if (tab && tab.id) {
+        setTimeout(() => {
+          const div = document.getElementById(tab.id as string);
+          div?.classList.add('tab-highlight');
+          console.log('div', div);
+        }, 1);
+      }
+    }
+    return node;
+  }
+
   const addToToolsBox = (id: ComponentType) => {
     if (dockRef.current) {
       if (isOpenedWindow(id)) {
         setWindowActive(id);
       } else {
         const tabData: TabData = loadTab({ id });
+        const blPanelData = getBottomLeftPanelData(dockRef.current.getLayout().dockbox);
+        console.log('getBottomLeftPanelData: ', blPanelData);
         const { tab, panel, box, dockbox } = findPanels(LayoutGroupType.MODEL_TOOLSBOX, checkOnToolsBoxValid);
         const parent = tab && tab.parent ? tab.parent : panel;
         if (parent) {

@@ -9,7 +9,6 @@ export const RcDockContent = styled(MainContent)`
 `;
 
 export const ControlPanel = styled.div`
-
   flex: 0 0 42px;
   display: flex;
   flex-direction: column;
@@ -29,7 +28,6 @@ export const RcDockButtonGroup = styled.div`
 `;
 
 export const RcDockButton = styled(Button)`
-  // padding: 8px 16px;
   cursor: pointer;
 `;
 
@@ -38,10 +36,17 @@ export const RcDockLayout = styled.div`
   position: relative;
   & .dock-panel {
     &.dock-style-workspace {
-      background: #EEEEFF;
+      background: #eeeeff;
     }
+
     &.dock-style-toolsBox {
-      background: #EEFFEE;
+      background: #eeffee;
+    }
+
+    & .dock-tabpane.tab-highlight {
+      border: 3px solid #f00;
+      width: calc(100% - 6px);
+      height: calc(100% - 6px);
     }
   }
 `;
