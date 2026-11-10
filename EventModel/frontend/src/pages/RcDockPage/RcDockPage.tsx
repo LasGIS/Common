@@ -1,5 +1,5 @@
 import 'rc-dock/dist/rc-dock.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ControlPanel, RcDockButton, RcDockButtonGroup, RcDockContent, RcDockLayout } from './style';
 import { BoxBase, DockLayout, LayoutBase, PanelBase, TabData } from 'rc-dock';
 import { ReactComponent as TableIcon } from '@/assets/rc-dock/Table.svg';
@@ -81,6 +81,11 @@ const RcDockPage: React.FC = () => {
     return savedLayout;
   });
 
+  const refreshOpenedWindow = () =>
+    setTimeout(() => BOTTON_COMPONENT_TYPES.forEach(key => setOpenedWindow((prev) => ({ ...prev, [key]: isOpenedWindow(key) }))), 1);
+
+  useEffect(() => { refreshOpenedWindow(); }, []);
+
   // 2. Функция сохранения в LocalStorage при любых изменениях
   const handleLayoutChange = (newLayout: LayoutBase) => {
     setLayout(newLayout);
@@ -88,14 +93,25 @@ const RcDockPage: React.FC = () => {
     // Перед сохранением очищаем свойства content, так как JSX не сериализуется в JSON
     const cleanLayout = removeCyclicReferences(newLayout);
 
-    setTimeout(() => BOTTON_COMPONENT_TYPES.forEach(key => setOpenedWindow((prev) => ({ ...prev, [key]: isOpenedWindow(key) }))), 1);
+    refreshOpenedWindow();
 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cleanLayout));
   };
 
   const restoreLocalStorage = () => {
     setLayout(modelingLayoutData);
+    refreshOpenedWindow();
   };
+
+  const openWorkspace = (type: ComponentType) => {
+    addToWorkspace(type);
+    // refreshOpenedWindow();
+  }
+
+  const openToolsBox = (type: ComponentType) => {
+    addToToolsBox(type);
+    // refreshOpenedWindow();
+  }
 
   return (
     <RcDockContent>
@@ -105,17 +121,17 @@ const RcDockPage: React.FC = () => {
           <RcDockButtonGroup>
             <RcDockButton style={{ background: openedWindow[ComponentType.MODEL_MODELING_TABLES] ? '#ff8888' : '' }}
               type="text"
-              onClick={() => addToWorkspace(ComponentType.MODEL_MODELING_TABLES)}
+              onClick={() => openWorkspace(ComponentType.MODEL_MODELING_TABLES)}
               icon={<TableIcon />}
             />
             <RcDockButton style={{ background: openedWindow[ComponentType.MODEL_MODELING_OBJECTS] ? '#ff8888' : '' }}
               type="text"
-              onClick={() => addToWorkspace(ComponentType.MODEL_MODELING_OBJECTS)}
+              onClick={() => openWorkspace(ComponentType.MODEL_MODELING_OBJECTS)}
               icon={<ObjectsIcon />}
             />
             <RcDockButton style={{ background: openedWindow[ComponentType.MODEL_MODELING_SCHEME] ? '#ff8888' : '' }}
               type="text"
-              onClick={() => addToWorkspace(ComponentType.MODEL_MODELING_SCHEME)}
+              onClick={() => openWorkspace(ComponentType.MODEL_MODELING_SCHEME)}
               icon={<SchemeIcon />}
             />
           </RcDockButtonGroup>
@@ -125,17 +141,17 @@ const RcDockPage: React.FC = () => {
           <RcDockButtonGroup>
             <RcDockButton style={{ background: openedWindow[ComponentType.MODEL_STATISTICS] ? '#ff8888' : '' }}
               type="text"
-              onClick={() => addToToolsBox(ComponentType.MODEL_STATISTICS)}
+              onClick={() => openToolsBox(ComponentType.MODEL_STATISTICS)}
               icon={<StatisticsIcon />}
             />
             <RcDockButton style={{ background: openedWindow[ComponentType.MODEL_CODE_SEARCH] ? '#ff8888' : '' }}
               type="text"
-              onClick={() => addToToolsBox(ComponentType.MODEL_CODE_SEARCH)}
+              onClick={() => openToolsBox(ComponentType.MODEL_CODE_SEARCH)}
               icon={<CodeSearchIcon />}
             />
             <RcDockButton style={{ background: openedWindow[ComponentType.MODEL_RUN_LOG] ? '#ff8888' : '' }}
               type="text"
-              onClick={() => addToToolsBox(ComponentType.MODEL_RUN_LOG)}
+              onClick={() => openToolsBox(ComponentType.MODEL_RUN_LOG)}
               icon={<ReportIcon />}
             />
           </RcDockButtonGroup>
