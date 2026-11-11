@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const MainPageWrapper = styled.div`
+  width: 100vw;
+  height: calc(100vh - 68px);
+  background-color: #fff;
+  text-align: left;
+`;
+
 export const MainContent = styled.div`
   padding: 10px;
   margin: 0 auto;

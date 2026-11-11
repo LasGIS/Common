@@ -3,6 +3,7 @@ import { ReactComponent as HomeIcon } from '@/assets/header/home.svg';
 import { ReactComponent as DemoIcon } from '@/assets/header/sync_alt.svg';
 import { ReactComponent as AboutIcon } from '@/assets/header/search.svg';
 import { ReactComponent as RcDockIcon } from '@/assets/rc-dock/win_config.svg';
+import { ReactComponent as SolverIcon } from '@/assets/header/solver.svg';
 import { useTranslation } from 'react-i18next';
 import { ButtonToolbar } from '../styles.tsx';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +23,9 @@ const NavigationButtonsControl = () => {
       </StyledTooltip>
       <StyledTooltip title={t('header.menu.rc-dock')}>
         <ButtonToolbar type="text" icon={<RcDockIcon />} onClick={() => navigate('/rc-dock')} />
+      </StyledTooltip>
+      <StyledTooltip title={t('header.menu.solver')}>
+        <ButtonToolbar type="text" icon={<SolverIcon />} onClick={() => navigate('/project-results')} />
       </StyledTooltip>
       <StyledTooltip title={t('header.menu.about')}>
         <ButtonToolbar type="text" icon={<AboutIcon />} onClick={() => navigate('/about')} />

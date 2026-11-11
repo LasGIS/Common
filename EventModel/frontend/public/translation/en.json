@@ -19,7 +19,8 @@
       "external": "External links" ,
       "about": "About",
       "adv-save-layout": "Advanced save layout",
-      "rc-dock": "rcDock"
+      "rc-dock": "rcDock",
+      "solver": "Solver configuration"
     },
     "lang": {
       "ru": "RU",

@@ -2,7 +2,7 @@ import React from 'react';
 
 const BC_START_WINDOW_EVENTS_NAME = 'start-window-events';
 
-const UseBroadcastChannel = () => {
+const UseBroadcastChannel: React.FC = () => {
   const [broadcast] = React.useState<BroadcastChannel>(new BroadcastChannel(BC_START_WINDOW_EVENTS_NAME));
 
   const checkStartWindowEvent = (e: MessageEvent<string>) => {
@@ -18,6 +18,8 @@ const UseBroadcastChannel = () => {
       broadcast.close();
     };
   }, []);
+
+  return <></>
 };
 
 export default UseBroadcastChannel;

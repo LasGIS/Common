@@ -5,6 +5,7 @@ import DemoPage from '@pages/DemoPage';
 import BaseLayout from '@pages/BaseLayout';
 import NoMatchPage from '@pages/NoMatchPage';
 import RcDockPage from '@pages/RcDockPage';
+import ProjectResults from '@pages/ProjectResults';
 
 const routerConfig = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const routerConfig = createBrowserRouter([
       {
         path: '/adv-save-layout',
         element: <AdvancedSaveLayout />,
+      },
+      {
+        path: '/project-results',
+        element: <ProjectResults />,
       },
       {
         path: '*',

@@ -7,12 +7,13 @@ import { Scene } from '@/canvas/Scene.ts';
 import { useSceneEvent } from '@/hooks/scene/useSceneEvent.ts';
 import { Canvas } from '@/canvas/Canvas.ts';
 import { toPoint } from '@/utils/GeoObjectUtils.ts';
+import React from 'react';
 
 interface Prop {
   scene: Scene;
 }
 
-const useDrawObjects = ({ scene }: Prop) => {
+const useDrawObjects: React.FC<Prop> = ({ scene }) => {
   const objects = useAppSelector(objectsSelector);
 
   useEffect(() => {
@@ -67,6 +68,8 @@ const useDrawObjects = ({ scene }: Prop) => {
     const pnt: Point = toPoint(event);
     canvas.draw(pnt);
   });
+
+  return <></>
 };
 
 export default useDrawObjects;
